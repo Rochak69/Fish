@@ -54,6 +54,7 @@ class FishTextField extends StatelessWidget {
           textInputAction: TextInputAction.next,
           maxLength: maxLength,
           readOnly: isReadOnly,
+          onTap: onTap,
           obscureText: obscureText,
           keyboardType: textInputType,
           controller: textEditingController,

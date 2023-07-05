@@ -4,6 +4,7 @@ import 'package:fish_shop/ui/home_listing/bloc/home_listings_bloc.dart';
 import 'package:fish_shop/ui/home_listing/bloc/home_listings_event.dart';
 import 'package:fish_shop/ui/utils/preferences.dart';
 import 'package:fish_shop/ui/utils/utils.dart';
+import 'package:fish_shop/ui/your_listing/your_listing.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -55,78 +56,116 @@ class _CardListingState extends State<CardListing> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10),
-      width: 341,
-      height: 104,
+      padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 18.h),
       decoration: BoxDecoration(
+        color: AppColors.cardContainerColor,
         border: Border.all(color: AppColors.cardContainerColor),
-        borderRadius: BorderRadius.circular(5),
+        borderRadius: BorderRadius.circular(20.r),
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      alignment: Alignment.topLeft,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-            Container(
-              color: AppColors.cardContainerColor,
-              alignment: Alignment.topLeft,
-              child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    UiHelper.verticalSpacing(16),
-                    Text(
-                      '${widget.fishName} ( ${widget.avgWeight} )',
-                      style: const TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w800,
-                          color: AppColors.AppCardColor),
-                    ),
-                    UiHelper.verticalSpacing(4),
-                    Text(
-                      'Date : ${widget.date}',
-                      style: const TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w800,
-                          color: AppColors.AppCardColor),
-                    ),
-                    Text(
-                      'Location : ${widget.location}',
-                      style: const TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w800,
-                          color: AppColors.AppCardColor),
-                    ),
-                    UiHelper.verticalSpacing(4),
-                    Text(
-                      ' Quantity : ${widget.totalWeight}',
-                      style: const TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w800,
-                          color: AppColors.AppCardColor),
-                    ),
-                  ]),
+          Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Row(
+              children: [
+                Text(
+                  'Fish Type : ',
+                  style: TextStyle(
+                      fontSize: 18.sp,
+                      fontWeight: FontWeight.w700,
+                      color: AppColors.textColor),
+                ),
+                Text(
+                  widget.fishName,
+                  style: TextStyle(
+                      fontSize: 18.sp,
+                      fontWeight: FontWeight.w700,
+                      color: Colors.black),
+                ),
+              ],
             ),
-            Column(children: [
-              Container(
-                decoration: BoxDecoration(
-                    border: Border.all(color: AppColors.textColor),
-                    color: widget.backgroundColor,
-                    borderRadius: const BorderRadius.all(Radius.circular(20))),
-                child: TextButton(
-                    onPressed: () {
-                      _showAlertDialog(
-                        context: context,
-                      );
-                    },
-                    child: Text(
-                      'Send Offer',
-                      style: TextStyle(color: widget.textColor),
-                    )),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-            ]),
+            UiHelper.verticalSpacing(4.h),
+            Row(
+              children: [
+                Text(
+                  'Fish weight : ',
+                  style: TextStyle(
+                      fontSize: 12.sp,
+                      fontWeight: FontWeight.w700,
+                      color: Colors.black),
+                ),
+                Text(
+                  '${widget.avgWeight} Kg',
+                  style: TextStyle(
+                      fontSize: 12.sp,
+                      fontWeight: FontWeight.w700,
+                      color: AppColors.AppCardColor),
+                ),
+              ],
+            ),
+
+            Row(
+              children: [
+                Text(
+                  'Qunatity : ',
+                  style: TextStyle(
+                      fontSize: 12.sp,
+                      fontWeight: FontWeight.w700,
+                      color: Colors.black),
+                ),
+                Text(
+                  widget.totalWeight.toString(),
+                  style: TextStyle(
+                      fontSize: 12.sp,
+                      fontWeight: FontWeight.w800,
+                      color: AppColors.AppCardColor),
+                ),
+              ],
+            ),
+            Row(
+              children: [
+                Text(
+                  'Yeild Date : ',
+                  style: TextStyle(
+                      fontSize: 12.sp,
+                      fontWeight: FontWeight.w700,
+                      color: Colors.black),
+                ),
+                Text(
+                  formarDate(widget.date),
+                  style: TextStyle(
+                      fontSize: 12.sp,
+                      fontWeight: FontWeight.w700,
+                      color: AppColors.AppCardColor),
+                ),
+              ],
+            ),
+            // Text(
+            //   'Location : ${widget.location}',
+            //   style: TextStyle(
+            //       fontSize: 12.sp,
+            //       fontWeight: FontWeight.w800,
+            //       color: AppColors.AppCardColor),
+            // ),
           ]),
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 6.w),
+            decoration: BoxDecoration(
+                border: Border.all(color: AppColors.textColor, width: 1.5.w),
+                borderRadius: const BorderRadius.all(Radius.circular(20))),
+            child: TextButton(
+                onPressed: () {
+                  _showAlertDialog(
+                    context: context,
+                  );
+                },
+                child: const Text(
+                  'Send Offer',
+                  style: TextStyle(
+                      color: AppColors.textColor, fontWeight: FontWeight.w500),
+                )),
+          ),
         ],
       ),
     );

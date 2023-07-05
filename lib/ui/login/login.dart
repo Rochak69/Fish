@@ -88,7 +88,7 @@ class _LoginPageState extends State<LoginPage> {
                       child: Text(
                         'Welcome!',
                         style: TextStyle(
-                          fontSize: 24.sp,
+                          fontSize: 22.sp,
                           color: Colors.black,
                           fontWeight: FontWeight.w900,
                         ),

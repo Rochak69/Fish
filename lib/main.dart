@@ -1,7 +1,9 @@
 import 'package:fish_shop/core/injection/dependency_injection.dart';
 import 'package:fish_shop/navigation_service.dart';
+import 'package:fish_shop/res/colors.dart';
 import 'package:fish_shop/ui/fisher_farm_details/bloc/fish_farmer_detail_bloc.dart';
 import 'package:fish_shop/ui/home_listing/bloc/home_listings_bloc.dart';
+import 'package:fish_shop/ui/home_listing/home_listing.dart';
 import 'package:fish_shop/ui/login/bloc/login_bloc.dart';
 import 'package:fish_shop/ui/login/login.dart';
 import 'package:fish_shop/ui/order%20history/bloc/order_history_bloc.dart';
@@ -80,9 +82,17 @@ class MyApp extends StatelessWidget {
               useInheritedMediaQuery: true,
               builder: (context, child) {
                 return MaterialApp(
+                  theme: ThemeData(
+                      scaffoldBackgroundColor: Colors.white,
+                      elevatedButtonTheme: ElevatedButtonThemeData(
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all<Color>(
+                              AppColors.textColor),
+                        ),
+                      )),
                   navigatorKey: NavigationService.navigatorKey,
                   debugShowCheckedModeBanner: false,
-                  home: const LoginPage(),
+                  home: const HomeListing(),
                 );
               }));
     });

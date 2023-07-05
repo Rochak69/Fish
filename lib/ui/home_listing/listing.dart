@@ -1,6 +1,8 @@
+import 'package:fish_shop/res/colors.dart';
 import 'package:fish_shop/ui/common_widget/CardListing.dart';
 import 'package:fish_shop/ui/common_widget/FishTextField.dart';
 import 'package:fish_shop/ui/home_listing/bloc/home_listings_bloc.dart';
+import 'package:fish_shop/ui/home_listing/bloc/home_listings_event.dart';
 import 'package:fish_shop/ui/home_listing/bloc/home_listings_state.dart';
 import 'package:fish_shop/ui/settings_page/settings_page.dart';
 import 'package:fish_shop/ui/utils/uihelper.dart';
@@ -44,9 +46,9 @@ class _ListingsState extends State<Listings> {
               title: Text(
                 'Home',
                 style: TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.w900,
-                    fontSize: 20.sp),
+                    color: AppColors.textColor,
+                    fontWeight: FontWeight.w700,
+                    fontSize: 22.sp),
               ),
               actions: [
                 GestureDetector(
@@ -61,44 +63,52 @@ class _ListingsState extends State<Listings> {
                 UiHelper.horizontalSpacing(24.w)
               ],
             ),
-            body: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 15.0.w),
-              child: Column(mainAxisSize: MainAxisSize.min, children: [
-                UiHelper.verticalSpacing(12.h),
-                FishTextField(
-                  label: 'Search',
-                  contentPadding: EdgeInsets.only(left: 15.w),
-                  prefixIcon: const Icon(Icons.search),
-                ),
-                Expanded(
-                  child: ListView.separated(
-                      shrinkWrap: true,
-                      itemBuilder: (context, index) {
-                        return CardListing(
-                          avgWeight:
-                              state.result.data?[index].avgFishWeight ?? 0,
-                          date:
-                              state.result.data?[index].yieldDate.toString() ??
-                                  '',
-                          fishName:
-                              state.result.data?[index].fishType.toString() ??
-                                  '',
-                          totalWeight:
-                              state.result.data?[index].totalWeight ?? 0,
-                          location: 'Kathmandu',
-                          userDemandId: state.result.data?[index].id ?? '',
-                        );
-                      },
-                      separatorBuilder: (context, index) =>
-                          UiHelper.verticalSpacing(23.h),
-                      itemCount: state.result.data?.length ?? 0),
-                )
-              ]),
+            body: RefreshIndicator(
+              onRefresh: () => refresh(),
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 15.0.w),
+                child: Column(mainAxisSize: MainAxisSize.min, children: [
+                  UiHelper.verticalSpacing(12.h),
+                  FishTextField(
+                    label: 'Search',
+                    contentPadding: EdgeInsets.only(left: 15.w),
+                    prefixIcon: const Icon(Icons.search),
+                  ),
+                  Expanded(
+                    child: ListView.separated(
+                        padding: EdgeInsets.only(top: 14.h),
+                        shrinkWrap: true,
+                        itemBuilder: (context, index) {
+                          return CardListing(
+                            avgWeight:
+                                state.result.data?[index].avgFishWeight ?? 0,
+                            date: state.result.data?[index].yieldDate
+                                    .toString() ??
+                                '',
+                            fishName:
+                                state.result.data?[index].fishType.toString() ??
+                                    '',
+                            totalWeight:
+                                state.result.data?[index].totalWeight ?? 0,
+                            location: 'Kathmandu',
+                            userDemandId: state.result.data?[index].id ?? '',
+                          );
+                        },
+                        separatorBuilder: (context, index) =>
+                            UiHelper.verticalSpacing(23.h),
+                        itemCount: state.result.data?.length ?? 0),
+                  )
+                ]),
+              ),
             ),
           );
         }
         return Container();
       },
     );
+  }
+
+  Future<void> refresh() async {
+    BlocProvider.of<HomeListingsBloc>(context).add(GetHomeListings());
   }
 }

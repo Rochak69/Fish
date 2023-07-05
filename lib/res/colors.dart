@@ -8,5 +8,5 @@ class AppColors {
   static const Color textDarkBlackColor = Color(0xff1F2024);
   static const Color neutralLineColor = Color(0xffD4D6DD);
   static const Color AppCardColor = Color(0xff71727A);
-  static const Color cardContainerColor = Color(0xffF8F9FE);
+  static const Color cardContainerColor = Color(0xfff8f9fe);
 }
