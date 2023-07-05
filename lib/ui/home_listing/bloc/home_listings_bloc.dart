@@ -9,7 +9,6 @@ import 'package:fish_shop/ui/home_listing/bloc/home_listings_event.dart';
 import 'package:fish_shop/ui/home_listing/bloc/home_listings_state.dart';
 import 'package:fish_shop/ui/home_listing/model/home_listings_response.dart';
 import 'package:fish_shop/ui/home_listing/repository/home_listings_api_client.dart';
-import 'package:fish_shop/ui/login/model/user_details_response.dart';
 import 'package:fish_shop/ui/utils/utils.dart';
 import 'package:injectable/injectable.dart';
 

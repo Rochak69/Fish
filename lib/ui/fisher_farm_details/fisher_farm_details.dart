@@ -1,10 +1,9 @@
 import 'package:fish_shop/res/colors.dart';
 import 'package:fish_shop/ui/common_widget/FishTextField.dart';
+import 'package:fish_shop/ui/common_widget/app_dropdown.dart';
 import 'package:fish_shop/ui/fisher_farm_details/bloc/fish_farmer_detail_bloc.dart';
-import 'package:fish_shop/ui/fisher_farm_details/bloc/fish_farmer_detail_event.dart';
 
 import 'package:fish_shop/ui/fisher_farm_details/bloc/fish_farmer_detail_state.dart';
-import 'package:fish_shop/ui/home_listing/home_listing.dart';
 import 'package:fish_shop/ui/login/login.dart';
 import 'package:fish_shop/ui/utils/preferences.dart';
 import 'package:fish_shop/ui/utils/uihelper.dart';
@@ -22,13 +21,16 @@ class FishFarmDetails extends StatefulWidget {
 
 class _FishFarmDetailsState extends State<FishFarmDetails> {
   final farmerNameController = TextEditingController();
-  final pondSizeController = TextEditingController();
-  final pradeshController = TextEditingController();
-  final districtController = TextEditingController();
-  final locationController = TextEditingController();
+  final toleNameController = TextEditingController();
+  final emailController = TextEditingController();
+  final facebookPageController = TextEditingController();
+  final phoneNumberCOntroller = TextEditingController();
+  final farmNameController = TextEditingController();
+  String? selectedPradesh;
+  String? selectedDistrict;
+  String? selectedNagarpalika;
+  String? selectedWoda;
 
-  final woda = TextEditingController();
-  String selectedDropdownValue = 'Nagarpalika';
   @override
   Widget build(BuildContext context) {
     return BlocListener<FishFarmerDetailBloc, FishFarmerDetailState>(
@@ -47,19 +49,6 @@ class _FishFarmDetailsState extends State<FishFarmDetails> {
         }
       },
       child: Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          title: Text(
-            'Fisher Farmers Detail',
-            style: TextStyle(
-                color: Colors.black,
-                fontWeight: FontWeight.w900,
-                fontSize: 16.sp),
-          ),
-          backgroundColor: Colors.white,
-          automaticallyImplyLeading: false,
-          elevation: 0,
-        ),
         body: SafeArea(
           child: SingleChildScrollView(
             child: Container(
@@ -69,201 +58,204 @@ class _FishFarmDetailsState extends State<FishFarmDetails> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     _buildUpperText(),
-                    Text(
-                      'Farm\'s Name',
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.w700,
-                          fontSize: 12.sp),
+                    RichText(
+                      text: TextSpan(
+                          text: 'Farmer\'s name',
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.w700,
+                              fontSize: 12.sp),
+                          children: [
+                            TextSpan(
+                                text: ' *',
+                                style: TextStyle(
+                                    color: Colors.red, fontSize: 16.sp))
+                          ]),
                     ),
-                    UiHelper.verticalSpacing(5.h),
-                    /*
-                     {
-              "id": "ccd3a0a6-21fa-4f3b-a74e-87807e4ebd6d",
-              "userId": "bf3c54f9-acb2-4fc2-be2c-3d88843592ee",
-              "profilePicture": "Selfile",
-              "farmName": "Kritan farm house",
-              "pondSize": 300,
-              "fiscalYear": "2023-06-27T07:33:24.352Z",
-              "active": true,
-              "approved": true,
-              "location": {
-                "pradesh": "Bagmati",
-                "district": "Lalitpur",
-                "mahaNagarpalika": null,
-                "upaMahaNagarpalika": null,
-                "gaupalika": null,
-                "nagarpalika": "Godawori"
-              },
-                    */
+                    UiHelper.verticalSpacing(10.h),
                     FishTextField(
                       textEditingController: farmerNameController,
                       label: 'Farm\'s Name',
                       contentPadding: EdgeInsets.only(left: 15.w),
                     ),
-                    UiHelper.verticalSpacing(20),
-                    Text(
-                      'Profile Picture',
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.w700,
-                          fontSize: 12.sp),
-                    ),
-                    UiHelper.verticalSpacing(5.h),
-                    FishTextField(
-                      label: '',
-                      prefixIcon: ElevatedButton(
-                          onPressed: () {},
-                          style: ElevatedButton.styleFrom(
-                            elevation: 0,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12.r),
-                            ),
-                          ),
-                          child: const Text('Choose')),
-                    ),
                     UiHelper.verticalSpacing(10.h),
-                    Padding(
-                      padding: EdgeInsets.only(left: 5.w),
-                      child: Text(
-                        'Your\'s Location',
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontWeight: FontWeight.w700,
-                            fontSize: 12.sp),
-                      ),
+                    RichText(
+                      text: TextSpan(
+                          text: 'Farm Name',
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.w700,
+                              fontSize: 12.sp),
+                          children: [
+                            TextSpan(
+                                text: ' *',
+                                style: TextStyle(
+                                    color: Colors.red, fontSize: 16.sp))
+                          ]),
                     ),
                     UiHelper.verticalSpacing(10.h),
                     FishTextField(
-                      textEditingController: districtController,
-                      label: 'District',
-                      contentPadding: EdgeInsets.only(left: 5.w),
-                      width: double.infinity,
-                    ),
-                    UiHelper.verticalSpacing(16.h),
-                    FishTextField(
-                      textEditingController: pradeshController,
-                      label: 'Pradesh',
-                      contentPadding: EdgeInsets.only(left: 5.w),
-                      width: double.infinity,
+                      textEditingController: farmNameController,
+                      label: 'Farm\'s Name',
+                      contentPadding: EdgeInsets.only(left: 15.w),
                     ),
                     UiHelper.verticalSpacing(10.h),
-                    DropdownButtonFormField<String>(
-                      value: selectedDropdownValue,
-                      onChanged: (value) {
-                        setState(() {
-                          selectedDropdownValue = value ?? 'Nagarpalika';
-                        });
-                      },
-                      items: const [
-                        DropdownMenuItem(
-                          value: 'Nagarpalika',
-                          child: Text('Nagarpalika'),
-                        ),
-                        DropdownMenuItem(
-                          value: 'Gaupalika',
-                          child: Text('Gaupalika'),
-                        ),
-                        DropdownMenuItem(
-                          value: 'Mahanagarpalika',
-                          child: Text('Mahanagarpalika'),
-                        ),
-                        DropdownMenuItem(
-                          value: 'Upamaharnagarpalika',
-                          child: Text('Upamaharnagarpalika'),
-                        ),
-                      ],
-                      decoration: const InputDecoration(
-                        labelText: 'Select an option',
-                        border: OutlineInputBorder(),
-                      ),
+                    RichText(
+                      text: TextSpan(
+                          text: 'Phone Number',
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.w700,
+                              fontSize: 12.sp),
+                          children: [
+                            TextSpan(
+                                text: ' *',
+                                style: TextStyle(
+                                    color: Colors.red, fontSize: 16.sp))
+                          ]),
                     ),
-                    UiHelper.verticalSpacing(16.h),
+                    UiHelper.verticalSpacing(10.h),
                     FishTextField(
-                      textEditingController: locationController,
-                      label: selectedDropdownValue,
-                      contentPadding: EdgeInsets.only(left: 5.w),
-                      width: double.infinity,
-                    ),
-                    UiHelper.verticalSpacing(16.h),
-                    FishTextField(
-                      textEditingController: woda,
-                      label: 'Woda',
-                      contentPadding: EdgeInsets.only(left: 5.w),
-                      width: double.infinity,
-                    ),
-                    UiHelper.verticalSpacing(16.h),
-                    Padding(
-                      padding: EdgeInsets.only(left: 5.w),
-                      child: Text(
-                        'Farm\'s Total Pond Size',
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontWeight: FontWeight.w700,
-                            fontSize: 12.sp),
-                      ),
-                    ),
-                    UiHelper.verticalSpacing(5.h),
-                    Row(
-                      children: [
-                        Expanded(
-                          flex: 3,
-                          child: FishTextField(
-                            textEditingController: pondSizeController,
-                            textInputType: TextInputType.number,
-                            label: '',
-                          ),
-                        ),
-                        UiHelper.horizontalSpacing(10.w),
-                        const Expanded(
-                          flex: 1,
-                          child: FishTextField(
-                            label: 'sqm',
-                          ),
-                        ),
-                      ],
+                      textEditingController: phoneNumberCOntroller,
+                      label: 'Phone Number',
+                      contentPadding: EdgeInsets.only(left: 15.w),
                     ),
                     UiHelper.verticalSpacing(20.h),
                     Text(
-                      'Farm\'s Identification Document',
+                      'Farms\'s Address',
                       style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.w700,
-                          fontSize: 12.sp),
+                          fontSize: 16.sp,
+                          color: AppColors.textColor,
+                          fontWeight: FontWeight.w700),
                     ),
-                    UiHelper.verticalSpacing(5.h),
-                    FishTextField(
-                      label: '',
-                      prefixIcon: ElevatedButton(
-                          onPressed: () {},
-                          style: ElevatedButton.styleFrom(
-                            elevation: 0,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12.r),
-                            ),
-                          ),
-                          child: const Text('Choose')),
+                    UiHelper.verticalSpacing(15.h),
+                    RichText(
+                      text: TextSpan(
+                          text: 'Pradesh',
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.w700,
+                              fontSize: 12.sp),
+                          children: [
+                            TextSpan(
+                                text: ' *',
+                                style: TextStyle(
+                                    color: Colors.red, fontSize: 16.sp))
+                          ]),
+                    ),
+                    UiHelper.verticalSpacing(8.h),
+                    AppDropDown(
+                      isExpanded: true,
+                      dropdownValues: const ['Pradesh 1', 'Pradesh 2'],
+                      onChanged: (p0) {},
+                    ),
+                    UiHelper.verticalSpacing(8.h),
+                    RichText(
+                      text: TextSpan(
+                          text: 'District',
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.w700,
+                              fontSize: 12.sp),
+                          children: [
+                            TextSpan(
+                                text: ' *',
+                                style: TextStyle(
+                                    color: Colors.red, fontSize: 16.sp))
+                          ]),
+                    ),
+                    UiHelper.verticalSpacing(8.h),
+                    AppDropDown(
+                      isExpanded: true,
+                      dropdownValues: const ['Pradesh 1', 'Pradesh 2'],
+                      onChanged: (p0) {},
                     ),
                     UiHelper.verticalSpacing(10.h),
+                    RichText(
+                      text: TextSpan(
+                          text: 'NagarPalika',
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.w700,
+                              fontSize: 12.sp),
+                          children: [
+                            TextSpan(
+                                text: ' *',
+                                style: TextStyle(
+                                    color: Colors.red, fontSize: 16.sp))
+                          ]),
+                    ),
+                    UiHelper.verticalSpacing(8.h),
+                    AppDropDown(
+                      isExpanded: true,
+                      dropdownValues: const ['Pradesh 1', 'Pradesh 2'],
+                      onChanged: (p0) {},
+                    ),
+                    UiHelper.verticalSpacing(16.h),
+                    RichText(
+                      text: TextSpan(
+                          text: 'Woda',
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.w700,
+                              fontSize: 12.sp),
+                          children: [
+                            TextSpan(
+                                text: ' *',
+                                style: TextStyle(
+                                    color: Colors.red, fontSize: 16.sp))
+                          ]),
+                    ),
+                    UiHelper.verticalSpacing(8.h),
+                    AppDropDown(
+                      isExpanded: true,
+                      dropdownValues: const ['Pradesh 1', 'Pradesh 2'],
+                      onChanged: (p0) {},
+                    ),
+                    UiHelper.verticalSpacing(16.h),
                     Text(
-                      'Farm\'s Registration Document',
+                      'Tole Name',
                       style: TextStyle(
                           color: Colors.black,
                           fontWeight: FontWeight.w700,
                           fontSize: 12.sp),
                     ),
-                    UiHelper.verticalSpacing(5.h),
+                    UiHelper.verticalSpacing(8.h),
                     FishTextField(
-                      label: '',
-                      prefixIcon: ElevatedButton(
-                          onPressed: () {},
-                          style: ElevatedButton.styleFrom(
-                            elevation: 0,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12.r),
-                            ),
-                          ),
-                          child: const Text('Choose')),
+                      textEditingController: toleNameController,
+                      label: 'Tole name',
+                      contentPadding: EdgeInsets.only(left: 5.w),
+                      width: double.infinity,
+                    ),
+                    UiHelper.verticalSpacing(16.h),
+                    Text(
+                      'Email',
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.w700,
+                          fontSize: 12.sp),
+                    ),
+                    UiHelper.verticalSpacing(8.h),
+                    FishTextField(
+                      textEditingController: emailController,
+                      label: 'Email',
+                      contentPadding: EdgeInsets.only(left: 5.w),
+                      width: double.infinity,
+                    ),
+                    UiHelper.verticalSpacing(16.h),
+                    Text(
+                      'Facebook page',
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.w700,
+                          fontSize: 12.sp),
+                    ),
+                    UiHelper.verticalSpacing(8.h),
+                    FishTextField(
+                      textEditingController: facebookPageController,
+                      label: 'Facebook Page',
+                      contentPadding: EdgeInsets.only(left: 5.w),
+                      width: double.infinity,
                     ),
                     UiHelper.verticalSpacing(22.h),
                     SizedBox(
@@ -281,34 +273,30 @@ class _FishFarmDetailsState extends State<FishFarmDetails> {
                               return;
                             }
                             if (farmerNameController.text.isEmpty ||
-                                locationController.text.isEmpty ||
-                                woda.text.isEmpty ||
-                                districtController.text.isEmpty ||
-                                pradeshController.text.isEmpty) {
+                                farmNameController.text.isEmpty ||
+                                phoneNumberCOntroller.text.isEmpty ||
+                                selectedPradesh == null ||
+                                selectedDistrict == null ||
+                                selectedNagarpalika == null ||
+                                selectedWoda == null) {
                               displayToastMessage('Please input all fields');
                               return;
                             }
                             showLoaderDialog(context);
-                            String locationKey =
-                                getLocationKey(selectedDropdownValue);
-                            BlocProvider.of<FishFarmerDetailBloc>(context)
-                                .add(PostFarmerDetailsEvent(
-                              userId: userId,
-                              pondSize: int.parse(pondSizeController.text),
-                              farmName: farmerNameController.text,
-                              district: districtController.text,
-                              location: locationController.text,
-                              woda: int.parse(woda.text),
-                              locationKey: locationKey,
-                              pradesh: pradeshController.text,
-                            ));
+
+                            // BlocProvider.of<FishFarmerDetailBloc>(context)
+                            //     .add(PostFarmerDetailsEvent(
+                            //   userId: userId,
+                            //   pondSize: int.parse(pondSizeController.text),
+                            //   farmName: farmerNameController.text,
+                            //   district: districtController.text,
+                            //   location: locationController.text,
+                            //   woda: int.parse(woda.text),
+                            //   locationKey: locationKey,
+                            //   pradesh: pradeshController.text,
+                            // ));
                             //HomeListing
                           },
-                          style: ElevatedButton.styleFrom(
-                            foregroundColor: Colors.white,
-                            backgroundColor:
-                                Colors.blue, // Set the button's text color
-                          ),
                           child: Text(
                             'Send For Approval',
                             style: TextStyle(
@@ -334,13 +322,13 @@ class _FishFarmDetailsState extends State<FishFarmDetails> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        UiHelper.verticalSpacing(16.h),
+        UiHelper.verticalSpacing(32.h),
         Text(
           'Fill in the details about your fish farm',
           style: TextStyle(
-            color: AppColors.secondaryTextColor,
-            fontWeight: FontWeight.w400,
-            fontSize: 12.sp,
+            color: AppColors.textColor,
+            fontWeight: FontWeight.w700,
+            fontSize: 16.sp,
           ),
         ),
         UiHelper.verticalSpacing(24.h),

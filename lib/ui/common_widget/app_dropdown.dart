@@ -1,13 +1,15 @@
-import 'package:fish_shop/res/colors.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AppDropDown extends StatefulWidget {
   final List<String> dropdownValues;
   final Function(String?)? onChanged;
+  final bool isExpanded;
   const AppDropDown(
-      {super.key, required this.dropdownValues, required this.onChanged});
+      {super.key,
+      required this.dropdownValues,
+      required this.onChanged,
+      this.isExpanded = false});
 
   @override
   State<AppDropDown> createState() => _AppDropDownState();
@@ -29,6 +31,7 @@ class _AppDropDownState extends State<AppDropDown> {
           borderRadius: BorderRadius.circular(15.r),
           border: Border.all(width: 1, color: Colors.grey)),
       child: DropdownButton<String>(
+        isExpanded: widget.isExpanded,
         dropdownColor: Colors.white,
         borderRadius: BorderRadius.circular(15.r),
         elevation: 1,

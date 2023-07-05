@@ -4,14 +4,12 @@ import 'package:fish_shop/ui/home_listing/bloc/home_listings_event.dart';
 import 'package:fish_shop/ui/home_listing/bloc/home_listings_state.dart';
 import 'package:fish_shop/ui/home_listing/listing.dart';
 import 'package:fish_shop/ui/order%20history/order_history.dart';
-import 'package:fish_shop/ui/pending%20request%20per%20listing/pending_request_per_listing.dart';
 import 'package:fish_shop/ui/support/support.dart';
 import 'package:fish_shop/ui/yield_farm/yield_farm.dart';
 import 'package:fish_shop/ui/your_listing/your_listing.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class HomeListing extends StatefulWidget {
   const HomeListing({Key? key}) : super(key: key);
