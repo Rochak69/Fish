@@ -212,8 +212,8 @@ class _LoginPageState extends State<LoginPage> {
   _buildUpperText() {
     return Column(
       children: [
-        const Text(
-          'Lumbini Provincial Government',
+        Text(
+          translation(context).hello,
           style: TextStyle(
             color: AppColors.textColor,
             fontWeight: FontWeight.w600,
