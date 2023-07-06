@@ -23,12 +23,12 @@ class ApiClient {
     _dio = dio;
   }
 
-  Future<T> httpGet<T>(String serviceName) async {
+  Future<T> httpGet<T>(String serviceName,
+      {Map<String, dynamic>? param}) async {
     Response? response;
     try {
-      response = await _dio?.get(
-        '${Endpoints.baseUrl}$serviceName',
-      );
+      response = await _dio?.get('${Endpoints.baseUrl}$serviceName',
+          queryParameters: param);
       _checkResponseIsOk(response!);
       if (kDebugMode) {
         print(response.data);
@@ -39,7 +39,8 @@ class ApiClient {
     return response?.data as T;
   }
 
-  Future<T> httpGetUrl<T>(String serviceName, String token) async {
+  Future<T> httpGetUrl<T>(String serviceName, String token,
+      {Map<String, dynamic>? param}) async {
     Response? response;
     try {
       if (kDebugMode) {
@@ -55,9 +56,9 @@ class ApiClient {
       if (kDebugMode) {
         print(_dio?.options.headers);
       }
-      response = await _dio?.get(
-        '${Endpoints.baseUrl}$serviceName',
-      );
+
+      response = await _dio?.get('${Endpoints.baseUrl}$serviceName',
+          queryParameters: param);
       _checkResponseIsOk(response!);
       if (kDebugMode) {
         print(response.data!);

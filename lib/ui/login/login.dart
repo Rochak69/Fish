@@ -6,6 +6,8 @@ import 'package:fish_shop/ui/home_listing/home_listing.dart';
 import 'package:fish_shop/ui/login/bloc/login_bloc.dart';
 import 'package:fish_shop/ui/login/bloc/login_event.dart';
 import 'package:fish_shop/ui/login/bloc/login_state.dart';
+import 'package:fish_shop/ui/my_language/bloc/my_language_bloc.dart';
+import 'package:fish_shop/ui/my_language/bloc/my_language_event.dart';
 import 'package:fish_shop/ui/register/register.dart';
 import 'package:fish_shop/ui/utils/uihelper.dart';
 import 'package:fish_shop/ui/utils/utils.dart';
@@ -86,7 +88,7 @@ class _LoginPageState extends State<LoginPage> {
                         right: 231.w,
                       ),
                       child: Text(
-                        'Welcome!',
+                        translation(context).hello,
                         style: TextStyle(
                           fontSize: 22.sp,
                           color: Colors.black,
@@ -136,6 +138,18 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ),
                     UiHelper.verticalSpacing(20.h),
+                    TextButton(
+                        onPressed: () {
+                          BlocProvider.of<MyLanguageBloc>(context)
+                              .add(SwitchNepali());
+                        },
+                        child: Text('Nepali')),
+                    TextButton(
+                        onPressed: () {
+                          BlocProvider.of<MyLanguageBloc>(context)
+                              .add(SwitchEnglish());
+                        },
+                        child: Text('Englsih')),
                     Column(
                       children: [
                         SizedBox(

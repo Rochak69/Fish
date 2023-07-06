@@ -6,6 +6,8 @@ import 'package:fish_shop/ui/fisher_farm_details/fisher_farm_details.dart';
 import 'package:fish_shop/ui/home_listing/bloc/home_listings_bloc.dart';
 import 'package:fish_shop/ui/login/bloc/login_bloc.dart';
 import 'package:fish_shop/ui/login/login.dart';
+import 'package:fish_shop/ui/my_language/bloc/my_language_bloc.dart';
+import 'package:fish_shop/ui/my_language/bloc/my_language_state.dart';
 import 'package:fish_shop/ui/order%20history/bloc/order_history_bloc.dart';
 import 'package:fish_shop/ui/pending%20request%20per%20listing/bloc/pending_request_per_listing_bloc.dart';
 import 'package:fish_shop/ui/register/bloc/register_bloc.dart';
@@ -17,8 +19,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'ui/forgot_password/bloc/send_otp_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -43,6 +46,8 @@ class MyApp extends StatelessWidget {
     return Builder(builder: (context) {
       return MultiBlocProvider(
           providers: [
+            BlocProvider<MyLanguageBloc>(
+                create: (context) => sl<MyLanguageBloc>()),
             BlocProvider<RegisterBloc>(
               create: (context) => sl<RegisterBloc>(),
             ),
@@ -81,18 +86,28 @@ class MyApp extends StatelessWidget {
               designSize: const Size(375, 812),
               useInheritedMediaQuery: true,
               builder: (context, child) {
-                return MaterialApp(
-                  theme: ThemeData(
-                      scaffoldBackgroundColor: Colors.white,
-                      elevatedButtonTheme: ElevatedButtonThemeData(
-                        style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all<Color>(
-                              AppColors.textColor),
-                        ),
-                      )),
-                  navigatorKey: NavigationService.navigatorKey,
-                  debugShowCheckedModeBanner: false,
-                  home: const LoginPage(),
+                return BlocBuilder<MyLanguageBloc, MyLanguageState>(
+                  builder: (context, state) {
+                    return MaterialApp(
+                        theme: ThemeData(
+                            scaffoldBackgroundColor: Colors.white,
+                            elevatedButtonTheme: ElevatedButtonThemeData(
+                              style: ButtonStyle(
+                                backgroundColor:
+                                    MaterialStateProperty.all<Color>(
+                                        AppColors.textColor),
+                              ),
+                            )),
+                        navigatorKey: NavigationService.navigatorKey,
+                        debugShowCheckedModeBanner: false,
+                        locale: state is EnglishState
+                            ? const Locale('en')
+                            : const Locale('ne'),
+                        home: const LoginPage(),
+                        localizationsDelegates:
+                            AppLocalizations.localizationsDelegates,
+                        supportedLocales: AppLocalizations.supportedLocales);
+                  },
                 );
               }));
     });

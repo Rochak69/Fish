@@ -50,7 +50,7 @@ class _YieldFormState extends State<YieldForm> {
           elevation: 0,
           backgroundColor: Colors.white,
           title: Text(
-            'Yeild Farm',
+            translation(context).hello,
             style: TextStyle(
                 color: AppColors.textColor,
                 fontWeight: FontWeight.w700,
@@ -112,7 +112,10 @@ class _YieldFormState extends State<YieldForm> {
                     ),
                     UiHelper.horizontalSpacing(10.w),
                     AppDropDown(
-                      dropdownValues: const ['kg', 'gram'],
+                      items: const [
+                        DropdownMenuItem(value: 'kg', child: Text('kg')),
+                        DropdownMenuItem(value: 'gram', child: Text('gram')),
+                      ],
                       onChanged: (value) {
                         avgUnit = value ?? 'kg';
                       },
@@ -146,7 +149,10 @@ class _YieldFormState extends State<YieldForm> {
                     ),
                     UiHelper.horizontalSpacing(10.w),
                     AppDropDown(
-                      dropdownValues: const ['kg', 'gram'],
+                      items: const [
+                        DropdownMenuItem(value: 'kg', child: Text('kg')),
+                        DropdownMenuItem(value: 'gram', child: Text('gram')),
+                      ],
                       onChanged: (value) {
                         totalWeightUnit = value ?? 'kg';
                       },

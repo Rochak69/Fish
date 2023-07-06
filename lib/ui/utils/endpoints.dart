@@ -17,4 +17,11 @@ class Endpoints {
   String getSpecificFarmerSupply(String supplyId) {
     return '/farmerSupply/$supplyId';
   }
+
+  static const String province = '/location/province';
+  static String getDistrict(String provinceId) =>
+      '/location/district/$provinceId';
+  static String getMunicipality(String districtId) =>
+      '/location/municipality/$districtId';
+  static String woda(String municipalityId) => '/location/woda/$municipalityId';
 }

@@ -1,6 +1,9 @@
 import 'package:fish_shop/common/api_response.dart';
 import 'package:fish_shop/common/status.dart';
 import 'package:fish_shop/providers/api_client.dart';
+import 'package:fish_shop/ui/fisher_farm_details/model/district_response.dart';
+import 'package:fish_shop/ui/fisher_farm_details/model/municipality_response.dart';
+import 'package:fish_shop/ui/fisher_farm_details/model/province_response.dart';
 import 'package:fish_shop/ui/utils/endpoints.dart';
 import 'package:fish_shop/ui/utils/preferences.dart';
 import 'package:injectable/injectable.dart';
@@ -20,10 +23,8 @@ class FishFarmerDetailApiClient {
     int? pondSize,
     String? pradesh,
     String? district,
-    String? mahaNagarpalika,
-    required String locationKey,
+    String? municiplaity,
     String? gaupalika,
-    String? location,
     int? woda,
   }) async {
     Preferences preferences = Preferences();
@@ -32,14 +33,14 @@ class FishFarmerDetailApiClient {
     Map<String, dynamic> data = {
       "userId": userId,
       "farmName": farmName,
-      "profilePicture": "qwe",
-      "pondSize": pondSize,
+      "profilePicture": "Handsome",
+      "pondSize": 500,
       "pradesh": pradesh,
       "district": district,
-      locationKey: location,
+      "nagarpalika": municiplaity,
       "Woda": woda,
-      "idenfication": "asdasdasd",
-      "registration": "asdasdasd"
+      "idenfication": "fsdgdfg456tgfdg",
+      "registration": "ghssdf234dfsd"
     };
     var apiResponse =
         await _apiClient?.httpPost(Endpoints.fishFarmerDetails, data);
@@ -47,6 +48,75 @@ class FishFarmerDetailApiClient {
     ///converting to response
     var response = ApiResponse(
         status: Status.success, message: 'Success fully logged in', data: null);
+
+    return response;
+  }
+
+  Future<ApiResponseForList<ProvincesResponse>> getProvince() async {
+    var apiResponse = await _apiClient?.httpGet(
+      Endpoints.province,
+    );
+
+    ///converting to response
+    var response = ApiResponseForList(
+      status: Status.success,
+      message: 'Success fully logged in',
+      data: (apiResponse as List<dynamic>)
+          .map((data) => ProvincesResponse.fromJson(data))
+          .toList(),
+    );
+
+    return response;
+  }
+
+  Future<ApiResponseForList> getDistrict({required String provinceId}) async {
+    var apiResponse = await _apiClient?.httpGet(
+      Endpoints.getDistrict(provinceId),
+    );
+
+    ///converting to response
+    var response = ApiResponseForList(
+      status: Status.success,
+      message: 'Success fully logged in',
+      data: (apiResponse as List<dynamic>)
+          .map((data) => DistrictResponse.fromJson(data))
+          .toList(),
+    );
+
+    return response;
+  }
+
+  Future<ApiResponseForList> getMunicipality(
+      {required String districtId}) async {
+    var apiResponse = await _apiClient?.httpGet(
+      Endpoints.getMunicipality(districtId),
+    );
+
+    ///converting to response
+    var response = ApiResponseForList(
+      status: Status.success,
+      message: 'Success fully logged in',
+      data: (apiResponse as List<dynamic>)
+          .map((data) => MunicipalityResponse.fromJson(data))
+          .toList(),
+    );
+
+    return response;
+  }
+
+  Future<ApiResponseForList> getWoda({required String municipalityId}) async {
+    var apiResponse = await _apiClient?.httpGet(
+      Endpoints.woda(municipalityId),
+    );
+
+    ///converting to response
+    var response = ApiResponseForList(
+      status: Status.success,
+      message: 'Success fully logged in',
+      data: (apiResponse as List<dynamic>)
+          .map((data) => MunicipalityResponse.fromJson(data))
+          .toList(),
+    );
 
     return response;
   }

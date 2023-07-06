@@ -1,27 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class AppDropDown extends StatefulWidget {
-  final List<String> dropdownValues;
-  final Function(String?)? onChanged;
+class AppDropDown<T> extends StatefulWidget {
+  final List<DropdownMenuItem<T>> items;
+  final T? value;
+  final Function(T?)? onChanged;
   final bool isExpanded;
   const AppDropDown(
       {super.key,
-      required this.dropdownValues,
       required this.onChanged,
-      this.isExpanded = false});
+      this.isExpanded = false,
+      required this.items,
+      this.value});
 
   @override
-  State<AppDropDown> createState() => _AppDropDownState();
+  State<AppDropDown<T>> createState() => _AppDropDownState<T>();
 }
 
-class _AppDropDownState extends State<AppDropDown> {
+class _AppDropDownState<T> extends State<AppDropDown<T>> {
   String? selectedUnit;
-  @override
-  void initState() {
-    super.initState();
-    selectedUnit = widget.dropdownValues[0];
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,24 +27,16 @@ class _AppDropDownState extends State<AppDropDown> {
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15.r),
           border: Border.all(width: 1, color: Colors.grey)),
-      child: DropdownButton<String>(
+      child: DropdownButton<T>(
         isExpanded: widget.isExpanded,
         dropdownColor: Colors.white,
         borderRadius: BorderRadius.circular(15.r),
         elevation: 1,
         underline: const SizedBox.shrink(),
-        value: selectedUnit,
-        onChanged: (value) {
-          selectedUnit = value ?? widget.dropdownValues[0];
-          setState(() {});
-        },
-        items:
-            widget.dropdownValues.map<DropdownMenuItem<String>>((String value) {
-          return DropdownMenuItem<String>(
-            value: value,
-            child: Text(value),
-          );
-        }).toList(),
+        hint: const Text('Select'),
+        value: widget.value,
+        onChanged: widget.onChanged,
+        items: widget.items,
       ),
     );
   }

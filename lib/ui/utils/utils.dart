@@ -1,6 +1,8 @@
+import 'package:fish_shop/navigation_service.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 void displayMessage(BuildContext context, var message) {
   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -97,4 +99,8 @@ String convertHexToColor(Color color) =>
 
 Color convertColorToHex(String color) {
   return Color(int.parse('0xff${color.substring(1)}'));
+}
+
+AppLocalizations translation(BuildContext context) {
+  return AppLocalizations.of(context);
 }

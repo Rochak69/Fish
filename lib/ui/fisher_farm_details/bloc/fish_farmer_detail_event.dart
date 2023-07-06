@@ -4,23 +4,52 @@ abstract class FishFarmerDetailEvent {}
 class PostFarmerDetailsEvent extends FishFarmerDetailEvent {
   String userId;
   String? profilePicture;
-  String? farmName;
+  String farmName;
+  String farmersName;
+  String phoneNumber;
   int? pondSize;
-  String? pradesh;
-  String? district;
-  String? locationKey;
-  String? location;
-  int? woda;
+  String pradesh;
+  String district;
+  String nagarpalika;
+
+  int woda;
+  String? tole;
+  String? email;
+  String? facebook;
 
   PostFarmerDetailsEvent({
     required this.userId,
     this.profilePicture,
-    this.farmName,
+    required this.farmName,
+    required this.farmersName,
+    required this.phoneNumber,
     this.pondSize,
-    this.pradesh,
-    this.district,
-    this.locationKey,
-    this.location,
-    this.woda,
+    required this.pradesh,
+    required this.district,
+    required this.nagarpalika,
+    required this.woda,
+    this.tole,
+    this.email,
+    this.facebook,
   });
+}
+
+class GetProvince extends FishFarmerDetailEvent {}
+
+class GetDistrict extends FishFarmerDetailEvent {
+  final String provinceId;
+
+  GetDistrict({required this.provinceId});
+}
+
+class GetMunicipality extends FishFarmerDetailEvent {
+  final String districtId;
+
+  GetMunicipality({required this.districtId});
+}
+
+class GetWoda extends FishFarmerDetailEvent {
+  final String municipalityId;
+
+  GetWoda({required this.municipalityId});
 }
