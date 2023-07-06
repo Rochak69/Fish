@@ -1,3 +1,4 @@
+import 'package:fish_shop/common/validator.dart';
 import 'package:fish_shop/res/colors.dart';
 import 'package:fish_shop/ui/common_widget/FishTextField.dart';
 import 'package:fish_shop/ui/common_widget/app_dropdown.dart';
@@ -81,6 +82,7 @@ class _YieldFormState extends State<YieldForm> {
                 ),
                 UiHelper.verticalSpacing(5),
                 FishTextField(
+                  validator: (value) => Validator.validateEmpty(value),
                   textEditingController: _fishTypeController,
                   contentPadding: EdgeInsets.only(left: 15.w),
                   label: '',
@@ -104,6 +106,7 @@ class _YieldFormState extends State<YieldForm> {
                 Row(
                   children: [
                     FishTextField(
+                      validator: (value) => Validator.validateEmpty(value),
                       textInputType:
                           const TextInputType.numberWithOptions(decimal: true),
                       textEditingController: _weightPerFishController,
@@ -141,6 +144,7 @@ class _YieldFormState extends State<YieldForm> {
                 Row(
                   children: [
                     FishTextField(
+                      validator: (value) => Validator.validateEmpty(value),
                       textEditingController: _totalWeightController,
                       label: '',
                       width: 186.w,

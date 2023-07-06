@@ -1,3 +1,4 @@
+import 'package:fish_shop/common/validator.dart';
 import 'package:fish_shop/res/colors.dart';
 import 'package:fish_shop/ui/common_widget/FishTextField.dart';
 import 'package:fish_shop/ui/forgot_password/bloc/send_otp_bloc.dart';
@@ -66,6 +67,7 @@ class _ForgotState extends State<Forgot> {
               ),
               UiHelper.verticalSpacing(8.h),
               FishTextField(
+                validator: (value) => Validator.validateEmpty(value),
                 textEditingController: phoneController,
                 label: '98xxxxxxxx',
                 contentPadding: EdgeInsets.only(left: 15.w),

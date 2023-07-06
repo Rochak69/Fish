@@ -1,3 +1,4 @@
+import 'package:fish_shop/common/validator.dart';
 import 'package:fish_shop/res/colors.dart';
 import 'package:fish_shop/ui/common_widget/FishTextField.dart';
 import 'package:fish_shop/ui/reset_password/bloc/reset_password_bloc.dart';
@@ -87,6 +88,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                 ),
                 UiHelper.verticalSpacing(5.h),
                 FishTextField(
+                  validator: (value) => Validator.validateEmpty(value),
                   obscureText: _obscureText,
                   sufixIcon: Icon(
                     _obscureText ? Icons.visibility_off : Icons.visibility,
@@ -103,6 +105,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                 ),
                 UiHelper.verticalSpacing(5),
                 FishTextField(
+                  validator: (value) => Validator.validateEmpty(value),
                   obscureText: _obscureText,
                   sufixIcon: Icon(
                     _obscureText ? Icons.visibility_off : Icons.visibility,

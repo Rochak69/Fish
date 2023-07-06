@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:file_picker/file_picker.dart';
+import 'package:fish_shop/common/validator.dart';
 import 'package:fish_shop/res/colors.dart';
 import 'package:fish_shop/ui/common_widget/FishTextField.dart';
 import 'package:fish_shop/ui/common_widget/app_dropdown.dart';
@@ -108,6 +109,8 @@ class _IdentificationDocumentsState extends State<IdentificationDocuments> {
                           SizedBox(
                             width: 220,
                             child: FishTextField(
+                              validator: (value) =>
+                                  Validator.validateEmpty(value),
                               label: '',
                               textEditingController: pondSize,
                             ),
@@ -163,7 +166,9 @@ class _IdentificationDocumentsState extends State<IdentificationDocuments> {
                         ]),
                   ),
                   UiHelper.verticalSpacing(8.h),
-                  const FishTextField(label: ''),
+                  FishTextField(
+                      validator: (value) => Validator.validateEmpty(value),
+                      label: ''),
                   UiHelper.verticalSpacing(12.h),
                   RichText(
                     text: TextSpan(
@@ -180,7 +185,9 @@ class _IdentificationDocumentsState extends State<IdentificationDocuments> {
                         ]),
                   ),
                   UiHelper.verticalSpacing(8.h),
-                  FishTextField(label: ''),
+                  FishTextField(
+                      validator: (value) => Validator.validateEmpty(value),
+                      label: ''),
                   UiHelper.verticalSpacing(12.h),
                   RichText(
                     text: TextSpan(

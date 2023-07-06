@@ -1,3 +1,4 @@
+import 'package:fish_shop/common/validator.dart';
 import 'package:fish_shop/res/colors.dart';
 import 'package:fish_shop/ui/common_widget/FishTextField.dart';
 import 'package:fish_shop/ui/login/login.dart';
@@ -98,6 +99,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                   ),
                   UiHelper.verticalSpacing(10.h),
                   FishTextField(
+                    validator: (value) => Validator.validateEmpty(value),
                     textEditingController: _name,
                     label: 'Name',
                     contentPadding: EdgeInsets.only(left: 15.w),
@@ -112,6 +114,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                   ),
                   UiHelper.verticalSpacing(10.h),
                   FishTextField(
+                    validator: (value) => Validator.validateEmpty(value),
                     textInputType: TextInputType.number,
                     textEditingController: _number,
                     label: 'Phone Number',
@@ -127,6 +130,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                   ),
                   UiHelper.verticalSpacing(10.h),
                   FishTextField(
+                    validator: (value) => Validator.validateEmpty(value),
                     onSuffixIconTap: () {
                       setState(() {
                         _obscureText = !_obscureText;
@@ -143,6 +147,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                   ),
                   UiHelper.verticalSpacing(10.h),
                   FishTextField(
+                    validator: (value) => Validator.validateEmpty(value),
                     onSuffixIconTap: () {
                       setState(() {
                         _obscureText = !_obscureText;
