@@ -5,6 +5,7 @@ import 'package:fish_shop/ui/fisher_farm_details/bloc/fish_farmer_detail_bloc.da
 import 'package:fish_shop/ui/fisher_farm_details/bloc/fish_farmer_detail_event.dart';
 
 import 'package:fish_shop/ui/fisher_farm_details/bloc/fish_farmer_detail_state.dart';
+import 'package:fish_shop/ui/fisher_farm_details/identication_documents.dart';
 import 'package:fish_shop/ui/fisher_farm_details/model/dropdown_id_name.dart';
 import 'package:fish_shop/ui/login/login.dart';
 import 'package:fish_shop/ui/my_language/bloc/my_language_bloc.dart';
@@ -45,20 +46,7 @@ class _FishFarmDetailsState extends State<FishFarmDetails> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<FishFarmerDetailBloc, FishFarmerDetailState>(
-      listener: (context, state) {
-        if (state.theStates == TheStates.success && state.isPosted) {
-          displayToastMessage('Farmer created successfully');
-          Navigator.push(context, MaterialPageRoute(
-            builder: (context) {
-              return const LoginPage();
-            },
-          ));
-        } else if (state.theStates == TheStates.failed) {
-          displayToastMessage(state.errorMessage,
-              backgroundColor: AppColors.textRedContainerColor);
-        }
-      },
+    return BlocBuilder<FishFarmerDetailBloc, FishFarmerDetailState>(
       builder: (context, state) {
         if (state.theStates == TheStates.success) {
           return Scaffold(
@@ -162,8 +150,7 @@ class _FishFarmDetailsState extends State<FishFarmDetails> {
                           isExpanded: true,
                           items: state.provinceResponse
                                   ?.map((e) => DropdownMenuItem(
-                                      value: e.englishName,
-                                      child: Text(e.englishName!)))
+                                      value: e.id, child: Text(e.englishName!)))
                                   .toList() ??
                               [],
                           onChanged: (value) {
@@ -196,8 +183,7 @@ class _FishFarmDetailsState extends State<FishFarmDetails> {
                           isExpanded: true,
                           items: state.districtResponse
                                   ?.map((e) => DropdownMenuItem(
-                                      value: e.englishName,
-                                      child: Text(e.englishName!)))
+                                      value: e.id, child: Text(e.englishName!)))
                                   .toList() ??
                               [],
                           onChanged: (value) {
@@ -229,18 +215,12 @@ class _FishFarmDetailsState extends State<FishFarmDetails> {
                           isExpanded: true,
                           items: state.municipalityResponse
                                   ?.map((e) => DropdownMenuItem(
-                                      value: e.englishName,
-                                      child: Text(e.englishName!)))
+                                      value: e.id, child: Text(e.englishName!)))
                                   .toList() ??
                               [],
                           onChanged: (value) {
                             selectedNagarpalika = value;
                             setState(() {});
-
-                            // BlocProvider.of<FishFarmerDetailBloc>(context).add(
-                            //     GetWoda(
-                            //         municipalityId:
-                            //             selectedNagarpalika ?? '1'));
                           },
                         ),
                         UiHelper.verticalSpacing(16.h),
@@ -264,8 +244,7 @@ class _FishFarmDetailsState extends State<FishFarmDetails> {
                           isExpanded: true,
                           items: state.provinceResponse
                                   ?.map((e) => DropdownMenuItem(
-                                      value: e.englishName,
-                                      child: Text(e.englishName!)))
+                                      value: e.id, child: Text(e.englishName!)))
                                   .toList() ??
                               [],
                           onChanged: (value) {
@@ -323,7 +302,7 @@ class _FishFarmDetailsState extends State<FishFarmDetails> {
                           width: 340.w,
                           height: 48.h,
                           child: ClipRRect(
-                            borderRadius: BorderRadius.circular(12),
+                            borderRadius: BorderRadius.circular(12.r),
                             child: ElevatedButton(
                               onPressed: () async {
                                 Preferences preferences = Preferences();
@@ -344,22 +323,22 @@ class _FishFarmDetailsState extends State<FishFarmDetails> {
                                       'Please input all fields');
                                   return;
                                 }
-                                showLoaderDialog(context);
 
-                                BlocProvider.of<FishFarmerDetailBloc>(context)
-                                    .add(PostFarmerDetailsEvent(
-                                  userId: userId,
-                                  farmName: farmerNameController.text,
-                                  farmersName: farmerNameController.text,
-                                  phoneNumber: phoneNumberController.text,
-                                  district: selectedDistrict!,
-                                  nagarpalika: selectedNagarpalika!,
-                                  woda: int.tryParse(
-                                        selectedWoda!,
-                                      ) ??
-                                      1,
-                                  pradesh: selectedPradesh!,
-                                ));
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          IdentificationDocuments(
+                                        userId: userId,
+                                        farmName: farmerNameController.text,
+                                        farmersName: farmerNameController.text,
+                                        phoneNumber: phoneNumberController.text,
+                                        district: selectedDistrict!,
+                                        nagarpalika: selectedNagarpalika!,
+                                        pradesh: selectedPradesh!,
+                                        woda: selectedWoda!,
+                                      ),
+                                    ));
                               },
                               child: Text(
                                 'Send For Approval',
@@ -380,8 +359,10 @@ class _FishFarmDetailsState extends State<FishFarmDetails> {
             ),
           );
         }
-        return const Center(
-          child: CircularProgressIndicator(),
+        return Scaffold(
+          body: const Center(
+            child: CircularProgressIndicator(),
+          ),
         );
       },
     );

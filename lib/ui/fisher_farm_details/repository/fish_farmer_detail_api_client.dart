@@ -34,11 +34,11 @@ class FishFarmerDetailApiClient {
       "userId": userId,
       "farmName": farmName,
       "profilePicture": "Handsome",
-      "pondSize": 500,
-      "pradesh": pradesh,
-      "district": district,
-      "nagarpalika": municiplaity,
-      "Woda": woda,
+      "pondSize": pondSize,
+      "provinceId": pradesh,
+      "districtId": district,
+      "wardId": "2" ?? woda.toString(),
+      "municipalityId": municiplaity,
       "idenfication": "fsdgdfg456tgfdg",
       "registration": "ghssdf234dfsd"
     };

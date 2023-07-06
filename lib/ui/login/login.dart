@@ -155,23 +155,26 @@ class _LoginPageState extends State<LoginPage> {
                         SizedBox(
                           width: 330.w,
                           height: 48.h,
-                          child: ElevatedButton(
-                            onPressed: () {
-                              showLoaderDialog(context);
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(12.r),
+                            child: ElevatedButton(
+                              onPressed: () {
+                                showLoaderDialog(context);
 
-                              BlocProvider.of<LoginBloc>(context).add(
-                                  LoginWithPhone(
-                                      password: _password.text.trim(),
-                                      phoneNumber: _email.text.trim()));
-                            },
+                                BlocProvider.of<LoginBloc>(context).add(
+                                    LoginWithPhone(
+                                        password: _password.text.trim(),
+                                        phoneNumber: _email.text.trim()));
+                              },
 
-                            //  signIn,
-                            child: Text(
-                              'Login',
-                              style: TextStyle(
-                                  fontSize: 12.sp,
-                                  fontWeight: FontWeight.w600,
-                                  color: Colors.white),
+                              //  signIn,
+                              child: Text(
+                                'Login',
+                                style: TextStyle(
+                                    fontSize: 12.sp,
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.white),
+                              ),
                             ),
                           ),
                         )

@@ -29,6 +29,7 @@ class FishFarmerDetailBloc
           district: event.district,
           farmName: event.farmName,
           pradesh: event.pradesh,
+          pondSize: event.pondSize,
           profilePicture: event.profilePicture,
           woda: event.woda,
           municiplaity: event.nagarpalika);
