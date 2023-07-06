@@ -1,3 +1,4 @@
+import 'package:fish_shop/common/validator.dart';
 import 'package:fish_shop/res/colors.dart';
 import 'package:fish_shop/ui/common_widget/FishTextField.dart';
 import 'package:fish_shop/ui/login/login.dart';
@@ -20,7 +21,7 @@ class RegistrationPage extends StatefulWidget {
 }
 
 class _RegistrationPageState extends State<RegistrationPage> {
-  bool _isAgreed = true;
+  bool _isAgreed = false;
   var val;
   final formkey = GlobalKey<FormState>();
   final _name = TextEditingController();
@@ -55,115 +56,149 @@ class _RegistrationPageState extends State<RegistrationPage> {
         }
       },
       child: Scaffold(
+        appBar: AppBar(
+          automaticallyImplyLeading: true,
+          leading: Padding(
+            padding: EdgeInsets.only(left: 24.w),
+            child: IconButton(
+              icon: const Icon(
+                Icons.arrow_back_ios,
+                color: AppColors.textColor,
+              ),
+              onPressed: () => Navigator.pop(context),
+            ),
+          ),
+          centerTitle: true,
+          elevation: 0,
+          backgroundColor: Colors.white,
+          title: Text(
+            'Sign Up',
+            style: TextStyle(
+                color: AppColors.textColor,
+                fontWeight: FontWeight.w700,
+                fontSize: 18.sp),
+          ),
+        ),
         backgroundColor: Colors.white,
         body: SafeArea(
           child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                UiHelper.verticalSpacing(36.h),
-                _buildUpperText(),
-                Container(
-                  padding: EdgeInsets.only(right: 293.w),
-                  child: Text(
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 22.w),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  UiHelper.verticalSpacing(15.h),
+                  _buildUpperText(),
+                  UiHelper.verticalSpacing(10.h),
+                  Text(
                     'Name',
                     style: TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.w700,
                         fontSize: 12.sp),
                   ),
-                ),
-                UiHelper.verticalSpacing(5.h),
-                FishTextField(
-                  textEditingController: _name,
-                  label: 'Name',
-                  contentPadding: EdgeInsets.only(left: 15.w),
-                ),
-                UiHelper.verticalSpacing(10.h),
-                Container(
-                  padding: EdgeInsets.only(right: 245.w),
-                  child: Text(
+                  UiHelper.verticalSpacing(10.h),
+                  FishTextField(
+                    validator: (value) => Validator.validateEmpty(value),
+                    textEditingController: _name,
+                    label: 'Name',
+                    contentPadding: EdgeInsets.only(left: 15.w),
+                  ),
+                  UiHelper.verticalSpacing(10.h),
+                  Text(
                     'Phone Number',
                     style: TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.w700,
                         fontSize: 12.sp),
                   ),
-                ),
-                UiHelper.verticalSpacing(5.h),
-                FishTextField(
-                  textInputType: TextInputType.number,
-                  textEditingController: _number,
-                  label: 'Phone Number',
-                  contentPadding: EdgeInsets.only(left: 15.w),
-                ),
-                UiHelper.verticalSpacing(5.h),
-                Container(
-                  padding: EdgeInsets.only(right: 272.w),
-                  child: Text(
+                  UiHelper.verticalSpacing(10.h),
+                  FishTextField(
+                    validator: (value) => Validator.validateEmpty(value),
+                    textInputType: TextInputType.number,
+                    textEditingController: _number,
+                    label: 'Phone Number',
+                    contentPadding: EdgeInsets.only(left: 15.w),
+                  ),
+                  UiHelper.verticalSpacing(10.h),
+                  Text(
                     'Password',
                     style: TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.w700,
                         fontSize: 12.sp),
                   ),
-                ),
-                UiHelper.verticalSpacing(10.h),
-                FishTextField(
-                  onSuffixIconTap: () {
-                    setState(() {
-                      _obscureText = !_obscureText;
-                    });
-                  },
-                  sufixIcon: Icon(
-                    _obscureText ? Icons.visibility_off : Icons.visibility,
-                    color: _obscureText ? Colors.grey : Colors.grey,
-                  ),
-                  obscureText: _obscureText,
-                  textEditingController: _password,
-                  label: 'Create a password',
-                  contentPadding: EdgeInsets.only(left: 15.w),
-                ),
-                UiHelper.verticalSpacing(5.h),
-                FishTextField(
-                  obscureText: _obscureText,
-                  sufixIcon: Icon(
-                    _obscureText ? Icons.visibility_off : Icons.visibility,
-                    color: _obscureText ? Colors.grey : Colors.grey,
-                  ),
-                  textEditingController: _confirmPassword,
-                  label: 'Confirm password',
-                  contentPadding: EdgeInsets.only(left: 15.w),
-                ),
-                UiHelper.verticalSpacing(30.h),
-                Container(
-                    padding: EdgeInsets.only(left: 20.w),
-                    child: _buildTermsofService()),
-                UiHelper.verticalSpacing(30.h),
-                SizedBox(
-                  width: 340.w,
-                  height: 48.h,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      showLoaderDialog(context);
-                      BlocProvider.of<RegisterBloc>(context).add(
-                          RegisterEventWithPhone(
-                              password: _password.text,
-                              userName: _name.text,
-                              phoneNumber: _number.text));
+                  UiHelper.verticalSpacing(10.h),
+                  FishTextField(
+                    validator: (value) => Validator.validateEmpty(value),
+                    onSuffixIconTap: () {
+                      setState(() {
+                        _obscureText = !_obscureText;
+                      });
                     },
+                    sufixIcon: Icon(
+                      _obscureText ? Icons.visibility_off : Icons.visibility,
+                      color: _obscureText ? Colors.grey : Colors.grey,
+                    ),
+                    obscureText: _obscureText,
+                    textEditingController: _password,
+                    label: 'Create a password',
+                    contentPadding: EdgeInsets.only(left: 15.w),
+                  ),
+                  UiHelper.verticalSpacing(10.h),
+                  FishTextField(
+                    validator: (value) => Validator.validateEmpty(value),
+                    onSuffixIconTap: () {
+                      setState(() {
+                        _obscureText = !_obscureText;
+                      });
+                    },
+                    obscureText: _obscureText,
+                    sufixIcon: Icon(
+                      _obscureText ? Icons.visibility_off : Icons.visibility,
+                      color: _obscureText ? Colors.grey : Colors.grey,
+                    ),
+                    textEditingController: _confirmPassword,
+                    label: 'Confirm password',
+                    contentPadding: EdgeInsets.only(left: 15.w),
+                  ),
+                  UiHelper.verticalSpacing(15.h),
+                  _buildTermsofService(),
+                  UiHelper.verticalSpacing(15.h),
+                  SizedBox(
+                    width: 340.w,
+                    height: 48.h,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(12.r),
+                      child: ElevatedButton(
+                        onPressed: () {
+                          if (!_isAgreed) {
+                            displayToastMessage(
+                                'You must agree to terms and condiions',
+                                backgroundColor: AppColors.textRedColor);
+                            return;
+                          }
+                          showLoaderDialog(context);
+                          BlocProvider.of<RegisterBloc>(context).add(
+                              RegisterEventWithPhone(
+                                  password: _password.text,
+                                  userName: _name.text,
+                                  phoneNumber: _number.text));
+                        },
 
-                    //  signIn,
-                    child: Text(
-                      'Register',
-                      style: TextStyle(
-                          fontSize: 12.sp,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.white),
+                        //  signIn,
+                        child: Text(
+                          'Register',
+                          style: TextStyle(
+                              fontSize: 12.sp,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.white),
+                        ),
+                      ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
@@ -171,22 +206,16 @@ class _RegistrationPageState extends State<RegistrationPage> {
     );
   }
 
-  Row _buildTermsofService() {
+  _buildTermsofService() {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        Transform.scale(
-          scale: 1.5.r,
-          child: Radio(
-              toggleable: true,
-              value: true,
-              groupValue: val,
-              onChanged: (value) {
-                setState(() {
-                  val = value;
-                  _isAgreed = !_isAgreed;
-                });
-              },
-              activeColor: Colors.green),
+        Checkbox(
+          value: _isAgreed,
+          onChanged: (value) {
+            _isAgreed = !_isAgreed;
+            setState(() {});
+          },
         ),
         Expanded(
           child: RichText(
@@ -210,38 +239,16 @@ class _RegistrationPageState extends State<RegistrationPage> {
   }
 
   _buildUpperText() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(
-            // left: 24.0,
-            right: 270,
-          ),
-          child: Text(
-            'Sign Up',
-            style: TextStyle(
-                color: Colors.black,
-                fontWeight: FontWeight.w900,
-                fontSize: 16.sp),
-          ),
+    return Align(
+      alignment: Alignment.centerLeft,
+      child: Text(
+        'Create an account to get started',
+        style: TextStyle(
+          color: AppColors.secondaryTextColor,
+          fontWeight: FontWeight.w400,
+          fontSize: 12.sp,
         ),
-        UiHelper.verticalSpacing(16.h),
-        Padding(
-          padding: const EdgeInsets.only(
-              // left: 24.0,
-              ),
-          child: Text(
-            'Create an account to get started',
-            style: TextStyle(
-              color: AppColors.secondaryTextColor,
-              fontWeight: FontWeight.w400,
-              fontSize: 12.sp,
-            ),
-          ),
-        ),
-        UiHelper.verticalSpacing(24),
-      ],
+      ),
     );
   }
 }

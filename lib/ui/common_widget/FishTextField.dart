@@ -15,18 +15,20 @@ class FishTextField extends StatelessWidget {
   final int? maxLength;
   final Function(String)? onChanged;
   final double height;
+  String? Function(String?)? validator;
   final double width;
   final EdgeInsetsGeometry? contentPadding;
   final String? prefixText;
   final void Function()? onSuffixIconTap;
   final void Function()? onTap;
 
-  const FishTextField(
+  FishTextField(
       {Key? key,
       required this.label,
       this.decoration,
       this.maxLength,
       this.btnUpdateStatus,
+      this.validator,
       this.obscureText = false,
       this.sufixIcon,
       this.prefixIcon,
@@ -45,11 +47,11 @@ class FishTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: height,
       width: width.w,
       child: InkWell(
         onTap: onTap,
-        child: TextField(
+        child: TextFormField(
+          validator: validator,
           onChanged: onChanged,
           textInputAction: TextInputAction.next,
           maxLength: maxLength,
@@ -58,6 +60,8 @@ class FishTextField extends StatelessWidget {
           obscureText: obscureText,
           keyboardType: textInputType,
           controller: textEditingController,
+          autovalidateMode: AutovalidateMode.onUserInteraction,
+
           //textAlignVertical: TextAlignVertical.center,
           decoration: InputDecoration(
             prefixText: prefixText,
@@ -67,14 +71,19 @@ class FishTextField extends StatelessWidget {
               borderRadius: BorderRadius.circular(10),
               borderSide: const BorderSide(width: 1, color: Colors.grey),
             ),
+            focusedErrorBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10),
+              borderSide: BorderSide(width: 2, color: Colors.red),
+            ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10),
               borderSide:
                   const BorderSide(width: 2, color: AppColors.textColor),
             ),
             errorBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10),
-                borderSide: const BorderSide(width: 2, color: Colors.red)),
+              borderRadius: BorderRadius.circular(10),
+              borderSide: BorderSide(width: 2, color: Colors.red),
+            ),
             label: Text(label),
             border: InputBorder.none,
             labelStyle: TextStyle(

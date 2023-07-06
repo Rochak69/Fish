@@ -1,3 +1,4 @@
+import 'package:fish_shop/common/validator.dart';
 import 'package:fish_shop/res/colors.dart';
 import 'package:fish_shop/ui/approval_pending/approval_pending.dart';
 import 'package:fish_shop/ui/common_widget/FishTextField.dart';
@@ -81,6 +82,7 @@ class _UserDetailsState extends State<UserDetails> {
     },
                 */
                 FishTextField(
+                  validator: (value) => Validator.validateEmpty(value),
                   textEditingController: farmerNameController,
                   label: 'Farm\'s Name',
                   contentPadding: EdgeInsets.only(left: 15.w),
@@ -169,14 +171,14 @@ class _UserDetailsState extends State<UserDetails> {
                 UiHelper.verticalSpacing(5.h),
                 Row(
                   children: [
-                    const Expanded(
+                    Expanded(
                       flex: 3,
                       child: FishTextField(
                         label: '',
                       ),
                     ),
                     UiHelper.horizontalSpacing(10.w),
-                    const Expanded(
+                    Expanded(
                       flex: 1,
                       child: FishTextField(
                         label: '',

@@ -1,3 +1,4 @@
+import 'package:fish_shop/common/validator.dart';
 import 'package:fish_shop/res/colors.dart';
 import 'package:fish_shop/ui/common_widget/FishTextField.dart';
 import 'package:fish_shop/ui/fisher_farm_details/fisher_farm_details.dart';
@@ -51,13 +52,13 @@ class _LoginPageState extends State<LoginPage> {
         Navigator.pop(context);
         if (state is LoginSuccess) {
           if (state.result.data?.isFarmer ?? false) {
-            Navigator.push(context, MaterialPageRoute(
+            Navigator.pushReplacement(context, MaterialPageRoute(
               builder: (context) {
                 return const HomeListing();
               },
             ));
           } else {
-            Navigator.push(context, MaterialPageRoute(
+            Navigator.pushReplacement(context, MaterialPageRoute(
               builder: (context) {
                 return const FishFarmDetails();
               },
@@ -98,12 +99,14 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     UiHelper.verticalSpacing(20.h),
                     FishTextField(
+                      validator: (value) => Validator.validateEmpty(value),
                       textEditingController: _email,
                       label: 'Phone Number',
                       contentPadding: EdgeInsets.only(left: 15.w),
                     ),
                     UiHelper.verticalSpacing(20.h),
                     FishTextField(
+                      validator: (value) => Validator.validateEmpty(value),
                       textEditingController: _password,
                       label: 'Password',
                       contentPadding: EdgeInsets.only(left: 15.w),
@@ -155,23 +158,29 @@ class _LoginPageState extends State<LoginPage> {
                         SizedBox(
                           width: 330.w,
                           height: 48.h,
-                          child: ElevatedButton(
-                            onPressed: () {
-                              showLoaderDialog(context);
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(12.r),
+                            child: ElevatedButton(
+                              onPressed: () {
+                                bool isValid = formkey.currentState!.validate();
+                                if (isValid) {
+                                  showLoaderDialog(context);
 
-                              BlocProvider.of<LoginBloc>(context).add(
-                                  LoginWithPhone(
-                                      password: _password.text.trim(),
-                                      phoneNumber: _email.text.trim()));
-                            },
+                                  BlocProvider.of<LoginBloc>(context).add(
+                                      LoginWithPhone(
+                                          password: _password.text.trim(),
+                                          phoneNumber: _email.text.trim()));
+                                } else {}
+                              },
 
-                            //  signIn,
-                            child: Text(
-                              'Login',
-                              style: TextStyle(
-                                  fontSize: 12.sp,
-                                  fontWeight: FontWeight.w600,
-                                  color: Colors.white),
+                              //  signIn,
+                              child: Text(
+                                'Login',
+                                style: TextStyle(
+                                    fontSize: 12.sp,
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.white),
+                              ),
                             ),
                           ),
                         )

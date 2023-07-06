@@ -1,3 +1,4 @@
+import 'package:fish_shop/common/validator.dart';
 import 'package:fish_shop/res/colors.dart';
 import 'package:fish_shop/ui/common_widget/FishTextField.dart';
 import 'package:fish_shop/ui/common_widget/fish_button.dart';
@@ -81,6 +82,7 @@ class Support extends StatelessWidget {
           UiHelper.verticalSpacing(10.h),
           Container(
             child: FishTextField(
+              validator: (value) => Validator.validateEmpty(value),
               contentPadding: EdgeInsets.all(23.r),
               label: "Tell us everything",
               height: 94.h,
