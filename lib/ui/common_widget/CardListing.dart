@@ -1,6 +1,4 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:fish_shop/common/validator.dart';
-import 'package:fish_shop/ui/common_widget/FishTextField.dart';
 import 'package:fish_shop/ui/home_listing/bloc/home_listings_bloc.dart';
 import 'package:fish_shop/ui/home_listing/bloc/home_listings_event.dart';
 import 'package:fish_shop/ui/utils/preferences.dart';
@@ -10,7 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import 'package:fish_shop/res/colors.dart';
 import 'package:fish_shop/ui/utils/uihelper.dart';
 
@@ -169,6 +166,7 @@ class _CardListingState extends State<CardListing> {
                   child: const Text(
                     'Send Offer',
                     style: TextStyle(
+                        fontSize: 12,
                         color: AppColors.textColor,
                         fontWeight: FontWeight.w500),
                   ),
@@ -192,9 +190,9 @@ class _CardListingState extends State<CardListing> {
                 child: Text(
               'Send Offer',
               style: GoogleFonts.inter(
-                fontWeight: FontWeight.w600,
+                fontWeight: FontWeight.w800,
                 color: AppColors.AppCardColor,
-                fontSize: 14,
+                fontSize: 16,
               ),
             )),
             // To display the title it is optional

@@ -86,7 +86,7 @@ class _OrderHistoryState extends State<OrderHistory> {
                         color: AppColors.textColor),
                   ),
                   Text(
-                    'Silver Carp',
+                    'नैनी',
                     style: TextStyle(
                         fontSize: 18.sp,
                         fontWeight: FontWeight.w700,
@@ -106,7 +106,7 @@ class _OrderHistoryState extends State<OrderHistory> {
                         color: Colors.black),
                   ),
                   Text(
-                    '5 Kg',
+                    '5 के.जी',
                     style: TextStyle(
                         fontSize: 12.sp,
                         fontWeight: FontWeight.w700,
@@ -163,7 +163,7 @@ class _OrderHistoryState extends State<OrderHistory> {
                         color: Colors.black),
                   ),
                   Text(
-                    'Ritesh Bista',
+                    'Ram Yadav',
                     style: TextStyle(
                         fontSize: 12.sp,
                         fontWeight: FontWeight.w700,

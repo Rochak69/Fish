@@ -60,7 +60,7 @@ class _LoginPageState extends State<LoginPage> {
           } else {
             Navigator.pushReplacement(context, MaterialPageRoute(
               builder: (context) {
-                return const HomeListing();
+                return const FishFarmDetails();
                 //     return const FishFarmDetails();
               },
             ));
@@ -142,18 +142,18 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ),
                     UiHelper.verticalSpacing(20.h),
-                    TextButton(
-                        onPressed: () {
-                          BlocProvider.of<MyLanguageBloc>(context)
-                              .add(SwitchNepali());
-                        },
-                        child: Text('Nepali')),
-                    TextButton(
-                        onPressed: () {
-                          BlocProvider.of<MyLanguageBloc>(context)
-                              .add(SwitchEnglish());
-                        },
-                        child: Text('Englsih')),
+                    // TextButton(
+                    //     onPressed: () {
+                    //       BlocProvider.of<MyLanguageBloc>(context)
+                    //           .add(SwitchNepali());
+                    //     },
+                    //     child: Text('Nepali')),
+                    // TextButton(
+                    //     onPressed: () {
+                    //       BlocProvider.of<MyLanguageBloc>(context)
+                    //           .add(SwitchEnglish());
+                    //     },
+                    //     child: Text('Englsih')),
                     Column(
                       children: [
                         SizedBox(

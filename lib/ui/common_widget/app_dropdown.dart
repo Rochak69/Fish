@@ -6,12 +6,14 @@ class AppDropDown<T> extends StatefulWidget {
   final T? value;
   final Function(T?)? onChanged;
   final bool isExpanded;
-  const AppDropDown(
+  String defaultText;
+  AppDropDown(
       {super.key,
       required this.onChanged,
       this.isExpanded = false,
       required this.items,
-      this.value});
+      this.value,
+      this.defaultText = 'Select'});
 
   @override
   State<AppDropDown<T>> createState() => _AppDropDownState<T>();
@@ -33,7 +35,7 @@ class _AppDropDownState<T> extends State<AppDropDown<T>> {
         borderRadius: BorderRadius.circular(15.r),
         elevation: 1,
         underline: const SizedBox.shrink(),
-        hint: const Text('Select'),
+        hint: Text(widget.defaultText),
         value: widget.value,
         onChanged: widget.onChanged,
         items: widget.items,

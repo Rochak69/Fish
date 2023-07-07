@@ -24,6 +24,8 @@ class _YieldFormState extends State<YieldForm> {
   DateTime? date;
   String avgUnit = 'kg';
   String totalWeightUnit = 'kg';
+  String? selectedFish;
+  String? selectedunitsize;
 
   final TextEditingController _edControllerDate = TextEditingController();
   final TextEditingController _fishTypeController = TextEditingController();
@@ -82,12 +84,46 @@ class _YieldFormState extends State<YieldForm> {
                       ]),
                 ),
                 UiHelper.verticalSpacing(5),
-                FishTextField(
-                  validator: (value) => Validator.validateEmpty(value),
-                  textEditingController: _fishTypeController,
-                  contentPadding: EdgeInsets.only(left: 15.w),
-                  label: '',
+                AppDropDown(
+                  isExpanded: true,
+                  //  defaultText: "Select",
+                  items: const [
+                    DropdownMenuItem(
+                        value: 'सिल्भर कार्प माछा ',
+                        child: Text('सिल्भर कार्प माछा ')),
+                    DropdownMenuItem(
+                        value: 'विगहेड कार्प माछा ', child: Text('नैनी')),
+                    DropdownMenuItem(
+                        value: 'कमन', child: Text('विगहेड कार्प माछा ')),
+                    DropdownMenuItem(
+                        value: 'ग्रास कार्प माछा',
+                        child: Text('नैनीग्रास कार्प माछा')),
+                    DropdownMenuItem(
+                        value: 'रहु माछा ', child: Text('रहु माछा ')),
+                    DropdownMenuItem(
+                        value: 'नैनी माछा', child: Text('नैनी माछा ')),
+                    DropdownMenuItem(
+                        value: 'कमन कार्प माछा ',
+                        child: Text('कमन कार्प माछा ')),
+                    DropdownMenuItem(
+                        value: 'टिलापिया माछा ', child: Text('टिलापिया माछा ')),
+                    DropdownMenuItem(
+                        value: 'पाङ्गास माछा ', child: Text('पाङ्गास माछा ')),
+                    DropdownMenuItem(
+                        value: 'रेन्वो ट्राउट माछा',
+                        child: Text('रेन्वो ट्राउट माछा')),
+                  ],
+                  onChanged: (value) {
+                    avgUnit = value ?? 'value';
+                  },
                 ),
+
+                // FishTextField(
+                //   validator: (value) => Validator.validateEmpty(value),
+                //   textEditingController: _fishTypeController,
+                //   contentPadding: EdgeInsets.only(left: 15.w),
+                //   label: '',
+                // ),
                 UiHelper.verticalSpacing(15),
                 RichText(
                   text: TextSpan(
@@ -105,27 +141,69 @@ class _YieldFormState extends State<YieldForm> {
                       ]),
                 ),
                 UiHelper.verticalSpacing(5),
-                Row(
-                  children: [
-                    FishTextField(
-                      validator: (value) => Validator.validateEmpty(value),
-                      textInputType:
-                          const TextInputType.numberWithOptions(decimal: true),
-                      textEditingController: _weightPerFishController,
-                      label: '',
-                      width: 186.w,
-                    ),
-                    UiHelper.horizontalSpacing(10.w),
-                    AppDropDown(
-                      items: const [
-                        DropdownMenuItem(value: 'kg', child: Text('kg')),
-                        DropdownMenuItem(value: 'gram', child: Text('gram')),
-                      ],
-                      onChanged: (value) {
-                        avgUnit = value ?? 'kg';
-                      },
-                    )
+                DropdownButton(
+  value: selectedFish,
+  onChanged: (String newValue) {
+    setState(() {
+      selectedFish = newValue;
+     });
+},
+items: _locations.map((String location) {
+  return new DropdownMenuItem<String>(
+     child: new Text(location),
+  );
+}).toList(),
+                AppDropDown(
+                  
+                  isExpanded: true,
+                  defaultText: 'Select fish',
+                  items:  [
+                    DropdownMenuItem(
+                      
+                        value: selectedFish, ', child: Text('सानो  माछा, ')),
+                    DropdownMenuItem(
+                        value: ' 0.1 के.जी', child: Text(' 0.1 के.जी')),
+                    DropdownMenuItem(
+                        value: '0.2 के.जी.', child: Text('0.2 के.जी. ')),
+                    DropdownMenuItem(
+                        value: '0.4 के.जी',
+                        child: Text(
+                          '0.4 के.जी',
+                        )),
+                    DropdownMenuItem(
+                        value: '0.5 के.जी', child: Text(' 0.5 के.जी')),
+                    DropdownMenuItem(
+                        value: ' 0.7 के.जी', child: Text(' 0.7 के.जी')),
+                    DropdownMenuItem(
+                        value: ' 0.9 के.जी', child: Text('0.9 के.जी')),
+                    DropdownMenuItem(value: ' 1 के.जी', child: Text('1 के.जी')),
+                    DropdownMenuItem(
+                        value: ' 1.3 के.जी', child: Text('1.3 के.जी')),
+                    DropdownMenuItem(
+                        value: '1.5 के.जी', child: Text('1.5 के.जी')),
+                    DropdownMenuItem(
+                        value: ' 1.7 के.जी', child: Text('1.7 के.जी')),
+                    DropdownMenuItem(
+                        value: ' 1.8 के.जी', child: Text('1.8 के.जी')),
+                    DropdownMenuItem(value: ' 2 के.जी', child: Text('2 के.जी')),
+                    DropdownMenuItem(
+                        value: ' 2.2 के.जी', child: Text('2.2 के.जी')),
+                    DropdownMenuItem(
+                        value: ' 2.5 के.जी', child: Text('2.5 के.जी')),
+                    DropdownMenuItem(value: '3 के.जी', child: Text('3 के.जी')),
+                    DropdownMenuItem(
+                        value: ' 3.5 के.जी', child: Text('5 के.जी')),
+                    DropdownMenuItem(value: ' 4 के.जी', child: Text('4 के.जी')),
+                    DropdownMenuItem(value: ' 5 के.जी', child: Text('5 के.जी')),
+                    DropdownMenuItem(
+                        value: ' 5.5 के.जी', child: Text('5.5 के.जी')),
+                    DropdownMenuItem(
+                        value: '6 के.जी ठूलो माछाभन्दा',
+                        child: Text('6 के.जी')),
                   ],
+                  onChanged: (value) {
+                    totalWeightUnit = value ?? 'kg';
+                  },
                 ),
                 UiHelper.verticalSpacing(15.h),
                 RichText(
@@ -144,28 +222,67 @@ class _YieldFormState extends State<YieldForm> {
                       ]),
                 ),
                 UiHelper.verticalSpacing(5.h),
-                Row(
-                  children: [
-                    FishTextField(
-                      validator: (value) => Validator.validateEmpty(value),
-                      textEditingController: _totalWeightController,
-                      label: '',
-                      width: 186.w,
-                      textInputType:
-                          const TextInputType.numberWithOptions(decimal: true),
-                    ),
-                    UiHelper.horizontalSpacing(10.w),
-                    AppDropDown(
-                      items: const [
-                        DropdownMenuItem(value: 'kg', child: Text('kg')),
-                        DropdownMenuItem(value: 'gram', child: Text('gram')),
-                      ],
-                      onChanged: (value) {
-                        totalWeightUnit = value ?? 'kg';
-                      },
-                    )
-                  ],
+                FishTextField(
+                  validator: (value) => Validator.validateEmpty(value),
+                  textEditingController: _totalWeightController,
+                  label: "(kg)",
+                  //'Farm\'s Name',
+                  contentPadding: EdgeInsets.only(left: 15.w),
                 ),
+
+  AppDropDown<String>(
+                            value: selectedPradesh,
+                            isExpanded: true,
+                            items: state.provinceResponse
+                                    ?.map((e) => DropdownMenuItem(
+                                        value: e.id,
+                                        child: Text(e.englishName!)))
+                                    .toList() ??
+                                [],
+                            onChanged: (value) {
+                              selectedPradesh = value;
+                              setState(() {});
+
+                              BlocProvider.of<FishFarmerDetailBloc>(context)
+                                  .add(GetDistrict(
+                                      provinceId: selectedPradesh ?? '1'));
+                            },
+                          ),
+                // AppDropDown(
+                //   isExpanded: true,
+                //   defaultText: 'Kg',
+                //   items: const [
+                //     DropdownMenuItem(value: 'kg', child: Text('kg')),
+                //     DropdownMenuItem(value: 'gram', child: Text('gram')),
+                //   ],
+                //   onChanged: (value) {
+                //     totalWeightUnit = value ?? 'kg';
+                //   },
+                // ),
+
+                // Row(
+                //   children: [
+                //     // FishTextField(
+                //     //   validator: (value) => Validator.validateEmpty(value),
+                //     //   textEditingController: _totalWeightController,
+                //     //   label: '',
+                //     //   width: 186.w,
+                //     //   textInputType:
+                //     //       const TextInputType.numberWithOptions(decimal: true),
+                //     // ),
+                //     UiHelper.horizontalSpacing(10.w),
+                //     AppDropDown(
+                //       defaultText: 'Kg',
+                //       items: const [
+                //         DropdownMenuItem(value: 'kg', child: Text('kg')),
+                //         DropdownMenuItem(value: 'gram', child: Text('gram')),
+                //       ],
+                //       onChanged: (value) {
+                //         totalWeightUnit = value ?? 'kg';
+                //       },
+                //     )
+                //   ],
+                // ),
                 UiHelper.verticalSpacing(15.h),
                 RichText(
                   text: TextSpan(

@@ -47,6 +47,21 @@ class SettingsPage extends StatelessWidget {
                           ),
                         ),
                       ),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const Forgot()));
+                        },
+                        child: const Text(
+                          'Log out',
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                      ),
                       //   Image.asset('assets/right_button.png'),
                     ]),
               ),

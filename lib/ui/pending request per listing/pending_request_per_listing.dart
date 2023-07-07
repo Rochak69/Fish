@@ -2,6 +2,7 @@ import 'package:fish_shop/res/colors.dart';
 import 'package:fish_shop/ui/pending%20request%20per%20listing/bloc/pending_request_per_listing_bloc.dart';
 import 'package:fish_shop/ui/pending%20request%20per%20listing/bloc/pending_request_per_listing_state.dart';
 import 'package:fish_shop/ui/utils/uihelper.dart';
+import 'package:fish_shop/ui/utils/utils.dart';
 import 'package:fish_shop/ui/your_listing/your_listing.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -38,7 +39,7 @@ class BuyerRequestsScreen extends StatelessWidget {
           elevation: 0,
           backgroundColor: Colors.white,
           title: Text(
-            '$fishType ($avgWeight kg)',
+            '$fishType ($avgWeight के.जी)',
             style: TextStyle(
                 color: Colors.black,
                 fontWeight: FontWeight.w900,
@@ -72,14 +73,15 @@ class BuyerRequestsScreen extends StatelessWidget {
                     child: Row(
                       children: [
                         Text(
-                          'Fish weight : ',
+                          translation(context).fish_weight,
+                          //   'Fish weight : ',
                           style: TextStyle(
                               fontSize: 12.sp,
                               fontWeight: FontWeight.w700,
                               color: Colors.black),
                         ),
                         Text(
-                          '$avgWeight kg',
+                          '$avgWeight के.जी',
                           style: TextStyle(
                               fontSize: 12.sp,
                               fontWeight: FontWeight.w700,
@@ -93,14 +95,15 @@ class BuyerRequestsScreen extends StatelessWidget {
                     child: Row(
                       children: [
                         Text(
-                          'Total weight : ',
+                          translation(context).total_weight,
+                          //  'Total weight : ',
                           style: TextStyle(
                               fontSize: 12.sp,
                               fontWeight: FontWeight.w700,
                               color: Colors.black),
                         ),
                         Text(
-                          '$totalWeight kg',
+                          '$totalWeight के.जी',
                           style: TextStyle(
                               fontSize: 12.sp,
                               fontWeight: FontWeight.w700,
@@ -114,7 +117,8 @@ class BuyerRequestsScreen extends StatelessWidget {
                     child: Row(
                       children: [
                         Text(
-                          'Yeild Date : ',
+                          translation(context).yield_date,
+                          //'Yeild Date : ',
                           style: TextStyle(
                               fontSize: 12.sp,
                               fontWeight: FontWeight.w700,
@@ -135,7 +139,8 @@ class BuyerRequestsScreen extends StatelessWidget {
                     child: Row(
                       children: [
                         Text(
-                          'Expiration Date : ',
+                          translation(context).listing_expired,
+                          //  'Expiration Date : ',
                           style: TextStyle(
                               fontSize: 12.sp,
                               fontWeight: FontWeight.w700,
@@ -195,7 +200,8 @@ class BuyerRequestsScreen extends StatelessWidget {
               Row(
                 children: [
                   Text(
-                    'Average weight : ',
+                    translation(context).fish_weight,
+                    //   'Average weight : ',
                     style: TextStyle(
                         fontSize: 12.sp,
                         fontWeight: FontWeight.w700,
@@ -213,14 +219,14 @@ class BuyerRequestsScreen extends StatelessWidget {
               Row(
                 children: [
                   Text(
-                    'Total weight : ',
+                    'खरिद गर्न चाहेको परिमाण: ',
                     style: TextStyle(
                         fontSize: 12.sp,
                         fontWeight: FontWeight.w700,
                         color: Colors.black),
                   ),
                   Text(
-                    '$totalWeight Kg',
+                    '$totalWeight के.जी',
                     style: TextStyle(
                         fontSize: 12.sp,
                         fontWeight: FontWeight.w700,
@@ -231,7 +237,7 @@ class BuyerRequestsScreen extends StatelessWidget {
               Row(
                 children: [
                   Text(
-                    'Yeild Date : ',
+                    'खरिद गर्न चाहेको मिति: : ',
                     style: TextStyle(
                         fontSize: 12.sp,
                         fontWeight: FontWeight.w700,
@@ -260,7 +266,7 @@ class BuyerRequestsScreen extends StatelessWidget {
                           actionsPadding: EdgeInsets.symmetric(vertical: 12.h),
                           title: const Center(
                             child: Text(
-                              'Accept Offer',
+                              'के तपाईं यो व्यक्तिको खरिद आदेश स्वीकार \n                     गर्न चाहनुहुन्छ ',
                               style: TextStyle(
                                   fontSize: 14, fontWeight: FontWeight.w700),
                             ),
@@ -269,15 +275,19 @@ class BuyerRequestsScreen extends StatelessWidget {
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               Text(
-                                'Are you sure, you want to Accept',
+                                'माछाको प्रजाती : सिल्भर कार्प  ',
                                 style: TextStyle(fontSize: 12),
                               ),
                               Text(
-                                'Offer for Silver Crap (2kg) for',
+                                'माछाको आकार: 1.5 के.जी',
                                 style: TextStyle(fontSize: 12),
                               ),
                               Text(
-                                '2073/02/21 of 100kg?',
+                                '    खरिद गर्न चाहेको परिमाण: 100 के.जी',
+                                style: TextStyle(fontSize: 12),
+                              ),
+                              Text(
+                                '   खरिद गर्न चाहेको मिति: 2080/03/20 ',
                                 style: TextStyle(fontSize: 12),
                               )
                             ],
@@ -294,7 +304,7 @@ class BuyerRequestsScreen extends StatelessWidget {
                               ),
                               child: const Center(
                                 child: Text(
-                                  'Sure',
+                                  'Yes',
                                   style: TextStyle(fontSize: 16),
                                 ),
                               ),
@@ -308,15 +318,15 @@ class BuyerRequestsScreen extends StatelessWidget {
                                 width: 91.w,
                                 height: 40.h,
                                 decoration: BoxDecoration(
-                                  color: Colors.blue,
+                                  color: Colors.red,
                                   borderRadius: BorderRadius.circular(12.r),
-                                  border: Border.all(
-                                      color: Colors
-                                          .blue), // Specify the border color
+                                  // border: Border.all(
+                                  //     color: Colors
+                                  //         .blue), // Specify the border color
                                 ),
                                 child: const Center(
                                   child: Text(
-                                    'Cancel',
+                                    'No',
                                     style: TextStyle(fontSize: 16),
                                   ),
                                 ),
@@ -337,7 +347,7 @@ class BuyerRequestsScreen extends StatelessWidget {
                   ),
                   child: Center(
                     child: Text(
-                      'Accept',
+                      'स्वीकार ',
                       style: TextStyle(
                           fontSize: 16.sp,
                           fontWeight: FontWeight.w500,
@@ -357,7 +367,7 @@ class BuyerRequestsScreen extends StatelessWidget {
                           actionsPadding: EdgeInsets.symmetric(vertical: 12.h),
                           title: const Center(
                             child: Text(
-                              'Reject Offer',
+                              'के तपाईं यो व्यक्तिको खरिद आदेश अस्वीकार गर्न चाहनुहुन्छ?',
                               style: TextStyle(
                                   fontSize: 14, fontWeight: FontWeight.w700),
                             ),
@@ -405,16 +415,17 @@ class BuyerRequestsScreen extends StatelessWidget {
                                 width: 91.w,
                                 height: 40.h,
                                 decoration: BoxDecoration(
-                                  color: Colors.blue,
+                                  color: Colors.red,
                                   borderRadius: BorderRadius.circular(12.r),
-                                  border: Border.all(
-                                      color: Colors
-                                          .blue), // Specify the border color
+                                  // border: Border.all(
+                                  //     color: Colors
+                                  //         .blue), // Specify the border color
                                 ),
                                 child: const Center(
                                   child: Text(
-                                    'Cancel',
-                                    style: TextStyle(fontSize: 16),
+                                    'No',
+                                    style: TextStyle(
+                                        fontSize: 16, color: Colors.white),
                                   ),
                                 ),
                               ),
@@ -434,7 +445,7 @@ class BuyerRequestsScreen extends StatelessWidget {
                   ),
                   child: Center(
                     child: Text(
-                      'Reject',
+                      ' अस्वीकार',
                       style: TextStyle(
                           fontSize: 16.sp,
                           fontWeight: FontWeight.w500,

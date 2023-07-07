@@ -87,7 +87,7 @@ class _HomeListingState extends State<HomeListing>
                 child: const Icon(Icons.add),
               ),
               floatingActionButtonLocation:
-                  FloatingActionButtonLocation.centerFloat,
+                  FloatingActionButtonLocation.centerDocked,
               bottomNavigationBar: Container(
                 padding: EdgeInsets.symmetric(vertical: 6.h),
                 height: 56.h,
@@ -109,7 +109,7 @@ class _HomeListingState extends State<HomeListing>
                       1,
                     ),
                     _buildBottomNavigationBarItem(
-                      'Listing',
+                      'Orders',
                       'assets/bottom_navigation_bar/tasks.png',
                       'assets/bottom_navigation_bar/tasks.png',
                       2,

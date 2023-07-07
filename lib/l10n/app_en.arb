@@ -36,9 +36,14 @@
         "completed": "completed",
     "cancelled": "cancelled",
         "listing_expired": "Your listing has been expired",
-            "fish_yields": " Fish Yields",
-              "fish_yields_details": "Fill the details for your yields",
-              "total_weight": "Total Weight"
+         "fish_yields": " Fish Yields",
+         "fish_yields_details": "Fill the details for your yields",
+         "total_weight": "Total Weight",
+         "your_listings": "Your Listings",
+         "no_offer": "so far, no businessman has requested to buy fish",
+         "your_listing_details": "Details for fish listed for selling by you"
+
+
 
 
 }
