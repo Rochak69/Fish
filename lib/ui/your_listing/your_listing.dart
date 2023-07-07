@@ -1,9 +1,10 @@
 import 'package:fish_shop/res/colors.dart';
-import 'package:fish_shop/ui/pending%20request%20per%20listing/pending_request_per_listing.dart';
+import 'package:fish_shop/ui/pending_request_per_listing/pending_request_per_listing.dart';
 import 'package:fish_shop/ui/utils/uihelper.dart';
 import 'package:fish_shop/ui/your_listing/bloc/your_listing_bloc.dart';
 import 'package:fish_shop/ui/your_listing/bloc/your_listing_event.dart';
 import 'package:fish_shop/ui/your_listing/bloc/your_listing_state.dart';
+import 'package:fish_shop/ui/your_listing/model/your_listing_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -232,19 +233,23 @@ class _YourListingsState extends State<YourListings> {
               ),
               child: TextButton(
                 onPressed: () {
+                  List<BuyerRequest> list =
+                      state.result.data?[index].buyerRequest ?? [];
                   Navigator.push(
                       context,
                       MaterialPageRoute(
                         builder: (context) => BuyerRequestsScreen(
-                          avgWeight: state.result.data?[index].avgFishWeight
-                                  .toString() ??
-                              '',
-                          totalWeight: state.result.data?[index].totalWeight
-                                  .toString() ??
-                              '',
-                          yeildDate: state.result.data?[index].yieldDate ?? '',
-                          fishType: state.result.data?[index].fishType ?? '',
-                        ),
+                            avgWeight: state.result.data?[index].avgFishWeight
+                                    .toString() ??
+                                '',
+                            totalWeight: state.result.data?[index].totalWeight
+                                    .toString() ??
+                                '',
+                            yeildDate:
+                                state.result.data?[index].yieldDate ?? '',
+                            fishType: state.result.data?[index].fishType ?? '',
+                            buyerRequests:
+                                state.result.data?[index].buyerRequest ?? []),
                       ));
                 },
                 child: const Text(

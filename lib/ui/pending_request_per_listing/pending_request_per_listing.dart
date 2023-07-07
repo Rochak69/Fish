@@ -1,23 +1,42 @@
 import 'package:fish_shop/res/colors.dart';
-import 'package:fish_shop/ui/pending%20request%20per%20listing/bloc/pending_request_per_listing_bloc.dart';
-import 'package:fish_shop/ui/pending%20request%20per%20listing/bloc/pending_request_per_listing_state.dart';
+import 'package:fish_shop/ui/pending_request_per_listing/bloc/pending_request_per_listing_bloc.dart';
+import 'package:fish_shop/ui/pending_request_per_listing/bloc/pending_request_per_listing_event.dart';
+import 'package:fish_shop/ui/pending_request_per_listing/bloc/pending_request_per_listing_state.dart';
 import 'package:fish_shop/ui/utils/uihelper.dart';
+import 'package:fish_shop/ui/your_listing/model/your_listing_model.dart';
 import 'package:fish_shop/ui/your_listing/your_listing.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class BuyerRequestsScreen extends StatelessWidget {
+class BuyerRequestsScreen extends StatefulWidget {
   final String avgWeight;
   final String totalWeight;
   final String fishType;
   final String yeildDate;
+  final List<BuyerRequest> buyerRequests;
   const BuyerRequestsScreen(
       {super.key,
       required this.avgWeight,
       required this.totalWeight,
       required this.fishType,
+      required this.buyerRequests,
       required this.yeildDate});
+
+  @override
+  State<BuyerRequestsScreen> createState() => _BuyerRequestsScreenState();
+}
+
+class _BuyerRequestsScreenState extends State<BuyerRequestsScreen> {
+  List<BuyerRequest> changeableRequest = [];
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      changeableRequest = widget.buyerRequests;
+      setState(() {});
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +57,7 @@ class BuyerRequestsScreen extends StatelessWidget {
           elevation: 0,
           backgroundColor: Colors.white,
           title: Text(
-            '$fishType ($avgWeight kg)',
+            '${widget.fishType} (${widget.avgWeight} kg)',
             style: TextStyle(
                 color: Colors.black,
                 fontWeight: FontWeight.w900,
@@ -54,7 +73,12 @@ class BuyerRequestsScreen extends StatelessWidget {
     return BlocConsumer<PendingRequestPerListingBloc,
         PendingRequestPerListingState>(
       listener: (context, state) {
-        // TODO: implement listener
+        if (state is PendingRequestSuccess) {
+          if (changeableRequest.isNotEmpty) {
+            changeableRequest.removeAt(state.index);
+            setState(() {});
+          }
+        }
       },
       builder: (context, state) {
         return SizedBox(
@@ -79,7 +103,7 @@ class BuyerRequestsScreen extends StatelessWidget {
                               color: Colors.black),
                         ),
                         Text(
-                          '$avgWeight kg',
+                          '${widget.avgWeight} kg',
                           style: TextStyle(
                               fontSize: 12.sp,
                               fontWeight: FontWeight.w700,
@@ -100,7 +124,7 @@ class BuyerRequestsScreen extends StatelessWidget {
                               color: Colors.black),
                         ),
                         Text(
-                          '$totalWeight kg',
+                          '${widget.totalWeight} kg',
                           style: TextStyle(
                               fontSize: 12.sp,
                               fontWeight: FontWeight.w700,
@@ -121,7 +145,7 @@ class BuyerRequestsScreen extends StatelessWidget {
                               color: Colors.black),
                         ),
                         Text(
-                          formarDate(yeildDate),
+                          formarDate(widget.yeildDate),
                           style: TextStyle(
                               fontSize: 12.sp,
                               fontWeight: FontWeight.w700,
@@ -142,7 +166,7 @@ class BuyerRequestsScreen extends StatelessWidget {
                               color: Colors.black),
                         ),
                         Text(
-                          formarDate(yeildDate),
+                          formarDate(widget.yeildDate),
                           style: TextStyle(
                               fontSize: 12.sp,
                               fontWeight: FontWeight.w700,
@@ -155,12 +179,11 @@ class BuyerRequestsScreen extends StatelessWidget {
                   Expanded(
                     child: ListView.separated(
                         padding: EdgeInsets.only(bottom: 40.h),
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemBuilder: (context, index) =>
-                            _buildSlverCrap(context),
+                        itemBuilder: (context, index) => _buildSlverCrap(
+                            context, changeableRequest[index], index),
                         separatorBuilder: (context, index) =>
                             UiHelper.verticalSpacing(23.h),
-                        itemCount: 8),
+                        itemCount: changeableRequest.length),
                   ),
                 ],
               ),
@@ -171,7 +194,7 @@ class BuyerRequestsScreen extends StatelessWidget {
     );
   }
 
-  _buildSlverCrap(context) {
+  _buildSlverCrap(context, BuyerRequest request, int index) {
     return Container(
       width: double.infinity,
       padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
@@ -185,7 +208,7 @@ class BuyerRequestsScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                '$fishType ($avgWeight kg)',
+                '${widget.fishType} (${widget.avgWeight} kg)',
                 style: TextStyle(
                     fontSize: 18.sp,
                     fontWeight: FontWeight.w700,
@@ -202,7 +225,7 @@ class BuyerRequestsScreen extends StatelessWidget {
                         color: Colors.black),
                   ),
                   Text(
-                    '$avgWeight Kg',
+                    '${widget.avgWeight} Kg',
                     style: TextStyle(
                         fontSize: 12.sp,
                         fontWeight: FontWeight.w700,
@@ -220,7 +243,7 @@ class BuyerRequestsScreen extends StatelessWidget {
                         color: Colors.black),
                   ),
                   Text(
-                    '$totalWeight Kg',
+                    '${widget.totalWeight} Kg',
                     style: TextStyle(
                         fontSize: 12.sp,
                         fontWeight: FontWeight.w700,
@@ -238,7 +261,7 @@ class BuyerRequestsScreen extends StatelessWidget {
                         color: Colors.black),
                   ),
                   Text(
-                    formarDate(yeildDate),
+                    formarDate(widget.yeildDate),
                     style: TextStyle(
                         fontSize: 12.sp,
                         fontWeight: FontWeight.w700,
@@ -252,79 +275,7 @@ class BuyerRequestsScreen extends StatelessWidget {
             children: [
               InkWell(
                 onTap: () {
-                  showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return AlertDialog(
-                          actionsAlignment: MainAxisAlignment.center,
-                          actionsPadding: EdgeInsets.symmetric(vertical: 12.h),
-                          title: const Center(
-                            child: Text(
-                              'Accept Offer',
-                              style: TextStyle(
-                                  fontSize: 14, fontWeight: FontWeight.w700),
-                            ),
-                          ),
-                          content: const Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Text(
-                                'Are you sure, you want to Accept',
-                                style: TextStyle(fontSize: 12),
-                              ),
-                              Text(
-                                'Offer for Silver Crap (2kg) for',
-                                style: TextStyle(fontSize: 12),
-                              ),
-                              Text(
-                                '2073/02/21 of 100kg?',
-                                style: TextStyle(fontSize: 12),
-                              )
-                            ],
-                          ),
-                          actions: [
-                            Container(
-                              width: 91.w,
-                              height: 40.h,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20.r),
-                                border: Border.all(
-                                    color: AppColors
-                                        .textColor), // Specify the border color
-                              ),
-                              child: const Center(
-                                child: Text(
-                                  'Sure',
-                                  style: TextStyle(fontSize: 16),
-                                ),
-                              ),
-                            ),
-                            UiHelper.horizontalSpacing(15.w),
-                            InkWell(
-                              onTap: () {
-                                Navigator.pop(context);
-                              },
-                              child: Container(
-                                width: 91.w,
-                                height: 40.h,
-                                decoration: BoxDecoration(
-                                  color: Colors.blue,
-                                  borderRadius: BorderRadius.circular(12.r),
-                                  border: Border.all(
-                                      color: Colors
-                                          .blue), // Specify the border color
-                                ),
-                                child: const Center(
-                                  child: Text(
-                                    'Cancel',
-                                    style: TextStyle(fontSize: 16),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        );
-                      });
+                  _showAcceptRejectDialog(context, request, true, index);
                 },
                 child: Container(
                   width: 91.w,
@@ -349,79 +300,7 @@ class BuyerRequestsScreen extends StatelessWidget {
               UiHelper.verticalSpacing(5.h),
               InkWell(
                 onTap: () {
-                  showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return AlertDialog(
-                          actionsAlignment: MainAxisAlignment.center,
-                          actionsPadding: EdgeInsets.symmetric(vertical: 12.h),
-                          title: const Center(
-                            child: Text(
-                              'Reject Offer',
-                              style: TextStyle(
-                                  fontSize: 14, fontWeight: FontWeight.w700),
-                            ),
-                          ),
-                          content: const Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Text(
-                                'Are you sure, you want to Reject',
-                                style: TextStyle(fontSize: 12),
-                              ),
-                              Text(
-                                'Offer for Silver Crap (2kg) for',
-                                style: TextStyle(fontSize: 12),
-                              ),
-                              Text(
-                                '2073/02/21 of 100kg?',
-                                style: TextStyle(fontSize: 12),
-                              )
-                            ],
-                          ),
-                          actions: [
-                            Container(
-                              width: 91.w,
-                              height: 40.h,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(12.r),
-                                border: Border.all(
-                                    color: Colors
-                                        .blue), // Specify the border color
-                              ),
-                              child: const Center(
-                                child: Text(
-                                  'Sure',
-                                  style: TextStyle(fontSize: 16),
-                                ),
-                              ),
-                            ),
-                            UiHelper.horizontalSpacing(15.w),
-                            InkWell(
-                              onTap: () {
-                                Navigator.pop(context);
-                              },
-                              child: Container(
-                                width: 91.w,
-                                height: 40.h,
-                                decoration: BoxDecoration(
-                                  color: Colors.blue,
-                                  borderRadius: BorderRadius.circular(12.r),
-                                  border: Border.all(
-                                      color: Colors
-                                          .blue), // Specify the border color
-                                ),
-                                child: const Center(
-                                  child: Text(
-                                    'Cancel',
-                                    style: TextStyle(fontSize: 16),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        );
-                      });
+                  _showAcceptRejectDialog(context, request, false, index);
                 },
                 child: Container(
                   width: 91.w,
@@ -448,6 +327,103 @@ class BuyerRequestsScreen extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  Future<dynamic> _showAcceptRejectDialog(
+      context, BuyerRequest request, bool isAccept, int index) {
+    return showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            actionsAlignment: MainAxisAlignment.center,
+            actionsPadding: EdgeInsets.symmetric(vertical: 12.h),
+            title: Center(
+              child: Text(
+                isAccept ? 'Accept Offer' : 'Reject Offer',
+                style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w700),
+              ),
+            ),
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  isAccept
+                      ? 'Are you sure, you want to  Accept?'
+                      : 'Are you sure, you want to  Reject?',
+                  style: TextStyle(fontSize: 12.sp),
+                ),
+                Text(
+                  'Fish Type : ${widget.fishType}',
+                  style: TextStyle(fontSize: 12.sp),
+                ),
+                Text(
+                  'Fish Weight : ${widget.avgWeight}',
+                  style: TextStyle(fontSize: 12.sp),
+                ),
+                Text(
+                  'Total Weight : ${widget.totalWeight}',
+                  style: TextStyle(fontSize: 12.sp),
+                ),
+                Text(
+                  'Bought Date : ${formarDate(DateTime.now().toString())}',
+                  style: TextStyle(fontSize: 12.sp),
+                )
+              ],
+            ),
+            actions: [
+              InkWell(
+                onTap: () {
+                  if (isAccept) {
+                    BlocProvider.of<PendingRequestPerListingBloc>(context).add(
+                        AcceptBuyerRequest(id: request.id ?? '', index: index));
+                  } else {
+                    BlocProvider.of<PendingRequestPerListingBloc>(context).add(
+                        RejectBuyerRequest(id: request.id ?? '', index: index));
+                  }
+
+                  Navigator.pop(context);
+                },
+                child: Container(
+                  width: 91.w,
+                  height: 40.h,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20.r),
+                    border: Border.all(
+                        color: AppColors.textColor), // Specify the border color
+                  ),
+                  child: const Center(
+                    child: Text(
+                      'Sure',
+                      style: TextStyle(fontSize: 16),
+                    ),
+                  ),
+                ),
+              ),
+              UiHelper.horizontalSpacing(15.w),
+              InkWell(
+                onTap: () {
+                  Navigator.pop(context);
+                },
+                child: Container(
+                  width: 91.w,
+                  height: 40.h,
+                  decoration: BoxDecoration(
+                    color: Colors.blue,
+                    borderRadius: BorderRadius.circular(12.r),
+                    border: Border.all(
+                        color: Colors.blue), // Specify the border color
+                  ),
+                  child: const Center(
+                    child: Text(
+                      'Cancel',
+                      style: TextStyle(fontSize: 16),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          );
+        });
   }
 
   Future<void> _refresh() async {}

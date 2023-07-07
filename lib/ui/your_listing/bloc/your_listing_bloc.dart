@@ -22,6 +22,7 @@ class YourListingBloc extends Bloc<YourListingEvent, YourListingState> {
   FutureOr<void> _getMyListings(
       GetMyListings event, Emitter<YourListingState> emit) async {
     try {
+      emit(YourListingInitial());
       final result = await apiClient.getMylistings();
       final response = result as ApiResponseForList<YourListingsResponse>;
       emit(YourListingSuccess(response));

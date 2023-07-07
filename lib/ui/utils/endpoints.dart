@@ -8,8 +8,11 @@ class Endpoints {
   static const String fishFarmerDetails = '/farmer/request';
   static const String createRequestToBuyer = '/farmerRequest';
   static const String getAllFarmersSupply = '/farmerSupply';
-  static String yourListings(String farmerId) => '/farmerSupply/$farmerId';
+  static const String getMyListings = '/me/listing?type=farmer';
+  // static String yourListings(String farmerId) => '/farmerSupply/$farmerId';
   static String deleteMyListing(String id) => '/farmerSupply/$id';
+  static String acceptBuyerRequest(String id) => '/buyerRequest/$id';
+  static String rejectBuyerRequest(String id) => '/buyerRequest/$id';
   static const String createFarmersSupply = '/farmerSupply';
   static const String getAllBuyerDemand = '/buyerDemand';
   static const String getUserDetails = '/me?type=farmer';

@@ -5,9 +5,9 @@ import 'package:bloc/bloc.dart';
 import 'package:fish_shop/common/api_response.dart';
 import 'package:injectable/injectable.dart';
 
-import 'package:fish_shop/ui/order%20history/bloc/order_history_event.dart';
-import 'package:fish_shop/ui/order%20history/bloc/order_history_state.dart';
-import 'package:fish_shop/ui/order%20history/repository/order_history_api_client.dart';
+import 'package:fish_shop/ui/order_history/bloc/order_history_event.dart';
+import 'package:fish_shop/ui/order_history/bloc/order_history_state.dart';
+import 'package:fish_shop/ui/order_history/repository/order_history_api_client.dart';
 
 @lazySingleton
 class OrderHistoryBloc extends Bloc<OrderHistoryEvent, OrderHistoryState> {

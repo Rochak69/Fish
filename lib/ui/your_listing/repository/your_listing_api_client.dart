@@ -26,7 +26,7 @@ class YourListingApiClient {
       throw Exception();
     }
     var apiResponse =
-        await _apiClient?.httpGetUrl(Endpoints.getAllFarmersSupply, token!);
+        await _apiClient?.httpGetUrl(Endpoints.getMyListings, token!);
 
     ///converting to response
     var registerResponse = ApiResponseForList(

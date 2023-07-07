@@ -14,21 +14,33 @@ class PendingRequestPerListingApiClient {
     _apiClient = apiClient;
   }
 
-  Future<ApiResponseForList?> getPendingRequestPerListing() async {
+  Future<ApiResponse?> acceptRequest(String id) async {
     Preferences preferences = Preferences();
 
     ///or pass object
 
-    var apiResponse = await _apiClient?.httpGet(Endpoints.getAllBuyerDemand);
+    var apiResponse =
+        await _apiClient?.httpPatch(Endpoints.acceptBuyerRequest(id), {});
 
     ///converting to response
-    var response = ApiResponseForList(
-      status: Status.success,
-      message: 'Successfully got',
-      data: (apiResponse as List<dynamic>)
-          .map((data) => HomeListingsResponse.fromJson(data))
-          .toList(),
+    var response = ApiResponse(
+        status: Status.success, message: 'Successfully got', data: null);
+
+    return response;
+  }
+
+  Future<ApiResponse?> rejectRequest(String id) async {
+    Preferences preferences = Preferences();
+
+    ///or pass object
+
+    var apiResponse = await _apiClient?.httpDelete(
+      Endpoints.rejectBuyerRequest(id),
     );
+
+    ///converting to response
+    var response = ApiResponse(
+        status: Status.success, message: 'Successfully got', data: null);
 
     return response;
   }

@@ -1,6 +1,6 @@
 import 'package:fish_shop/res/colors.dart';
-import 'package:fish_shop/ui/order%20history/bloc/order_history_bloc.dart';
-import 'package:fish_shop/ui/order%20history/bloc/order_history_state.dart';
+import 'package:fish_shop/ui/order_history/bloc/order_history_bloc.dart';
+import 'package:fish_shop/ui/order_history/bloc/order_history_state.dart';
 import 'package:fish_shop/ui/utils/uihelper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

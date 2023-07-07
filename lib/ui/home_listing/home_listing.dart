@@ -3,7 +3,7 @@ import 'package:fish_shop/ui/home_listing/bloc/home_listings_bloc.dart';
 import 'package:fish_shop/ui/home_listing/bloc/home_listings_event.dart';
 import 'package:fish_shop/ui/home_listing/bloc/home_listings_state.dart';
 import 'package:fish_shop/ui/home_listing/listing.dart';
-import 'package:fish_shop/ui/order%20history/order_history.dart';
+import 'package:fish_shop/ui/order_history/order_history.dart';
 import 'package:fish_shop/ui/support/support.dart';
 import 'package:fish_shop/ui/yield_farm/yield_farm.dart';
 import 'package:fish_shop/ui/your_listing/your_listing.dart';
@@ -136,28 +136,31 @@ class _HomeListingState extends State<HomeListing>
     String unselectedIconPath,
     int index,
   ) {
-    return GestureDetector(
+    return InkWell(
       onTap: () {
         setState(() {
           _selectedIndex = index;
         });
         _animationController.forward(from: 0.0);
       },
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Image.asset(
-            selectedIconPath,
-            color: _selectedIndex == index ? AppColors.textColor : null,
-          ),
-          Text(
-            label,
-            style: TextStyle(
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 22.w),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Image.asset(
+              selectedIconPath,
               color: _selectedIndex == index ? AppColors.textColor : null,
-              fontSize: 10.sp,
             ),
-          )
-        ],
+            Text(
+              label,
+              style: TextStyle(
+                color: _selectedIndex == index ? AppColors.textColor : null,
+                fontSize: 10.sp,
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
