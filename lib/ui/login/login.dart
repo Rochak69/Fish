@@ -99,14 +99,14 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     UiHelper.verticalSpacing(20.h),
                     FishTextField(
-                      validator: (value) => Validator.validateEmpty(value),
+                      validator: (value) => Validators.validateEmpty(value),
                       textEditingController: _email,
                       label: 'Phone Number',
                       contentPadding: EdgeInsets.only(left: 15.w),
                     ),
                     UiHelper.verticalSpacing(20.h),
                     FishTextField(
-                      validator: (value) => Validator.validateEmpty(value),
+                      validator: (value) => Validators.validateEmpty(value),
                       textEditingController: _password,
                       label: 'Password',
                       contentPadding: EdgeInsets.only(left: 15.w),

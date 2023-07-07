@@ -82,7 +82,7 @@ class _UserDetailsState extends State<UserDetails> {
     },
                 */
                 FishTextField(
-                  validator: (value) => Validator.validateEmpty(value),
+                  validator: (value) => Validators.validateEmpty(value),
                   textEditingController: farmerNameController,
                   label: 'Farm\'s Name',
                   contentPadding: EdgeInsets.only(left: 15.w),

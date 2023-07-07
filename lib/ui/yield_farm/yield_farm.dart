@@ -82,7 +82,7 @@ class _YieldFormState extends State<YieldForm> {
                 ),
                 UiHelper.verticalSpacing(5),
                 FishTextField(
-                  validator: (value) => Validator.validateEmpty(value),
+                  validator: (value) => Validators.validateEmpty(value),
                   textEditingController: _fishTypeController,
                   contentPadding: EdgeInsets.only(left: 15.w),
                   label: '',
@@ -106,7 +106,7 @@ class _YieldFormState extends State<YieldForm> {
                 Row(
                   children: [
                     FishTextField(
-                      validator: (value) => Validator.validateEmpty(value),
+                      validator: (value) => Validators.validateEmpty(value),
                       textInputType:
                           const TextInputType.numberWithOptions(decimal: true),
                       textEditingController: _weightPerFishController,
@@ -144,7 +144,7 @@ class _YieldFormState extends State<YieldForm> {
                 Row(
                   children: [
                     FishTextField(
-                      validator: (value) => Validator.validateEmpty(value),
+                      validator: (value) => Validators.validateEmpty(value),
                       textEditingController: _totalWeightController,
                       label: '',
                       width: 186.w,

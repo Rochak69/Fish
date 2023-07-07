@@ -67,7 +67,7 @@ class _ForgotState extends State<Forgot> {
               ),
               UiHelper.verticalSpacing(8.h),
               FishTextField(
-                validator: (value) => Validator.validateEmpty(value),
+                validator: (value) => Validators.validateEmpty(value),
                 textEditingController: phoneController,
                 label: '98xxxxxxxx',
                 contentPadding: EdgeInsets.only(left: 15.w),

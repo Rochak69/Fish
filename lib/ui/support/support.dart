@@ -82,7 +82,7 @@ class Support extends StatelessWidget {
           UiHelper.verticalSpacing(10.h),
           Container(
             child: FishTextField(
-              validator: (value) => Validator.validateEmpty(value),
+              validator: (value) => Validators.validateEmpty(value),
               contentPadding: EdgeInsets.all(23.r),
               label: "Tell us everything",
               height: 94.h,

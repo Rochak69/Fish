@@ -88,7 +88,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                 ),
                 UiHelper.verticalSpacing(5.h),
                 FishTextField(
-                  validator: (value) => Validator.validateEmpty(value),
+                  validator: (value) => Validators.validateEmpty(value),
                   obscureText: _obscureText,
                   sufixIcon: Icon(
                     _obscureText ? Icons.visibility_off : Icons.visibility,
@@ -105,7 +105,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                 ),
                 UiHelper.verticalSpacing(5),
                 FishTextField(
-                  validator: (value) => Validator.validateEmpty(value),
+                  validator: (value) => Validators.validateEmpty(value),
                   obscureText: _obscureText,
                   sufixIcon: Icon(
                     _obscureText ? Icons.visibility_off : Icons.visibility,

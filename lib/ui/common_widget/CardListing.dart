@@ -222,7 +222,7 @@ class _CardListingState extends State<CardListing> {
                     ),
                   ),
                   FishTextField(
-                    validator: (value) => Validator.validateEmpty(value),
+                    validator: (value) => Validators.validateEmpty(value),
                     textInputType: TextInputType.number,
                     label: 'Offer weight',
                     textEditingController: offerWeight,

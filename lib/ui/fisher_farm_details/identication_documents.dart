@@ -110,7 +110,7 @@ class _IdentificationDocumentsState extends State<IdentificationDocuments> {
                             width: 220,
                             child: FishTextField(
                               validator: (value) =>
-                                  Validator.validateEmpty(value),
+                                  Validators.validateEmpty(value),
                               label: '',
                               textEditingController: pondSize,
                             ),
@@ -167,7 +167,7 @@ class _IdentificationDocumentsState extends State<IdentificationDocuments> {
                   ),
                   UiHelper.verticalSpacing(8.h),
                   FishTextField(
-                      validator: (value) => Validator.validateEmpty(value),
+                      validator: (value) => Validators.validateEmpty(value),
                       label: ''),
                   UiHelper.verticalSpacing(12.h),
                   RichText(
@@ -186,7 +186,7 @@ class _IdentificationDocumentsState extends State<IdentificationDocuments> {
                   ),
                   UiHelper.verticalSpacing(8.h),
                   FishTextField(
-                      validator: (value) => Validator.validateEmpty(value),
+                      validator: (value) => Validators.validateEmpty(value),
                       label: ''),
                   UiHelper.verticalSpacing(12.h),
                   RichText(

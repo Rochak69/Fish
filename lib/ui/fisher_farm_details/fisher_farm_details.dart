@@ -81,7 +81,7 @@ class _FishFarmDetailsState extends State<FishFarmDetails> {
                           UiHelper.verticalSpacing(10.h),
                           FishTextField(
                             validator: (value) =>
-                                Validator.validateEmpty(value),
+                                Validators.validateEmpty(value),
                             textEditingController: farmerNameController,
                             label: 'Farm\'s Name',
                             contentPadding: EdgeInsets.only(left: 15.w),
@@ -104,7 +104,7 @@ class _FishFarmDetailsState extends State<FishFarmDetails> {
                           UiHelper.verticalSpacing(10.h),
                           FishTextField(
                             validator: (value) =>
-                                Validator.validateEmpty(value),
+                                Validators.validateEmpty(value),
                             textEditingController: farmNameController,
                             label: 'Farm\'s Name',
                             contentPadding: EdgeInsets.only(left: 15.w),
@@ -127,7 +127,7 @@ class _FishFarmDetailsState extends State<FishFarmDetails> {
                           UiHelper.verticalSpacing(10.h),
                           FishTextField(
                             validator: (value) =>
-                                Validator.validateEmpty(value),
+                                Validators.validateEmpty(value),
                             textEditingController: phoneNumberController,
                             label: 'Phone Number',
                             contentPadding: EdgeInsets.only(left: 15.w),
