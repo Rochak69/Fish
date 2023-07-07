@@ -2,6 +2,7 @@ import 'package:fish_shop/res/colors.dart';
 import 'package:fish_shop/ui/order%20history/bloc/order_history_bloc.dart';
 import 'package:fish_shop/ui/order%20history/bloc/order_history_state.dart';
 import 'package:fish_shop/ui/utils/uihelper.dart';
+import 'package:fish_shop/ui/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -29,7 +30,8 @@ class _OrderHistoryState extends State<OrderHistory> {
         elevation: 0,
         backgroundColor: Colors.white,
         title: Text(
-          'Order History',
+          translation(context).order_history,
+          //    'Order History',
           style: TextStyle(
               color: AppColors.textColor,
               fontWeight: FontWeight.w700,
@@ -76,7 +78,8 @@ class _OrderHistoryState extends State<OrderHistory> {
               Row(
                 children: [
                   Text(
-                    'Fish Type : ',
+                    translation(context).fish_type,
+                    //    'Fish Type : ',
                     style: TextStyle(
                         fontSize: 18.sp,
                         fontWeight: FontWeight.w700,
@@ -95,7 +98,8 @@ class _OrderHistoryState extends State<OrderHistory> {
               Row(
                 children: [
                   Text(
-                    'Fish weight : ',
+                    translation(context).fish_weight,
+                    //'Fish weight : ',
                     style: TextStyle(
                         fontSize: 12.sp,
                         fontWeight: FontWeight.w700,
@@ -113,7 +117,8 @@ class _OrderHistoryState extends State<OrderHistory> {
               Row(
                 children: [
                   Text(
-                    'Qunatity : ',
+                    translation(context).quantity,
+                    //   'Qunatity : ',
                     style: TextStyle(
                         fontSize: 12.sp,
                         fontWeight: FontWeight.w700,
@@ -131,7 +136,8 @@ class _OrderHistoryState extends State<OrderHistory> {
               Row(
                 children: [
                   Text(
-                    'Yeild Date : ',
+                    translation(context).yield_date,
+                    //   'Yeild Date : ',
                     style: TextStyle(
                         fontSize: 12.sp,
                         fontWeight: FontWeight.w700,
@@ -149,7 +155,8 @@ class _OrderHistoryState extends State<OrderHistory> {
               Row(
                 children: [
                   Text(
-                    'Buyer\'s name : ',
+                    translation(context).buyer_name,
+                    //   'Buyer\'s name : ',
                     style: TextStyle(
                         fontSize: 12.sp,
                         fontWeight: FontWeight.w700,
@@ -167,7 +174,8 @@ class _OrderHistoryState extends State<OrderHistory> {
               Row(
                 children: [
                   Text(
-                    'Buyers Address : ',
+                    translation(context).buyer_address,
+                    //      'Buyers Address : ',
                     style: TextStyle(
                         fontSize: 12.sp,
                         fontWeight: FontWeight.w700,
@@ -185,7 +193,8 @@ class _OrderHistoryState extends State<OrderHistory> {
               Row(
                 children: [
                   Text(
-                    'Phone Number : ',
+                    translation(context).contact_details,
+                    //          'Phone Number : ',
                     style: TextStyle(
                         fontSize: 12.sp,
                         fontWeight: FontWeight.w700,
@@ -221,11 +230,33 @@ class _OrderHistoryState extends State<OrderHistory> {
                                   fontWeight: FontWeight.w900),
                             ),
                           ),
-                          content: const Column(
+                          content: Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [
+                              Row(
+                                children: [
+                                  Text(
+                                    translation(context)
+                                        .fish_type, //'Are you sure you want to Mark this',
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                      color: AppColors.textColor,
+                                      fontWeight: FontWeight.w700,
+                                    ),
+                                  ),
+                                  Text(
+                                    ': सिल्भर कार्प', //'Are you sure you want to Mark this',
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                      color: AppColors.secondaryTextColor,
+                                      fontWeight: FontWeight.w700,
+                                    ),
+                                  ),
+                                ],
+                              ),
                               Text(
-                                'Are you sure you want to Mark this',
+                                translation(context).fish_weight + ':1.5 के.जी',
+                                //'Are you sure you want to Mark this',
                                 style: TextStyle(
                                   fontSize: 14,
                                   color: AppColors.secondaryTextColor,
@@ -233,7 +264,26 @@ class _OrderHistoryState extends State<OrderHistory> {
                                 ),
                               ),
                               Text(
-                                'deal as completed ?',
+                                translation(context).quantity + ':100 के.जी',
+                                //'Are you sure you want to Mark this',
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  color: AppColors.secondaryTextColor,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                              Text(
+                                translation(context).yield_date + '2080/03/27',
+                                //'Are you sure you want to Mark this',
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  color: AppColors.secondaryTextColor,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                              Text(
+                                translation(context).listing_expired,
+                                //'Are you sure you want to Mark this',
                                 style: TextStyle(
                                   fontSize: 14,
                                   color: AppColors.secondaryTextColor,
@@ -254,7 +304,7 @@ class _OrderHistoryState extends State<OrderHistory> {
                               ),
                               child: const Center(
                                 child: Text(
-                                  'Sure',
+                                  'Yes',
                                   style: TextStyle(
                                     fontSize: 12,
                                     color: AppColors.textColor,
@@ -272,15 +322,15 @@ class _OrderHistoryState extends State<OrderHistory> {
                                 width: 91.w,
                                 height: 40.h,
                                 decoration: BoxDecoration(
-                                  color: Colors.blue,
+                                  color: Colors.red,
                                   borderRadius: BorderRadius.circular(12.r),
-                                  border: Border.all(
-                                      color: Colors
-                                          .blue), // Specify the border color
+                                  // border: Border.all(
+                                  //     color: Colors
+                                  //         .blue), // Specify the border color
                                 ),
                                 child: const Center(
                                   child: Text(
-                                    'Cancel',
+                                    'No',
                                     style: TextStyle(
                                         fontSize: 12,
                                         fontWeight: FontWeight.w600,
@@ -304,7 +354,8 @@ class _OrderHistoryState extends State<OrderHistory> {
                   ),
                   child: Center(
                     child: Text(
-                      'Completed',
+                      translation(context).completed,
+                      // 'Completed',
                       style: TextStyle(
                           color: AppColors.textColor,
                           fontWeight: FontWeight.w700,
@@ -331,11 +382,21 @@ class _OrderHistoryState extends State<OrderHistory> {
                                   fontWeight: FontWeight.w900),
                             ),
                           ),
-                          content: const Column(
+// माछाको प्रजाती : सिल्भर कार्प
+// माछाको आकार:
+// ज्ञ।छ के.जी
+// माछाको परिमाण के.जी:
+// ज्ञण्ण् के.जी
+// माछा मारको मिति:
+// द्दण्ठडरण्घरद्दण्
+// विज्ञापन सकिने दिन:
+// ३ दिन बाँकी छ
+                          content: Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               Text(
-                                'Are you sure you want to Mark this',
+                                translation(context).fish_type +
+                                    'सिल्भर कार्प', //'Are you sure you want to Mark this',
                                 style: TextStyle(
                                   fontSize: 14,
                                   color: AppColors.secondaryTextColor,
@@ -343,7 +404,35 @@ class _OrderHistoryState extends State<OrderHistory> {
                                 ),
                               ),
                               Text(
-                                'deal as cancelled ?',
+                                translation(context).fish_weight + ':1.5 के.जी',
+                                //'Are you sure you want to Mark this',
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  color: AppColors.secondaryTextColor,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                              Text(
+                                translation(context).quantity + ':100 के.जी',
+                                //'Are you sure you want to Mark this',
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  color: AppColors.secondaryTextColor,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                              Text(
+                                translation(context).yield_date + '2080/03/27',
+                                //'Are you sure you want to Mark this',
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  color: AppColors.secondaryTextColor,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                              Text(
+                                translation(context).listing_expired,
+                                //'Are you sure you want to Mark this',
                                 style: TextStyle(
                                   fontSize: 14,
                                   color: AppColors.secondaryTextColor,
@@ -364,7 +453,7 @@ class _OrderHistoryState extends State<OrderHistory> {
                               ),
                               child: const Center(
                                 child: Text(
-                                  'Sure',
+                                  'Yes',
                                   style: TextStyle(
                                     fontSize: 12,
                                     color: AppColors.textColor,
@@ -382,15 +471,15 @@ class _OrderHistoryState extends State<OrderHistory> {
                                 width: 91.w,
                                 height: 40.h,
                                 decoration: BoxDecoration(
-                                  color: Colors.blue,
+                                  color: Colors.red,
                                   borderRadius: BorderRadius.circular(12.r),
-                                  border: Border.all(
-                                      color: Colors
-                                          .blue), // Specify the border color
+                                  //   border: Border.all(
+                                  //       color: Colors
+                                  //           .blue), // Specify the border color
                                 ),
                                 child: const Center(
                                   child: Text(
-                                    'Cancel',
+                                    'No',
                                     style: TextStyle(
                                       fontSize: 12,
                                       fontWeight: FontWeight.w600,
@@ -414,7 +503,8 @@ class _OrderHistoryState extends State<OrderHistory> {
                         width: 1.5.w), // Specify the border color
                   ),
                   child: Center(
-                    child: Text('Cancelled',
+                    child: Text(translation(context).cancelled,
+                        //  'Cancelled',
                         style: TextStyle(
                           color: AppColors.textRedContainerColor,
                           fontSize: 12.sp,

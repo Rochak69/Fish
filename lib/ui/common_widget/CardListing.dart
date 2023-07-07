@@ -71,7 +71,8 @@ class _CardListingState extends State<CardListing> {
             Row(
               children: [
                 Text(
-                  'Fish Type : ',
+                  translation(context).fish_type + ":",
+                  //   'Fish Type : ',
                   style: TextStyle(
                       fontSize: 18.sp,
                       fontWeight: FontWeight.w700,
@@ -90,14 +91,15 @@ class _CardListingState extends State<CardListing> {
             Row(
               children: [
                 Text(
-                  'Fish weight : ',
+                  translation(context).fish_weight + ':',
+                  // 'Fish weight : ',
                   style: TextStyle(
                       fontSize: 12.sp,
                       fontWeight: FontWeight.w700,
                       color: Colors.black),
                 ),
                 Text(
-                  '${widget.avgWeight} Kg',
+                  '${widget.avgWeight} के.जी.',
                   style: TextStyle(
                       fontSize: 12.sp,
                       fontWeight: FontWeight.w700,
@@ -109,7 +111,8 @@ class _CardListingState extends State<CardListing> {
             Row(
               children: [
                 Text(
-                  'Qunatity : ',
+                  translation(context).quantity + ":",
+                  //  'Qunatity : ',
                   style: TextStyle(
                       fontSize: 12.sp,
                       fontWeight: FontWeight.w700,
@@ -127,7 +130,8 @@ class _CardListingState extends State<CardListing> {
             Row(
               children: [
                 Text(
-                  'Yeild Date : ',
+                  translation(context).yield_date,
+                  //   'Yeild Date : ',
                   style: TextStyle(
                       fontSize: 12.sp,
                       fontWeight: FontWeight.w700,
@@ -161,10 +165,13 @@ class _CardListingState extends State<CardListing> {
                     context: context,
                   );
                 },
-                child: const Text(
-                  'Send Offer',
-                  style: TextStyle(
-                      color: AppColors.textColor, fontWeight: FontWeight.w500),
+                child: Container(
+                  child: const Text(
+                    'Send Offer',
+                    style: TextStyle(
+                        color: AppColors.textColor,
+                        fontWeight: FontWeight.w500),
+                  ),
                 )),
           ),
         ],
@@ -196,37 +203,77 @@ class _CardListingState extends State<CardListing> {
               width: 232.w,
               height: 120.h,
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
-                    'Are you sure you want to send offer',
-                    style: GoogleFonts.inter(
-                      fontWeight: FontWeight.w600,
-                      color: AppColors.AppCardColor,
-                      fontSize: 14,
-                    ),
+                  Row(
+                    children: [
+                      Text(
+                        translation(context).fish_type + ": नैनी",
+                        //   'Fish Type : ',
+                        style: TextStyle(
+                            fontSize: 18.sp,
+                            fontWeight: FontWeight.w700,
+                            color: AppColors.textColor),
+                      ),
+                    ],
                   ),
-                  Text(
-                    'for ${offerWeight.text} kg ${widget.fishName} ( ${widget.avgWeight} kg )',
-                    style: GoogleFonts.inter(
-                      fontWeight: FontWeight.w600,
-                      color: AppColors.AppCardColor,
-                      fontSize: 14,
-                    ),
+                  Row(
+                    children: [
+                      Text(
+                        translation(context).fish_weight + ':',
+                        // 'Fish weight : ',
+                        style: TextStyle(
+                            fontSize: 12.sp,
+                            fontWeight: FontWeight.w700,
+                            color: Colors.black),
+                      ),
+                      Text(
+                        '${widget.avgWeight} के.जी.',
+                        style: TextStyle(
+                            fontSize: 12.sp,
+                            fontWeight: FontWeight.w700,
+                            color: AppColors.AppCardColor),
+                      ),
+                    ],
                   ),
-                  Text(
-                    ' ${widget.location}?',
-                    style: GoogleFonts.inter(
-                      fontWeight: FontWeight.w600,
-                      color: AppColors.AppCardColor,
-                      fontSize: 14,
-                    ),
+                  Row(
+                    children: [
+                      Text(
+                        translation(context).quantity + ":",
+                        //  'Qunatity : ',
+                        style: TextStyle(
+                            fontSize: 12.sp,
+                            fontWeight: FontWeight.w700,
+                            color: Colors.black),
+                      ),
+                      Text(
+                        widget.totalWeight.toString(),
+                        style: TextStyle(
+                            fontSize: 12.sp,
+                            fontWeight: FontWeight.w800,
+                            color: AppColors.AppCardColor),
+                      ),
+                    ],
                   ),
-                  FishTextField(
-                    validator: (value) => Validator.validateEmpty(value),
-                    textInputType: TextInputType.number,
-                    label: 'Offer weight',
-                    textEditingController: offerWeight,
-                  ) // Message which will be pop up on the screen')
+                  Row(
+                    children: [
+                      Text(
+                        translation(context).yield_date,
+                        //   'Yeild Date : ',
+                        style: TextStyle(
+                            fontSize: 12.sp,
+                            fontWeight: FontWeight.w700,
+                            color: Colors.black),
+                      ),
+                      Text(
+                        formarDate(widget.date),
+                        style: TextStyle(
+                            fontSize: 12.sp,
+                            fontWeight: FontWeight.w700,
+                            color: AppColors.AppCardColor),
+                      ),
+                    ],
+                  ),
                 ],
               ),
             ),

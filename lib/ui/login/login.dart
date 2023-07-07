@@ -60,7 +60,8 @@ class _LoginPageState extends State<LoginPage> {
           } else {
             Navigator.pushReplacement(context, MaterialPageRoute(
               builder: (context) {
-                return const FishFarmDetails();
+                return const HomeListing();
+                //     return const FishFarmDetails();
               },
             ));
           }
@@ -222,34 +223,31 @@ class _LoginPageState extends State<LoginPage> {
     return Column(
       children: [
         Text(
-          translation(context).hello,
+          translation(context).lumbini,
           style: TextStyle(
             color: AppColors.textColor,
             fontWeight: FontWeight.w600,
           ),
         ),
-        const Text(
-          '  Ministry of Agriculture and Land Management ',
+        Text(
+          translation(context).agriculture,
           style: TextStyle(
             color: AppColors.textColor,
             fontWeight: FontWeight.w600,
           ),
         ),
-        const Text(
-          'Directorate of Livestock and Fisheries',
+        Text(
+          translation(context).ministry,
           style: TextStyle(
-            color: AppColors.textColor,
+            color: AppColors.textRedColor,
             fontWeight: FontWeight.w600,
           ),
         ),
-        Padding(
-          padding: EdgeInsets.only(right: 20.w),
-          child: const Text(
-            '  Development',
-            style: TextStyle(
-              color: AppColors.textColor,
-              fontWeight: FontWeight.w600,
-            ),
+        Text(
+          translation(context).butwal,
+          style: TextStyle(
+            color: AppColors.textRedColor,
+            fontWeight: FontWeight.w600,
           ),
         ),
       ],
