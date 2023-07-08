@@ -220,9 +220,10 @@ class _CardListingState extends State<CardListing> {
           // To display the title it is optional
           content: Column(
               mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: [
-                Row(
+                Wrap(
                   children: [
                     Text(
                       translation(context).fish_type,
@@ -233,7 +234,7 @@ class _CardListingState extends State<CardListing> {
                           color: AppColors.textColor),
                     ),
                     Text(
-                      widget.fishName,
+                      ' : ${widget.fishName}',
                       style: TextStyle(
                           fontSize: 18.sp,
                           fontWeight: FontWeight.w700,

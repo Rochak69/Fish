@@ -7,6 +7,7 @@ import 'package:fish_shop/res/colors.dart';
 
 import 'package:fish_shop/ui/home_listing/bloc/home_listings_event.dart';
 import 'package:fish_shop/ui/home_listing/bloc/home_listings_state.dart';
+import 'package:fish_shop/ui/home_listing/model/fish_response.dart';
 import 'package:fish_shop/ui/home_listing/model/home_listings_response.dart';
 import 'package:fish_shop/ui/home_listing/repository/home_listings_api_client.dart';
 import 'package:fish_shop/ui/utils/utils.dart';
@@ -28,9 +29,11 @@ class HomeListingsBloc extends Bloc<HomeListingsEvent, HomeListingsState> {
       final userDetails = await apiClient.getUserDetails();
 
       final result = await apiClient.getHomeListings();
+      final fish =
+          await apiClient.getFish() as ApiResponseForList<FishResponse>;
       final response = result as ApiResponseForList<HomeListingsResponse>;
 
-      emit(HomeListingsSuccess(result: response));
+      emit(HomeListingsSuccess(result: response, fishes: fish));
     } catch (e) {
       try {
         ApiErrorResponse apiErrorResponse = e as ApiErrorResponse;

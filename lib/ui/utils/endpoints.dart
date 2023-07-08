@@ -23,6 +23,7 @@ class Endpoints {
   }
 
   static const String myOrders = '/me/myoder?type=farmer';
+  static const String fishType = '/fishtype';
   static String completeOrder(String id) => '/myorder/confirm/$id';
   static String rejectOrder(String id) => '/myorder/reject/$id';
 

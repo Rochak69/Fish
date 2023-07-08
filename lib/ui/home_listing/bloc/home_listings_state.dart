@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:fish_shop/common/api_response.dart';
+import 'package:fish_shop/ui/home_listing/model/fish_response.dart';
 import 'package:fish_shop/ui/home_listing/model/home_listings_response.dart';
 
 abstract class HomeListingsState {}
@@ -8,9 +9,8 @@ class HomeListingsInitial extends HomeListingsState {}
 
 class HomeListingsSuccess extends HomeListingsState {
   final ApiResponseForList<HomeListingsResponse> result;
-  HomeListingsSuccess({
-    required this.result,
-  });
+  final ApiResponseForList<FishResponse> fishes;
+  HomeListingsSuccess({required this.result, required this.fishes});
 }
 
 class HomeListingsFailed extends HomeListingsState {

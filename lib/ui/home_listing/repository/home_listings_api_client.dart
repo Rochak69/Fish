@@ -1,6 +1,7 @@
 import 'package:fish_shop/common/api_response.dart';
 import 'package:fish_shop/common/status.dart';
 import 'package:fish_shop/providers/api_client.dart';
+import 'package:fish_shop/ui/home_listing/model/fish_response.dart';
 import 'package:fish_shop/ui/home_listing/model/home_listings_response.dart';
 import 'package:fish_shop/ui/login/model/user_details_Response.dart';
 import 'package:fish_shop/ui/utils/endpoints.dart';
@@ -28,6 +29,25 @@ class HomeListingApiClient {
       message: 'Successfully got',
       data: (apiResponse as List<dynamic>)
           .map((data) => HomeListingsResponse.fromJson(data))
+          .toList(),
+    );
+
+    return response;
+  }
+
+  Future<ApiResponseForList?> getFish() async {
+    Preferences preferences = Preferences();
+
+    ///or pass object directly to the http post
+
+    var apiResponse = await _apiClient?.httpGet(Endpoints.fishType);
+
+    ///converting to response
+    var response = ApiResponseForList(
+      status: Status.success,
+      message: 'Successfully got',
+      data: (apiResponse as List<dynamic>)
+          .map((data) => FishResponse.fromJson(data))
           .toList(),
     );
 

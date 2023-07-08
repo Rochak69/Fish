@@ -2,6 +2,8 @@ import 'package:fish_shop/common/validator.dart';
 import 'package:fish_shop/res/colors.dart';
 import 'package:fish_shop/ui/common_widget/FishTextField.dart';
 import 'package:fish_shop/ui/common_widget/app_dropdown.dart';
+import 'package:fish_shop/ui/home_listing/bloc/home_listings_bloc.dart';
+import 'package:fish_shop/ui/home_listing/bloc/home_listings_state.dart';
 import 'package:fish_shop/ui/utils/uihelper.dart';
 import 'package:fish_shop/ui/utils/utils.dart';
 import 'package:fish_shop/ui/yield_farm/bloc/yeild_form_bloc.dart';
@@ -27,10 +29,15 @@ class _YieldFormState extends State<YieldForm> {
   final _formKey = GlobalKey<FormState>();
 
   final TextEditingController _edControllerDate = TextEditingController();
-  final TextEditingController _fishTypeController = TextEditingController();
+
   final TextEditingController _totalWeightController = TextEditingController();
   final TextEditingController _weightPerFishController =
       TextEditingController();
+  String? selectedFish;
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -90,11 +97,32 @@ class _YieldFormState extends State<YieldForm> {
                         ]),
                   ),
                   UiHelper.verticalSpacing(5),
-                  FishTextField(
-                    validator: (value) => Validators.validateEmpty(value),
-                    textEditingController: _fishTypeController,
-                    contentPadding: EdgeInsets.only(left: 15.w),
-                    label: '',
+                  BlocBuilder<HomeListingsBloc, HomeListingsState>(
+                    builder: (context, state) {
+                      if (state is HomeListingsSuccess) {
+                        return AppDropDown<String>(
+                            isExpanded: true,
+                            value: selectedFish,
+                            onChanged: (p0) {
+                              selectedFish = p0;
+                              setState(() {});
+                            },
+                            items: state.fishes.data
+                                    ?.map((e) => DropdownMenuItem(
+                                        value: e.id,
+                                        child: Text(e.name ?? 'Null')))
+                                    .toList() ??
+                                []);
+                      }
+                      return AppDropDown<String>(
+                          isExpanded: true,
+                          value: selectedFish,
+                          onChanged: (p0) {
+                            selectedFish = p0;
+                            setState(() {});
+                          },
+                          items: []);
+                    },
                   ),
                   UiHelper.verticalSpacing(15),
                   RichText(
@@ -221,6 +249,12 @@ class _YieldFormState extends State<YieldForm> {
                               displayToastMessage('Please pick a date');
                               return;
                             }
+                            if (selectedFish == null) {
+                              displayToastMessage('Please select a fish',
+                                  backgroundColor: AppColors.textRedColor);
+                              return;
+                            }
+
                             if (_formKey.currentState!.validate()) {
                               showLoaderDialog(context);
                               BlocProvider.of<YeildFormBloc>(context).add(
@@ -229,7 +263,7 @@ class _YieldFormState extends State<YieldForm> {
                                           double.parse(
                                               _weightPerFishController.text),
                                           avgUnit),
-                                      fishType: _fishTypeController.text,
+                                      fishType: selectedFish ?? '0',
                                       totalWeight: getWeightInKg(
                                           double.parse(
                                               _totalWeightController.text),
