@@ -29,7 +29,6 @@ class HomeListingsBloc extends Bloc<HomeListingsEvent, HomeListingsState> {
 
       final result = await apiClient.getHomeListings();
       final response = result as ApiResponseForList<HomeListingsResponse>;
-      displayToastMessage('Offer sent successfully');
 
       emit(HomeListingsSuccess(result: response));
     } catch (e) {

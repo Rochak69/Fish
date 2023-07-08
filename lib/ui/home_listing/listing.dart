@@ -69,11 +69,6 @@ class _ListingsState extends State<Listings> {
                 padding: EdgeInsets.symmetric(horizontal: 15.0.w),
                 child: Column(mainAxisSize: MainAxisSize.min, children: [
                   UiHelper.verticalSpacing(12.h),
-                  FishTextField(
-                    label: 'Search',
-                    contentPadding: EdgeInsets.only(left: 15.w),
-                    prefixIcon: const Icon(Icons.search),
-                  ),
                   Expanded(
                     child: ListView.separated(
                         padding: EdgeInsets.only(top: 14.h),
