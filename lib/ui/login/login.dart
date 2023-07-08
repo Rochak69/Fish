@@ -224,7 +224,7 @@ class _LoginPageState extends State<LoginPage> {
         Text(
           translation(context).lumbini,
           // 'Lumbini Provincial Government',
-          style: TextStyle(
+          style: const TextStyle(
             color: AppColors.textColor,
             fontWeight: FontWeight.w600,
           ),
@@ -232,7 +232,7 @@ class _LoginPageState extends State<LoginPage> {
         Text(
           translation(context).agriculture,
           // '  Ministry of Agriculture and Land Management ',
-          style: TextStyle(
+          style: const TextStyle(
             color: AppColors.textColor,
             fontWeight: FontWeight.w600,
           ),
@@ -240,7 +240,7 @@ class _LoginPageState extends State<LoginPage> {
         Text(
           translation(context).ministry,
           //      'Directorate of Livestock and Fisheries',
-          style: TextStyle(
+          style: const TextStyle(
             color: AppColors.textRedColor,
             fontWeight: FontWeight.w600,
           ),
@@ -250,7 +250,7 @@ class _LoginPageState extends State<LoginPage> {
           child: Text(
             translation(context).butwal,
             //  '  Development',
-            style: TextStyle(
+            style: const TextStyle(
               color: AppColors.textRedColor,
               fontWeight: FontWeight.w600,
             ),

@@ -22,6 +22,10 @@ class Endpoints {
     return '/farmerSupply/$supplyId';
   }
 
+  static const String myOrders = '/me/myoder?type=farmer';
+  static String completeOrder(String id) => '/myorder/confirm/$id';
+  static String rejectOrder(String id) => '/myorder/reject/$id';
+
   static const String province = '/location/province';
   static const String getAllDistrict = '/location/district';
   static String getDistrict(String provinceId) =>

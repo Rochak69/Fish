@@ -1,6 +1,5 @@
 import 'package:fish_shop/res/colors.dart';
 import 'package:fish_shop/ui/common_widget/CardListing.dart';
-import 'package:fish_shop/ui/common_widget/FishTextField.dart';
 import 'package:fish_shop/ui/home_listing/bloc/home_listings_bloc.dart';
 import 'package:fish_shop/ui/home_listing/bloc/home_listings_event.dart';
 import 'package:fish_shop/ui/home_listing/bloc/home_listings_state.dart';
@@ -81,8 +80,7 @@ class _ListingsState extends State<Listings> {
                                     .toString() ??
                                 '',
                             fishName:
-                                state.result.data?[index].fishType.toString() ??
-                                    '',
+                                state.result.data?[index].fishType?.name ?? '',
                             totalWeight:
                                 state.result.data?[index].totalWeight ?? 0,
                             location: 'Kathmandu',

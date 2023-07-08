@@ -15,11 +15,11 @@ class WodaResponse {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['englishNumber'] = this.englishNumber;
-    data['nepaliNumber'] = this.nepaliNumber;
-    data['id'] = this.id;
-    data['municipalityId'] = this.municipalityId;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['englishNumber'] = englishNumber;
+    data['nepaliNumber'] = nepaliNumber;
+    data['id'] = id;
+    data['municipalityId'] = municipalityId;
     return data;
   }
 }

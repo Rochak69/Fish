@@ -8,7 +8,6 @@ import 'package:fish_shop/ui/common_widget/app_dropdown.dart';
 import 'package:fish_shop/ui/fisher_farm_details/bloc/fish_farmer_detail_bloc.dart';
 import 'package:fish_shop/ui/fisher_farm_details/bloc/fish_farmer_detail_event.dart';
 import 'package:fish_shop/ui/fisher_farm_details/bloc/fish_farmer_detail_state.dart';
-import 'package:fish_shop/ui/home_listing/home_listing.dart';
 import 'package:fish_shop/ui/login/login.dart';
 import 'package:fish_shop/ui/utils/uihelper.dart';
 import 'package:fish_shop/ui/utils/utils.dart';

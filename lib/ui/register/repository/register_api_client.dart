@@ -36,5 +36,6 @@ class RegisterApiClient {
         data: RegisterResponse.fromJson(apiResponse['data']));
     await preferences.saveString(
         Preference.userID, registerResponse.data?.userid);
+    return null;
   }
 }

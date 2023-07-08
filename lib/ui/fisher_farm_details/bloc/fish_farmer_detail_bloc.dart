@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:js_interop';
 
 import 'package:bloc/bloc.dart';
 import 'package:fish_shop/common/api_response.dart';

@@ -1,7 +1,5 @@
-import 'package:fish_shop/common/validator.dart';
 import 'package:fish_shop/res/colors.dart';
 import 'package:fish_shop/ui/common_widget/FishTextField.dart';
-import 'package:fish_shop/ui/common_widget/fish_button.dart';
 import 'package:fish_shop/ui/support/bloc/support_bloc.dart';
 import 'package:fish_shop/ui/support/bloc/support_event.dart';
 import 'package:fish_shop/ui/support/bloc/support_state.dart';
@@ -87,7 +85,7 @@ class _SupportState extends State<Support> {
           Text(
             translation(context).problem_facing,
             //   'What type of issue are you facing?',
-            style: TextStyle(
+            style: const TextStyle(
               color: Colors.black,
               fontWeight: FontWeight.w700,
               fontSize: 12,

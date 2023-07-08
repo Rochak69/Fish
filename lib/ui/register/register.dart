@@ -2,7 +2,6 @@ import 'package:fish_shop/common/validator.dart';
 import 'package:fish_shop/res/colors.dart';
 import 'package:fish_shop/ui/common_widget/FishTextField.dart';
 import 'package:fish_shop/ui/fisher_farm_details/fisher_farm_details.dart';
-import 'package:fish_shop/ui/login/login.dart';
 
 import 'package:fish_shop/ui/register/bloc/register_bloc.dart';
 import 'package:fish_shop/ui/register/bloc/register_event.dart';

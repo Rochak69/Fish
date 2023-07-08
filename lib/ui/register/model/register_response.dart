@@ -8,8 +8,8 @@ class RegisterResponse {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['userid'] = this.userid;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['userid'] = userid;
     return data;
   }
 }

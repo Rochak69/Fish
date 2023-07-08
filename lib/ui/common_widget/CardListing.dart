@@ -61,132 +61,139 @@ class _CardListingState extends State<CardListing> {
         borderRadius: BorderRadius.circular(20.r),
       ),
       alignment: Alignment.topLeft,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Row(
-              children: [
-                Text(
-                  translation(context).fish_type,
-                  //'Fish Type : ',
-                  style: TextStyle(
-                      fontSize: 18.sp,
-                      fontWeight: FontWeight.w700,
-                      color: AppColors.textColor),
+          Wrap(
+            children: [
+              Text(
+                translation(context).fish_type,
+                //'Fish Type : ',
+                style: TextStyle(
+                    fontSize: 18.sp,
+                    fontWeight: FontWeight.w700,
+                    color: AppColors.textColor),
+              ),
+              Text(
+                widget.fishName,
+                style: TextStyle(
+                    fontSize: 18.sp,
+                    fontWeight: FontWeight.w700,
+                    color: Colors.black),
+              ),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                UiHelper.verticalSpacing(4.h),
+                Row(
+                  children: [
+                    Text(
+                      translation(context).fish_weight,
+                      //   'Fish weight : ',
+                      style: TextStyle(
+                          fontSize: 12.sp,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.black),
+                    ),
+                    Text(
+                      '${widget.avgWeight} के.जी',
+                      style: TextStyle(
+                          fontSize: 12.sp,
+                          fontWeight: FontWeight.w700,
+                          color: AppColors.AppCardColor),
+                    ),
+                  ],
                 ),
-                Text(
-                  widget.fishName,
-                  style: TextStyle(
-                      fontSize: 18.sp,
-                      fontWeight: FontWeight.w700,
-                      color: Colors.black),
-                ),
-              ],
-            ),
-            UiHelper.verticalSpacing(4.h),
-            Row(
-              children: [
-                Text(
-                  translation(context).fish_weight,
-                  //   'Fish weight : ',
-                  style: TextStyle(
-                      fontSize: 12.sp,
-                      fontWeight: FontWeight.w700,
-                      color: Colors.black),
-                ),
-                Text(
-                  '${widget.avgWeight} के.जी',
-                  style: TextStyle(
-                      fontSize: 12.sp,
-                      fontWeight: FontWeight.w700,
-                      color: AppColors.AppCardColor),
-                ),
-              ],
-            ),
 
-            Row(
-              children: [
-                Text(
-                  translation(context).buy_quantity,
-                  //       'Qunatity : ',
-                  style: TextStyle(
-                      fontSize: 12.sp,
-                      fontWeight: FontWeight.w700,
-                      color: Colors.black),
+                Row(
+                  children: [
+                    Text(
+                      translation(context).buy_quantity,
+                      //       'Qunatity : ',
+                      style: TextStyle(
+                          fontSize: 12.sp,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.black),
+                    ),
+                    Text(
+                      widget.totalWeight.toString(),
+                      style: TextStyle(
+                          fontSize: 12.sp,
+                          fontWeight: FontWeight.w800,
+                          color: AppColors.AppCardColor),
+                    ),
+                  ],
                 ),
-                Text(
-                  widget.totalWeight.toString(),
-                  style: TextStyle(
-                      fontSize: 12.sp,
-                      fontWeight: FontWeight.w800,
-                      color: AppColors.AppCardColor),
-                ),
-              ],
-            ),
 
-            Row(
-              children: [
-                Text(
-                  translation(context).buy_date,
-                  // 'Expiry Date : ',
-                  style: TextStyle(
-                      fontSize: 12.sp,
-                      fontWeight: FontWeight.w700,
-                      color: Colors.black),
+                Row(
+                  children: [
+                    Text(
+                      translation(context).buy_date,
+                      // 'Expiry Date : ',
+                      style: TextStyle(
+                          fontSize: 12.sp,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.black),
+                    ),
+                    Text(
+                      formarDate(widget.date),
+                      style: TextStyle(
+                          fontSize: 12.sp,
+                          fontWeight: FontWeight.w700,
+                          color: AppColors.AppCardColor),
+                    ),
+                  ],
                 ),
-                Text(
-                  formarDate(widget.date),
-                  style: TextStyle(
-                      fontSize: 12.sp,
-                      fontWeight: FontWeight.w700,
-                      color: AppColors.AppCardColor),
+                Row(
+                  children: [
+                    Text(
+                      translation(context).listing_expired,
+                      // 'Expiry Date : ',
+                      style: TextStyle(
+                          fontSize: 12.sp,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.black),
+                    ),
+                    Text(
+                      formarDate(widget.date),
+                      style: TextStyle(
+                          fontSize: 12.sp,
+                          fontWeight: FontWeight.w700,
+                          color: AppColors.AppCardColor),
+                    ),
+                  ],
                 ),
-              ],
-            ),
-            Row(
-              children: [
-                Text(
-                  translation(context).listing_expired,
-                  // 'Expiry Date : ',
-                  style: TextStyle(
-                      fontSize: 12.sp,
-                      fontWeight: FontWeight.w700,
-                      color: Colors.black),
-                ),
-                Text(
-                  formarDate(widget.date),
-                  style: TextStyle(
-                      fontSize: 12.sp,
-                      fontWeight: FontWeight.w700,
-                      color: AppColors.AppCardColor),
-                ),
-              ],
-            ),
-            // Text(
-            //   'Location : ${widget.location}',
-            //   style: TextStyle(
-            //       fontSize: 12.sp,
-            //       fontWeight: FontWeight.w800,
-            //       color: AppColors.AppCardColor),
-            // ),
-          ]),
-          Container(
-            padding: EdgeInsets.symmetric(horizontal: 6.w),
-            decoration: BoxDecoration(
-                border: Border.all(color: AppColors.textColor, width: 1.5.w),
-                borderRadius: const BorderRadius.all(Radius.circular(20))),
-            child: TextButton(
-                onPressed: () {
-                  _showAlertDialog(
-                    context: context,
-                  );
-                },
-                child: const Text(
-                  'Send Offer',
-                  style: TextStyle(
-                      color: AppColors.textColor, fontWeight: FontWeight.w500),
-                )),
+                // Text(
+                //   'Location : ${widget.location}',
+                //   style: TextStyle(
+                //       fontSize: 12.sp,
+                //       fontWeight: FontWeight.w800,
+                //       color: AppColors.AppCardColor),
+                // ),
+              ]),
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 6.w),
+                decoration: BoxDecoration(
+                    border:
+                        Border.all(color: AppColors.textColor, width: 1.5.w),
+                    borderRadius: const BorderRadius.all(Radius.circular(20))),
+                child: TextButton(
+                    onPressed: () {
+                      _showAlertDialog(
+                        context: context,
+                      );
+                    },
+                    child: const Text(
+                      'Send Offer',
+                      style: TextStyle(
+                          color: AppColors.textColor,
+                          fontWeight: FontWeight.w500),
+                    )),
+              ),
+            ],
           ),
         ],
       ),

@@ -63,7 +63,7 @@ class _YourListingsState extends State<YourListings> {
                         child: Text(
                           translation(context).your_listing_details,
                           //  'Details for fish listed for selling by you',
-                          style: TextStyle(color: AppColors.AppCardColor),
+                          style: const TextStyle(color: AppColors.AppCardColor),
                           overflow: TextOverflow.ellipsis,
                         ),
                       ),
@@ -125,7 +125,7 @@ class _YourListingsState extends State<YourListings> {
                         fontWeight: FontWeight.w700,
                         color: AppColors.textColor),
                   ),
-                  getFishType(state.result.data?[index].fishType)
+                  getFishType(state.result.data?[index].fishType?.name)
                 ],
               ),
               UiHelper.horizontalSpacing(6.w),
@@ -137,7 +137,7 @@ class _YourListingsState extends State<YourListings> {
                       avgWeight: state.result.data?[index].avgFishWeight ?? 0,
                       totalWeight: state.result.data?[index].totalWeight ?? 0,
                       yeildDate: state.result.data?[index].yieldDate ?? '',
-                      fistType: state.result.data?[index].fishType ?? '',
+                      fistType: state.result.data?[index].fishType?.name ?? '',
                     );
                   },
                   child: Image.asset(
@@ -230,7 +230,6 @@ class _YourListingsState extends State<YourListings> {
               state.result.data?[index].buyerRequest?.isEmpty ?? true
                   ? Text(
                       translation(context).no_offer,
-                      //  'You have not recieved any orders yet',
                       style: TextStyle(
                           fontSize: 10.sp, color: AppColors.AppCardColor),
                     )
@@ -265,7 +264,8 @@ class _YourListingsState extends State<YourListings> {
                                 yeildDate:
                                     state.result.data?[index].yieldDate ?? '',
                                 fishType:
-                                    state.result.data?[index].fishType ?? '',
+                                    state.result.data?[index].fishType?.name ??
+                                        '',
                                 buyerRequests:
                                     state.result.data?[index].buyerRequest ??
                                         []),

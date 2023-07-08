@@ -1,7 +1,9 @@
+import 'package:fish_shop/ui/order_history/model/order_history_response.dart';
+
 class HomeListingsResponse {
   String? id;
   String? buyerId;
-  String? fishType;
+  FishType? fishType;
   int? avgFishWeight;
   int? totalWeight;
   String? deadline;
@@ -19,22 +21,26 @@ class HomeListingsResponse {
   HomeListingsResponse.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     buyerId = json['buyerId'];
-    fishType = json['fishType'];
     avgFishWeight = json['avgFishWeight'];
     totalWeight = json['totalWeight'];
     deadline = json['deadline'];
     yieldDate = json['yieldDate'];
+    fishType = json['FishType'] != null
+        ? FishType.fromJson(json['FishType'])
+        : null;
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
     data['buyerId'] = buyerId;
-    data['fishType'] = fishType;
     data['avgFishWeight'] = avgFishWeight;
     data['totalWeight'] = totalWeight;
     data['deadline'] = deadline;
     data['yieldDate'] = yieldDate;
+    if (fishType != null) {
+      data['FishType'] = fishType!.toJson();
+    }
     return data;
   }
 }

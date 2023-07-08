@@ -1,11 +1,13 @@
+import 'package:fish_shop/ui/order_history/model/order_history_response.dart';
+
 class YourListingsResponse {
   String? id;
   String? farmerId;
-  String? fishType;
+  FishType? fishType;
   int? avgFishWeight;
   int? totalWeight;
   String? yieldDate;
-  int? fishTypeId;
+  String? fishTypeId;
   List<BuyerRequest>? buyerRequest;
 
   YourListingsResponse(
@@ -21,11 +23,14 @@ class YourListingsResponse {
   YourListingsResponse.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     farmerId = json['farmerId'];
-    fishType = json['fishType'];
+
     avgFishWeight = json['avgFishWeight'];
     totalWeight = json['totalWeight'];
     yieldDate = json['yieldDate'];
     fishTypeId = json['fishTypeId'];
+    fishType = json['FishType'] != null
+        ? new FishType.fromJson(json['FishType'])
+        : null;
     if (json['BuyerRequest'] != null) {
       buyerRequest = <BuyerRequest>[];
       json['BuyerRequest'].forEach((v) {
@@ -38,13 +43,16 @@ class YourListingsResponse {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
     data['farmerId'] = farmerId;
-    data['fishType'] = fishType;
+
     data['avgFishWeight'] = avgFishWeight;
     data['totalWeight'] = totalWeight;
     data['yieldDate'] = yieldDate;
     data['fishTypeId'] = fishTypeId;
     if (buyerRequest != null) {
       data['BuyerRequest'] = buyerRequest!.map((v) => v.toJson()).toList();
+    }
+    if (this.fishType != null) {
+      data['FishType'] = this.fishType!.toJson();
     }
     return data;
   }
