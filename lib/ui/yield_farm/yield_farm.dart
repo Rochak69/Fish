@@ -2,6 +2,7 @@ import 'package:fish_shop/common/validator.dart';
 import 'package:fish_shop/res/colors.dart';
 import 'package:fish_shop/ui/common_widget/FishTextField.dart';
 import 'package:fish_shop/ui/common_widget/app_dropdown.dart';
+import 'package:fish_shop/ui/home_listing/home_listing.dart';
 import 'package:fish_shop/ui/utils/uihelper.dart';
 import 'package:fish_shop/ui/utils/utils.dart';
 import 'package:fish_shop/ui/yield_farm/bloc/yeild_form_bloc.dart';
@@ -24,6 +25,7 @@ class _YieldFormState extends State<YieldForm> {
   DateTime? date;
   String avgUnit = 'kg';
   String totalWeightUnit = 'kg';
+  final _formKey = GlobalKey<FormState>();
 
   final TextEditingController _edControllerDate = TextEditingController();
   final TextEditingController _fishTypeController = TextEditingController();
@@ -39,15 +41,20 @@ class _YieldFormState extends State<YieldForm> {
         if (state is YeildFormSuccess) {
           displayToastMessage('Successfully created');
           BlocProvider.of<YourListingBloc>(context).add(GetMyListings());
-          Navigator.pop(context);
         } else if (state is YeildFormFailed) {
           displayToastMessage(state.errorMessage);
         }
       },
       child: Scaffold(
         appBar: AppBar(
-          automaticallyImplyLeading: false,
+          automaticallyImplyLeading: true,
           centerTitle: true,
+          leading: Padding(
+              padding: EdgeInsets.only(left: 20.w),
+              child: const Icon(
+                Icons.arrow_back_ios,
+                color: AppColors.textColor,
+              )),
           elevation: 0,
           backgroundColor: Colors.white,
           title: Text(
@@ -61,179 +68,183 @@ class _YieldFormState extends State<YieldForm> {
         body: SingleChildScrollView(
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 24.w),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                _buildUpperText(context),
-                UiHelper.verticalSpacing(10.h),
-                RichText(
-                  text: TextSpan(
-                      text: 'Type of fish',
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.w700,
-                          fontSize: 16.sp),
-                      children: [
-                        TextSpan(
-                            text: ' *',
-                            style:
-                                TextStyle(color: Colors.red, fontSize: 16.sp))
-                      ]),
-                ),
-                UiHelper.verticalSpacing(5),
-                FishTextField(
-                  validator: (value) => Validators.validateEmpty(value),
-                  textEditingController: _fishTypeController,
-                  contentPadding: EdgeInsets.only(left: 15.w),
-                  label: '',
-                ),
-                UiHelper.verticalSpacing(15),
-                RichText(
-                  text: TextSpan(
-                      text: 'Weight per fish',
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.w700,
-                          fontSize: 16.sp),
-                      children: [
-                        TextSpan(
-                            text: ' *',
-                            style:
-                                TextStyle(color: Colors.red, fontSize: 16.sp))
-                      ]),
-                ),
-                UiHelper.verticalSpacing(5),
-                Row(
-                  children: [
-                    FishTextField(
-                      validator: (value) => Validators.validateEmpty(value),
-                      textInputType:
-                          const TextInputType.numberWithOptions(decimal: true),
-                      textEditingController: _weightPerFishController,
-                      label: '',
-                      width: 186.w,
-                    ),
-                    UiHelper.horizontalSpacing(10.w),
-                    AppDropDown(
-                      items: const [
-                        DropdownMenuItem(value: 'kg', child: Text('kg')),
-                        DropdownMenuItem(value: 'gram', child: Text('gram')),
-                      ],
-                      onChanged: (value) {
-                        avgUnit = value ?? 'kg';
-                      },
-                    )
-                  ],
-                ),
-                UiHelper.verticalSpacing(15.h),
-                RichText(
-                  text: TextSpan(
-                      text: 'Total weight',
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.w700,
-                          fontSize: 16.sp),
-                      children: [
-                        TextSpan(
-                            text: ' *',
-                            style:
-                                TextStyle(color: Colors.red, fontSize: 16.sp))
-                      ]),
-                ),
-                UiHelper.verticalSpacing(5.h),
-                Row(
-                  children: [
-                    FishTextField(
-                      validator: (value) => Validators.validateEmpty(value),
-                      textEditingController: _totalWeightController,
-                      label: '',
-                      width: 186.w,
-                      textInputType:
-                          const TextInputType.numberWithOptions(decimal: true),
-                    ),
-                    UiHelper.horizontalSpacing(10.w),
-                    AppDropDown(
-                      items: const [
-                        DropdownMenuItem(value: 'kg', child: Text('kg')),
-                        DropdownMenuItem(value: 'gram', child: Text('gram')),
-                      ],
-                      onChanged: (value) {
-                        totalWeightUnit = value ?? 'kg';
-                      },
-                    )
-                  ],
-                ),
-                UiHelper.verticalSpacing(15.h),
-                RichText(
-                  text: TextSpan(
-                      text: 'Yeild Date',
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.w700,
-                          fontSize: 16.sp),
-                      children: [
-                        TextSpan(
-                            text: ' *',
-                            style:
-                                TextStyle(color: Colors.red, fontSize: 16.sp))
-                      ]),
-                ),
-                UiHelper.verticalSpacing(5.h),
-                FishTextField(
-                  onTap: () {
-                    pickDate(context);
-                  },
-                  isReadOnly: true,
-                  textEditingController: _edControllerDate,
-                  contentPadding: EdgeInsets.only(left: 15.w),
-                  sufixIcon: Image.asset('assets/arrow_down.png'),
-                  label: 'Select Date',
-                  onSuffixIconTap: () {
-                    pickDate(context);
-                  },
-                ),
-                UiHelper.verticalSpacing(15),
-                Center(
-                  child: SizedBox(
-                    width: 330.w,
-                    height: 48.h,
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(12),
-                      child: ElevatedButton(
-                        onPressed: () {
-                          if (_weightPerFishController.text.isEmpty ||
-                              _totalWeightController.text.isEmpty ||
-                              _edControllerDate.text.isEmpty ||
-                              _fishTypeController.text.isEmpty) {
-                            displayToastMessage(
-                                'PLease fill in all the deatials');
-                            return;
-                          }
-                          if (date == null) {
-                            displayToastMessage('Please pick a date');
-                            return;
-                          }
-
-                          showLoaderDialog(context);
-                          BlocProvider.of<YeildFormBloc>(context).add(
-                              PostYeildForm(
-                                  avgFishWeight: double.parse(
-                                      _weightPerFishController.text),
-                                  fishType: _fishTypeController.text,
-                                  totalWeight:
-                                      double.parse(_totalWeightController.text),
-                                  yieldDate: date.toString()));
+            child: Form(
+              key: _formKey,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  _buildUpperText(context),
+                  UiHelper.verticalSpacing(10.h),
+                  RichText(
+                    text: TextSpan(
+                        text: 'Type of fish',
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.w700,
+                            fontSize: 16.sp),
+                        children: [
+                          TextSpan(
+                              text: ' *',
+                              style:
+                                  TextStyle(color: Colors.red, fontSize: 16.sp))
+                        ]),
+                  ),
+                  UiHelper.verticalSpacing(5),
+                  FishTextField(
+                    validator: (value) => Validators.validateEmpty(value),
+                    textEditingController: _fishTypeController,
+                    contentPadding: EdgeInsets.only(left: 15.w),
+                    label: '',
+                  ),
+                  UiHelper.verticalSpacing(15),
+                  RichText(
+                    text: TextSpan(
+                        text: 'Weight per fish',
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.w700,
+                            fontSize: 16.sp),
+                        children: [
+                          TextSpan(
+                              text: ' *',
+                              style:
+                                  TextStyle(color: Colors.red, fontSize: 16.sp))
+                        ]),
+                  ),
+                  UiHelper.verticalSpacing(5),
+                  Row(
+                    children: [
+                      FishTextField(
+                        validator: (value) => Validators.validateEmpty(value),
+                        textInputType: const TextInputType.numberWithOptions(
+                            decimal: true),
+                        textEditingController: _weightPerFishController,
+                        label: '',
+                        width: 186.w,
+                      ),
+                      UiHelper.horizontalSpacing(10.w),
+                      AppDropDown(
+                        value: avgUnit,
+                        items: const [
+                          DropdownMenuItem(value: 'kg', child: Text('kg')),
+                          DropdownMenuItem(value: 'gram', child: Text('gram')),
+                        ],
+                        onChanged: (value) {
+                          avgUnit = value ?? 'kg';
+                          setState(() {});
                         },
-                        child: Text(
-                          '+  Add to Listing',
-                          style:
-                              TextStyle(fontSize: 12.sp, color: Colors.white),
+                      )
+                    ],
+                  ),
+                  UiHelper.verticalSpacing(15.h),
+                  RichText(
+                    text: TextSpan(
+                        text: 'Total weight',
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.w700,
+                            fontSize: 16.sp),
+                        children: [
+                          TextSpan(
+                              text: ' *',
+                              style:
+                                  TextStyle(color: Colors.red, fontSize: 16.sp))
+                        ]),
+                  ),
+                  UiHelper.verticalSpacing(5.h),
+                  Row(
+                    children: [
+                      FishTextField(
+                        validator: (value) => Validators.validateEmpty(value),
+                        textEditingController: _totalWeightController,
+                        label: '',
+                        width: 186.w,
+                        textInputType: const TextInputType.numberWithOptions(
+                            decimal: true),
+                      ),
+                      UiHelper.horizontalSpacing(10.w),
+                      AppDropDown(
+                        value: totalWeightUnit,
+                        items: const [
+                          DropdownMenuItem(value: 'kg', child: Text('kg')),
+                          DropdownMenuItem(value: 'gram', child: Text('gram')),
+                        ],
+                        onChanged: (value) {
+                          totalWeightUnit = value ?? 'kg';
+                          setState(() {});
+                        },
+                      )
+                    ],
+                  ),
+                  UiHelper.verticalSpacing(15.h),
+                  RichText(
+                    text: TextSpan(
+                        text: 'Yeild Date',
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.w700,
+                            fontSize: 16.sp),
+                        children: [
+                          TextSpan(
+                              text: ' *',
+                              style:
+                                  TextStyle(color: Colors.red, fontSize: 16.sp))
+                        ]),
+                  ),
+                  UiHelper.verticalSpacing(5.h),
+                  FishTextField(
+                    onTap: () {
+                      pickDate(context);
+                    },
+                    isReadOnly: true,
+                    textEditingController: _edControllerDate,
+                    contentPadding: EdgeInsets.only(left: 15.w),
+                    sufixIcon: Image.asset('assets/arrow_down.png'),
+                    label: 'Select Date',
+                    onSuffixIconTap: () {
+                      pickDate(context);
+                    },
+                  ),
+                  UiHelper.verticalSpacing(15),
+                  Center(
+                    child: SizedBox(
+                      width: 330.w,
+                      height: 48.h,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(12),
+                        child: ElevatedButton(
+                          onPressed: () {
+                            if (date == null) {
+                              displayToastMessage('Please pick a date');
+                              return;
+                            }
+                            if (_formKey.currentState!.validate()) {
+                              showLoaderDialog(context);
+                              BlocProvider.of<YeildFormBloc>(context).add(
+                                  PostYeildForm(
+                                      avgFishWeight: getWeightInKg(
+                                          double.parse(
+                                              _weightPerFishController.text),
+                                          avgUnit),
+                                      fishType: _fishTypeController.text,
+                                      totalWeight: getWeightInKg(
+                                          double.parse(
+                                              _totalWeightController.text),
+                                          totalWeightUnit),
+                                      yieldDate: date.toString()));
+                            }
+                          },
+                          child: Text(
+                            '+  Add to Listing',
+                            style:
+                                TextStyle(fontSize: 12.sp, color: Colors.white),
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                )
-              ],
+                  )
+                ],
+              ),
             ),
           ),
         ),
@@ -274,5 +285,13 @@ class _YieldFormState extends State<YieldForm> {
     } else {
       print('No date selected');
     }
+  }
+}
+
+getWeightInKg(double weight, String givenWeight) {
+  if (givenWeight == 'gram') {
+    return weight / 1000;
+  } else {
+    return weight;
   }
 }
