@@ -221,33 +221,37 @@ class _LoginPageState extends State<LoginPage> {
   _buildUpperText() {
     return Column(
       children: [
-        const Text(
-          'Lumbini Provincial Government',
+        Text(
+          translation(context).lumbini,
+          // 'Lumbini Provincial Government',
           style: TextStyle(
             color: AppColors.textColor,
             fontWeight: FontWeight.w600,
           ),
         ),
-        const Text(
-          '  Ministry of Agriculture and Land Management ',
+        Text(
+          translation(context).agriculture,
+          // '  Ministry of Agriculture and Land Management ',
           style: TextStyle(
             color: AppColors.textColor,
             fontWeight: FontWeight.w600,
           ),
         ),
-        const Text(
-          'Directorate of Livestock and Fisheries',
+        Text(
+          translation(context).ministry,
+          //      'Directorate of Livestock and Fisheries',
           style: TextStyle(
-            color: AppColors.textColor,
+            color: AppColors.textRedColor,
             fontWeight: FontWeight.w600,
           ),
         ),
         Padding(
           padding: EdgeInsets.only(right: 20.w),
-          child: const Text(
-            '  Development',
+          child: Text(
+            translation(context).butwal,
+            //  '  Development',
             style: TextStyle(
-              color: AppColors.textColor,
+              color: AppColors.textRedColor,
               fontWeight: FontWeight.w600,
             ),
           ),

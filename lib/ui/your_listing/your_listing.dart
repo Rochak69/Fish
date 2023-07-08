@@ -1,6 +1,7 @@
 import 'package:fish_shop/res/colors.dart';
 import 'package:fish_shop/ui/pending_request_per_listing/pending_request_per_listing.dart';
 import 'package:fish_shop/ui/utils/uihelper.dart';
+import 'package:fish_shop/ui/utils/utils.dart';
 import 'package:fish_shop/ui/your_listing/bloc/your_listing_bloc.dart';
 import 'package:fish_shop/ui/your_listing/bloc/your_listing_event.dart';
 import 'package:fish_shop/ui/your_listing/bloc/your_listing_state.dart';
@@ -41,7 +42,8 @@ class _YourListingsState extends State<YourListings> {
                 elevation: 0,
                 backgroundColor: Colors.white,
                 title: Text(
-                  'Your Listings',
+                  translation(context).your_listings,
+                  //  'Your Listings',
                   style: TextStyle(
                       color: AppColors.textColor,
                       fontWeight: FontWeight.w700,
@@ -58,8 +60,9 @@ class _YourListingsState extends State<YourListings> {
                     children: [
                       Padding(
                         padding: EdgeInsets.only(left: 12.w),
-                        child: const Text(
-                          'Details for fish listed for selling by you',
+                        child: Text(
+                          translation(context).your_listing_details,
+                          //  'Details for fish listed for selling by you',
                           style: TextStyle(color: AppColors.AppCardColor),
                           overflow: TextOverflow.ellipsis,
                         ),
@@ -115,7 +118,8 @@ class _YourListingsState extends State<YourListings> {
                 alignment: WrapAlignment.start,
                 children: [
                   Text(
-                    'Fish Type : ',
+                    translation(context).fish_type,
+                    //  'Fish Type : ',
                     style: TextStyle(
                         fontSize: 18.sp,
                         fontWeight: FontWeight.w700,
@@ -149,14 +153,15 @@ class _YourListingsState extends State<YourListings> {
               Row(
                 children: [
                   Text(
-                    'Fish weight : ',
+                    translation(context).fish_weight,
+                    //'Fish weight : ',
                     style: TextStyle(
                         fontSize: 12.sp,
                         fontWeight: FontWeight.w700,
                         color: Colors.black),
                   ),
                   Text(
-                    '${state.result.data?[index].avgFishWeight} Kg',
+                    '${state.result.data?[index].avgFishWeight} के.जी',
                     style: TextStyle(
                         fontSize: 12.sp,
                         fontWeight: FontWeight.w700,
@@ -167,14 +172,15 @@ class _YourListingsState extends State<YourListings> {
               Row(
                 children: [
                   Text(
-                    'Total weight : ',
+                    translation(context).quantity,
+                    // 'Total weight : ',
                     style: TextStyle(
                         fontSize: 12.sp,
                         fontWeight: FontWeight.w700,
                         color: Colors.black),
                   ),
                   Text(
-                    '${state.result.data?[index].totalWeight} Kg',
+                    '${state.result.data?[index].totalWeight} के.जी',
                     style: TextStyle(
                         fontSize: 12.sp,
                         fontWeight: FontWeight.w700,
@@ -185,7 +191,8 @@ class _YourListingsState extends State<YourListings> {
               Row(
                 children: [
                   Text(
-                    'Yeild Date : ',
+                    translation(context).yield_date,
+                    //   'Yeild Date : ',
                     style: TextStyle(
                         fontSize: 12.sp,
                         fontWeight: FontWeight.w700,
@@ -203,7 +210,8 @@ class _YourListingsState extends State<YourListings> {
               Row(
                 children: [
                   Text(
-                    'Expiration Date : ',
+                    translation(context).listing_expired,
+                    //  'Expiration Date : ',
                     style: TextStyle(
                         fontSize: 12.sp,
                         fontWeight: FontWeight.w700,
@@ -221,7 +229,8 @@ class _YourListingsState extends State<YourListings> {
               UiHelper.verticalSpacing(3.h),
               state.result.data?[index].buyerRequest?.isEmpty ?? true
                   ? Text(
-                      'You have not recieved any orders yet',
+                      translation(context).no_offer,
+                      //  'You have not recieved any orders yet',
                       style: TextStyle(
                           fontSize: 10.sp, color: AppColors.AppCardColor),
                     )
@@ -331,7 +340,8 @@ class _YourListingsState extends State<YourListings> {
                 Row(
                   children: [
                     Text(
-                      'Fish Type : ',
+                      translation(context).fish_type,
+                      //'Fish Type : ',
                       style: TextStyle(
                           fontSize: 18.sp,
                           fontWeight: FontWeight.w700,
@@ -350,14 +360,15 @@ class _YourListingsState extends State<YourListings> {
                 Row(
                   children: [
                     Text(
-                      'Fish weight : ',
+                      translation(context).fish_weight,
+                      // 'Fish weight : ',
                       style: TextStyle(
                           fontSize: 12.sp,
                           fontWeight: FontWeight.w700,
                           color: Colors.black),
                     ),
                     Text(
-                      '$avgWeight Kg',
+                      '$avgWeight के.जी',
                       style: TextStyle(
                           fontSize: 12.sp,
                           fontWeight: FontWeight.w700,
