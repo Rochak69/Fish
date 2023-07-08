@@ -47,351 +47,345 @@ class _FishFarmDetailsState extends State<FishFarmDetails> {
     return BlocBuilder<FishFarmerDetailBloc, FishFarmerDetailState>(
       builder: (context, state) {
         if (state.theStates == TheStates.success) {
-          return WillPopScope(
-            onWillPop: () async {
-              return false;
-            },
-            child: Scaffold(
-              body: SafeArea(
-                child: SingleChildScrollView(
-                  child: Form(
-                    key: _formKey,
-                    child: Container(
-                      padding: EdgeInsets.symmetric(horizontal: 24.w),
-                      child: SingleChildScrollView(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            _buildUpperText(),
-                            RichText(
-                              text: TextSpan(
-                                  text: translation(context).farmer_name,
-                                  //'Farmer\'s name',
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.w700,
-                                      fontSize: 12.sp),
-                                  children: [
-                                    TextSpan(
-                                        text: ' *',
-                                        style: TextStyle(
-                                            color: Colors.red, fontSize: 16.sp))
-                                  ]),
-                            ),
-                            UiHelper.verticalSpacing(10.h),
-                            FishTextField(
-                              validator: (value) =>
-                                  Validators.validateEmpty(value),
-                              textEditingController: farmerNameController,
-                              label: translation(context).farm_name,
-                              // 'Farm\'s Name',
-                              contentPadding: EdgeInsets.only(left: 15.w),
-                            ),
-                            UiHelper.verticalSpacing(10.h),
-                            RichText(
-                              text: TextSpan(
-                                  text: translation(context).farm_name,
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.w700,
-                                      fontSize: 12.sp),
-                                  children: [
-                                    TextSpan(
-                                        text: ' *',
-                                        style: TextStyle(
-                                            color: Colors.red, fontSize: 16.sp))
-                                  ]),
-                            ),
-                            UiHelper.verticalSpacing(10.h),
-                            FishTextField(
-                              validator: (value) =>
-                                  Validators.validateEmpty(value),
-                              textEditingController: farmNameController,
-                              label: translation(context).farm_name,
-                              //'Farm\'s Name',
-                              contentPadding: EdgeInsets.only(left: 15.w),
-                            ),
-                            UiHelper.verticalSpacing(10.h),
-                            RichText(
-                              text: TextSpan(
-                                  text: translation(context).mobile_number,
-                                  //'Phone Number',
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.w700,
-                                      fontSize: 12.sp),
-                                  children: [
-                                    TextSpan(
-                                        text: ' *',
-                                        style: TextStyle(
-                                            color: Colors.red, fontSize: 16.sp))
-                                  ]),
-                            ),
-                            UiHelper.verticalSpacing(10.h),
-                            FishTextField(
-                              validator: (value) =>
-                                  Validators.validateEmpty(value),
-                              textEditingController: phoneNumberController,
-                              label: translation(context).mobile_number,
-                              //'Phone Number',
-                              contentPadding: EdgeInsets.only(left: 15.w),
-                            ),
-                            UiHelper.verticalSpacing(20.h),
-                            Text(
-                              translation(context).farm_address,
-                              //   'Farms\'s Address',
-                              style: TextStyle(
-                                  fontSize: 16.sp,
-                                  color: AppColors.textColor,
-                                  fontWeight: FontWeight.w700),
-                            ),
-                            UiHelper.verticalSpacing(15.h),
-                            RichText(
-                              text: TextSpan(
-                                  text: translation(context).pradesh,
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.w700,
-                                      fontSize: 12.sp),
-                                  children: [
-                                    TextSpan(
-                                        text: ' *',
-                                        style: TextStyle(
-                                            color: Colors.red, fontSize: 16.sp))
-                                  ]),
-                            ),
-                            UiHelper.verticalSpacing(8.h),
-                            AppDropDown<String>(
-                              value: selectedPradesh,
-                              isExpanded: true,
-                              items: state.provinceResponse
-                                      ?.map((e) => DropdownMenuItem(
-                                          value: e.id,
-                                          child: Text(e.englishName!)))
-                                      .toList() ??
-                                  [],
-                              onChanged: (value) {
-                                selectedPradesh = value;
-                                setState(() {});
+          return Scaffold(
+            body: SafeArea(
+              child: SingleChildScrollView(
+                child: Form(
+                  key: _formKey,
+                  child: Container(
+                    padding: EdgeInsets.symmetric(horizontal: 24.w),
+                    child: SingleChildScrollView(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          _buildUpperText(),
+                          RichText(
+                            text: TextSpan(
+                                text: translation(context).farmer_name,
+                                //'Farmer\'s name',
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 12.sp),
+                                children: [
+                                  TextSpan(
+                                      text: ' *',
+                                      style: TextStyle(
+                                          color: Colors.red, fontSize: 16.sp))
+                                ]),
+                          ),
+                          UiHelper.verticalSpacing(10.h),
+                          FishTextField(
+                            validator: (value) =>
+                                Validators.validateEmpty(value),
+                            textEditingController: farmerNameController,
+                            label: translation(context).farm_name,
+                            // 'Farm\'s Name',
+                            contentPadding: EdgeInsets.only(left: 15.w),
+                          ),
+                          UiHelper.verticalSpacing(10.h),
+                          RichText(
+                            text: TextSpan(
+                                text: translation(context).farm_name,
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 12.sp),
+                                children: [
+                                  TextSpan(
+                                      text: ' *',
+                                      style: TextStyle(
+                                          color: Colors.red, fontSize: 16.sp))
+                                ]),
+                          ),
+                          UiHelper.verticalSpacing(10.h),
+                          FishTextField(
+                            validator: (value) =>
+                                Validators.validateEmpty(value),
+                            textEditingController: farmNameController,
+                            label: translation(context).farm_name,
+                            //'Farm\'s Name',
+                            contentPadding: EdgeInsets.only(left: 15.w),
+                          ),
+                          UiHelper.verticalSpacing(10.h),
+                          RichText(
+                            text: TextSpan(
+                                text: translation(context).mobile_number,
+                                //'Phone Number',
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 12.sp),
+                                children: [
+                                  TextSpan(
+                                      text: ' *',
+                                      style: TextStyle(
+                                          color: Colors.red, fontSize: 16.sp))
+                                ]),
+                          ),
+                          UiHelper.verticalSpacing(10.h),
+                          FishTextField(
+                            validator: (value) =>
+                                Validators.validateEmpty(value),
+                            textEditingController: phoneNumberController,
+                            label: translation(context).mobile_number,
+                            //'Phone Number',
+                            contentPadding: EdgeInsets.only(left: 15.w),
+                          ),
+                          UiHelper.verticalSpacing(20.h),
+                          Text(
+                            translation(context).farm_address,
+                            //   'Farms\'s Address',
+                            style: TextStyle(
+                                fontSize: 16.sp,
+                                color: AppColors.textColor,
+                                fontWeight: FontWeight.w700),
+                          ),
+                          UiHelper.verticalSpacing(15.h),
+                          RichText(
+                            text: TextSpan(
+                                text: translation(context).pradesh,
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 12.sp),
+                                children: [
+                                  TextSpan(
+                                      text: ' *',
+                                      style: TextStyle(
+                                          color: Colors.red, fontSize: 16.sp))
+                                ]),
+                          ),
+                          UiHelper.verticalSpacing(8.h),
+                          AppDropDown<String>(
+                            value: selectedPradesh,
+                            isExpanded: true,
+                            items: state.provinceResponse
+                                    ?.map((e) => DropdownMenuItem(
+                                        value: e.id,
+                                        child: Text(e.englishName!)))
+                                    .toList() ??
+                                [],
+                            onChanged: (value) {
+                              selectedPradesh = value;
+                              setState(() {});
 
-                                BlocProvider.of<FishFarmerDetailBloc>(context)
-                                    .add(GetDistrict(
-                                        provinceId: selectedPradesh ?? '1'));
-                              },
-                            ),
-                            UiHelper.verticalSpacing(8.h),
-                            RichText(
-                              text: TextSpan(
-                                  text: translation(context).farmer_district,
-                                  //'District',
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.w700,
-                                      fontSize: 12.sp),
-                                  children: [
-                                    TextSpan(
-                                        text: ' *',
-                                        style: TextStyle(
-                                            color: Colors.red, fontSize: 16.sp))
-                                  ]),
-                            ),
-                            UiHelper.verticalSpacing(8.h),
-                            AppDropDown<String>(
-                              value: selectedDistrict,
-                              isExpanded: true,
-                              items: state.districtResponse
-                                      ?.map((e) => DropdownMenuItem(
-                                          value: e.id,
-                                          child: Text(e.englishName!)))
-                                      .toList() ??
-                                  [],
-                              onChanged: (value) {
-                                selectedDistrict = value;
-                                setState(() {});
-                                BlocProvider.of<FishFarmerDetailBloc>(context)
-                                    .add(GetMunicipality(
-                                        districtId: selectedDistrict ?? '1'));
-                              },
-                            ),
-                            UiHelper.verticalSpacing(10.h),
-                            RichText(
-                              text: TextSpan(
-                                  text: translation(context).palika,
-                                  // 'NagarPalika',
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.w700,
-                                      fontSize: 12.sp),
-                                  children: [
-                                    TextSpan(
-                                        text: ' *',
-                                        style: TextStyle(
-                                            color: Colors.red, fontSize: 16.sp))
-                                  ]),
-                            ),
-                            UiHelper.verticalSpacing(8.h),
-                            AppDropDown<String>(
-                              value: selectedNagarpalika,
-                              isExpanded: true,
-                              items: state.municipalityResponse
-                                      ?.map((e) => DropdownMenuItem(
-                                          value: e.id,
-                                          child: Text(e.englishName!)))
-                                      .toList() ??
-                                  [],
-                              onChanged: (value) {
-                                selectedNagarpalika = value;
-                                setState(() {});
-                                BlocProvider.of<FishFarmerDetailBloc>(context)
-                                    .add(GetWoda(
-                                        municipalityId:
-                                            selectedNagarpalika ?? '1'));
-                              },
-                            ),
-                            UiHelper.verticalSpacing(16.h),
-                            RichText(
-                              text: TextSpan(
-                                  text: translation(context).woda,
-                                  //'Woda',
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.w700,
-                                      fontSize: 12.sp),
-                                  children: [
-                                    TextSpan(
-                                        text: ' *',
-                                        style: TextStyle(
-                                            color: Colors.red, fontSize: 16.sp))
-                                  ]),
-                            ),
-                            UiHelper.verticalSpacing(8.h),
-                            AppDropDown<String>(
-                              value: selectedWoda,
-                              isExpanded: true,
-                              items: state.wodaResponse
-                                      ?.map((e) => DropdownMenuItem(
-                                          value: e.id,
-                                          child: Text(e.englishNumber!)))
-                                      .toList() ??
-                                  [],
-                              onChanged: (value) {
-                                selectedWoda = value;
-                                setState(() {});
-                              },
-                            ),
-                            UiHelper.verticalSpacing(16.h),
-                            Text(
-                              translation(context).tole,
-                              //   'Tole Name',
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: 12.sp),
-                            ),
-                            UiHelper.verticalSpacing(8.h),
-                            FishTextField(
-                              textEditingController: toleNameController,
-                              label: translation(context).tole,
-                              //'Tole name',
-                              contentPadding: EdgeInsets.only(left: 5.w),
-                              width: double.infinity,
-                            ),
-                            UiHelper.verticalSpacing(16.h),
-                            Text(
-                              translation(context).email,
-                              // 'Email',
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: 12.sp),
-                            ),
-                            UiHelper.verticalSpacing(8.h),
-                            FishTextField(
-                              textEditingController: emailController,
-                              label: translation(context).email,
-                              //'Email',
-                              contentPadding: EdgeInsets.only(left: 5.w),
-                              width: double.infinity,
-                            ),
-                            UiHelper.verticalSpacing(16.h),
-                            Text(
-                              translation(context).facebook_page,
-                              // 'Facebook page',
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: 12.sp),
-                            ),
-                            UiHelper.verticalSpacing(8.h),
-                            FishTextField(
-                              textEditingController: facebookPageController,
-                              label: translation(context).facebook_page,
-                              //'Facebook Page',
-                              contentPadding: EdgeInsets.only(left: 5.w),
-                              width: double.infinity,
-                            ),
-                            UiHelper.verticalSpacing(22.h),
-                            SizedBox(
-                              width: 340.w,
-                              height: 48.h,
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(12.r),
-                                child: ElevatedButton(
-                                  onPressed: () async {
-                                    Preferences preferences = Preferences();
-                                    String? userId = await preferences
-                                        .getString(Preference.userID);
-                                    if (userId == null) {
-                                      displayToastMessage('USerId is null');
+                              BlocProvider.of<FishFarmerDetailBloc>(context)
+                                  .add(GetDistrict(
+                                      provinceId: selectedPradesh ?? '1'));
+                            },
+                          ),
+                          UiHelper.verticalSpacing(8.h),
+                          RichText(
+                            text: TextSpan(
+                                text: translation(context).farmer_district,
+                                //'District',
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 12.sp),
+                                children: [
+                                  TextSpan(
+                                      text: ' *',
+                                      style: TextStyle(
+                                          color: Colors.red, fontSize: 16.sp))
+                                ]),
+                          ),
+                          UiHelper.verticalSpacing(8.h),
+                          AppDropDown<String>(
+                            value: selectedDistrict,
+                            isExpanded: true,
+                            items: state.districtResponse
+                                    ?.map((e) => DropdownMenuItem(
+                                        value: e.id,
+                                        child: Text(e.englishName!)))
+                                    .toList() ??
+                                [],
+                            onChanged: (value) {
+                              selectedDistrict = value;
+                              setState(() {});
+                              BlocProvider.of<FishFarmerDetailBloc>(context)
+                                  .add(GetMunicipality(
+                                      districtId: selectedDistrict ?? '1'));
+                            },
+                          ),
+                          UiHelper.verticalSpacing(10.h),
+                          RichText(
+                            text: TextSpan(
+                                text: translation(context).palika,
+                                // 'NagarPalika',
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 12.sp),
+                                children: [
+                                  TextSpan(
+                                      text: ' *',
+                                      style: TextStyle(
+                                          color: Colors.red, fontSize: 16.sp))
+                                ]),
+                          ),
+                          UiHelper.verticalSpacing(8.h),
+                          AppDropDown<String>(
+                            value: selectedNagarpalika,
+                            isExpanded: true,
+                            items: state.municipalityResponse
+                                    ?.map((e) => DropdownMenuItem(
+                                        value: e.id,
+                                        child: Text(e.englishName!)))
+                                    .toList() ??
+                                [],
+                            onChanged: (value) {
+                              selectedNagarpalika = value;
+                              setState(() {});
+                              BlocProvider.of<FishFarmerDetailBloc>(context)
+                                  .add(GetWoda(
+                                      municipalityId:
+                                          selectedNagarpalika ?? '1'));
+                            },
+                          ),
+                          UiHelper.verticalSpacing(16.h),
+                          RichText(
+                            text: TextSpan(
+                                text: translation(context).woda,
+                                //'Woda',
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 12.sp),
+                                children: [
+                                  TextSpan(
+                                      text: ' *',
+                                      style: TextStyle(
+                                          color: Colors.red, fontSize: 16.sp))
+                                ]),
+                          ),
+                          UiHelper.verticalSpacing(8.h),
+                          AppDropDown<String>(
+                            value: selectedWoda,
+                            isExpanded: true,
+                            items: state.wodaResponse
+                                    ?.map((e) => DropdownMenuItem(
+                                        value: e.id,
+                                        child: Text(e.englishNumber!)))
+                                    .toList() ??
+                                [],
+                            onChanged: (value) {
+                              selectedWoda = value;
+                              setState(() {});
+                            },
+                          ),
+                          UiHelper.verticalSpacing(16.h),
+                          Text(
+                            translation(context).tole,
+                            //   'Tole Name',
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.w700,
+                                fontSize: 12.sp),
+                          ),
+                          UiHelper.verticalSpacing(8.h),
+                          FishTextField(
+                            textEditingController: toleNameController,
+                            label: translation(context).tole,
+                            //'Tole name',
+                            contentPadding: EdgeInsets.only(left: 5.w),
+                            width: double.infinity,
+                          ),
+                          UiHelper.verticalSpacing(16.h),
+                          Text(
+                            translation(context).email,
+                            // 'Email',
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.w700,
+                                fontSize: 12.sp),
+                          ),
+                          UiHelper.verticalSpacing(8.h),
+                          FishTextField(
+                            textEditingController: emailController,
+                            label: translation(context).email,
+                            //'Email',
+                            contentPadding: EdgeInsets.only(left: 5.w),
+                            width: double.infinity,
+                          ),
+                          UiHelper.verticalSpacing(16.h),
+                          Text(
+                            translation(context).facebook_page,
+                            // 'Facebook page',
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.w700,
+                                fontSize: 12.sp),
+                          ),
+                          UiHelper.verticalSpacing(8.h),
+                          FishTextField(
+                            textEditingController: facebookPageController,
+                            label: translation(context).facebook_page,
+                            //'Facebook Page',
+                            contentPadding: EdgeInsets.only(left: 5.w),
+                            width: double.infinity,
+                          ),
+                          UiHelper.verticalSpacing(22.h),
+                          SizedBox(
+                            width: 340.w,
+                            height: 48.h,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(12.r),
+                              child: ElevatedButton(
+                                onPressed: () async {
+                                  Preferences preferences = Preferences();
+                                  String? userId = await preferences
+                                      .getString(Preference.userID);
+                                  if (userId == null) {
+                                    displayToastMessage('USerId is null');
+                                    return;
+                                  }
+
+                                  if (_formKey.currentState!.validate()) {
+                                    if (farmerNameController.text.isEmpty ||
+                                        farmNameController.text.isEmpty ||
+                                        phoneNumberController.text.isEmpty ||
+                                        selectedPradesh == null ||
+                                        selectedDistrict == null ||
+                                        selectedNagarpalika == null ||
+                                        selectedWoda == null) {
+                                      displayToastMessage(
+                                          'Please input all fields');
                                       return;
                                     }
 
-                                    if (_formKey.currentState!.validate()) {
-                                      if (farmerNameController.text.isEmpty ||
-                                          farmNameController.text.isEmpty ||
-                                          phoneNumberController.text.isEmpty ||
-                                          selectedPradesh == null ||
-                                          selectedDistrict == null ||
-                                          selectedNagarpalika == null ||
-                                          selectedWoda == null) {
-                                        displayToastMessage(
-                                            'Please input all fields');
-                                        return;
-                                      }
-
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) =>
-                                                IdentificationDocuments(
-                                              userId: userId,
-                                              farmName:
-                                                  farmerNameController.text,
-                                              farmersName:
-                                                  farmerNameController.text,
-                                              phoneNumber:
-                                                  phoneNumberController.text,
-                                              district: selectedDistrict!,
-                                              nagarpalika: selectedNagarpalika!,
-                                              pradesh: selectedPradesh!,
-                                              woda: selectedWoda!,
-                                            ),
-                                          ));
-                                    }
-                                  },
-                                  child: Text(
-                                    'Next',
-                                    style: TextStyle(
-                                        fontSize: 12.sp,
-                                        fontWeight: FontWeight.w600,
-                                        color: Colors.white),
-                                  ),
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              IdentificationDocuments(
+                                            userId: userId,
+                                            farmName: farmerNameController.text,
+                                            farmersName:
+                                                farmerNameController.text,
+                                            phoneNumber:
+                                                phoneNumberController.text,
+                                            district: selectedDistrict!,
+                                            nagarpalika: selectedNagarpalika!,
+                                            pradesh: selectedPradesh!,
+                                            woda: selectedWoda!,
+                                          ),
+                                        ));
+                                  }
+                                },
+                                child: Text(
+                                  'Next',
+                                  style: TextStyle(
+                                      fontSize: 12.sp,
+                                      fontWeight: FontWeight.w600,
+                                      color: Colors.white),
                                 ),
                               ),
                             ),
-                            UiHelper.verticalSpacing(30.h)
-                          ],
-                        ),
+                          ),
+                          UiHelper.verticalSpacing(30.h)
+                        ],
                       ),
                     ),
                   ),

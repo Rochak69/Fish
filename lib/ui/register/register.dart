@@ -50,7 +50,6 @@ class _RegistrationPageState extends State<RegistrationPage> {
             },
           ));
         } else if (state is RegisterFailed) {
-          Navigator.pop(context);
           displayToastMessage(state.errorMessage);
         }
       },
