@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:js_interop';
 
 import 'package:bloc/bloc.dart';
 import 'package:fish_shop/common/api_response.dart';
@@ -8,6 +9,7 @@ import 'package:fish_shop/ui/fisher_farm_details/model/district_response.dart';
 import 'package:fish_shop/ui/fisher_farm_details/model/municipality_response.dart';
 import 'package:fish_shop/ui/fisher_farm_details/model/woda_response.dart';
 import 'package:fish_shop/ui/fisher_farm_details/repository/fish_farmer_detail_api_client.dart';
+import 'package:fish_shop/ui/utils/utils.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable
@@ -41,12 +43,9 @@ class FishFarmerDetailBloc
     } catch (e) {
       try {
         e as ApiErrorResponse;
-        emit(state.copyWith(
-            theStates: TheStates.failed,
-            errorMessage: e.details?[0].msg ?? 'Error getting data'));
+        displayToastMessage(e.details?[0].msg ?? 'Error getting data');
       } catch (e) {
-        emit(state.copyWith(
-            theStates: TheStates.failed, errorMessage: e.toString()));
+        displayToastMessage(e.toString());
       }
     }
   }
@@ -61,12 +60,9 @@ class FishFarmerDetailBloc
     } catch (e) {
       try {
         e as ApiErrorResponse;
-        emit(state.copyWith(
-            theStates: TheStates.failed,
-            errorMessage: e.details?[0].msg ?? 'Error getting data'));
+        displayToastMessage(e.details?[0].msg ?? 'Error getting data');
       } catch (e) {
-        emit(state.copyWith(
-            theStates: TheStates.failed, errorMessage: e.toString()));
+        displayToastMessage(e.toString());
       }
     }
   }
@@ -82,12 +78,9 @@ class FishFarmerDetailBloc
     } catch (e) {
       try {
         e as ApiErrorResponse;
-        emit(state.copyWith(
-            theStates: TheStates.failed,
-            errorMessage: e.details?[0].msg ?? 'Error getting data'));
+        displayToastMessage(e.details?[0].msg ?? 'Error getting data');
       } catch (e) {
-        emit(state.copyWith(
-            theStates: TheStates.failed, errorMessage: e.toString()));
+        displayToastMessage(e.toString());
       }
     }
   }
@@ -104,12 +97,9 @@ class FishFarmerDetailBloc
     } catch (e) {
       try {
         e as ApiErrorResponse;
-        emit(state.copyWith(
-            theStates: TheStates.failed,
-            errorMessage: e.details?[0].msg ?? 'Error getting data'));
+        displayToastMessage(e.details?[0].msg ?? 'Error getting data');
       } catch (e) {
-        emit(state.copyWith(
-            theStates: TheStates.failed, errorMessage: e.toString()));
+        displayToastMessage(e.toString());
       }
     }
   }
@@ -126,12 +116,9 @@ class FishFarmerDetailBloc
     } catch (e) {
       try {
         e as ApiErrorResponse;
-        emit(state.copyWith(
-            theStates: TheStates.failed,
-            errorMessage: e.details?[0].msg ?? 'Error getting data'));
+        displayToastMessage(e.details?[0].msg ?? 'Error getting data');
       } catch (e) {
-        emit(state.copyWith(
-            theStates: TheStates.failed, errorMessage: e.toString()));
+        displayToastMessage(e.toString());
       }
     }
   }

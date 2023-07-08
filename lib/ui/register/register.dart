@@ -44,7 +44,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
     return BlocListener<RegisterBloc, RegisterState>(
       listener: (context, state) {
         if (state is RegisterSuccess) {
-          Navigator.pushReplacement(context, MaterialPageRoute(
+          Navigator.push(context, MaterialPageRoute(
             builder: (context) {
               return const FishFarmDetails();
             },
