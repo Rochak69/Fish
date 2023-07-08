@@ -36,6 +36,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
     super.dispose();
   }
 
+  final _formKey = GlobalKey<FormState>();
   bool _obscureText = true;
 
   @override
@@ -80,122 +81,127 @@ class _RegistrationPageState extends State<RegistrationPage> {
         backgroundColor: Colors.white,
         body: SafeArea(
           child: SingleChildScrollView(
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 22.w),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  UiHelper.verticalSpacing(15.h),
-                  _buildUpperText(),
-                  UiHelper.verticalSpacing(10.h),
-                  Text(
-                    'Full Name',
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.w700,
-                        fontSize: 12.sp),
-                  ),
-                  UiHelper.verticalSpacing(10.h),
-                  FishTextField(
-                    validator: (value) => Validators.validateEmpty(value),
-                    textEditingController: _name,
-                    label: 'Name',
-                    contentPadding: EdgeInsets.only(left: 15.w),
-                  ),
-                  UiHelper.verticalSpacing(10.h),
-                  Text(
-                    'Phone Number',
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.w700,
-                        fontSize: 12.sp),
-                  ),
-                  UiHelper.verticalSpacing(10.h),
-                  FishTextField(
-                    validator: (value) => Validators.validateEmpty(value),
-                    textInputType: TextInputType.number,
-                    textEditingController: _number,
-                    label: 'Phone Number',
-                    contentPadding: EdgeInsets.only(left: 15.w),
-                  ),
-                  UiHelper.verticalSpacing(10.h),
-                  Text(
-                    'Password',
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.w700,
-                        fontSize: 12.sp),
-                  ),
-                  UiHelper.verticalSpacing(10.h),
-                  FishTextField(
-                    validator: (value) => Validators.validateEmpty(value),
-                    onSuffixIconTap: () {
-                      setState(() {
-                        _obscureText = !_obscureText;
-                      });
-                    },
-                    sufixIcon: Icon(
-                      _obscureText ? Icons.visibility_off : Icons.visibility,
-                      color: _obscureText ? Colors.grey : Colors.grey,
+            child: Form(
+              key: _formKey,
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 22.w),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    UiHelper.verticalSpacing(15.h),
+                    _buildUpperText(),
+                    UiHelper.verticalSpacing(10.h),
+                    Text(
+                      'Full Name',
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.w700,
+                          fontSize: 12.sp),
                     ),
-                    obscureText: _obscureText,
-                    textEditingController: _password,
-                    label: 'Create a password',
-                    contentPadding: EdgeInsets.only(left: 15.w),
-                  ),
-                  UiHelper.verticalSpacing(10.h),
-                  FishTextField(
-                    validator: (value) => Validators.validateEmpty(value),
-                    onSuffixIconTap: () {
-                      setState(() {
-                        _obscureText = !_obscureText;
-                      });
-                    },
-                    obscureText: _obscureText,
-                    sufixIcon: Icon(
-                      _obscureText ? Icons.visibility_off : Icons.visibility,
-                      color: _obscureText ? Colors.grey : Colors.grey,
+                    UiHelper.verticalSpacing(10.h),
+                    FishTextField(
+                      validator: (value) => Validators.validateEmpty(value),
+                      textEditingController: _name,
+                      label: 'Name',
+                      contentPadding: EdgeInsets.only(left: 15.w),
                     ),
-                    textEditingController: _confirmPassword,
-                    label: 'Confirm password',
-                    contentPadding: EdgeInsets.only(left: 15.w),
-                  ),
-                  UiHelper.verticalSpacing(15.h),
-                  _buildTermsofService(),
-                  UiHelper.verticalSpacing(15.h),
-                  SizedBox(
-                    width: 340.w,
-                    height: 48.h,
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(12.r),
-                      child: ElevatedButton(
-                        onPressed: () {
-                          if (!_isAgreed) {
-                            displayToastMessage(
-                                'You must agree to terms and condiions',
-                                backgroundColor: AppColors.textRedColor);
-                            return;
-                          }
-                          showLoaderDialog(context);
-                          BlocProvider.of<RegisterBloc>(context).add(
-                              RegisterEventWithPhone(
-                                  password: _password.text,
-                                  userName: _name.text,
-                                  phoneNumber: _number.text));
-                        },
+                    UiHelper.verticalSpacing(10.h),
+                    Text(
+                      'Phone Number',
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.w700,
+                          fontSize: 12.sp),
+                    ),
+                    UiHelper.verticalSpacing(10.h),
+                    FishTextField(
+                      validator: (value) => Validators.validateEmpty(value),
+                      textInputType: TextInputType.number,
+                      textEditingController: _number,
+                      label: 'Phone Number',
+                      contentPadding: EdgeInsets.only(left: 15.w),
+                    ),
+                    UiHelper.verticalSpacing(10.h),
+                    Text(
+                      'Password',
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.w700,
+                          fontSize: 12.sp),
+                    ),
+                    UiHelper.verticalSpacing(10.h),
+                    FishTextField(
+                      validator: (value) => Validators.validateEmpty(value),
+                      onSuffixIconTap: () {
+                        setState(() {
+                          _obscureText = !_obscureText;
+                        });
+                      },
+                      sufixIcon: Icon(
+                        _obscureText ? Icons.visibility_off : Icons.visibility,
+                        color: _obscureText ? Colors.grey : Colors.grey,
+                      ),
+                      obscureText: _obscureText,
+                      textEditingController: _password,
+                      label: 'Create a password',
+                      contentPadding: EdgeInsets.only(left: 15.w),
+                    ),
+                    UiHelper.verticalSpacing(10.h),
+                    FishTextField(
+                      validator: (value) => Validators.validateEmpty(value),
+                      onSuffixIconTap: () {
+                        setState(() {
+                          _obscureText = !_obscureText;
+                        });
+                      },
+                      obscureText: _obscureText,
+                      sufixIcon: Icon(
+                        _obscureText ? Icons.visibility_off : Icons.visibility,
+                        color: _obscureText ? Colors.grey : Colors.grey,
+                      ),
+                      textEditingController: _confirmPassword,
+                      label: 'Confirm password',
+                      contentPadding: EdgeInsets.only(left: 15.w),
+                    ),
+                    UiHelper.verticalSpacing(15.h),
+                    _buildTermsofService(),
+                    UiHelper.verticalSpacing(15.h),
+                    SizedBox(
+                      width: 340.w,
+                      height: 48.h,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(12.r),
+                        child: ElevatedButton(
+                          onPressed: () {
+                            if (!_isAgreed) {
+                              displayToastMessage(
+                                  'You must agree to terms and condiions',
+                                  backgroundColor: AppColors.textRedColor);
+                              return;
+                            }
+                            if (_formKey.currentState!.validate()) {
+                              showLoaderDialog(context);
+                              BlocProvider.of<RegisterBloc>(context).add(
+                                  RegisterEventWithPhone(
+                                      password: _password.text,
+                                      userName: _name.text,
+                                      phoneNumber: _number.text));
+                            }
+                          },
 
-                        //  signIn,
-                        child: Text(
-                          'Register',
-                          style: TextStyle(
-                              fontSize: 12.sp,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.white),
+                          //  signIn,
+                          child: Text(
+                            'Register',
+                            style: TextStyle(
+                                fontSize: 12.sp,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.white),
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),

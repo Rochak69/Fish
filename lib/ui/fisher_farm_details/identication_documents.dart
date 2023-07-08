@@ -53,6 +53,7 @@ class _IdentificationDocumentsState extends State<IdentificationDocuments> {
   TextEditingController citizenNumber = TextEditingController();
   TextEditingController citizenName = TextEditingController();
   TextEditingController citizenDistricId = TextEditingController();
+
   @override
   void initState() {
     BlocProvider.of<FishFarmerDetailBloc>(context)
