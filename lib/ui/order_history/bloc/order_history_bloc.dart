@@ -27,6 +27,7 @@ class OrderHistoryBloc extends Bloc<OrderHistoryEvent, OrderHistoryState> {
   FutureOr<void> _getOrderHistory(
       GetOrderHistory event, Emitter<OrderHistoryState> emit) async {
     try {
+      emit(OrderHistoryInitial());
       final result = await apiClient.getOrderhistory()
           as ApiResponseForList<OrderHistoryResponse>;
 
