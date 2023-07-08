@@ -231,6 +231,10 @@ class _FishFarmDetailsState extends State<FishFarmDetails> {
                             onChanged: (value) {
                               selectedNagarpalika = value;
                               setState(() {});
+                              BlocProvider.of<FishFarmerDetailBloc>(context)
+                                  .add(GetWoda(
+                                      municipalityId:
+                                          selectedNagarpalika ?? '1'));
                             },
                           ),
                           UiHelper.verticalSpacing(16.h),
@@ -252,10 +256,10 @@ class _FishFarmDetailsState extends State<FishFarmDetails> {
                           AppDropDown<String>(
                             value: selectedWoda,
                             isExpanded: true,
-                            items: state.provinceResponse
+                            items: state.wodaResponse
                                     ?.map((e) => DropdownMenuItem(
                                         value: e.id,
-                                        child: Text(e.englishName!)))
+                                        child: Text(e.englishNumber!)))
                                     .toList() ??
                                 [],
                             onChanged: (value) {

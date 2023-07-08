@@ -1,4 +1,5 @@
 import 'dart:async';
+
 import 'package:bloc/bloc.dart';
 import 'package:fish_shop/common/api_response.dart';
 import 'package:fish_shop/ui/fisher_farm_details/bloc/fish_farmer_detail_event.dart';
@@ -30,7 +31,9 @@ class FishFarmerDetailBloc
           farmName: event.farmName,
           pradesh: event.pradesh,
           pondSize: event.pondSize,
-          profilePicture: event.profilePicture,
+          profilePic: event.profilePicture!,
+          identification: event.identification!,
+          registerPic: event.registerPic!,
           woda: event.woda,
           municiplaity: event.nagarpalika);
       result as ApiResponse;

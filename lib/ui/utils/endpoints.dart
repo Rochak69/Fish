@@ -6,6 +6,7 @@ class Endpoints {
   static const String verifyOtp = '/user/verify-code';
   static const String resetPassword = '/user/reset-password';
   static const String fishFarmerDetails = '/farmer/request';
+  static const String farmerIssue = '/issues/farmer';
   static const String createRequestToBuyer = '/farmerRequest';
   static const String getAllFarmersSupply = '/farmerSupply';
   static const String getMyListings = '/me/listing?type=farmer';
@@ -22,9 +23,10 @@ class Endpoints {
   }
 
   static const String province = '/location/province';
+  static const String getAllDistrict = '/location/district';
   static String getDistrict(String provinceId) =>
       '/location/district/$provinceId';
   static String getMunicipality(String districtId) =>
       '/location/municipality/$districtId';
-  static String woda(String municipalityId) => '/location/woda/$municipalityId';
+  static String woda(String municipalityId) => '/location/ward/$municipalityId';
 }

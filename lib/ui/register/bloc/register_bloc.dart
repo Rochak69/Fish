@@ -21,7 +21,7 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
           phoneNumber: event.phoneNumber,
           password: event.password,
           userName: event.userName);
-      ApiResponse registerResponse = result as ApiResponse;
+
       emit(RegisterSuccess());
     } catch (e) {
       try {

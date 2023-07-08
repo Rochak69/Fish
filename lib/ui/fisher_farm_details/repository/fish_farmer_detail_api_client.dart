@@ -1,9 +1,13 @@
+import 'dart:io';
+
+import 'package:dio/dio.dart';
 import 'package:fish_shop/common/api_response.dart';
 import 'package:fish_shop/common/status.dart';
 import 'package:fish_shop/providers/api_client.dart';
 import 'package:fish_shop/ui/fisher_farm_details/model/district_response.dart';
 import 'package:fish_shop/ui/fisher_farm_details/model/municipality_response.dart';
 import 'package:fish_shop/ui/fisher_farm_details/model/province_response.dart';
+import 'package:fish_shop/ui/fisher_farm_details/model/woda_response.dart';
 import 'package:fish_shop/ui/utils/endpoints.dart';
 import 'package:fish_shop/ui/utils/preferences.dart';
 import 'package:injectable/injectable.dart';
@@ -18,32 +22,36 @@ class FishFarmerDetailApiClient {
 
   Future<ApiResponse?> postdetails({
     required String userId,
-    String? profilePicture,
     String? farmName,
-    int? pondSize,
+    double? pondSize,
     String? pradesh,
     String? district,
     String? municiplaity,
     String? gaupalika,
     int? woda,
+    required String identification,
+    required String profilePic,
+    required String registerPic,
   }) async {
     Preferences preferences = Preferences();
-
-    ///or pass object directly to the http post
-    Map<String, dynamic> data = {
+    FormData formData;
+    formData = FormData.fromMap({
       "userId": userId,
       "farmName": farmName,
-      "profilePicture": "Handsome",
       "pondSize": pondSize,
       "provinceId": pradesh,
       "districtId": district,
-      "wardId": "2" ?? woda.toString(),
+      "wardId": woda.toString(),
       "municipalityId": municiplaity,
-      "idenfication": "fsdgdfg456tgfdg",
-      "registration": "ghssdf234dfsd"
-    };
+      "profilePicture": await MultipartFile.fromFile(identification),
+      "identificationImage": await MultipartFile.fromFile(profilePic),
+      "registrationImage": await MultipartFile.fromFile(registerPic),
+    });
+
+    ///or pass object directly to the http post
+
     var apiResponse =
-        await _apiClient?.httpPost(Endpoints.fishFarmerDetails, data);
+        await _apiClient?.httpPost(Endpoints.fishFarmerDetails, formData);
 
     ///converting to response
     var response = ApiResponse(
@@ -69,9 +77,11 @@ class FishFarmerDetailApiClient {
     return response;
   }
 
-  Future<ApiResponseForList> getDistrict({required String provinceId}) async {
+  Future<ApiResponseForList> getDistrict({required String? provinceId}) async {
     var apiResponse = await _apiClient?.httpGet(
-      Endpoints.getDistrict(provinceId),
+      provinceId != null
+          ? Endpoints.getDistrict(provinceId)
+          : Endpoints.getAllDistrict,
     );
 
     ///converting to response
@@ -114,7 +124,7 @@ class FishFarmerDetailApiClient {
       status: Status.success,
       message: 'Success fully logged in',
       data: (apiResponse as List<dynamic>)
-          .map((data) => MunicipalityResponse.fromJson(data))
+          .map((data) => WodaResponse.fromJson(data))
           .toList(),
     );
 

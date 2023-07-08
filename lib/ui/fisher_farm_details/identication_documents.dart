@@ -48,7 +48,15 @@ class _IdentificationDocumentsState extends State<IdentificationDocuments> {
   String? citizenshipPicturePath;
   String? palikaPicturePath;
   String? othersPath;
+  String? selectedDistrict;
   TextEditingController pondSize = TextEditingController();
+  @override
+  void initState() {
+    BlocProvider.of<FishFarmerDetailBloc>(context)
+        .add(GetDistrict(provinceId: null));
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<FishFarmerDetailBloc, FishFarmerDetailState>(
@@ -204,7 +212,19 @@ class _IdentificationDocumentsState extends State<IdentificationDocuments> {
                         ]),
                   ),
                   UiHelper.verticalSpacing(8.h),
-                  AppDropDown(isExpanded: true, onChanged: (p0) {}, items: const []),
+                  AppDropDown<String>(
+                    value: selectedDistrict,
+                    isExpanded: true,
+                    items: state.districtResponse
+                            ?.map((e) => DropdownMenuItem(
+                                value: e.id, child: Text(e.englishName!)))
+                            .toList() ??
+                        [],
+                    onChanged: (value) {
+                      selectedDistrict = value;
+                      setState(() {});
+                    },
+                  ),
                   UiHelper.verticalSpacing(12.h),
                   RichText(
                     text: TextSpan(
@@ -414,13 +434,18 @@ class _IdentificationDocumentsState extends State<IdentificationDocuments> {
                         showLoaderDialog(context);
                         BlocProvider.of<FishFarmerDetailBloc>(context).add(
                             PostFarmerDetailsEvent(
+                                profilePicture: profilePicturePath,
+                                identification: citizenshipPicturePath,
+                                registerPic: palikaPicturePath,
                                 userId: widget.userId,
                                 farmName: widget.farmName,
                                 farmersName: widget.farmersName,
                                 phoneNumber: widget.phoneNumber,
                                 pradesh: widget.pradesh,
                                 district: widget.district,
-                                pondSize: int.tryParse(pondSize.text),
+                                pondSize: getInMeter(
+                                    double.tryParse(pondSize.text) ?? 0,
+                                    selectedUnit),
                                 nagarpalika: widget.nagarpalika,
                                 woda: int.tryParse(widget.woda) ?? 0));
                       },
@@ -445,4 +470,11 @@ class _IdentificationDocumentsState extends State<IdentificationDocuments> {
       },
     );
   }
+}
+
+double getInMeter(double value, String unit) {
+  if (unit == 'km') {
+    return value / 1000;
+  }
+  return value;
 }

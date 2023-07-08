@@ -1,13 +1,17 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:io';
+
 abstract class FishFarmerDetailEvent {}
 
 class PostFarmerDetailsEvent extends FishFarmerDetailEvent {
   String userId;
   String? profilePicture;
+  String? registerPic;
+  String? identification;
   String farmName;
   String farmersName;
   String phoneNumber;
-  int? pondSize;
+  double? pondSize;
   String pradesh;
   String district;
   String nagarpalika;
@@ -19,7 +23,9 @@ class PostFarmerDetailsEvent extends FishFarmerDetailEvent {
 
   PostFarmerDetailsEvent({
     required this.userId,
-    this.profilePicture,
+    required this.profilePicture,
+    required this.identification,
+    required this.registerPic,
     required this.farmName,
     required this.farmersName,
     required this.phoneNumber,
@@ -37,7 +43,7 @@ class PostFarmerDetailsEvent extends FishFarmerDetailEvent {
 class GetProvince extends FishFarmerDetailEvent {}
 
 class GetDistrict extends FishFarmerDetailEvent {
-  final String provinceId;
+  final String? provinceId;
 
   GetDistrict({required this.provinceId});
 }

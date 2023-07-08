@@ -1,18 +1,15 @@
 class RegisterResponse {
-  bool? success;
-  String? message;
+  String? userid;
 
-  RegisterResponse({this.success, this.message});
+  RegisterResponse({this.userid});
 
   RegisterResponse.fromJson(Map<String, dynamic> json) {
-    success = json['success'];
-    message = json['message'];
+    userid = json['userid'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['success'] = success;
-    data['message'] = message;
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['userid'] = this.userid;
     return data;
   }
 }

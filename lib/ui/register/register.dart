@@ -1,6 +1,7 @@
 import 'package:fish_shop/common/validator.dart';
 import 'package:fish_shop/res/colors.dart';
 import 'package:fish_shop/ui/common_widget/FishTextField.dart';
+import 'package:fish_shop/ui/fisher_farm_details/fisher_farm_details.dart';
 import 'package:fish_shop/ui/login/login.dart';
 
 import 'package:fish_shop/ui/register/bloc/register_bloc.dart';
@@ -43,11 +44,9 @@ class _RegistrationPageState extends State<RegistrationPage> {
     return BlocListener<RegisterBloc, RegisterState>(
       listener: (context, state) {
         if (state is RegisterSuccess) {
-          Navigator.pop(context);
-          displayToastMessage('Succesfully Registerd');
           Navigator.pushReplacement(context, MaterialPageRoute(
             builder: (context) {
-              return const LoginPage();
+              return const FishFarmDetails();
             },
           ));
         } else if (state is RegisterFailed) {

@@ -2,39 +2,70 @@ import 'package:fish_shop/common/validator.dart';
 import 'package:fish_shop/res/colors.dart';
 import 'package:fish_shop/ui/common_widget/FishTextField.dart';
 import 'package:fish_shop/ui/common_widget/fish_button.dart';
+import 'package:fish_shop/ui/support/bloc/support_bloc.dart';
+import 'package:fish_shop/ui/support/bloc/support_event.dart';
+import 'package:fish_shop/ui/support/bloc/support_state.dart';
 import 'package:fish_shop/ui/utils/uihelper.dart';
+import 'package:fish_shop/ui/utils/utils.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class Support extends StatelessWidget {
+class Support extends StatefulWidget {
   const Support({super.key});
 
   @override
+  State<Support> createState() => _SupportState();
+}
+
+class _SupportState extends State<Support> {
+  TextEditingController controller = TextEditingController();
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        centerTitle: true,
-        elevation: 0,
-        backgroundColor: Colors.white,
-        title: Text(
-          'Support',
-          style: TextStyle(
-              color: Colors.black,
-              fontWeight: FontWeight.w900,
-              fontSize: 20.sp),
+    return BlocListener<SupportBloc, SupportState>(
+      listener: (context, state) {},
+      child: Scaffold(
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          centerTitle: true,
+          elevation: 0,
+          backgroundColor: Colors.white,
+          title: Text(
+            'Support',
+            style: TextStyle(
+                color: Colors.black,
+                fontWeight: FontWeight.w900,
+                fontSize: 20.sp),
+          ),
         ),
-      ),
-      body: Container(
-        alignment: Alignment.topLeft,
-        child: Column(
-          children: [
-            UiHelper.verticalSpacing(20),
-            _buildUpperText(),
-            UiHelper.verticalSpacing(17.h),
-            const FishButton.green('Submit', bgColor: Colors.blue),
-          ],
+        body: Container(
+          alignment: Alignment.topLeft,
+          child: Column(
+            children: [
+              UiHelper.verticalSpacing(20),
+              _buildUpperText(),
+              UiHelper.verticalSpacing(17.h),
+              Center(
+                child: SizedBox(
+                  width: 300.w,
+                  child: ElevatedButton(
+                      onPressed: () {
+                        if (controller.text.isEmpty) {
+                          displayToastMessage('Field cannot be empty',
+                              backgroundColor: AppColors.textColor);
+                          return;
+                        }
+
+                        BlocProvider.of<SupportBloc>(context)
+                            .add(CreateIssue(issue: controller.text));
+                        controller.clear();
+                      },
+                      child: const Text('Submit')),
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
@@ -82,7 +113,7 @@ class Support extends StatelessWidget {
           UiHelper.verticalSpacing(10.h),
           Container(
             child: FishTextField(
-              validator: (value) => Validators.validateEmpty(value),
+              textEditingController: controller,
               contentPadding: EdgeInsets.all(23.r),
               label: "Tell us everything",
               height: 94.h,
