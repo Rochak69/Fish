@@ -146,13 +146,13 @@ class _LoginPageState extends State<LoginPage> {
                           BlocProvider.of<MyLanguageBloc>(context)
                               .add(SwitchNepali());
                         },
-                        child: Text('Nepali')),
+                        child: const Text('Nepali')),
                     TextButton(
                         onPressed: () {
                           BlocProvider.of<MyLanguageBloc>(context)
                               .add(SwitchEnglish());
                         },
-                        child: Text('Englsih')),
+                        child: const Text('Englsih')),
                     Column(
                       children: [
                         SizedBox(

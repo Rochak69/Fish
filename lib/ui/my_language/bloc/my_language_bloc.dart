@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:fish_shop/ui/my_language/bloc/my_language_event.dart';
 import 'package:fish_shop/ui/my_language/bloc/my_language_state.dart';
-import 'package:fish_shop/ui/utils/utils.dart';
 import 'package:injectable/injectable.dart';
 
 @lazySingleton

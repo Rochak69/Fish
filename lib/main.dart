@@ -2,7 +2,6 @@ import 'package:fish_shop/core/injection/dependency_injection.dart';
 import 'package:fish_shop/navigation_service.dart';
 import 'package:fish_shop/res/colors.dart';
 import 'package:fish_shop/ui/fisher_farm_details/bloc/fish_farmer_detail_bloc.dart';
-import 'package:fish_shop/ui/fisher_farm_details/fisher_farm_details.dart';
 import 'package:fish_shop/ui/home_listing/bloc/home_listings_bloc.dart';
 import 'package:fish_shop/ui/login/bloc/login_bloc.dart';
 import 'package:fish_shop/ui/login/login.dart';
@@ -19,7 +18,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'ui/forgot_password/bloc/send_otp_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 

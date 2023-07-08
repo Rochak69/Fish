@@ -29,15 +29,17 @@ class HomeListingsBloc extends Bloc<HomeListingsEvent, HomeListingsState> {
 
       final result = await apiClient.getHomeListings();
       final response = result as ApiResponseForList<HomeListingsResponse>;
+      displayToastMessage('Offer sent successfully');
 
       emit(HomeListingsSuccess(result: response));
     } catch (e) {
       try {
         ApiErrorResponse apiErrorResponse = e as ApiErrorResponse;
-        emit(HomeListingsFailed(
-            errorMessage: e.details?[0].msg ?? 'Error getting data'));
+        displayToastMessage(e.details?[0].msg ?? 'Error getting data',
+            backgroundColor: AppColors.textRedColor);
       } catch (e) {
-        emit(HomeListingsFailed(errorMessage: e.toString()));
+        displayToastMessage(e.toString(),
+            backgroundColor: AppColors.textRedColor);
       }
     }
   }

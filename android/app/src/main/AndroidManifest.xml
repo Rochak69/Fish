@@ -3,7 +3,7 @@
     <application
         android:label="fish_shop"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/link_up">
         <activity
             android:name=".MainActivity"
             android:exported="true"

@@ -29,22 +29,22 @@ class YourListingsResponse {
     if (json['BuyerRequest'] != null) {
       buyerRequest = <BuyerRequest>[];
       json['BuyerRequest'].forEach((v) {
-        buyerRequest!.add(new BuyerRequest.fromJson(v));
+        buyerRequest!.add(BuyerRequest.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['farmerId'] = this.farmerId;
-    data['fishType'] = this.fishType;
-    data['avgFishWeight'] = this.avgFishWeight;
-    data['totalWeight'] = this.totalWeight;
-    data['yieldDate'] = this.yieldDate;
-    data['fishTypeId'] = this.fishTypeId;
-    if (this.buyerRequest != null) {
-      data['BuyerRequest'] = this.buyerRequest!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['farmerId'] = farmerId;
+    data['fishType'] = fishType;
+    data['avgFishWeight'] = avgFishWeight;
+    data['totalWeight'] = totalWeight;
+    data['yieldDate'] = yieldDate;
+    data['fishTypeId'] = fishTypeId;
+    if (buyerRequest != null) {
+      data['BuyerRequest'] = buyerRequest!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -60,8 +60,8 @@ class BuyerRequest {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
     return data;
   }
 }

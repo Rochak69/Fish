@@ -335,6 +335,9 @@ class _BuyerRequestsScreenState extends State<BuyerRequestsScreen> {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15.0.r),
+            ),
             actionsAlignment: MainAxisAlignment.center,
             actionsPadding: EdgeInsets.symmetric(vertical: 12.h),
             title: Center(
@@ -384,17 +387,18 @@ class _BuyerRequestsScreenState extends State<BuyerRequestsScreen> {
                   Navigator.pop(context);
                 },
                 child: Container(
-                  width: 91.w,
+                  width: 100.w,
                   height: 40.h,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20.r),
                     border: Border.all(
                         color: AppColors.textColor), // Specify the border color
                   ),
-                  child: const Center(
+                  child: Center(
                     child: Text(
                       'Sure',
-                      style: TextStyle(fontSize: 16),
+                      style: TextStyle(
+                          fontSize: 16.sp, color: AppColors.textColor),
                     ),
                   ),
                 ),
@@ -405,18 +409,19 @@ class _BuyerRequestsScreenState extends State<BuyerRequestsScreen> {
                   Navigator.pop(context);
                 },
                 child: Container(
-                  width: 91.w,
+                  width: 100.w,
                   height: 40.h,
                   decoration: BoxDecoration(
-                    color: Colors.blue,
+                    color: AppColors.textRedColor,
                     borderRadius: BorderRadius.circular(12.r),
                     border: Border.all(
-                        color: Colors.blue), // Specify the border color
+                        color:
+                            AppColors.textRedColor), // Specify the border color
                   ),
-                  child: const Center(
+                  child: Center(
                     child: Text(
                       'Cancel',
-                      style: TextStyle(fontSize: 16),
+                      style: TextStyle(fontSize: 16.sp, color: Colors.white),
                     ),
                   ),
                 ),

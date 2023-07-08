@@ -7,10 +7,6 @@ import 'package:fish_shop/ui/fisher_farm_details/bloc/fish_farmer_detail_event.d
 
 import 'package:fish_shop/ui/fisher_farm_details/bloc/fish_farmer_detail_state.dart';
 import 'package:fish_shop/ui/fisher_farm_details/identication_documents.dart';
-import 'package:fish_shop/ui/fisher_farm_details/model/dropdown_id_name.dart';
-import 'package:fish_shop/ui/login/login.dart';
-import 'package:fish_shop/ui/my_language/bloc/my_language_bloc.dart';
-import 'package:fish_shop/ui/my_language/bloc/my_language_event.dart';
 import 'package:fish_shop/ui/utils/preferences.dart';
 import 'package:fish_shop/ui/utils/uihelper.dart';
 import 'package:fish_shop/ui/utils/utils.dart';
@@ -377,8 +373,8 @@ class _FishFarmDetailsState extends State<FishFarmDetails> {
             ),
           );
         }
-        return Scaffold(
-          body: const Center(
+        return const Scaffold(
+          body: Center(
             child: CircularProgressIndicator(),
           ),
         );

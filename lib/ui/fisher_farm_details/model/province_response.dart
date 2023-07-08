@@ -12,10 +12,10 @@ class ProvincesResponse {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['englishName'] = this.englishName;
-    data['nepaliName'] = this.nepaliName;
-    data['id'] = this.id;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['englishName'] = englishName;
+    data['nepaliName'] = nepaliName;
+    data['id'] = id;
     return data;
   }
 }

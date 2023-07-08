@@ -73,7 +73,7 @@ class FishTextField extends StatelessWidget {
             ),
             focusedErrorBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10),
-              borderSide: BorderSide(width: 2, color: Colors.red),
+              borderSide: const BorderSide(width: 2, color: Colors.red),
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10),
@@ -82,7 +82,7 @@ class FishTextField extends StatelessWidget {
             ),
             errorBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10),
-              borderSide: BorderSide(width: 2, color: Colors.red),
+              borderSide: const BorderSide(width: 2, color: Colors.red),
             ),
             label: Text(label),
             border: InputBorder.none,
