@@ -1,15 +1,15 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:fish_shop/ui/home_listing/bloc/home_listings_bloc.dart';
-import 'package:fish_shop/ui/home_listing/bloc/home_listings_event.dart';
-import 'package:fish_shop/ui/utils/preferences.dart';
-import 'package:fish_shop/ui/utils/utils.dart';
-import 'package:fish_shop/ui/your_listing/your_listing.dart';
+import 'package:buyer_shop/ui/home_listing/bloc/home_listings_bloc.dart';
+import 'package:buyer_shop/ui/home_listing/bloc/home_listings_event.dart';
+import 'package:buyer_shop/ui/utils/preferences.dart';
+import 'package:buyer_shop/ui/utils/utils.dart';
+import 'package:buyer_shop/ui/your_listing/your_listing.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'package:fish_shop/res/colors.dart';
-import 'package:fish_shop/ui/utils/uihelper.dart';
+import 'package:buyer_shop/res/colors.dart';
+import 'package:buyer_shop/ui/utils/uihelper.dart';
 
 class CardListing extends StatefulWidget {
   final Color? backgroundColor;
@@ -19,7 +19,7 @@ class CardListing extends StatefulWidget {
   final int totalWeight;
   final String location;
   final String date;
-  final String userDemandId;
+  final String farmerSuppyId;
   const CardListing({
     Key? key,
     this.backgroundColor,
@@ -29,7 +29,7 @@ class CardListing extends StatefulWidget {
     required this.totalWeight,
     required this.location,
     required this.date,
-    required this.userDemandId,
+    required this.farmerSuppyId,
   }) : super(key: key);
 
   @override
@@ -322,7 +322,7 @@ class _CardListingState extends State<CardListing> {
                       return;
                     }
                     BlocProvider.of<HomeListingsBloc>(context).add(SendOffer(
-                        userDemandId: widget.userDemandId,
+                        userDemandId: widget.farmerSuppyId,
                         phoneNumber: phoneNumber,
                         weight: int.parse(offerWeight.text)));
                     Navigator.pop(context);

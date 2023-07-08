@@ -1,8 +1,8 @@
-import 'package:fish_shop/common/api_response.dart';
-import 'package:fish_shop/common/status.dart';
-import 'package:fish_shop/providers/api_client.dart';
-import 'package:fish_shop/ui/utils/endpoints.dart';
-import 'package:fish_shop/ui/utils/preferences.dart';
+import 'package:buyer_shop/common/api_response.dart';
+import 'package:buyer_shop/common/status.dart';
+import 'package:buyer_shop/providers/api_client.dart';
+import 'package:buyer_shop/ui/utils/endpoints.dart';
+import 'package:buyer_shop/ui/utils/preferences.dart';
 import 'package:injectable/injectable.dart';
 
 @singleton
@@ -19,7 +19,7 @@ class PendingRequestPerListingApiClient {
     ///or pass object
 
     var apiResponse =
-        await _apiClient?.httpPatch(Endpoints.acceptBuyerRequest(id), {});
+        await _apiClient?.httpPatch(Endpoints.acceptFarmerRequest(id), {});
 
     ///converting to response
     var response = ApiResponse(
@@ -34,7 +34,7 @@ class PendingRequestPerListingApiClient {
     ///or pass object
 
     var apiResponse = await _apiClient?.httpDelete(
-      Endpoints.rejectBuyerRequest(id),
+      Endpoints.rejectFarmerRequest(id),
     );
 
     ///converting to response

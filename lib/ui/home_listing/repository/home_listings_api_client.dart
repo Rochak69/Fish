@@ -1,10 +1,10 @@
-import 'package:fish_shop/common/api_response.dart';
-import 'package:fish_shop/common/status.dart';
-import 'package:fish_shop/providers/api_client.dart';
-import 'package:fish_shop/ui/home_listing/model/home_listings_response.dart';
-import 'package:fish_shop/ui/login/model/user_details_Response.dart';
-import 'package:fish_shop/ui/utils/endpoints.dart';
-import 'package:fish_shop/ui/utils/preferences.dart';
+import 'package:buyer_shop/common/api_response.dart';
+import 'package:buyer_shop/common/status.dart';
+import 'package:buyer_shop/providers/api_client.dart';
+import 'package:buyer_shop/ui/home_listing/model/home_listings_response.dart';
+import 'package:buyer_shop/ui/login/model/user_details_Response.dart';
+import 'package:buyer_shop/ui/utils/endpoints.dart';
+import 'package:buyer_shop/ui/utils/preferences.dart';
 import 'package:injectable/injectable.dart';
 
 @singleton
@@ -20,7 +20,7 @@ class HomeListingApiClient {
 
     ///or pass object directly to the http post
 
-    var apiResponse = await _apiClient?.httpGet(Endpoints.getAllBuyerDemand);
+    var apiResponse = await _apiClient?.httpGet(Endpoints.getAllFarmerSupply);
 
     ///converting to response
     var response = ApiResponseForList(
@@ -35,23 +35,23 @@ class HomeListingApiClient {
   }
 
   Future<ApiResponse?> sendOffer(
-      {required String buyerDemandID,
+      {required String farmerSupplyId,
       required String phoneNumber,
       required int supplyWeight}) async {
     Preferences preferences = Preferences();
-    String? farmerId = await preferences.getString(Preference.farmerId);
-    if (farmerId == null) {
+    String? buyerId = await preferences.getString(Preference.buyerId);
+    if (buyerId == null) {
       throw Exception();
     }
     Map<String, dynamic> data = {
-      "buyerDemandId": buyerDemandID,
+      "farmerSupplyId": farmerSupplyId,
       "phoneNumber": phoneNumber,
-      "farmerId": farmerId,
-      "supplyWeight": supplyWeight
+      "buyerId": buyerId,
+      "requestWeight": supplyWeight
     };
 
     var apiResponse =
-        await _apiClient?.httpPost(Endpoints.createRequestToBuyer, data);
+        await _apiClient?.httpPost(Endpoints.createSupplyRequest, data);
 
     ///converting to response
     var response = ApiResponse(
@@ -74,7 +74,7 @@ class HomeListingApiClient {
         message: 'Success fully logged in',
         data: UserDetailsResponse.fromJson(apiResponse));
 
-    await preferences.saveString(Preference.farmerId, apiResponse['id']);
+    await preferences.saveString(Preference.buyerId, apiResponse['id']);
 
     return registerResponse;
   }

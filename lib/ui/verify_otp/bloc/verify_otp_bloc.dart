@@ -1,10 +1,10 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:fish_shop/common/api_response.dart';
-import 'package:fish_shop/ui/verify_otp/bloc/verify_otp_event.dart';
-import 'package:fish_shop/ui/verify_otp/bloc/verify_otp_state.dart';
-import 'package:fish_shop/ui/verify_otp/repository/verify_otp_api_client.dart';
+import 'package:buyer_shop/common/api_response.dart';
+import 'package:buyer_shop/ui/verify_otp/bloc/verify_otp_event.dart';
+import 'package:buyer_shop/ui/verify_otp/bloc/verify_otp_state.dart';
+import 'package:buyer_shop/ui/verify_otp/repository/verify_otp_api_client.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable

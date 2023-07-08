@@ -1,20 +1,20 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 
-import 'package:fish_shop/core/injection/dependency_injection.dart';
-import 'package:fish_shop/core/notification/notification_services.dart';
-import 'package:fish_shop/res/colors.dart';
+import 'package:buyer_shop/core/injection/dependency_injection.dart';
+import 'package:buyer_shop/core/notification/notification_services.dart';
+import 'package:buyer_shop/res/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'package:fish_shop/ui/common_widget/pin_fields.dart';
-import 'package:fish_shop/ui/reset_password/reset_password.dart';
-import 'package:fish_shop/ui/utils/preferences.dart';
-import 'package:fish_shop/ui/utils/uihelper.dart';
-import 'package:fish_shop/ui/utils/utils.dart';
-import 'package:fish_shop/ui/verify_otp/bloc/verify_otp_bloc.dart';
-import 'package:fish_shop/ui/verify_otp/bloc/verify_otp_event.dart';
-import 'package:fish_shop/ui/verify_otp/bloc/verify_otp_state.dart';
+import 'package:buyer_shop/ui/common_widget/pin_fields.dart';
+import 'package:buyer_shop/ui/reset_password/reset_password.dart';
+import 'package:buyer_shop/ui/utils/preferences.dart';
+import 'package:buyer_shop/ui/utils/uihelper.dart';
+import 'package:buyer_shop/ui/utils/utils.dart';
+import 'package:buyer_shop/ui/verify_otp/bloc/verify_otp_bloc.dart';
+import 'package:buyer_shop/ui/verify_otp/bloc/verify_otp_event.dart';
+import 'package:buyer_shop/ui/verify_otp/bloc/verify_otp_state.dart';
 
 class VerifyOtpScreen extends StatefulWidget {
   final String? phoneNumber;

@@ -1,4 +1,4 @@
-import 'package:fish_shop/ui/forgot_password/model/send_otp_response.dart';
+import 'package:buyer_shop/ui/forgot_password/model/send_otp_response.dart';
 
 abstract class SendOtpState {}
 

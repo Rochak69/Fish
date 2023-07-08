@@ -1,8 +1,8 @@
-import 'package:fish_shop/common/validator.dart';
-import 'package:fish_shop/res/colors.dart';
-import 'package:fish_shop/ui/approval_pending/approval_pending.dart';
-import 'package:fish_shop/ui/common_widget/FishTextField.dart';
-import 'package:fish_shop/ui/utils/uihelper.dart';
+import 'package:buyer_shop/common/validator.dart';
+import 'package:buyer_shop/res/colors.dart';
+import 'package:buyer_shop/ui/approval_pending/approval_pending.dart';
+import 'package:buyer_shop/ui/common_widget/FishTextField.dart';
+import 'package:buyer_shop/ui/utils/uihelper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:open_file/open_file.dart';

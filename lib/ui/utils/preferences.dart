@@ -32,8 +32,8 @@ class Preference {
   static const String pin = 'PIN';
 
   static const String accessToken = 'ACCESS_TOKEN';
-  static const String farmerId = 'FARMER_ID';
-  static const String buyerID = 'BUYER_ID';
+  static const String buyerId = 'BUYER_ID';
+  // static const String buyerId = 'BUYER_ID';
 
   static const String refreshToken = 'REFRESH_TOKEN';
 

@@ -1,12 +1,12 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
-import 'package:fish_shop/common/api_response.dart';
-import 'package:fish_shop/ui/fisher_farm_details/bloc/fish_farmer_detail_event.dart';
-import 'package:fish_shop/ui/fisher_farm_details/bloc/fish_farmer_detail_state.dart';
-import 'package:fish_shop/ui/fisher_farm_details/model/district_response.dart';
-import 'package:fish_shop/ui/fisher_farm_details/model/municipality_response.dart';
-import 'package:fish_shop/ui/fisher_farm_details/model/woda_response.dart';
-import 'package:fish_shop/ui/fisher_farm_details/repository/fish_farmer_detail_api_client.dart';
+import 'package:buyer_shop/common/api_response.dart';
+import 'package:buyer_shop/ui/fisher_farm_details/bloc/fish_farmer_detail_event.dart';
+import 'package:buyer_shop/ui/fisher_farm_details/bloc/fish_farmer_detail_state.dart';
+import 'package:buyer_shop/ui/fisher_farm_details/model/district_response.dart';
+import 'package:buyer_shop/ui/fisher_farm_details/model/municipality_response.dart';
+import 'package:buyer_shop/ui/fisher_farm_details/model/woda_response.dart';
+import 'package:buyer_shop/ui/fisher_farm_details/repository/fish_farmer_detail_api_client.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable

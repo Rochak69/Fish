@@ -1,10 +1,10 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:equatable/equatable.dart';
 
-import 'package:fish_shop/ui/fisher_farm_details/model/district_response.dart';
-import 'package:fish_shop/ui/fisher_farm_details/model/municipality_response.dart';
-import 'package:fish_shop/ui/fisher_farm_details/model/province_response.dart';
-import 'package:fish_shop/ui/fisher_farm_details/model/woda_response.dart';
+import 'package:buyer_shop/ui/fisher_farm_details/model/district_response.dart';
+import 'package:buyer_shop/ui/fisher_farm_details/model/municipality_response.dart';
+import 'package:buyer_shop/ui/fisher_farm_details/model/province_response.dart';
+import 'package:buyer_shop/ui/fisher_farm_details/model/woda_response.dart';
 
 class FishFarmerDetailState extends Equatable {
   final TheStates theStates;

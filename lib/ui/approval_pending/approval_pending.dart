@@ -1,5 +1,5 @@
-import 'package:fish_shop/res/colors.dart';
-import 'package:fish_shop/ui/utils/uihelper.dart';
+import 'package:buyer_shop/res/colors.dart';
+import 'package:buyer_shop/ui/utils/uihelper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

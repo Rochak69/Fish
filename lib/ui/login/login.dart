@@ -1,17 +1,17 @@
-import 'package:fish_shop/common/validator.dart';
-import 'package:fish_shop/res/colors.dart';
-import 'package:fish_shop/ui/common_widget/FishTextField.dart';
-import 'package:fish_shop/ui/fisher_farm_details/fisher_farm_details.dart';
-import 'package:fish_shop/ui/forgot_password/forgot_password.dart';
-import 'package:fish_shop/ui/home_listing/home_listing.dart';
-import 'package:fish_shop/ui/login/bloc/login_bloc.dart';
-import 'package:fish_shop/ui/login/bloc/login_event.dart';
-import 'package:fish_shop/ui/login/bloc/login_state.dart';
-import 'package:fish_shop/ui/my_language/bloc/my_language_bloc.dart';
-import 'package:fish_shop/ui/my_language/bloc/my_language_event.dart';
-import 'package:fish_shop/ui/register/register.dart';
-import 'package:fish_shop/ui/utils/uihelper.dart';
-import 'package:fish_shop/ui/utils/utils.dart';
+import 'package:buyer_shop/common/validator.dart';
+import 'package:buyer_shop/res/colors.dart';
+import 'package:buyer_shop/ui/common_widget/FishTextField.dart';
+import 'package:buyer_shop/ui/fisher_farm_details/fisher_farm_details.dart';
+import 'package:buyer_shop/ui/forgot_password/forgot_password.dart';
+import 'package:buyer_shop/ui/home_listing/home_listing.dart';
+import 'package:buyer_shop/ui/login/bloc/login_bloc.dart';
+import 'package:buyer_shop/ui/login/bloc/login_event.dart';
+import 'package:buyer_shop/ui/login/bloc/login_state.dart';
+import 'package:buyer_shop/ui/my_language/bloc/my_language_bloc.dart';
+import 'package:buyer_shop/ui/my_language/bloc/my_language_event.dart';
+import 'package:buyer_shop/ui/register/register.dart';
+import 'package:buyer_shop/ui/utils/uihelper.dart';
+import 'package:buyer_shop/ui/utils/utils.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -51,7 +51,7 @@ class _LoginPageState extends State<LoginPage> {
       listener: (context, state) {
         Navigator.pop(context);
         if (state is LoginSuccess) {
-          if (state.result.data?.isFarmer ?? false) {
+          if (state.result.data?.isBuyer ?? false) {
             Navigator.pushReplacement(context, MaterialPageRoute(
               builder: (context) {
                 return const HomeListing();

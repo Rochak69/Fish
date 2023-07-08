@@ -1,10 +1,10 @@
-import 'package:fish_shop/res/colors.dart';
-import 'package:fish_shop/ui/pending_request_per_listing/pending_request_per_listing.dart';
-import 'package:fish_shop/ui/utils/uihelper.dart';
-import 'package:fish_shop/ui/your_listing/bloc/your_listing_bloc.dart';
-import 'package:fish_shop/ui/your_listing/bloc/your_listing_event.dart';
-import 'package:fish_shop/ui/your_listing/bloc/your_listing_state.dart';
-import 'package:fish_shop/ui/your_listing/model/your_listing_model.dart';
+import 'package:buyer_shop/res/colors.dart';
+import 'package:buyer_shop/ui/pending_request_per_listing/pending_request_per_listing.dart';
+import 'package:buyer_shop/ui/utils/uihelper.dart';
+import 'package:buyer_shop/ui/your_listing/bloc/your_listing_bloc.dart';
+import 'package:buyer_shop/ui/your_listing/bloc/your_listing_event.dart';
+import 'package:buyer_shop/ui/your_listing/bloc/your_listing_state.dart';
+import 'package:buyer_shop/ui/your_listing/model/your_listing_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -41,7 +41,7 @@ class _YourListingsState extends State<YourListings> {
                 elevation: 0,
                 backgroundColor: Colors.white,
                 title: Text(
-                  'Your Listings',
+                  'Your Demands',
                   style: TextStyle(
                       color: AppColors.textColor,
                       fontWeight: FontWeight.w700,
@@ -219,9 +219,9 @@ class _YourListingsState extends State<YourListings> {
                 ],
               ),
               UiHelper.verticalSpacing(3.h),
-              state.result.data?[index].buyerRequest?.isEmpty ?? true
+              state.result.data?[index].farmerRequest?.isEmpty ?? true
                   ? Text(
-                      'You have not recieved any orders yet',
+                      'You have not recieved any offers yet',
                       style: TextStyle(
                           fontSize: 10.sp, color: AppColors.AppCardColor),
                     )
@@ -239,8 +239,8 @@ class _YourListingsState extends State<YourListings> {
                   ),
                   child: TextButton(
                     onPressed: () {
-                      List<BuyerRequest> list =
-                          state.result.data?[index].buyerRequest ?? [];
+                      List<FarmerRequest> list =
+                          state.result.data?[index].farmerRequest ?? [];
                       Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -257,8 +257,8 @@ class _YourListingsState extends State<YourListings> {
                                     state.result.data?[index].yieldDate ?? '',
                                 fishType:
                                     state.result.data?[index].fishType ?? '',
-                                buyerRequests:
-                                    state.result.data?[index].buyerRequest ??
+                                farmerRequests:
+                                    state.result.data?[index].farmerRequest ??
                                         []),
                           ));
                     },
@@ -282,7 +282,7 @@ class _YourListingsState extends State<YourListings> {
                     ),
                     child: Center(
                       child: Text(
-                        state.result.data?[index].buyerRequest?.length
+                        state.result.data?[index].farmerRequest?.length
                                 .toString() ??
                             '0',
                         style: TextStyle(

@@ -1,11 +1,11 @@
-import 'package:fish_shop/res/colors.dart';
-import 'package:fish_shop/ui/common_widget/CardListing.dart';
-import 'package:fish_shop/ui/common_widget/FishTextField.dart';
-import 'package:fish_shop/ui/home_listing/bloc/home_listings_bloc.dart';
-import 'package:fish_shop/ui/home_listing/bloc/home_listings_event.dart';
-import 'package:fish_shop/ui/home_listing/bloc/home_listings_state.dart';
-import 'package:fish_shop/ui/settings_page/settings_page.dart';
-import 'package:fish_shop/ui/utils/uihelper.dart';
+import 'package:buyer_shop/res/colors.dart';
+import 'package:buyer_shop/ui/common_widget/CardListing.dart';
+import 'package:buyer_shop/ui/common_widget/FishTextField.dart';
+import 'package:buyer_shop/ui/home_listing/bloc/home_listings_bloc.dart';
+import 'package:buyer_shop/ui/home_listing/bloc/home_listings_event.dart';
+import 'package:buyer_shop/ui/home_listing/bloc/home_listings_state.dart';
+import 'package:buyer_shop/ui/settings_page/settings_page.dart';
+import 'package:buyer_shop/ui/utils/uihelper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -86,7 +86,7 @@ class _ListingsState extends State<Listings> {
                             totalWeight:
                                 state.result.data?[index].totalWeight ?? 0,
                             location: 'Kathmandu',
-                            userDemandId: state.result.data?[index].id ?? '',
+                            farmerSuppyId: state.result.data?[index].id ?? '',
                           );
                         },
                         separatorBuilder: (context, index) =>

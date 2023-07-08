@@ -1,15 +1,15 @@
-import 'package:fish_shop/common/validator.dart';
-import 'package:fish_shop/res/colors.dart';
-import 'package:fish_shop/ui/common_widget/FishTextField.dart';
-import 'package:fish_shop/ui/common_widget/app_dropdown.dart';
-import 'package:fish_shop/ui/home_listing/home_listing.dart';
-import 'package:fish_shop/ui/utils/uihelper.dart';
-import 'package:fish_shop/ui/utils/utils.dart';
-import 'package:fish_shop/ui/yield_farm/bloc/yeild_form_bloc.dart';
-import 'package:fish_shop/ui/yield_farm/bloc/yeild_form_event.dart';
-import 'package:fish_shop/ui/yield_farm/bloc/yeild_form_state.dart';
-import 'package:fish_shop/ui/your_listing/bloc/your_listing_bloc.dart';
-import 'package:fish_shop/ui/your_listing/bloc/your_listing_event.dart';
+import 'package:buyer_shop/common/validator.dart';
+import 'package:buyer_shop/res/colors.dart';
+import 'package:buyer_shop/ui/common_widget/FishTextField.dart';
+import 'package:buyer_shop/ui/common_widget/app_dropdown.dart';
+import 'package:buyer_shop/ui/home_listing/home_listing.dart';
+import 'package:buyer_shop/ui/utils/uihelper.dart';
+import 'package:buyer_shop/ui/utils/utils.dart';
+import 'package:buyer_shop/ui/yield_farm/bloc/yeild_form_bloc.dart';
+import 'package:buyer_shop/ui/yield_farm/bloc/yeild_form_event.dart';
+import 'package:buyer_shop/ui/yield_farm/bloc/yeild_form_state.dart';
+import 'package:buyer_shop/ui/your_listing/bloc/your_listing_bloc.dart';
+import 'package:buyer_shop/ui/your_listing/bloc/your_listing_event.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -58,7 +58,7 @@ class _YieldFormState extends State<YieldForm> {
           elevation: 0,
           backgroundColor: Colors.white,
           title: Text(
-            translation(context).hello,
+            'Create your demands',
             style: TextStyle(
                 color: AppColors.textColor,
                 fontWeight: FontWeight.w700,
@@ -179,7 +179,7 @@ class _YieldFormState extends State<YieldForm> {
                   UiHelper.verticalSpacing(15.h),
                   RichText(
                     text: TextSpan(
-                        text: 'Yeild Date',
+                        text: 'Deadline',
                         style: TextStyle(
                             color: Colors.black,
                             fontWeight: FontWeight.w700,
@@ -231,7 +231,7 @@ class _YieldFormState extends State<YieldForm> {
                                           double.parse(
                                               _totalWeightController.text),
                                           totalWeightUnit),
-                                      yieldDate: date.toString()));
+                                      deadline: date.toString()));
                             }
                           },
                           child: Text(

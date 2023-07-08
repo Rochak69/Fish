@@ -1,15 +1,15 @@
-import 'package:fish_shop/common/validator.dart';
-import 'package:fish_shop/res/colors.dart';
-import 'package:fish_shop/ui/common_widget/FishTextField.dart';
-import 'package:fish_shop/ui/common_widget/app_dropdown.dart';
-import 'package:fish_shop/ui/fisher_farm_details/bloc/fish_farmer_detail_bloc.dart';
-import 'package:fish_shop/ui/fisher_farm_details/bloc/fish_farmer_detail_event.dart';
+import 'package:buyer_shop/common/validator.dart';
+import 'package:buyer_shop/res/colors.dart';
+import 'package:buyer_shop/ui/common_widget/FishTextField.dart';
+import 'package:buyer_shop/ui/common_widget/app_dropdown.dart';
+import 'package:buyer_shop/ui/fisher_farm_details/bloc/fish_farmer_detail_bloc.dart';
+import 'package:buyer_shop/ui/fisher_farm_details/bloc/fish_farmer_detail_event.dart';
 
-import 'package:fish_shop/ui/fisher_farm_details/bloc/fish_farmer_detail_state.dart';
-import 'package:fish_shop/ui/fisher_farm_details/identication_documents.dart';
-import 'package:fish_shop/ui/utils/preferences.dart';
-import 'package:fish_shop/ui/utils/uihelper.dart';
-import 'package:fish_shop/ui/utils/utils.dart';
+import 'package:buyer_shop/ui/fisher_farm_details/bloc/fish_farmer_detail_state.dart';
+import 'package:buyer_shop/ui/fisher_farm_details/identication_documents.dart';
+import 'package:buyer_shop/ui/utils/preferences.dart';
+import 'package:buyer_shop/ui/utils/uihelper.dart';
+import 'package:buyer_shop/ui/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -231,6 +231,10 @@ class _FishFarmDetailsState extends State<FishFarmDetails> {
                             onChanged: (value) {
                               selectedNagarpalika = value;
                               setState(() {});
+                              BlocProvider.of<FishFarmerDetailBloc>(context)
+                                  .add(GetWoda(
+                                      municipalityId:
+                                          selectedNagarpalika ?? '1'));
                             },
                           ),
                           UiHelper.verticalSpacing(16.h),
@@ -252,10 +256,10 @@ class _FishFarmDetailsState extends State<FishFarmDetails> {
                           AppDropDown<String>(
                             value: selectedWoda,
                             isExpanded: true,
-                            items: state.provinceResponse
+                            items: state.wodaResponse
                                     ?.map((e) => DropdownMenuItem(
                                         value: e.id,
-                                        child: Text(e.englishName!)))
+                                        child: Text(e.englishNumber!)))
                                     .toList() ??
                                 [],
                             onChanged: (value) {

@@ -1,13 +1,13 @@
-import 'package:fish_shop/common/validator.dart';
-import 'package:fish_shop/res/colors.dart';
-import 'package:fish_shop/ui/common_widget/FishTextField.dart';
-import 'package:fish_shop/ui/login/login.dart';
+import 'package:buyer_shop/common/validator.dart';
+import 'package:buyer_shop/res/colors.dart';
+import 'package:buyer_shop/ui/common_widget/FishTextField.dart';
+import 'package:buyer_shop/ui/login/login.dart';
 
-import 'package:fish_shop/ui/register/bloc/register_bloc.dart';
-import 'package:fish_shop/ui/register/bloc/register_event.dart';
-import 'package:fish_shop/ui/register/bloc/register_state.dart';
-import 'package:fish_shop/ui/utils/uihelper.dart';
-import 'package:fish_shop/ui/utils/utils.dart';
+import 'package:buyer_shop/ui/register/bloc/register_bloc.dart';
+import 'package:buyer_shop/ui/register/bloc/register_event.dart';
+import 'package:buyer_shop/ui/register/bloc/register_state.dart';
+import 'package:buyer_shop/ui/utils/uihelper.dart';
+import 'package:buyer_shop/ui/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

@@ -1,4 +1,4 @@
-import 'package:fish_shop/common/status.dart';
+import 'package:buyer_shop/common/status.dart';
 
 class ApiResponse<T> {
   ApiResponse({required this.status, this.statusCode, this.message, this.data});

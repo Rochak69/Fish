@@ -1,10 +1,10 @@
-import 'package:fish_shop/common/api_response.dart';
-import 'package:fish_shop/common/status.dart';
-import 'package:fish_shop/providers/api_client.dart';
-import 'package:fish_shop/ui/utils/endpoints.dart';
-import 'package:fish_shop/ui/utils/preferences.dart';
-import 'package:fish_shop/ui/utils/utils.dart';
-import 'package:fish_shop/ui/your_listing/model/your_listing_model.dart';
+import 'package:buyer_shop/common/api_response.dart';
+import 'package:buyer_shop/common/status.dart';
+import 'package:buyer_shop/providers/api_client.dart';
+import 'package:buyer_shop/ui/utils/endpoints.dart';
+import 'package:buyer_shop/ui/utils/preferences.dart';
+import 'package:buyer_shop/ui/utils/utils.dart';
+import 'package:buyer_shop/ui/your_listing/model/your_listing_model.dart';
 import 'package:injectable/injectable.dart';
 
 @singleton
@@ -19,10 +19,10 @@ class YourListingApiClient {
     Preferences preferences = Preferences();
 
     ///or pass object directly to the http post
-    String? farmerId = await preferences.getString(Preference.farmerId);
+    String? buyerId = await preferences.getString(Preference.buyerId);
     String? token = await preferences.getString(Preference.accessToken);
-    if (farmerId == null) {
-      displayToastMessage('Farmer Id is null');
+    if (buyerId == null) {
+      displayToastMessage('Buyer Id is null');
       throw Exception();
     }
     var apiResponse =
@@ -44,9 +44,9 @@ class YourListingApiClient {
     Preferences preferences = Preferences();
 
     ///or pass object directly to the http post
-    String? farmerId = await preferences.getString(Preference.farmerId);
+    String? farmerId = await preferences.getString(Preference.buyerId);
     if (farmerId == null) {
-      displayToastMessage('Farmer Id is null');
+      displayToastMessage('Buyer Id is null');
       throw Exception();
     }
     var apiResponse =

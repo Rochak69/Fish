@@ -1,11 +1,11 @@
-import 'package:fish_shop/common/api_response.dart';
-import 'package:fish_shop/common/status.dart';
-import 'package:fish_shop/providers/api_client.dart';
-import 'package:fish_shop/ui/fisher_farm_details/model/district_response.dart';
-import 'package:fish_shop/ui/fisher_farm_details/model/municipality_response.dart';
-import 'package:fish_shop/ui/fisher_farm_details/model/province_response.dart';
-import 'package:fish_shop/ui/utils/endpoints.dart';
-import 'package:fish_shop/ui/utils/preferences.dart';
+import 'package:buyer_shop/common/api_response.dart';
+import 'package:buyer_shop/common/status.dart';
+import 'package:buyer_shop/providers/api_client.dart';
+import 'package:buyer_shop/ui/fisher_farm_details/model/district_response.dart';
+import 'package:buyer_shop/ui/fisher_farm_details/model/municipality_response.dart';
+import 'package:buyer_shop/ui/fisher_farm_details/model/province_response.dart';
+import 'package:buyer_shop/ui/utils/endpoints.dart';
+import 'package:buyer_shop/ui/utils/preferences.dart';
 import 'package:injectable/injectable.dart';
 
 @singleton
@@ -37,13 +37,12 @@ class FishFarmerDetailApiClient {
       "pondSize": pondSize,
       "provinceId": pradesh,
       "districtId": district,
-      "wardId": "2" ?? woda.toString(),
+      "wardId": woda,
       "municipalityId": municiplaity,
       "idenfication": "fsdgdfg456tgfdg",
       "registration": "ghssdf234dfsd"
     };
-    var apiResponse =
-        await _apiClient?.httpPost(Endpoints.fishFarmerDetails, data);
+    var apiResponse = await _apiClient?.httpPost(Endpoints.buyerRequest, data);
 
     ///converting to response
     var response = ApiResponse(

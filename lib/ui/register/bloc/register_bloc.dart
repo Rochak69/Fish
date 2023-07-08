@@ -1,10 +1,10 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:fish_shop/common/api_response.dart';
-import 'package:fish_shop/ui/register/bloc/register_event.dart';
-import 'package:fish_shop/ui/register/bloc/register_state.dart';
-import 'package:fish_shop/ui/register/repository/register_api_client.dart';
+import 'package:buyer_shop/common/api_response.dart';
+import 'package:buyer_shop/ui/register/bloc/register_event.dart';
+import 'package:buyer_shop/ui/register/bloc/register_state.dart';
+import 'package:buyer_shop/ui/register/repository/register_api_client.dart';
 import 'package:injectable/injectable.dart';
 
 @Injectable()

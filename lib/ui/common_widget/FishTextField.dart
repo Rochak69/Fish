@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:fish_shop/res/colors.dart';
+import 'package:buyer_shop/res/colors.dart';
 
 class FishTextField extends StatelessWidget {
   final String label;

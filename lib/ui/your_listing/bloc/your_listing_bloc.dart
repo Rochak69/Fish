@@ -1,12 +1,12 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:fish_shop/res/colors.dart';
-import 'package:fish_shop/ui/utils/utils.dart';
-import 'package:fish_shop/ui/your_listing/bloc/your_listing_event.dart';
-import 'package:fish_shop/ui/your_listing/bloc/your_listing_state.dart';
-import 'package:fish_shop/ui/your_listing/model/your_listing_model.dart';
-import 'package:fish_shop/ui/your_listing/repository/your_listing_api_client.dart';
+import 'package:buyer_shop/res/colors.dart';
+import 'package:buyer_shop/ui/utils/utils.dart';
+import 'package:buyer_shop/ui/your_listing/bloc/your_listing_event.dart';
+import 'package:buyer_shop/ui/your_listing/bloc/your_listing_state.dart';
+import 'package:buyer_shop/ui/your_listing/model/your_listing_model.dart';
+import 'package:buyer_shop/ui/your_listing/repository/your_listing_api_client.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../common/api_response.dart';

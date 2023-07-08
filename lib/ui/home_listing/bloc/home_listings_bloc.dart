@@ -2,14 +2,14 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:fish_shop/common/api_response.dart';
-import 'package:fish_shop/res/colors.dart';
+import 'package:buyer_shop/common/api_response.dart';
+import 'package:buyer_shop/res/colors.dart';
 
-import 'package:fish_shop/ui/home_listing/bloc/home_listings_event.dart';
-import 'package:fish_shop/ui/home_listing/bloc/home_listings_state.dart';
-import 'package:fish_shop/ui/home_listing/model/home_listings_response.dart';
-import 'package:fish_shop/ui/home_listing/repository/home_listings_api_client.dart';
-import 'package:fish_shop/ui/utils/utils.dart';
+import 'package:buyer_shop/ui/home_listing/bloc/home_listings_event.dart';
+import 'package:buyer_shop/ui/home_listing/bloc/home_listings_state.dart';
+import 'package:buyer_shop/ui/home_listing/model/home_listings_response.dart';
+import 'package:buyer_shop/ui/home_listing/repository/home_listings_api_client.dart';
+import 'package:buyer_shop/ui/utils/utils.dart';
 import 'package:injectable/injectable.dart';
 
 @lazySingleton
@@ -47,7 +47,7 @@ class HomeListingsBloc extends Bloc<HomeListingsEvent, HomeListingsState> {
       SendOffer event, Emitter<HomeListingsState> emit) async {
     try {
       final result = await apiClient.sendOffer(
-          buyerDemandID: event.userDemandId,
+          farmerSupplyId: event.userDemandId,
           phoneNumber: event.phoneNumber,
           supplyWeight: event.weight);
       final response = result as ApiResponse;

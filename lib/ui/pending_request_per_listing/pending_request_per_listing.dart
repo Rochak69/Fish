@@ -1,10 +1,10 @@
-import 'package:fish_shop/res/colors.dart';
-import 'package:fish_shop/ui/pending_request_per_listing/bloc/pending_request_per_listing_bloc.dart';
-import 'package:fish_shop/ui/pending_request_per_listing/bloc/pending_request_per_listing_event.dart';
-import 'package:fish_shop/ui/pending_request_per_listing/bloc/pending_request_per_listing_state.dart';
-import 'package:fish_shop/ui/utils/uihelper.dart';
-import 'package:fish_shop/ui/your_listing/model/your_listing_model.dart';
-import 'package:fish_shop/ui/your_listing/your_listing.dart';
+import 'package:buyer_shop/res/colors.dart';
+import 'package:buyer_shop/ui/pending_request_per_listing/bloc/pending_request_per_listing_bloc.dart';
+import 'package:buyer_shop/ui/pending_request_per_listing/bloc/pending_request_per_listing_event.dart';
+import 'package:buyer_shop/ui/pending_request_per_listing/bloc/pending_request_per_listing_state.dart';
+import 'package:buyer_shop/ui/utils/uihelper.dart';
+import 'package:buyer_shop/ui/your_listing/model/your_listing_model.dart';
+import 'package:buyer_shop/ui/your_listing/your_listing.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -14,13 +14,13 @@ class BuyerRequestsScreen extends StatefulWidget {
   final String totalWeight;
   final String fishType;
   final String yeildDate;
-  final List<BuyerRequest> buyerRequests;
+  final List<FarmerRequest> farmerRequests;
   const BuyerRequestsScreen(
       {super.key,
       required this.avgWeight,
       required this.totalWeight,
       required this.fishType,
-      required this.buyerRequests,
+      required this.farmerRequests,
       required this.yeildDate});
 
   @override
@@ -28,12 +28,12 @@ class BuyerRequestsScreen extends StatefulWidget {
 }
 
 class _BuyerRequestsScreenState extends State<BuyerRequestsScreen> {
-  List<BuyerRequest> changeableRequest = [];
+  List<FarmerRequest> changeableRequest = [];
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      changeableRequest = widget.buyerRequests;
+      changeableRequest = widget.farmerRequests;
       setState(() {});
     });
   }
@@ -194,7 +194,7 @@ class _BuyerRequestsScreenState extends State<BuyerRequestsScreen> {
     );
   }
 
-  _buildSlverCrap(context, BuyerRequest request, int index) {
+  _buildSlverCrap(context, FarmerRequest request, int index) {
     return Container(
       width: double.infinity,
       padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
@@ -330,7 +330,7 @@ class _BuyerRequestsScreenState extends State<BuyerRequestsScreen> {
   }
 
   Future<dynamic> _showAcceptRejectDialog(
-      context, BuyerRequest request, bool isAccept, int index) {
+      context, FarmerRequest request, bool isAccept, int index) {
     return showDialog(
         context: context,
         builder: (BuildContext context) {
@@ -378,10 +378,12 @@ class _BuyerRequestsScreenState extends State<BuyerRequestsScreen> {
                 onTap: () {
                   if (isAccept) {
                     BlocProvider.of<PendingRequestPerListingBloc>(context).add(
-                        AcceptBuyerRequest(id: request.id ?? '', index: index));
+                        AcceptFarmerRequest(
+                            id: request.id ?? '', index: index));
                   } else {
                     BlocProvider.of<PendingRequestPerListingBloc>(context).add(
-                        RejectBuyerRequest(id: request.id ?? '', index: index));
+                        RejectFarmerRequest(
+                            id: request.id ?? '', index: index));
                   }
 
                   Navigator.pop(context);

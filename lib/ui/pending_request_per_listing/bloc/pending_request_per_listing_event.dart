@@ -1,18 +1,18 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 abstract class PendingRequestPerListingEvent {}
 
-class AcceptBuyerRequest extends PendingRequestPerListingEvent {
+class AcceptFarmerRequest extends PendingRequestPerListingEvent {
   final String id;
   final int index;
 
-  AcceptBuyerRequest({required this.id, required this.index});
+  AcceptFarmerRequest({required this.id, required this.index});
 }
 
-class RejectBuyerRequest extends PendingRequestPerListingEvent {
+class RejectFarmerRequest extends PendingRequestPerListingEvent {
   final String id;
   final int index;
 
-  RejectBuyerRequest({
+  RejectFarmerRequest({
     required this.id,
     required this.index,
   });

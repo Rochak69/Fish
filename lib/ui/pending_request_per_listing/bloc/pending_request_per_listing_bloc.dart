@@ -1,11 +1,11 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:fish_shop/common/api_response.dart';
-import 'package:fish_shop/ui/pending_request_per_listing/bloc/pending_request_per_listing_event.dart';
-import 'package:fish_shop/ui/pending_request_per_listing/bloc/pending_request_per_listing_state.dart';
-import 'package:fish_shop/ui/pending_request_per_listing/repository/pending_request_listings_api_client.dart';
-import 'package:fish_shop/ui/utils/utils.dart';
+import 'package:buyer_shop/common/api_response.dart';
+import 'package:buyer_shop/ui/pending_request_per_listing/bloc/pending_request_per_listing_event.dart';
+import 'package:buyer_shop/ui/pending_request_per_listing/bloc/pending_request_per_listing_state.dart';
+import 'package:buyer_shop/ui/pending_request_per_listing/repository/pending_request_listings_api_client.dart';
+import 'package:buyer_shop/ui/utils/utils.dart';
 import 'package:injectable/injectable.dart';
 
 @lazySingleton
@@ -14,11 +14,11 @@ class PendingRequestPerListingBloc
   final PendingRequestPerListingApiClient apiClient;
   PendingRequestPerListingBloc(this.apiClient)
       : super(PendingRequestInitial()) {
-    on<AcceptBuyerRequest>(acceptRequest);
-    on<RejectBuyerRequest>(rejectRequest);
+    on<AcceptFarmerRequest>(acceptRequest);
+    on<RejectFarmerRequest>(rejectRequest);
   }
 
-  FutureOr<void> acceptRequest(AcceptBuyerRequest event,
+  FutureOr<void> acceptRequest(AcceptFarmerRequest event,
       Emitter<PendingRequestPerListingState> emit) async {
     try {
       emit(PendingRequestInitial());
@@ -38,7 +38,7 @@ class PendingRequestPerListingBloc
     }
   }
 
-  FutureOr<void> rejectRequest(RejectBuyerRequest event,
+  FutureOr<void> rejectRequest(RejectFarmerRequest event,
       Emitter<PendingRequestPerListingState> emit) async {
     try {
       emit(PendingRequestInitial());

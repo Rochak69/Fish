@@ -5,17 +5,18 @@ class Endpoints {
   static const String otpUrl = '/user/get-otp';
   static const String verifyOtp = '/user/verify-code';
   static const String resetPassword = '/user/reset-password';
-  static const String fishFarmerDetails = '/farmer/request';
-  static const String createRequestToBuyer = '/farmerRequest';
+  static const String buyerRequest = '/buyer/request';
+
+  static const String createSupplyRequest = '/buyerRequest';
   static const String getAllFarmersSupply = '/farmerSupply';
-  static const String getMyListings = '/me/listing?type=farmer';
+  static const String getMyListings = '/me/listing?type=buyer';
   // static String yourListings(String farmerId) => '/farmerSupply/$farmerId';
-  static String deleteMyListing(String id) => '/farmerSupply/$id';
-  static String acceptBuyerRequest(String id) => '/buyerRequest/$id';
-  static String rejectBuyerRequest(String id) => '/buyerRequest/$id';
-  static const String createFarmersSupply = '/farmerSupply';
-  static const String getAllBuyerDemand = '/buyerDemand';
-  static const String getUserDetails = '/me?type=farmer';
+  static String deleteMyListing(String id) => '/buyerDemand/$id';
+  static String acceptFarmerRequest(String id) => '/farmerRequest/$id';
+  static String rejectFarmerRequest(String id) => '/farmerRequest/$id';
+  static const String createBuyerDemand = '/buyerDemand';
+  static const String getAllFarmerSupply = '/farmerSupply';
+  static const String getUserDetails = '/me?type=buyer';
   static const String getAllBuyerRequest = '/buyer/request';
   String getSpecificFarmerSupply(String supplyId) {
     return '/farmerSupply/$supplyId';

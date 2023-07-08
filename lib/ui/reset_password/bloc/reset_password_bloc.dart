@@ -1,10 +1,10 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:fish_shop/common/api_response.dart';
-import 'package:fish_shop/ui/reset_password/bloc/reset_password_event.dart';
-import 'package:fish_shop/ui/reset_password/bloc/reset_password_state.dart';
-import 'package:fish_shop/ui/reset_password/repository/reset_password_api_client.dart';
+import 'package:buyer_shop/common/api_response.dart';
+import 'package:buyer_shop/ui/reset_password/bloc/reset_password_event.dart';
+import 'package:buyer_shop/ui/reset_password/bloc/reset_password_state.dart';
+import 'package:buyer_shop/ui/reset_password/repository/reset_password_api_client.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable
