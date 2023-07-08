@@ -353,18 +353,19 @@ class _OrderHistoryState extends State<OrderHistory> {
                       Navigator.pop(context);
                       return;
                     }
-                    BlocProvider.of<OrderHistoryBloc>(context)
-                        .add(CompleteOfferEvent(state.orders.data?[index].id ??
-                            ''
-                                ''));
+                    BlocProvider.of<OrderHistoryBloc>(context).add(
+                        CompleteOfferEvent(
+                            state.orders.data?[index].buyerDemandId ??
+                                ''
+                                    ''));
                     Navigator.pop(context);
                   } else {
                     if (state.orders.data?[index].cancelled ?? false) {
                       Navigator.pop(context);
                       return;
                     }
-                    BlocProvider.of<OrderHistoryBloc>(context)
-                        .add(RejectOffer(state.orders.data?[index].id ?? ''));
+                    BlocProvider.of<OrderHistoryBloc>(context).add(RejectOffer(
+                        state.orders.data?[index].buyerDemandId ?? ''));
                     Navigator.pop(context);
                   }
                 },

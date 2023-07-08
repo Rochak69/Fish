@@ -46,7 +46,6 @@ class OrderHistoryBloc extends Bloc<OrderHistoryEvent, OrderHistoryState> {
       CompleteOfferEvent event, Emitter<OrderHistoryState> emit) async {
     try {
       final result = await apiClient.completeOrder(event.id);
-
       displayToastMessage('Sucess');
       add(GetOrderHistory());
     } catch (e) {

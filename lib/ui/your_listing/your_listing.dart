@@ -231,7 +231,7 @@ class _YourListingsState extends State<YourListings> {
                   ? Text(
                       translation(context).no_offer,
                       style: TextStyle(
-                          fontSize: 10.sp, color: AppColors.AppCardColor),
+                          fontSize: 8.sp, color: AppColors.AppCardColor),
                     )
                   : const SizedBox.shrink(),
             ]),

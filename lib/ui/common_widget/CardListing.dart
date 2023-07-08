@@ -75,7 +75,7 @@ class _CardListingState extends State<CardListing> {
                     color: AppColors.textColor),
               ),
               Text(
-                widget.fishName,
+                ' : ${widget.fishName}',
                 style: TextStyle(
                     fontSize: 18.sp,
                     fontWeight: FontWeight.w700,
