@@ -37,16 +37,18 @@ import '../../ui/register/repository/register_api_client.dart' as _i19;
 import '../../ui/reset_password/bloc/reset_password_bloc.dart' as _i22;
 import '../../ui/reset_password/repository/reset_password_api_client.dart'
     as _i21;
-import '../../ui/user_details/repository/user_details_api_client.dart' as _i25;
+import '../../ui/support/bloc/support_bloc.dart' as _i26;
+import '../../ui/support/repository/support_api_client.dart' as _i25;
+import '../../ui/user_details/repository/user_details_api_client.dart' as _i27;
 import '../../ui/utils/preferences.dart' as _i7;
-import '../../ui/verify_otp/bloc/verify_otp_bloc.dart' as _i27;
-import '../../ui/verify_otp/repository/verify_otp_api_client.dart' as _i26;
-import '../../ui/yield_farm/bloc/yeild_form_bloc.dart' as _i29;
-import '../../ui/yield_farm/repository/yeild_form_api_client.dart' as _i28;
-import '../../ui/your_listing/bloc/your_listing_bloc.dart' as _i31;
-import '../../ui/your_listing/repository/your_listing_api_client.dart' as _i30;
+import '../../ui/verify_otp/bloc/verify_otp_bloc.dart' as _i29;
+import '../../ui/verify_otp/repository/verify_otp_api_client.dart' as _i28;
+import '../../ui/yield_farm/bloc/yeild_form_bloc.dart' as _i31;
+import '../../ui/yield_farm/repository/yeild_form_api_client.dart' as _i30;
+import '../../ui/your_listing/bloc/your_listing_bloc.dart' as _i33;
+import '../../ui/your_listing/repository/your_listing_api_client.dart' as _i32;
 import '../notification/notification_services.dart' as _i6;
-import 'dependency_injection.dart' as _i32;
+import 'dependency_injection.dart' as _i34;
 
 extension GetItInjectableX on _i1.GetIt {
   // initializes the registration of main-scope dependencies inside of GetIt
@@ -103,22 +105,26 @@ extension GetItInjectableX on _i1.GetIt {
         _i23.SendOtpApiClient(gh<_i8.ApiClient>()));
     gh.factory<_i24.SendOtpBloc>(
         () => _i24.SendOtpBloc(gh<_i23.SendOtpApiClient>()));
-    gh.singleton<_i25.UserDetailsApiClient>(
-        _i25.UserDetailsApiClient(gh<_i8.ApiClient>()));
-    gh.singleton<_i26.VerifyOtpApiClient>(
-        _i26.VerifyOtpApiClient(gh<_i8.ApiClient>()));
-    gh.factory<_i27.VerifyOtpBloc>(
-        () => _i27.VerifyOtpBloc(gh<_i26.VerifyOtpApiClient>()));
-    gh.singleton<_i28.YeildFormApiClient>(
-        _i28.YeildFormApiClient(gh<_i8.ApiClient>()));
-    gh.lazySingleton<_i29.YeildFormBloc>(
-        () => _i29.YeildFormBloc(gh<_i28.YeildFormApiClient>()));
-    gh.singleton<_i30.YourListingApiClient>(
-        _i30.YourListingApiClient(gh<_i8.ApiClient>()));
-    gh.lazySingleton<_i31.YourListingBloc>(
-        () => _i31.YourListingBloc(gh<_i30.YourListingApiClient>()));
+    gh.singleton<_i25.SupportApiClient>(
+        _i25.SupportApiClient(gh<_i8.ApiClient>()));
+    gh.factory<_i26.SupportBloc>(
+        () => _i26.SupportBloc(gh<_i25.SupportApiClient>()));
+    gh.singleton<_i27.UserDetailsApiClient>(
+        _i27.UserDetailsApiClient(gh<_i8.ApiClient>()));
+    gh.singleton<_i28.VerifyOtpApiClient>(
+        _i28.VerifyOtpApiClient(gh<_i8.ApiClient>()));
+    gh.factory<_i29.VerifyOtpBloc>(
+        () => _i29.VerifyOtpBloc(gh<_i28.VerifyOtpApiClient>()));
+    gh.singleton<_i30.YeildFormApiClient>(
+        _i30.YeildFormApiClient(gh<_i8.ApiClient>()));
+    gh.lazySingleton<_i31.YeildFormBloc>(
+        () => _i31.YeildFormBloc(gh<_i30.YeildFormApiClient>()));
+    gh.singleton<_i32.YourListingApiClient>(
+        _i32.YourListingApiClient(gh<_i8.ApiClient>()));
+    gh.lazySingleton<_i33.YourListingBloc>(
+        () => _i33.YourListingBloc(gh<_i32.YourListingApiClient>()));
     return this;
   }
 }
 
-class _$GetModule extends _i32.GetModule {}
+class _$GetModule extends _i34.GetModule {}

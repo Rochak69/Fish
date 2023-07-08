@@ -1,6 +1,7 @@
 import 'package:buyer_shop/common/validator.dart';
 import 'package:buyer_shop/res/colors.dart';
 import 'package:buyer_shop/ui/common_widget/FishTextField.dart';
+import 'package:buyer_shop/ui/fisher_farm_details/fisher_farm_details.dart';
 import 'package:buyer_shop/ui/login/login.dart';
 
 import 'package:buyer_shop/ui/register/bloc/register_bloc.dart';
@@ -47,7 +48,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
           displayToastMessage('Succesfully Registerd');
           Navigator.pushReplacement(context, MaterialPageRoute(
             builder: (context) {
-              return const LoginPage();
+              return const FishFarmDetails();
             },
           ));
         } else if (state is RegisterFailed) {

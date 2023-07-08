@@ -7,26 +7,26 @@ import 'package:buyer_shop/ui/utils/preferences.dart';
 import 'package:injectable/injectable.dart';
 
 @singleton
-class OrderHistoryApiClient {
+class SupportApiClient {
   ApiClient? _apiClient;
 
-  OrderHistoryApiClient(ApiClient apiClient) {
+  SupportApiClient(ApiClient apiClient) {
     _apiClient = apiClient;
   }
 
-  Future<ApiResponse?> getOrderhistory() async {
+  Future<ApiResponse?> support({
+    required String issue,
+  }) async {
     Preferences preferences = Preferences();
-    String? token = await preferences.getString(Preference.accessToken);
+    String? buyerId = await preferences.getString(Preference.buyerId);
 
     ///or pass object directly to the http post
-
-    var apiResponse = await _apiClient?.httpGetUrl(Endpoints.myOrders, token!);
+    Map<String, dynamic> data = {"buyerId": buyerId, "issue": issue};
+    var apiResponse = await _apiClient?.httpPost(Endpoints.buyerIssue, data);
 
     ///converting to response
     var response = ApiResponse(
-        status: Status.success,
-        message: 'Success',
-        data: ResetPasswordResponse.fromJson(apiResponse));
+        status: Status.success, message: 'Success reset password', data: null);
 
     return response;
   }

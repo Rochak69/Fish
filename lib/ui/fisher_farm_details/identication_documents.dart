@@ -18,8 +18,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class IdentificationDocuments extends StatefulWidget {
   final String userId;
-  final String farmName;
+
   final String phoneNumber;
+  final String comapnyName;
   final String farmersName;
   final String district;
   final String nagarpalika;
@@ -29,13 +30,13 @@ class IdentificationDocuments extends StatefulWidget {
   const IdentificationDocuments(
       {super.key,
       required this.userId,
-      required this.farmName,
       required this.farmersName,
       required this.district,
       required this.nagarpalika,
       required this.woda,
       required this.pradesh,
-      required this.phoneNumber});
+      required this.phoneNumber,
+      required this.comapnyName});
 
   @override
   State<IdentificationDocuments> createState() =>
@@ -45,6 +46,7 @@ class IdentificationDocuments extends StatefulWidget {
 class _IdentificationDocumentsState extends State<IdentificationDocuments> {
   String selectedUnit = 'm';
   String? profilePicturePath;
+  String? selectedDistrict;
   String? citizenshipPicturePath;
   String? palikaPicturePath;
   String? othersPath;
@@ -204,8 +206,19 @@ class _IdentificationDocumentsState extends State<IdentificationDocuments> {
                         ]),
                   ),
                   UiHelper.verticalSpacing(8.h),
-                  AppDropDown(
-                      isExpanded: true, onChanged: (p0) {}, items: const []),
+                  AppDropDown<String>(
+                    value: selectedDistrict,
+                    isExpanded: true,
+                    items: state.wodaResponse
+                            ?.map((e) => DropdownMenuItem(
+                                value: e.id, child: Text(e.englishNumber!)))
+                            .toList() ??
+                        [],
+                    onChanged: (value) {
+                      selectedDistrict = value;
+                      setState(() {});
+                    },
+                  ),
                   UiHelper.verticalSpacing(12.h),
                   RichText(
                     text: TextSpan(
@@ -414,14 +427,16 @@ class _IdentificationDocumentsState extends State<IdentificationDocuments> {
                       onPressed: () {
                         showLoaderDialog(context);
                         BlocProvider.of<FishFarmerDetailBloc>(context).add(
-                            PostFarmerDetailsEvent(
+                            PostBuyerDetailsEvent(
+                                organizationName: 'asdasdsad',
+                                profilePicture: profilePicturePath,
+                                identification: citizenshipPicturePath,
+                                registerPic: palikaPicturePath,
                                 userId: widget.userId,
-                                farmName: widget.farmName,
                                 farmersName: widget.farmersName,
                                 phoneNumber: widget.phoneNumber,
                                 pradesh: widget.pradesh,
                                 district: widget.district,
-                                pondSize: int.tryParse(pondSize.text),
                                 nagarpalika: widget.nagarpalika,
                                 woda: int.tryParse(widget.woda) ?? 0));
                       },

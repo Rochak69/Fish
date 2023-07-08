@@ -22,12 +22,14 @@ class FishFarmDetails extends StatefulWidget {
 }
 
 class _FishFarmDetailsState extends State<FishFarmDetails> {
-  final farmerNameController = TextEditingController();
+  final buyerNameController = TextEditingController();
   final toleNameController = TextEditingController();
   final emailController = TextEditingController();
   final facebookPageController = TextEditingController();
+  final companyNumberController = TextEditingController();
+  final companyNameController = TextEditingController();
+  final websiteController = TextEditingController();
   final phoneNumberController = TextEditingController();
-  final farmNameController = TextEditingController();
   String? selectedPradesh;
   String? selectedDistrict;
   String? selectedNagarpalika;
@@ -62,7 +64,7 @@ class _FishFarmDetailsState extends State<FishFarmDetails> {
                           _buildUpperText(),
                           RichText(
                             text: TextSpan(
-                                text: 'Farmer\'s name',
+                                text: 'Buyer\'s name',
                                 style: TextStyle(
                                     color: Colors.black,
                                     fontWeight: FontWeight.w700,
@@ -78,31 +80,8 @@ class _FishFarmDetailsState extends State<FishFarmDetails> {
                           FishTextField(
                             validator: (value) =>
                                 Validators.validateEmpty(value),
-                            textEditingController: farmerNameController,
-                            label: 'Farm\'s Name',
-                            contentPadding: EdgeInsets.only(left: 15.w),
-                          ),
-                          UiHelper.verticalSpacing(10.h),
-                          RichText(
-                            text: TextSpan(
-                                text: translation(context).hello,
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.w700,
-                                    fontSize: 12.sp),
-                                children: [
-                                  TextSpan(
-                                      text: ' *',
-                                      style: TextStyle(
-                                          color: Colors.red, fontSize: 16.sp))
-                                ]),
-                          ),
-                          UiHelper.verticalSpacing(10.h),
-                          FishTextField(
-                            validator: (value) =>
-                                Validators.validateEmpty(value),
-                            textEditingController: farmNameController,
-                            label: 'Farm\'s Name',
+                            textEditingController: buyerNameController,
+                            label: 'Buyer\'s Name',
                             contentPadding: EdgeInsets.only(left: 15.w),
                           ),
                           UiHelper.verticalSpacing(10.h),
@@ -130,7 +109,7 @@ class _FishFarmDetailsState extends State<FishFarmDetails> {
                           ),
                           UiHelper.verticalSpacing(20.h),
                           Text(
-                            'Farms\'s Address',
+                            'Buyer\'s Address',
                             style: TextStyle(
                                 fontSize: 16.sp,
                                 color: AppColors.textColor,
@@ -312,6 +291,51 @@ class _FishFarmDetailsState extends State<FishFarmDetails> {
                             contentPadding: EdgeInsets.only(left: 5.w),
                             width: double.infinity,
                           ),
+                          UiHelper.verticalSpacing(10.h),
+                          Text(
+                            'Company Number',
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.w700,
+                                fontSize: 12.sp),
+                          ),
+                          UiHelper.verticalSpacing(10.h),
+                          FishTextField(
+                            textEditingController: companyNumberController,
+                            label: 'Company number',
+                            contentPadding: EdgeInsets.only(left: 5.w),
+                            width: double.infinity,
+                          ),
+                          UiHelper.verticalSpacing(10.h),
+                          Text(
+                            'Company Name',
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.w700,
+                                fontSize: 12.sp),
+                          ),
+                          UiHelper.verticalSpacing(10.h),
+                          FishTextField(
+                            textEditingController: companyNameController,
+                            label: 'Company name',
+                            contentPadding: EdgeInsets.only(left: 5.w),
+                            width: double.infinity,
+                          ),
+                          UiHelper.verticalSpacing(10.h),
+                          Text(
+                            'Website',
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.w700,
+                                fontSize: 12.sp),
+                          ),
+                          UiHelper.verticalSpacing(10.h),
+                          FishTextField(
+                            textEditingController: websiteController,
+                            label: 'Website',
+                            contentPadding: EdgeInsets.only(left: 5.w),
+                            width: double.infinity,
+                          ),
                           UiHelper.verticalSpacing(22.h),
                           SizedBox(
                             width: 340.w,
@@ -327,8 +351,7 @@ class _FishFarmDetailsState extends State<FishFarmDetails> {
                                     displayToastMessage('USerId is null');
                                     return;
                                   }
-                                  if (farmerNameController.text.isEmpty ||
-                                      farmNameController.text.isEmpty ||
+                                  if (buyerNameController.text.isEmpty ||
                                       phoneNumberController.text.isEmpty ||
                                       selectedPradesh == null ||
                                       selectedDistrict == null ||
@@ -344,10 +367,10 @@ class _FishFarmDetailsState extends State<FishFarmDetails> {
                                       MaterialPageRoute(
                                         builder: (context) =>
                                             IdentificationDocuments(
+                                          comapnyName:
+                                              companyNameController.text,
                                           userId: userId,
-                                          farmName: farmerNameController.text,
-                                          farmersName:
-                                              farmerNameController.text,
+                                          farmersName: buyerNameController.text,
                                           phoneNumber:
                                               phoneNumberController.text,
                                           district: selectedDistrict!,

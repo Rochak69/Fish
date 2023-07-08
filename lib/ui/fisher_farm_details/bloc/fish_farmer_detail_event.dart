@@ -1,10 +1,13 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 abstract class FishFarmerDetailEvent {}
 
-class PostFarmerDetailsEvent extends FishFarmerDetailEvent {
+class PostBuyerDetailsEvent extends FishFarmerDetailEvent {
   String userId;
   String? profilePicture;
-  String farmName;
+  String? registerPic;
+  String? identification;
+  String organizationName;
+
   String farmersName;
   String phoneNumber;
   int? pondSize;
@@ -17,10 +20,12 @@ class PostFarmerDetailsEvent extends FishFarmerDetailEvent {
   String? email;
   String? facebook;
 
-  PostFarmerDetailsEvent({
+  PostBuyerDetailsEvent({
     required this.userId,
-    this.profilePicture,
-    required this.farmName,
+    required this.profilePicture,
+    required this.registerPic,
+    required this.identification,
+    required this.organizationName,
     required this.farmersName,
     required this.phoneNumber,
     this.pondSize,

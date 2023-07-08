@@ -4,8 +4,10 @@ import 'package:buyer_shop/providers/api_client.dart';
 import 'package:buyer_shop/ui/fisher_farm_details/model/district_response.dart';
 import 'package:buyer_shop/ui/fisher_farm_details/model/municipality_response.dart';
 import 'package:buyer_shop/ui/fisher_farm_details/model/province_response.dart';
+import 'package:buyer_shop/ui/fisher_farm_details/model/woda_response.dart';
 import 'package:buyer_shop/ui/utils/endpoints.dart';
 import 'package:buyer_shop/ui/utils/preferences.dart';
+import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 
 @singleton
@@ -18,8 +20,10 @@ class FishFarmerDetailApiClient {
 
   Future<ApiResponse?> postdetails({
     required String userId,
-    String? profilePicture,
-    String? farmName,
+    required String identification,
+    required String profilePic,
+    required String registerPic,
+    required String organizationName,
     int? pondSize,
     String? pradesh,
     String? district,
@@ -30,19 +34,21 @@ class FishFarmerDetailApiClient {
     Preferences preferences = Preferences();
 
     ///or pass object directly to the http post
-    Map<String, dynamic> data = {
+
+    FormData formData;
+    formData = FormData.fromMap({
       "userId": userId,
-      "farmName": farmName,
-      "profilePicture": "Handsome",
-      "pondSize": pondSize,
       "provinceId": pradesh,
       "districtId": district,
-      "wardId": woda,
+      "wardId": woda.toString(),
+      "buisnessName": organizationName,
       "municipalityId": municiplaity,
-      "idenfication": "fsdgdfg456tgfdg",
-      "registration": "ghssdf234dfsd"
-    };
-    var apiResponse = await _apiClient?.httpPost(Endpoints.buyerRequest, data);
+      "profilePicture": await MultipartFile.fromFile(identification),
+      "identificationImage": await MultipartFile.fromFile(profilePic),
+      "registrationImage": await MultipartFile.fromFile(registerPic),
+    });
+    var apiResponse =
+        await _apiClient?.httpPost(Endpoints.buyerRequest, formData);
 
     ///converting to response
     var response = ApiResponse(
@@ -113,7 +119,7 @@ class FishFarmerDetailApiClient {
       status: Status.success,
       message: 'Success fully logged in',
       data: (apiResponse as List<dynamic>)
-          .map((data) => MunicipalityResponse.fromJson(data))
+          .map((data) => WodaResponse.fromJson(data))
           .toList(),
     );
 

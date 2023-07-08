@@ -14,7 +14,7 @@ class FishFarmerDetailBloc
     extends Bloc<FishFarmerDetailEvent, FishFarmerDetailState> {
   FishFarmerDetailApiClient apiClient;
   FishFarmerDetailBloc(this.apiClient) : super(const FishFarmerDetailState()) {
-    on<PostFarmerDetailsEvent>(_postDetails);
+    on<PostBuyerDetailsEvent>(_postDetails);
     on<GetProvince>(_getProvince);
     on<GetDistrict>(_getDistrict);
     on<GetMunicipality>(_getMunicipality);
@@ -22,16 +22,18 @@ class FishFarmerDetailBloc
   }
 
   FutureOr<void> _postDetails(
-      PostFarmerDetailsEvent event, Emitter<FishFarmerDetailState> emit) async {
+      PostBuyerDetailsEvent event, Emitter<FishFarmerDetailState> emit) async {
     try {
       final result = await apiClient.postdetails(
           userId: event.userId,
           district: event.district,
-          farmName: event.farmName,
           pradesh: event.pradesh,
           pondSize: event.pondSize,
-          profilePicture: event.profilePicture,
           woda: event.woda,
+          organizationName: event.organizationName,
+          profilePic: event.profilePicture!,
+          identification: event.identification!,
+          registerPic: event.registerPic!,
           municiplaity: event.nagarpalika);
       result as ApiResponse;
       emit(state.copyWith(theStates: TheStates.success, isPosted: true));

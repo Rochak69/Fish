@@ -5,6 +5,7 @@ class Endpoints {
   static const String otpUrl = '/user/get-otp';
   static const String verifyOtp = '/user/verify-code';
   static const String resetPassword = '/user/reset-password';
+  static const String buyerIssue = '/issues/buyer';
   static const String buyerRequest = '/buyer/request';
 
   static const String createSupplyRequest = '/buyerRequest';
@@ -18,6 +19,7 @@ class Endpoints {
   static const String getAllFarmerSupply = '/farmerSupply';
   static const String getUserDetails = '/me?type=buyer';
   static const String getAllBuyerRequest = '/buyer/request';
+  static const String myOrders = '/me/myoder?type=buyer';
   String getSpecificFarmerSupply(String supplyId) {
     return '/farmerSupply/$supplyId';
   }
@@ -27,5 +29,5 @@ class Endpoints {
       '/location/district/$provinceId';
   static String getMunicipality(String districtId) =>
       '/location/municipality/$districtId';
-  static String woda(String municipalityId) => '/location/woda/$municipalityId';
+  static String woda(String municipalityId) => '/location/ward/$municipalityId';
 }
