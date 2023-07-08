@@ -24,8 +24,9 @@ class Endpoints {
 
   static const String myOrders = '/me/myoder?type=farmer';
   static const String fishType = '/fishtype';
-  static String completeOrder(String id) => '/myorder/confirm/$id';
-  static String rejectOrder(String id) => '/myorder/reject/$id';
+  static String completeOrder(String id) =>
+      '/me/myoder/confirm/$id?type=farmer';
+  static String rejectOrder(String id) => '/me/myoder/reject/$id?type=farmer';
 
   static const String province = '/location/province';
   static const String getAllDistrict = '/location/district';

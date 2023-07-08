@@ -8,6 +8,7 @@ import 'package:fish_shop/ui/fisher_farm_details/model/district_response.dart';
 import 'package:fish_shop/ui/fisher_farm_details/model/municipality_response.dart';
 import 'package:fish_shop/ui/fisher_farm_details/model/woda_response.dart';
 import 'package:fish_shop/ui/fisher_farm_details/repository/fish_farmer_detail_api_client.dart';
+import 'package:fish_shop/ui/utils/preferences.dart';
 import 'package:fish_shop/ui/utils/utils.dart';
 import 'package:injectable/injectable.dart';
 

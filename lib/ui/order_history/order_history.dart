@@ -353,11 +353,10 @@ class _OrderHistoryState extends State<OrderHistory> {
                       Navigator.pop(context);
                       return;
                     }
-                    BlocProvider.of<OrderHistoryBloc>(context).add(
-                        CompleteOfferEvent(
-                            state.orders.data?[index].buyerDemandId ??
-                                ''
-                                    ''));
+                    BlocProvider.of<OrderHistoryBloc>(context)
+                        .add(CompleteOfferEvent(state.orders.data?[index].id ??
+                            ''
+                                ''));
                     Navigator.pop(context);
                   } else {
                     if (state.orders.data?[index].cancelled ?? false) {
