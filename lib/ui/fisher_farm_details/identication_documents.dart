@@ -8,6 +8,7 @@ import 'package:fish_shop/ui/common_widget/app_dropdown.dart';
 import 'package:fish_shop/ui/fisher_farm_details/bloc/fish_farmer_detail_bloc.dart';
 import 'package:fish_shop/ui/fisher_farm_details/bloc/fish_farmer_detail_event.dart';
 import 'package:fish_shop/ui/fisher_farm_details/bloc/fish_farmer_detail_state.dart';
+import 'package:fish_shop/ui/home_listing/home_listing.dart';
 import 'package:fish_shop/ui/login/login.dart';
 import 'package:fish_shop/ui/utils/uihelper.dart';
 import 'package:fish_shop/ui/utils/utils.dart';
@@ -81,7 +82,8 @@ class _IdentificationDocumentsState extends State<IdentificationDocuments> {
               elevation: 0,
               backgroundColor: Colors.white,
               title: Text(
-                'Fish Farm Details',
+                translation(context).fish_farm_detials,
+                //  'Fish Farm Details',
                 style: TextStyle(
                     color: AppColors.textColor,
                     fontWeight: FontWeight.w700,
@@ -101,7 +103,8 @@ class _IdentificationDocumentsState extends State<IdentificationDocuments> {
                         children: [
                           RichText(
                             text: TextSpan(
-                                text: '    Farms size',
+                                text: translation(context).pond_area,
+                                //'    Farms size',
                                 style: TextStyle(
                                     color: Colors.black,
                                     fontWeight: FontWeight.w700,
@@ -131,7 +134,8 @@ class _IdentificationDocumentsState extends State<IdentificationDocuments> {
                         children: [
                           RichText(
                             text: TextSpan(
-                                text: '   Unit',
+                                text: translation(context).area_unit,
+                                // '   Unit',
                                 style: TextStyle(
                                     color: Colors.black,
                                     fontWeight: FontWeight.w700,
@@ -159,9 +163,37 @@ class _IdentificationDocumentsState extends State<IdentificationDocuments> {
                     ],
                   ),
                   UiHelper.verticalSpacing(12.h),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        translation(context).citizenship_form_detials1,
+                        style: TextStyle(
+                            color: AppColors.textColor,
+                            fontWeight: FontWeight.w700,
+                            fontSize: 18.sp),
+                      ),
+                      Text(
+                        translation(context).citizenship_form_detials2,
+                        style: TextStyle(
+                            color: AppColors.textColor,
+                            fontWeight: FontWeight.w700,
+                            fontSize: 18.sp),
+                      ),
+                      Text(
+                        translation(context).citizenship_form_detials3,
+                        style: TextStyle(
+                            color: AppColors.textRedColor,
+                            fontWeight: FontWeight.w700,
+                            fontSize: 14.sp),
+                      ),
+                    ],
+                  ),
+                  UiHelper.verticalSpacing(12.h),
                   RichText(
                     text: TextSpan(
-                        text: 'Citizenship\'s name',
+                        text: translation(context).citizenship_name,
+                        //'Citizenship\'s name',
                         style: TextStyle(
                             color: Colors.black,
                             fontWeight: FontWeight.w700,
@@ -180,7 +212,8 @@ class _IdentificationDocumentsState extends State<IdentificationDocuments> {
                   UiHelper.verticalSpacing(12.h),
                   RichText(
                     text: TextSpan(
-                        text: 'Citizenship\'s Number',
+                        text: translation(context).citizenship_number,
+                        //'Citizenship\'s Number',
                         style: TextStyle(
                             color: Colors.black,
                             fontWeight: FontWeight.w700,
@@ -199,7 +232,8 @@ class _IdentificationDocumentsState extends State<IdentificationDocuments> {
                   UiHelper.verticalSpacing(12.h),
                   RichText(
                     text: TextSpan(
-                        text: 'Citizenship\'s Location',
+                        text: translation(context).citizenship_place,
+                        //'Citizenship\'s Location',
                         style: TextStyle(
                             color: Colors.black,
                             fontWeight: FontWeight.w700,
@@ -228,7 +262,8 @@ class _IdentificationDocumentsState extends State<IdentificationDocuments> {
                   UiHelper.verticalSpacing(12.h),
                   RichText(
                     text: TextSpan(
-                        text: 'Please upload your picture',
+                        text: translation(context).upload_document,
+                        //'Please upload your picture',
                         style: TextStyle(
                             color: Colors.black,
                             fontWeight: FontWeight.w700,
@@ -240,7 +275,7 @@ class _IdentificationDocumentsState extends State<IdentificationDocuments> {
                                   TextStyle(color: Colors.red, fontSize: 16.sp))
                         ]),
                   ),
-                  UiHelper.verticalSpacing(8.h),
+                  UiHelper.verticalSpacing(12.h),
                   FishTextField(
                       isReadOnly: true,
                       label: path.basename(profilePicturePath ?? ''),
@@ -278,7 +313,8 @@ class _IdentificationDocumentsState extends State<IdentificationDocuments> {
                   UiHelper.verticalSpacing(12.h),
                   RichText(
                     text: TextSpan(
-                        text: 'Please upload your citizenship\'s picture',
+                        text: translation(context).citizenship_upload,
+                        //'Please upload your citizenship\'s picture',
                         style: TextStyle(
                             color: Colors.black,
                             fontWeight: FontWeight.w700,
@@ -326,9 +362,18 @@ class _IdentificationDocumentsState extends State<IdentificationDocuments> {
                         child: const Text('Choose'),
                       )),
                   UiHelper.verticalSpacing(12.h),
+                  Text(
+                    translation(context).no_citizenship,
+                    style: TextStyle(
+                        color: AppColors.textColor,
+                        fontWeight: FontWeight.w700,
+                        fontSize: 18.sp),
+                  ),
+                  UiHelper.verticalSpacing(8.h),
                   RichText(
                     text: TextSpan(
-                        text: 'Please upload your picture',
+                        text: translation(context).ask_necessary_document,
+                        //'Please upload your picture',
                         style: TextStyle(
                             color: Colors.black,
                             fontWeight: FontWeight.w700,
@@ -376,9 +421,18 @@ class _IdentificationDocumentsState extends State<IdentificationDocuments> {
                         child: const Text('Choose'),
                       )),
                   UiHelper.verticalSpacing(12.h),
+                  Text(
+                    translation(context).commpany_details,
+                    style: TextStyle(
+                        color: AppColors.textColor,
+                        fontWeight: FontWeight.w700,
+                        fontSize: 18.sp),
+                  ),
+                  UiHelper.verticalSpacing(8.h),
                   RichText(
                     text: TextSpan(
-                        text: 'Please upload your picture',
+                        text: translation(context).conpany_form_statement,
+                        //'Please upload your picture',
                         style: TextStyle(
                             color: Colors.black,
                             fontWeight: FontWeight.w700,

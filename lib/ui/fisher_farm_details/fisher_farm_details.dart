@@ -62,7 +62,8 @@ class _FishFarmDetailsState extends State<FishFarmDetails> {
                           _buildUpperText(),
                           RichText(
                             text: TextSpan(
-                                text: 'Farmer\'s name',
+                                text: translation(context).farmer_name,
+                                //'Farmer\'s name',
                                 style: TextStyle(
                                     color: Colors.black,
                                     fontWeight: FontWeight.w700,
@@ -79,13 +80,14 @@ class _FishFarmDetailsState extends State<FishFarmDetails> {
                             validator: (value) =>
                                 Validators.validateEmpty(value),
                             textEditingController: farmerNameController,
-                            label: 'Farm\'s Name',
+                            label: translation(context).farm_name,
+                            // 'Farm\'s Name',
                             contentPadding: EdgeInsets.only(left: 15.w),
                           ),
                           UiHelper.verticalSpacing(10.h),
                           RichText(
                             text: TextSpan(
-                                text: translation(context).hello,
+                                text: translation(context).farm_name,
                                 style: TextStyle(
                                     color: Colors.black,
                                     fontWeight: FontWeight.w700,
@@ -102,13 +104,15 @@ class _FishFarmDetailsState extends State<FishFarmDetails> {
                             validator: (value) =>
                                 Validators.validateEmpty(value),
                             textEditingController: farmNameController,
-                            label: 'Farm\'s Name',
+                            label: translation(context).farm_name,
+                            //'Farm\'s Name',
                             contentPadding: EdgeInsets.only(left: 15.w),
                           ),
                           UiHelper.verticalSpacing(10.h),
                           RichText(
                             text: TextSpan(
-                                text: 'Phone Number',
+                                text: translation(context).mobile_number,
+                                //'Phone Number',
                                 style: TextStyle(
                                     color: Colors.black,
                                     fontWeight: FontWeight.w700,
@@ -125,12 +129,14 @@ class _FishFarmDetailsState extends State<FishFarmDetails> {
                             validator: (value) =>
                                 Validators.validateEmpty(value),
                             textEditingController: phoneNumberController,
-                            label: 'Phone Number',
+                            label: translation(context).mobile_number,
+                            //'Phone Number',
                             contentPadding: EdgeInsets.only(left: 15.w),
                           ),
                           UiHelper.verticalSpacing(20.h),
                           Text(
-                            'Farms\'s Address',
+                            translation(context).farm_address,
+                            //   'Farms\'s Address',
                             style: TextStyle(
                                 fontSize: 16.sp,
                                 color: AppColors.textColor,
@@ -173,7 +179,8 @@ class _FishFarmDetailsState extends State<FishFarmDetails> {
                           UiHelper.verticalSpacing(8.h),
                           RichText(
                             text: TextSpan(
-                                text: 'District',
+                                text: translation(context).farmer_district,
+                                //'District',
                                 style: TextStyle(
                                     color: Colors.black,
                                     fontWeight: FontWeight.w700,
@@ -206,7 +213,8 @@ class _FishFarmDetailsState extends State<FishFarmDetails> {
                           UiHelper.verticalSpacing(10.h),
                           RichText(
                             text: TextSpan(
-                                text: 'NagarPalika',
+                                text: translation(context).palika,
+                                // 'NagarPalika',
                                 style: TextStyle(
                                     color: Colors.black,
                                     fontWeight: FontWeight.w700,
@@ -240,7 +248,8 @@ class _FishFarmDetailsState extends State<FishFarmDetails> {
                           UiHelper.verticalSpacing(16.h),
                           RichText(
                             text: TextSpan(
-                                text: 'Woda',
+                                text: translation(context).woda,
+                                //'Woda',
                                 style: TextStyle(
                                     color: Colors.black,
                                     fontWeight: FontWeight.w700,
@@ -269,7 +278,8 @@ class _FishFarmDetailsState extends State<FishFarmDetails> {
                           ),
                           UiHelper.verticalSpacing(16.h),
                           Text(
-                            'Tole Name',
+                            translation(context).tole,
+                            //   'Tole Name',
                             style: TextStyle(
                                 color: Colors.black,
                                 fontWeight: FontWeight.w700,
@@ -278,13 +288,15 @@ class _FishFarmDetailsState extends State<FishFarmDetails> {
                           UiHelper.verticalSpacing(8.h),
                           FishTextField(
                             textEditingController: toleNameController,
-                            label: 'Tole name',
+                            label: translation(context).tole,
+                            //'Tole name',
                             contentPadding: EdgeInsets.only(left: 5.w),
                             width: double.infinity,
                           ),
                           UiHelper.verticalSpacing(16.h),
                           Text(
-                            'Email',
+                            translation(context).email,
+                            // 'Email',
                             style: TextStyle(
                                 color: Colors.black,
                                 fontWeight: FontWeight.w700,
@@ -293,13 +305,15 @@ class _FishFarmDetailsState extends State<FishFarmDetails> {
                           UiHelper.verticalSpacing(8.h),
                           FishTextField(
                             textEditingController: emailController,
-                            label: 'Email',
+                            label: translation(context).email,
+                            //'Email',
                             contentPadding: EdgeInsets.only(left: 5.w),
                             width: double.infinity,
                           ),
                           UiHelper.verticalSpacing(16.h),
                           Text(
-                            'Facebook page',
+                            translation(context).facebook_page,
+                            // 'Facebook page',
                             style: TextStyle(
                                 color: Colors.black,
                                 fontWeight: FontWeight.w700,
@@ -308,7 +322,8 @@ class _FishFarmDetailsState extends State<FishFarmDetails> {
                           UiHelper.verticalSpacing(8.h),
                           FishTextField(
                             textEditingController: facebookPageController,
-                            label: 'Facebook Page',
+                            label: translation(context).facebook_page,
+                            //'Facebook Page',
                             contentPadding: EdgeInsets.only(left: 5.w),
                             width: double.infinity,
                           ),
@@ -358,7 +373,7 @@ class _FishFarmDetailsState extends State<FishFarmDetails> {
                                       ));
                                 },
                                 child: Text(
-                                  'Send For Approval',
+                                  'Next',
                                   style: TextStyle(
                                       fontSize: 12.sp,
                                       fontWeight: FontWeight.w600,
@@ -392,7 +407,8 @@ class _FishFarmDetailsState extends State<FishFarmDetails> {
       children: [
         UiHelper.verticalSpacing(32.h),
         Text(
-          'Fill in the details about your fish farm',
+          translation(context).farmer_details,
+          //'Fill in the details about your fish farm',
           style: TextStyle(
             color: AppColors.textColor,
             fontWeight: FontWeight.w700,

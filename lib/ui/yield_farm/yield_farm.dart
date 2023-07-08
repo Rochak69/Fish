@@ -58,7 +58,7 @@ class _YieldFormState extends State<YieldForm> {
           elevation: 0,
           backgroundColor: Colors.white,
           title: Text(
-            translation(context).hello,
+            translation(context).fish_yields,
             style: TextStyle(
                 color: AppColors.textColor,
                 fontWeight: FontWeight.w700,
@@ -77,7 +77,8 @@ class _YieldFormState extends State<YieldForm> {
                   UiHelper.verticalSpacing(10.h),
                   RichText(
                     text: TextSpan(
-                        text: 'Type of fish',
+                        text: translation(context).fish_type,
+                        //'Type of fish',
                         style: TextStyle(
                             color: Colors.black,
                             fontWeight: FontWeight.w700,
@@ -99,7 +100,8 @@ class _YieldFormState extends State<YieldForm> {
                   UiHelper.verticalSpacing(15),
                   RichText(
                     text: TextSpan(
-                        text: 'Weight per fish',
+                        text: translation(context).per_fish_weight,
+                        //'Weight per fish',
                         style: TextStyle(
                             color: Colors.black,
                             fontWeight: FontWeight.w700,
@@ -139,7 +141,8 @@ class _YieldFormState extends State<YieldForm> {
                   UiHelper.verticalSpacing(15.h),
                   RichText(
                     text: TextSpan(
-                        text: 'Total weight',
+                        text: translation(context).pond_total_quantity,
+                        //'Total weight',
                         style: TextStyle(
                             color: Colors.black,
                             fontWeight: FontWeight.w700,
@@ -179,7 +182,8 @@ class _YieldFormState extends State<YieldForm> {
                   UiHelper.verticalSpacing(15.h),
                   RichText(
                     text: TextSpan(
-                        text: 'Yeild Date',
+                        text: translation(context).pond_fish_date,
+                        //'Yeild Date',
                         style: TextStyle(
                             color: Colors.black,
                             fontWeight: FontWeight.w700,
@@ -254,7 +258,8 @@ class _YieldFormState extends State<YieldForm> {
 
   _buildUpperText(context) {
     return Text(
-      'Fill the details for your yields',
+      translation(context).fish_yields_details,
+      // 'Fill the details for your yields',
       style: TextStyle(
         color: AppColors.secondaryTextColor,
         fontWeight: FontWeight.w400,

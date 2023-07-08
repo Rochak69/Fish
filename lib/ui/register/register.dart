@@ -90,7 +90,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                   _buildUpperText(),
                   UiHelper.verticalSpacing(10.h),
                   Text(
-                    'Name',
+                    'Full Name',
                     style: TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.w700,

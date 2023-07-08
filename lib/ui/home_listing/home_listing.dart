@@ -112,7 +112,7 @@ class _HomeListingState extends State<HomeListing>
                       1,
                     ),
                     _buildBottomNavigationBarItem(
-                      'Listing',
+                      'Orders',
                       'assets/bottom_navigation_bar/tasks.png',
                       'assets/bottom_navigation_bar/tasks.png',
                       2,
