@@ -2,6 +2,7 @@ import 'package:fish_shop/res/colors.dart';
 import 'package:fish_shop/ui/order_history/bloc/order_history_bloc.dart';
 import 'package:fish_shop/ui/order_history/bloc/order_history_state.dart';
 import 'package:fish_shop/ui/utils/uihelper.dart';
+import 'package:fish_shop/ui/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -29,7 +30,8 @@ class _OrderHistoryState extends State<OrderHistory> {
         elevation: 0,
         backgroundColor: Colors.white,
         title: Text(
-          'Order History',
+          translation(context).order_history,
+          //  'Order History',
           style: TextStyle(
               color: AppColors.textColor,
               fontWeight: FontWeight.w700,
@@ -76,16 +78,17 @@ class _OrderHistoryState extends State<OrderHistory> {
               Row(
                 children: [
                   Text(
-                    'Fish Type : ',
+                    translation(context).fish_type,
+                    //'Fish Type : ',
                     style: TextStyle(
-                        fontSize: 18.sp,
+                        fontSize: 16.sp,
                         fontWeight: FontWeight.w700,
                         color: AppColors.textColor),
                   ),
                   Text(
                     'Silver Carp',
                     style: TextStyle(
-                        fontSize: 18.sp,
+                        fontSize: 16.sp,
                         fontWeight: FontWeight.w700,
                         color: Colors.black),
                   ),
@@ -95,14 +98,16 @@ class _OrderHistoryState extends State<OrderHistory> {
               Row(
                 children: [
                   Text(
-                    'Fish weight : ',
+                    translation(context).fish_weight,
+
+                    // 'Fish weight : ',
                     style: TextStyle(
                         fontSize: 12.sp,
                         fontWeight: FontWeight.w700,
                         color: Colors.black),
                   ),
                   Text(
-                    '5 Kg',
+                    '5 के.जी',
                     style: TextStyle(
                         fontSize: 12.sp,
                         fontWeight: FontWeight.w700,
@@ -113,7 +118,8 @@ class _OrderHistoryState extends State<OrderHistory> {
               Row(
                 children: [
                   Text(
-                    'Qunatity : ',
+                    translation(context).buy_quantity,
+                    //   'Qunatity : ',
                     style: TextStyle(
                         fontSize: 12.sp,
                         fontWeight: FontWeight.w700,
@@ -131,7 +137,8 @@ class _OrderHistoryState extends State<OrderHistory> {
               Row(
                 children: [
                   Text(
-                    'Yeild Date : ',
+                    translation(context).buy_date,
+                    //'Yeild Date : ',
                     style: TextStyle(
                         fontSize: 12.sp,
                         fontWeight: FontWeight.w700,
@@ -139,60 +146,6 @@ class _OrderHistoryState extends State<OrderHistory> {
                   ),
                   Text(
                     '2023-12-22',
-                    style: TextStyle(
-                        fontSize: 12.sp,
-                        fontWeight: FontWeight.w700,
-                        color: AppColors.AppCardColor),
-                  ),
-                ],
-              ),
-              Row(
-                children: [
-                  Text(
-                    'Buyer\'s name : ',
-                    style: TextStyle(
-                        fontSize: 12.sp,
-                        fontWeight: FontWeight.w700,
-                        color: Colors.black),
-                  ),
-                  Text(
-                    'Ritesh Bista',
-                    style: TextStyle(
-                        fontSize: 12.sp,
-                        fontWeight: FontWeight.w700,
-                        color: AppColors.AppCardColor),
-                  ),
-                ],
-              ),
-              Row(
-                children: [
-                  Text(
-                    'Buyers Address : ',
-                    style: TextStyle(
-                        fontSize: 12.sp,
-                        fontWeight: FontWeight.w700,
-                        color: Colors.black),
-                  ),
-                  Text(
-                    'Kathmandu',
-                    style: TextStyle(
-                        fontSize: 12.sp,
-                        fontWeight: FontWeight.w700,
-                        color: AppColors.AppCardColor),
-                  ),
-                ],
-              ),
-              Row(
-                children: [
-                  Text(
-                    'Phone Number : ',
-                    style: TextStyle(
-                        fontSize: 12.sp,
-                        fontWeight: FontWeight.w700,
-                        color: Colors.black),
-                  ),
-                  Text(
-                    '9860908787',
                     style: TextStyle(
                         fontSize: 12.sp,
                         fontWeight: FontWeight.w700,
@@ -212,33 +165,95 @@ class _OrderHistoryState extends State<OrderHistory> {
                         return AlertDialog(
                           actionsAlignment: MainAxisAlignment.center,
                           actionsPadding: EdgeInsets.symmetric(vertical: 12.h),
-                          title: const Center(
+                          title: Center(
                             child: Text(
-                              'Mark as Completed',
+                              translation(context).mark_as_completed,
+                              // 'Mark as Completed',
                               style: TextStyle(
                                   color: Colors.black,
                                   fontSize: 16,
                                   fontWeight: FontWeight.w900),
                             ),
                           ),
-                          content: const Column(
+                          content: Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              Text(
-                                'Are you sure you want to Mark this',
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  color: AppColors.secondaryTextColor,
-                                  fontWeight: FontWeight.w600,
-                                ),
+                              Row(
+                                children: [
+                                  Text(
+                                    translation(context).fish_type,
+                                    //    'Fish Type : ',
+                                    style: TextStyle(
+                                        fontSize: 18.sp,
+                                        fontWeight: FontWeight.w700,
+                                        color: AppColors.textColor),
+                                  ),
+                                  Text(
+                                    'नैनी',
+                                    style: TextStyle(
+                                        fontSize: 18.sp,
+                                        fontWeight: FontWeight.w700,
+                                        color: Colors.black),
+                                  ),
+                                ],
                               ),
-                              Text(
-                                'deal as completed ?',
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  color: AppColors.secondaryTextColor,
-                                  fontWeight: FontWeight.w600,
-                                ),
+                              UiHelper.verticalSpacing(4.h),
+                              Row(
+                                children: [
+                                  Text(
+                                    translation(context).fish_weight,
+                                    //'Fish weight : ',
+                                    style: TextStyle(
+                                        fontSize: 12.sp,
+                                        fontWeight: FontWeight.w700,
+                                        color: Colors.black),
+                                  ),
+                                  Text(
+                                    '5 के.जी',
+                                    style: TextStyle(
+                                        fontSize: 12.sp,
+                                        fontWeight: FontWeight.w700,
+                                        color: AppColors.AppCardColor),
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  Text(
+                                    translation(context).buy_quantity,
+                                    //   'Qunatity : ',
+                                    style: TextStyle(
+                                        fontSize: 12.sp,
+                                        fontWeight: FontWeight.w700,
+                                        color: Colors.black),
+                                  ),
+                                  Text(
+                                    '66',
+                                    style: TextStyle(
+                                        fontSize: 12.sp,
+                                        fontWeight: FontWeight.w800,
+                                        color: AppColors.AppCardColor),
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  Text(
+                                    translation(context).buy_date,
+                                    //   'Yeild Date : ',
+                                    style: TextStyle(
+                                        fontSize: 12.sp,
+                                        fontWeight: FontWeight.w700,
+                                        color: Colors.black),
+                                  ),
+                                  Text(
+                                    '2023-12-22',
+                                    style: TextStyle(
+                                        fontSize: 12.sp,
+                                        fontWeight: FontWeight.w700,
+                                        color: AppColors.AppCardColor),
+                                  ),
+                                ],
                               ),
                             ],
                           ),
@@ -249,12 +264,12 @@ class _OrderHistoryState extends State<OrderHistory> {
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(12.r),
                                 border: Border.all(
-                                    color: AppColors
-                                        .AppCardColor), // Specify the border color
+                                  color: AppColors.textColor,
+                                ), // Specify the border color
                               ),
                               child: const Center(
                                 child: Text(
-                                  'Sure',
+                                  'Yes',
                                   style: TextStyle(
                                     fontSize: 12,
                                     color: AppColors.textColor,
@@ -272,15 +287,15 @@ class _OrderHistoryState extends State<OrderHistory> {
                                 width: 91.w,
                                 height: 40.h,
                                 decoration: BoxDecoration(
-                                  color: Colors.blue,
+                                  color: AppColors.textRedColor,
                                   borderRadius: BorderRadius.circular(12.r),
                                   border: Border.all(
-                                      color: Colors
-                                          .blue), // Specify the border color
+                                    color: AppColors.textRedColor,
+                                  ), // Specify the border color
                                 ),
                                 child: const Center(
                                   child: Text(
-                                    'Cancel',
+                                    'No',
                                     style: TextStyle(
                                         fontSize: 12,
                                         fontWeight: FontWeight.w600,
@@ -304,7 +319,8 @@ class _OrderHistoryState extends State<OrderHistory> {
                   ),
                   child: Center(
                     child: Text(
-                      'Completed',
+                      translation(context).completed,
+                      // 'Completed',
                       style: TextStyle(
                           color: AppColors.textColor,
                           fontWeight: FontWeight.w700,
@@ -322,33 +338,95 @@ class _OrderHistoryState extends State<OrderHistory> {
                         return AlertDialog(
                           actionsAlignment: MainAxisAlignment.center,
                           actionsPadding: EdgeInsets.symmetric(vertical: 12.h),
-                          title: const Center(
+                          title: Center(
                             child: Text(
-                              'Mark as Canceled',
+                              translation(context).marks_as_cancelled,
+                              // 'Mark as Canceled',
                               style: TextStyle(
                                   color: Colors.black,
                                   fontSize: 16,
                                   fontWeight: FontWeight.w900),
                             ),
                           ),
-                          content: const Column(
+                          content: Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              Text(
-                                'Are you sure you want to Mark this',
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  color: AppColors.secondaryTextColor,
-                                  fontWeight: FontWeight.w600,
-                                ),
+                              Row(
+                                children: [
+                                  Text(
+                                    translation(context).fish_type,
+                                    //    'Fish Type : ',
+                                    style: TextStyle(
+                                        fontSize: 18.sp,
+                                        fontWeight: FontWeight.w700,
+                                        color: AppColors.textColor),
+                                  ),
+                                  Text(
+                                    'नैनी',
+                                    style: TextStyle(
+                                        fontSize: 18.sp,
+                                        fontWeight: FontWeight.w700,
+                                        color: Colors.black),
+                                  ),
+                                ],
                               ),
-                              Text(
-                                'deal as cancelled ?',
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  color: AppColors.secondaryTextColor,
-                                  fontWeight: FontWeight.w600,
-                                ),
+                              UiHelper.verticalSpacing(4.h),
+                              Row(
+                                children: [
+                                  Text(
+                                    translation(context).fish_weight,
+                                    //'Fish weight : ',
+                                    style: TextStyle(
+                                        fontSize: 12.sp,
+                                        fontWeight: FontWeight.w700,
+                                        color: Colors.black),
+                                  ),
+                                  Text(
+                                    '5 के.जी',
+                                    style: TextStyle(
+                                        fontSize: 12.sp,
+                                        fontWeight: FontWeight.w700,
+                                        color: AppColors.AppCardColor),
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  Text(
+                                    translation(context).buy_quantity,
+                                    //   'Qunatity : ',
+                                    style: TextStyle(
+                                        fontSize: 12.sp,
+                                        fontWeight: FontWeight.w700,
+                                        color: Colors.black),
+                                  ),
+                                  Text(
+                                    '66',
+                                    style: TextStyle(
+                                        fontSize: 12.sp,
+                                        fontWeight: FontWeight.w800,
+                                        color: AppColors.AppCardColor),
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  Text(
+                                    translation(context).buy_date,
+                                    //   'Yeild Date : ',
+                                    style: TextStyle(
+                                        fontSize: 12.sp,
+                                        fontWeight: FontWeight.w700,
+                                        color: Colors.black),
+                                  ),
+                                  Text(
+                                    '2023-12-22',
+                                    style: TextStyle(
+                                        fontSize: 12.sp,
+                                        fontWeight: FontWeight.w700,
+                                        color: AppColors.AppCardColor),
+                                  ),
+                                ],
                               ),
                             ],
                           ),
@@ -390,7 +468,7 @@ class _OrderHistoryState extends State<OrderHistory> {
                                 ),
                                 child: const Center(
                                   child: Text(
-                                    'Cancel',
+                                    'No',
                                     style: TextStyle(
                                       fontSize: 12,
                                       fontWeight: FontWeight.w600,
@@ -414,7 +492,8 @@ class _OrderHistoryState extends State<OrderHistory> {
                         width: 1.5.w), // Specify the border color
                   ),
                   child: Center(
-                    child: Text('Cancelled',
+                    child: Text(translation(context).cancelled,
+                        //'Cancelled',
                         style: TextStyle(
                           color: AppColors.textRedContainerColor,
                           fontSize: 12.sp,

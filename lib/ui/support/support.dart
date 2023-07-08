@@ -20,6 +20,12 @@ class Support extends StatefulWidget {
 }
 
 class _SupportState extends State<Support> {
+  bool isAppCrash = true;
+  bool isDataNotVisible = false;
+  bool isAppSlow = false;
+  bool isAppFlowIssue = false;
+  bool isOther = false;
+
   TextEditingController controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
@@ -78,8 +84,9 @@ class _SupportState extends State<Support> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           UiHelper.verticalSpacing(20.h),
-          const Text(
-            'What type of issue are you facing?',
+          Text(
+            translation(context).problem_facing,
+            //   'What type of issue are you facing?',
             style: TextStyle(
               color: Colors.black,
               fontWeight: FontWeight.w700,
@@ -89,19 +96,19 @@ class _SupportState extends State<Support> {
           UiHelper.verticalSpacing(16),
           Row(
             children: [
-              _buildCards('App Crash'),
+              _buildCards('App Crash', isAppCrash),
               UiHelper.horizontalSpacing(15.w),
-              _buildCards('Data Not Visible'),
+              _buildCards('Data Not Visible', isDataNotVisible),
               UiHelper.horizontalSpacing(15.w),
-              _buildCards('App Slow')
+              _buildCards('App Slow', isAppSlow)
             ],
           ),
           UiHelper.verticalSpacing(16.h),
           Row(
             children: [
-              _buildCards('App Flow Issue'),
+              _buildCards('App Flow Issue', isAppCrash),
               UiHelper.horizontalSpacing(15.w),
-              _buildCards('Others'),
+              _buildCards('Others', isOther),
             ],
           ),
           UiHelper.verticalSpacing(25),
@@ -125,8 +132,9 @@ class _SupportState extends State<Support> {
     );
   }
 
-  InkWell _buildCards(String label) {
-    return InkWell(
+  GestureDetector _buildCards(String label, bool) {
+    return GestureDetector(
+      onTap: () {},
       child: Container(
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(18.r),

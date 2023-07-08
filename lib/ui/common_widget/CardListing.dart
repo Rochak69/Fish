@@ -144,6 +144,25 @@ class _CardListingState extends State<CardListing> {
                 ),
               ],
             ),
+            Row(
+              children: [
+                Text(
+                  translation(context).listing_expired,
+                  // 'Expiry Date : ',
+                  style: TextStyle(
+                      fontSize: 12.sp,
+                      fontWeight: FontWeight.w700,
+                      color: Colors.black),
+                ),
+                Text(
+                  formarDate(widget.date),
+                  style: TextStyle(
+                      fontSize: 12.sp,
+                      fontWeight: FontWeight.w700,
+                      color: AppColors.AppCardColor),
+                ),
+              ],
+            ),
             // Text(
             //   'Location : ${widget.location}',
             //   style: TextStyle(
@@ -199,7 +218,8 @@ class _CardListingState extends State<CardListing> {
                 Row(
                   children: [
                     Text(
-                      'Fish Type : ',
+                      translation(context).fish_type,
+                      //  'Fish Type : ',
                       style: TextStyle(
                           fontSize: 18.sp,
                           fontWeight: FontWeight.w700,
@@ -218,14 +238,15 @@ class _CardListingState extends State<CardListing> {
                 Row(
                   children: [
                     Text(
-                      'Fish weight : ',
+                      translation(context).fish_weight,
+                      //   'Fish weight : ',
                       style: TextStyle(
                           fontSize: 12.sp,
                           fontWeight: FontWeight.w700,
                           color: Colors.black),
                     ),
                     Text(
-                      '${widget.avgWeight} Kg',
+                      '${widget.avgWeight} के.जी',
                       style: TextStyle(
                           fontSize: 12.sp,
                           fontWeight: FontWeight.w700,
@@ -236,7 +257,8 @@ class _CardListingState extends State<CardListing> {
                 Row(
                   children: [
                     Text(
-                      'Qunatity : ',
+                      translation(context).quantity,
+                      //    'Qunatity : ',
                       style: TextStyle(
                           fontSize: 12.sp,
                           fontWeight: FontWeight.w700,
@@ -254,7 +276,8 @@ class _CardListingState extends State<CardListing> {
                 Row(
                   children: [
                     Text(
-                      'Yeild Date : ',
+                      translation(context).yield_date,
+                      // 'Yeild Date : ',
                       style: TextStyle(
                           fontSize: 12.sp,
                           fontWeight: FontWeight.w700,
@@ -272,7 +295,8 @@ class _CardListingState extends State<CardListing> {
                 Row(
                   children: [
                     Text(
-                      'Expiry Date : ',
+                      translation(context).listing_finished,
+                      // 'Expiry Date : ',
                       style: TextStyle(
                           fontSize: 12.sp,
                           fontWeight: FontWeight.w700,
@@ -315,7 +339,7 @@ class _CardListingState extends State<CardListing> {
                     Navigator.pop(context);
                   },
                   child: Text(
-                    'Sure',
+                    'Yes',
                     style: TextStyle(
                       color: AppColors.textColor,
                       fontWeight: FontWeight.w600,
@@ -335,7 +359,7 @@ class _CardListingState extends State<CardListing> {
                     Navigator.pop(context);
                   },
                   child: const Text(
-                    'Cancel',
+                    'No',
                     style: TextStyle(color: Colors.white),
                   )),
             ),

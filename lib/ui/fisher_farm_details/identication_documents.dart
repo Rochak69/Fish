@@ -485,28 +485,23 @@ class _IdentificationDocumentsState extends State<IdentificationDocuments> {
                     height: 48.h,
                     child: ElevatedButton(
                       onPressed: () {
-                        Navigator.pushReplacement(context, MaterialPageRoute(
-                          builder: (context) {
-                            return const HomeListing();
-                          },
-                        ));
-                        // showLoaderDialog(context);
-                        // BlocProvider.of<FishFarmerDetailBloc>(context).add(
-                        //     PostFarmerDetailsEvent(
-                        //         profilePicture: profilePicturePath,
-                        //         identification: citizenshipPicturePath,
-                        //         registerPic: palikaPicturePath,
-                        //         userId: widget.userId,
-                        //         farmName: widget.farmName,
-                        //         farmersName: widget.farmersName,
-                        //         phoneNumber: widget.phoneNumber,
-                        //         pradesh: widget.pradesh,
-                        //         district: widget.district,
-                        //         pondSize: getInMeter(
-                        //             double.tryParse(pondSize.text) ?? 0,
-                        //             selectedUnit),
-                        //         nagarpalika: widget.nagarpalika,
-                        //         woda: int.tryParse(widget.woda) ?? 0));
+                        showLoaderDialog(context);
+                        BlocProvider.of<FishFarmerDetailBloc>(context).add(
+                            PostFarmerDetailsEvent(
+                                profilePicture: profilePicturePath,
+                                identification: citizenshipPicturePath,
+                                registerPic: palikaPicturePath,
+                                userId: widget.userId,
+                                farmName: widget.farmName,
+                                farmersName: widget.farmersName,
+                                phoneNumber: widget.phoneNumber,
+                                pradesh: widget.pradesh,
+                                district: widget.district,
+                                pondSize: getInMeter(
+                                    double.tryParse(pondSize.text) ?? 0,
+                                    selectedUnit),
+                                nagarpalika: widget.nagarpalika,
+                                woda: int.tryParse(widget.woda) ?? 0));
                       },
                       style: ButtonStyle(
                         elevation: MaterialStateProperty.all<double>(

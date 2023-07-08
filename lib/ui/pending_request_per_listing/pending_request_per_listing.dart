@@ -3,6 +3,7 @@ import 'package:fish_shop/ui/pending_request_per_listing/bloc/pending_request_pe
 import 'package:fish_shop/ui/pending_request_per_listing/bloc/pending_request_per_listing_event.dart';
 import 'package:fish_shop/ui/pending_request_per_listing/bloc/pending_request_per_listing_state.dart';
 import 'package:fish_shop/ui/utils/uihelper.dart';
+import 'package:fish_shop/ui/utils/utils.dart';
 import 'package:fish_shop/ui/your_listing/model/your_listing_model.dart';
 import 'package:fish_shop/ui/your_listing/your_listing.dart';
 import 'package:flutter/material.dart';
@@ -57,7 +58,7 @@ class _BuyerRequestsScreenState extends State<BuyerRequestsScreen> {
           elevation: 0,
           backgroundColor: Colors.white,
           title: Text(
-            '${widget.fishType} (${widget.avgWeight} kg)',
+            '${widget.fishType} (${widget.avgWeight} के.जी)',
             style: TextStyle(
                 color: Colors.black,
                 fontWeight: FontWeight.w900,
@@ -96,14 +97,15 @@ class _BuyerRequestsScreenState extends State<BuyerRequestsScreen> {
                     child: Row(
                       children: [
                         Text(
-                          'Fish weight : ',
+                          translation(context).fish_weight,
+                          //'Fish weight : ',
                           style: TextStyle(
                               fontSize: 12.sp,
                               fontWeight: FontWeight.w700,
                               color: Colors.black),
                         ),
                         Text(
-                          '${widget.avgWeight} kg',
+                          '${widget.avgWeight} के.जी',
                           style: TextStyle(
                               fontSize: 12.sp,
                               fontWeight: FontWeight.w700,
@@ -117,14 +119,15 @@ class _BuyerRequestsScreenState extends State<BuyerRequestsScreen> {
                     child: Row(
                       children: [
                         Text(
-                          'Total weight : ',
+                          translation(context).total_weight,
+                          //'Total weight : ',
                           style: TextStyle(
                               fontSize: 12.sp,
                               fontWeight: FontWeight.w700,
                               color: Colors.black),
                         ),
                         Text(
-                          '${widget.totalWeight} kg',
+                          '${widget.totalWeight} के.जी',
                           style: TextStyle(
                               fontSize: 12.sp,
                               fontWeight: FontWeight.w700,
@@ -138,7 +141,8 @@ class _BuyerRequestsScreenState extends State<BuyerRequestsScreen> {
                     child: Row(
                       children: [
                         Text(
-                          'Yeild Date : ',
+                          translation(context).yield_date,
+                          //  'Yeild Date : ',
                           style: TextStyle(
                               fontSize: 12.sp,
                               fontWeight: FontWeight.w700,
@@ -159,7 +163,8 @@ class _BuyerRequestsScreenState extends State<BuyerRequestsScreen> {
                     child: Row(
                       children: [
                         Text(
-                          'Expiration Date : ',
+                          translation(context).listing_finished,
+                          //  'Expiration Date : ',
                           style: TextStyle(
                               fontSize: 12.sp,
                               fontWeight: FontWeight.w700,

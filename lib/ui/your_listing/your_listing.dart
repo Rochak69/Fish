@@ -379,7 +379,8 @@ class _YourListingsState extends State<YourListings> {
                 Row(
                   children: [
                     Text(
-                      'Qunatity : ',
+                      translation(context).quantity,
+                      // 'Qunatity : ',
                       style: TextStyle(
                           fontSize: 12.sp,
                           fontWeight: FontWeight.w700,
