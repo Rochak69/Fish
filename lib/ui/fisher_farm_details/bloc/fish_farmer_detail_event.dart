@@ -4,9 +4,9 @@ abstract class FishFarmerDetailEvent {}
 
 class PostFarmerDetailsEvent extends FishFarmerDetailEvent {
   String userId;
-  String? profilePicture;
-  String? registerPic;
-  String? identification;
+  String profilePicture;
+  String registerPic;
+  String identification;
   String farmName;
   String farmersName;
   String phoneNumber;
@@ -14,6 +14,9 @@ class PostFarmerDetailsEvent extends FishFarmerDetailEvent {
   String pradesh;
   String district;
   String nagarpalika;
+  String citizenName;
+  String citizenDistricId;
+  String citizenNumber;
 
   int woda;
   String? tole;
@@ -23,8 +26,8 @@ class PostFarmerDetailsEvent extends FishFarmerDetailEvent {
   PostFarmerDetailsEvent({
     required this.userId,
     required this.profilePicture,
-    required this.identification,
     required this.registerPic,
+    required this.identification,
     required this.farmName,
     required this.farmersName,
     required this.phoneNumber,
@@ -32,6 +35,9 @@ class PostFarmerDetailsEvent extends FishFarmerDetailEvent {
     required this.pradesh,
     required this.district,
     required this.nagarpalika,
+    required this.citizenName,
+    required this.citizenDistricId,
+    required this.citizenNumber,
     required this.woda,
     this.tole,
     this.email,

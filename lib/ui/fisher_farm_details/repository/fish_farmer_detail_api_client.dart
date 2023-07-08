@@ -1,4 +1,3 @@
-
 import 'package:dio/dio.dart';
 import 'package:fish_shop/common/api_response.dart';
 import 'package:fish_shop/common/status.dart';
@@ -27,6 +26,11 @@ class FishFarmerDetailApiClient {
     String? district,
     String? municiplaity,
     String? gaupalika,
+    String? fullName,
+    String? citizenshipName,
+    String? mobileNumber,
+    String? citizenshipNumber,
+    String? citizenshipIssueDistrictId,
     int? woda,
     required String identification,
     required String profilePic,
@@ -41,6 +45,11 @@ class FishFarmerDetailApiClient {
       "provinceId": pradesh,
       "districtId": district,
       "wardId": woda.toString(),
+      "fullName": fullName,
+      "citizenshipName": citizenshipName,
+      "mobileNumber": mobileNumber,
+      "citizenshipIssueDistrictId": citizenshipIssueDistrictId,
+      "citizenshipNumber": citizenshipNumber,
       "municipalityId": municiplaity,
       "profilePicture": await MultipartFile.fromFile(identification),
       "identificationImage": await MultipartFile.fromFile(profilePic),

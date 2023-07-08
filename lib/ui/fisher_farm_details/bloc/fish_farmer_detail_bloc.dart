@@ -32,9 +32,14 @@ class FishFarmerDetailBloc
           farmName: event.farmName,
           pradesh: event.pradesh,
           pondSize: event.pondSize,
-          profilePic: event.profilePicture!,
-          identification: event.identification!,
-          registerPic: event.registerPic!,
+          citizenshipIssueDistrictId: event.citizenDistricId,
+          citizenshipName: event.citizenName,
+          citizenshipNumber: event.citizenNumber,
+          mobileNumber: event.phoneNumber,
+          fullName: event.farmersName,
+          profilePic: event.profilePicture,
+          identification: event.identification,
+          registerPic: event.registerPic,
           woda: event.woda,
           municiplaity: event.nagarpalika);
       result as ApiResponse;

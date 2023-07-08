@@ -5,6 +5,7 @@ import 'package:fish_shop/ui/fisher_farm_details/bloc/fish_farmer_detail_bloc.da
 import 'package:fish_shop/ui/home_listing/bloc/home_listings_bloc.dart';
 import 'package:fish_shop/ui/home_listing/home_listing.dart';
 import 'package:fish_shop/ui/login/bloc/login_bloc.dart';
+import 'package:fish_shop/ui/login/login.dart';
 import 'package:fish_shop/ui/my_language/bloc/my_language_bloc.dart';
 import 'package:fish_shop/ui/my_language/bloc/my_language_state.dart';
 import 'package:fish_shop/ui/order_history/bloc/order_history_bloc.dart';
@@ -105,7 +106,7 @@ class MyApp extends StatelessWidget {
                         locale: state is EnglishState
                             ? const Locale('en')
                             : const Locale('ne'),
-                        home: const HomeListing(),
+                        home: const LoginPage(),
                         localizationsDelegates:
                             AppLocalizations.localizationsDelegates,
                         supportedLocales: AppLocalizations.supportedLocales);
