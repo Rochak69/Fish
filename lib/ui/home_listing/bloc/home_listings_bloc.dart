@@ -10,6 +10,7 @@ import 'package:fish_shop/ui/home_listing/bloc/home_listings_state.dart';
 import 'package:fish_shop/ui/home_listing/model/fish_response.dart';
 import 'package:fish_shop/ui/home_listing/model/home_listings_response.dart';
 import 'package:fish_shop/ui/home_listing/repository/home_listings_api_client.dart';
+import 'package:fish_shop/ui/utils/preferences.dart';
 import 'package:fish_shop/ui/utils/utils.dart';
 import 'package:injectable/injectable.dart';
 
@@ -27,6 +28,8 @@ class HomeListingsBloc extends Bloc<HomeListingsEvent, HomeListingsState> {
       HomeListingsEvent event, Emitter<HomeListingsState> emit) async {
     try {
       final userDetails = await apiClient.getUserDetails();
+      Preferences preference = Preferences();
+      await preference.saveString(Preference.farmerId, userDetails.data?.id);
 
       final result = await apiClient.getHomeListings();
       final fish =
