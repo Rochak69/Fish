@@ -49,7 +49,6 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return BlocListener<LoginBloc, LoginState>(
       listener: (context, state) {
-        Navigator.pop(context);
         if (state is LoginSuccess) {
           if (state.result.data?.isFarmer ?? false) {
             Navigator.pushReplacement(context, MaterialPageRoute(
@@ -65,6 +64,7 @@ class _LoginPageState extends State<LoginPage> {
             ));
           }
         } else if (state is LoginFailed) {
+          Navigator.pop(context);
           displayToastMessage(state.errorMessage);
         }
       },
@@ -141,18 +141,6 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ),
                     UiHelper.verticalSpacing(20.h),
-                    TextButton(
-                        onPressed: () {
-                          BlocProvider.of<MyLanguageBloc>(context)
-                              .add(SwitchNepali());
-                        },
-                        child: const Text('Nepali')),
-                    TextButton(
-                        onPressed: () {
-                          BlocProvider.of<MyLanguageBloc>(context)
-                              .add(SwitchEnglish());
-                        },
-                        child: const Text('Englsih')),
                     Column(
                       children: [
                         SizedBox(

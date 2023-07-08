@@ -103,9 +103,7 @@ class MyApp extends StatelessWidget {
                             )),
                         navigatorKey: NavigationService.navigatorKey,
                         debugShowCheckedModeBanner: false,
-                        locale: state is EnglishState
-                            ? const Locale('en')
-                            : const Locale('ne'),
+                        locale: const Locale('ne'),
                         home: const LoginPage(),
                         localizationsDelegates:
                             AppLocalizations.localizationsDelegates,
