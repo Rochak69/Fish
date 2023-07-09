@@ -43,7 +43,7 @@ class IdentificationDocuments extends StatefulWidget {
 }
 
 class _IdentificationDocumentsState extends State<IdentificationDocuments> {
-  String selectedUnit = 'm';
+  String selectedUnit = 'हेक्टर';
   String? profilePicturePath;
   String? citizenshipPicturePath;
   String? palikaPicturePath;
@@ -125,7 +125,7 @@ class _IdentificationDocumentsState extends State<IdentificationDocuments> {
                             ),
                             UiHelper.verticalSpacing(8.h),
                             SizedBox(
-                              width: 220,
+                              width: 200.w,
                               child: FishTextField(
                                 validator: (value) =>
                                     Validators.validateEmpty(value),
@@ -157,15 +157,20 @@ class _IdentificationDocumentsState extends State<IdentificationDocuments> {
                             UiHelper.verticalSpacing(8.h),
                             AppDropDown(
                                 onChanged: (p0) {
-                                  selectedUnit = p0 ?? 'm';
+                                  selectedUnit = p0 ?? 'हेक्टर';
                                   setState(() {});
                                 },
                                 value: selectedUnit,
                                 items: const [
                                   DropdownMenuItem(
-                                      value: 'm', child: Text('m')),
+                                      value: 'हेक्टर', child: Text('हेक्टर')),
                                   DropdownMenuItem(
-                                      value: 'km', child: Text('km'))
+                                      value: 'कठ्ठा', child: Text('कठ्ठा')),
+                                  DropdownMenuItem(
+                                      value: 'विघाह', child: Text('विघाह')),
+                                  DropdownMenuItem(
+                                      value: 'वर्ग मिटर',
+                                      child: Text('वर्ग मिटर')),
                                 ])
                           ],
                         ),
@@ -207,18 +212,11 @@ class _IdentificationDocumentsState extends State<IdentificationDocuments> {
                               color: Colors.black,
                               fontWeight: FontWeight.w700,
                               fontSize: 12.sp),
-                          children: [
-                            TextSpan(
-                                text: ' *',
-                                style: TextStyle(
-                                    color: Colors.red, fontSize: 16.sp))
-                          ]),
+                          children: []),
                     ),
                     UiHelper.verticalSpacing(8.h),
                     FishTextField(
-                        textEditingController: citizenName,
-                        validator: (value) => Validators.validateEmpty(value),
-                        label: ''),
+                        textEditingController: citizenName, label: ''),
                     UiHelper.verticalSpacing(12.h),
                     RichText(
                       text: TextSpan(
@@ -228,18 +226,11 @@ class _IdentificationDocumentsState extends State<IdentificationDocuments> {
                               color: Colors.black,
                               fontWeight: FontWeight.w700,
                               fontSize: 12.sp),
-                          children: [
-                            TextSpan(
-                                text: ' *',
-                                style: TextStyle(
-                                    color: Colors.red, fontSize: 16.sp))
-                          ]),
+                          children: []),
                     ),
                     UiHelper.verticalSpacing(8.h),
                     FishTextField(
-                        textEditingController: citizenNumber,
-                        validator: (value) => Validators.validateEmpty(value),
-                        label: ''),
+                        textEditingController: citizenNumber, label: ''),
                     UiHelper.verticalSpacing(12.h),
                     RichText(
                       text: TextSpan(
@@ -249,12 +240,7 @@ class _IdentificationDocumentsState extends State<IdentificationDocuments> {
                               color: Colors.black,
                               fontWeight: FontWeight.w700,
                               fontSize: 12.sp),
-                          children: [
-                            TextSpan(
-                                text: ' *',
-                                style: TextStyle(
-                                    color: Colors.red, fontSize: 16.sp))
-                          ]),
+                          children: []),
                     ),
                     UiHelper.verticalSpacing(8.h),
                     AppDropDown<String>(
@@ -279,12 +265,7 @@ class _IdentificationDocumentsState extends State<IdentificationDocuments> {
                               color: Colors.black,
                               fontWeight: FontWeight.w700,
                               fontSize: 12.sp),
-                          children: [
-                            TextSpan(
-                                text: ' *',
-                                style: TextStyle(
-                                    color: Colors.red, fontSize: 16.sp))
-                          ]),
+                          children: []),
                     ),
                     UiHelper.verticalSpacing(12.h),
                     FishTextField(
@@ -330,12 +311,7 @@ class _IdentificationDocumentsState extends State<IdentificationDocuments> {
                               color: Colors.black,
                               fontWeight: FontWeight.w700,
                               fontSize: 12.sp),
-                          children: [
-                            TextSpan(
-                                text: ' *',
-                                style: TextStyle(
-                                    color: Colors.red, fontSize: 16.sp))
-                          ]),
+                          children: []),
                     ),
                     UiHelper.verticalSpacing(8.h),
                     FishTextField(
@@ -389,12 +365,7 @@ class _IdentificationDocumentsState extends State<IdentificationDocuments> {
                               color: Colors.black,
                               fontWeight: FontWeight.w700,
                               fontSize: 12.sp),
-                          children: [
-                            TextSpan(
-                                text: ' *',
-                                style: TextStyle(
-                                    color: Colors.red, fontSize: 16.sp))
-                          ]),
+                          children: []),
                     ),
                     UiHelper.verticalSpacing(8.h),
                     FishTextField(
@@ -448,12 +419,7 @@ class _IdentificationDocumentsState extends State<IdentificationDocuments> {
                               color: Colors.black,
                               fontWeight: FontWeight.w700,
                               fontSize: 12.sp),
-                          children: [
-                            TextSpan(
-                                text: ' *',
-                                style: TextStyle(
-                                    color: Colors.red, fontSize: 16.sp))
-                          ]),
+                          children: []),
                     ),
                     UiHelper.verticalSpacing(8.h),
                     FishTextField(
@@ -496,10 +462,8 @@ class _IdentificationDocumentsState extends State<IdentificationDocuments> {
                       height: 48.h,
                       child: ElevatedButton(
                         onPressed: () {
-                          if (profilePicturePath == null ||
-                              citizenshipPicturePath == null ||
-                              palikaPicturePath == null) {
-                            displayToastMessage('Please input all pictures',
+                          if (profilePicturePath == null) {
+                            displayToastMessage('Please upload profile picture',
                                 backgroundColor: AppColors.textRedColor);
                             return;
                           }
@@ -507,9 +471,9 @@ class _IdentificationDocumentsState extends State<IdentificationDocuments> {
                             showLoaderDialog(context);
                             BlocProvider.of<FishFarmerDetailBloc>(context).add(
                               PostFarmerDetailsEvent(
-                                  profilePicture: profilePicturePath ?? '',
-                                  identification: citizenshipPicturePath ?? '',
-                                  registerPic: palikaPicturePath ?? '',
+                                  profilePicture: profilePicturePath,
+                                  identification: citizenshipPicturePath,
+                                  registerPic: palikaPicturePath,
                                   userId: widget.userId,
                                   farmName: widget.farmName,
                                   farmersName: widget.farmersName,
@@ -552,8 +516,14 @@ class _IdentificationDocumentsState extends State<IdentificationDocuments> {
 }
 
 double getInMeter(double value, String unit) {
-  if (unit == 'km') {
-    return value / 1000;
+  if (unit == 'वर्ग मिटर') {
+    return value * 0.0001;
+  }
+  if (unit == 'विघाह') {
+    return value * 0.6666;
+  }
+  if (unit == 'कठ्ठा') {
+    return value * 0.03333;
   }
   return value;
 }

@@ -308,6 +308,25 @@ class _OrderHistoryState extends State<OrderHistory> {
                 Row(
                   children: [
                     Text(
+                      'फोन नम्बर',
+                      //   'Qunatity : ',
+                      style: TextStyle(
+                          fontSize: 12.sp,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.black),
+                    ),
+                    Text(
+                      ' : ${state.orders.data?[index].phoneNumber}',
+                      style: TextStyle(
+                          fontSize: 12.sp,
+                          fontWeight: FontWeight.w800,
+                          color: AppColors.AppCardColor),
+                    ),
+                  ],
+                ),
+                Row(
+                  children: [
+                    Text(
                       translation(context).yield_date,
                       //   'Yeild Date : ',
                       style: TextStyle(

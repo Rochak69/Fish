@@ -91,17 +91,10 @@ class _FishFarmDetailsState extends State<FishFarmDetails> {
                                     color: Colors.black,
                                     fontWeight: FontWeight.w700,
                                     fontSize: 12.sp),
-                                children: [
-                                  TextSpan(
-                                      text: ' *',
-                                      style: TextStyle(
-                                          color: Colors.red, fontSize: 16.sp))
-                                ]),
+                                children: []),
                           ),
                           UiHelper.verticalSpacing(10.h),
                           FishTextField(
-                            validator: (value) =>
-                                Validators.validateEmpty(value),
                             textEditingController: farmNameController,
                             label: translation(context).farm_name,
                             //'Farm\'s Name',
@@ -116,17 +109,10 @@ class _FishFarmDetailsState extends State<FishFarmDetails> {
                                     color: Colors.black,
                                     fontWeight: FontWeight.w700,
                                     fontSize: 12.sp),
-                                children: [
-                                  TextSpan(
-                                      text: ' *',
-                                      style: TextStyle(
-                                          color: Colors.red, fontSize: 16.sp))
-                                ]),
+                                children: []),
                           ),
                           UiHelper.verticalSpacing(10.h),
                           FishTextField(
-                            validator: (value) =>
-                                Validators.validateEmpty(value),
                             textEditingController: phoneNumberController,
                             label: translation(context).mobile_number,
                             //'Phone Number',
@@ -343,15 +329,12 @@ class _FishFarmDetailsState extends State<FishFarmDetails> {
                                   }
 
                                   if (_formKey.currentState!.validate()) {
-                                    if (farmerNameController.text.isEmpty ||
-                                        farmNameController.text.isEmpty ||
-                                        phoneNumberController.text.isEmpty ||
-                                        selectedPradesh == null ||
+                                    if (selectedPradesh == null ||
                                         selectedDistrict == null ||
                                         selectedNagarpalika == null ||
                                         selectedWoda == null) {
                                       displayToastMessage(
-                                          'Please input all fields');
+                                          'Please input location details');
                                       return;
                                     }
 

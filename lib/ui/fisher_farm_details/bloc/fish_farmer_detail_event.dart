@@ -4,9 +4,9 @@ abstract class FishFarmerDetailEvent {}
 
 class PostFarmerDetailsEvent extends FishFarmerDetailEvent {
   String userId;
-  String profilePicture;
-  String registerPic;
-  String identification;
+  String? profilePicture;
+  String? registerPic;
+  String? identification;
   String farmName;
   String farmersName;
   String phoneNumber;

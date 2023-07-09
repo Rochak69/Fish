@@ -32,9 +32,9 @@ class FishFarmerDetailApiClient {
     String? citizenshipNumber,
     String? citizenshipIssueDistrictId,
     int? woda,
-    required String identification,
-    required String profilePic,
-    required String registerPic,
+    required String? identification,
+    required String? profilePic,
+    required String? registerPic,
   }) async {
     Preferences preferences = Preferences();
     FormData formData;
@@ -51,9 +51,14 @@ class FishFarmerDetailApiClient {
       "citizenshipIssueDistrictId": citizenshipIssueDistrictId,
       "citizenshipNumber": citizenshipNumber,
       "municipalityId": municiplaity,
-      "profilePicture": await MultipartFile.fromFile(identification),
-      "identificationImage": await MultipartFile.fromFile(profilePic),
-      "registrationImage": await MultipartFile.fromFile(registerPic),
+      "profilePicture":
+          profilePic != null ? await MultipartFile.fromFile(profilePic) : null,
+      "identificationImage": identification != null
+          ? await MultipartFile.fromFile(identification)
+          : null,
+      "registrationImage": registerPic != null
+          ? await MultipartFile.fromFile(registerPic)
+          : null,
     });
 
     ///or pass object directly to the http post
