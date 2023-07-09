@@ -42,8 +42,8 @@ class _YourListingsState extends State<YourListings> {
                 elevation: 0,
                 backgroundColor: Colors.white,
                 title: Text(
-                  translation(context).your_listings,
-                  //  'Your Listings',
+                  // translation(context).your_listings,
+                  'मेरो माछाको प्रजातीहरु ',
                   style: TextStyle(
                       color: AppColors.textColor,
                       fontWeight: FontWeight.w700,
@@ -54,14 +54,15 @@ class _YourListingsState extends State<YourListings> {
                 onRefresh: () => _refresh(),
                 child: Padding(
                   padding:
-                      EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
+                      EdgeInsets.symmetric(horizontal: 25.w, vertical: 12.h),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Padding(
                         padding: EdgeInsets.only(left: 12.w),
                         child: Text(
-                          translation(context).your_listing_details,
+                          'बजारको लागी बिक्री अर्डरमा राखेयाको बाकी माछाको विवरण',
+                          //  translation(context).your_listing_details,
                           //  'Details for fish listed for selling by you',
                           style: const TextStyle(color: AppColors.AppCardColor),
                           overflow: TextOverflow.ellipsis,
@@ -326,7 +327,7 @@ class _YourListingsState extends State<YourListings> {
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(25.r)),
           title: Center(
               child: Text(
-            'Delete Yield',
+            'के तपाइँ यो जानकारी मेटाउन चाहानुहुन्छ ?',
             style: GoogleFonts.inter(
               fontWeight: FontWeight.w900,
               color: Colors.black,
@@ -387,7 +388,7 @@ class _YourListingsState extends State<YourListings> {
                           color: Colors.black),
                     ),
                     Text(
-                      totalWeight.toString(),
+                      totalWeight.toString() + ' के.जी',
                       style: TextStyle(
                           fontSize: 12.sp,
                           fontWeight: FontWeight.w800,
@@ -398,7 +399,8 @@ class _YourListingsState extends State<YourListings> {
                 Row(
                   children: [
                     Text(
-                      'Yeild Date : ',
+                      'माछा मारको मिति:',
+                      //'Yeild Date : ',
                       style: TextStyle(
                           fontSize: 12.sp,
                           fontWeight: FontWeight.w700,
@@ -416,7 +418,7 @@ class _YourListingsState extends State<YourListings> {
                 Row(
                   children: [
                     Text(
-                      'Expiry Date : ',
+                      'विज्ञापन सकिने दिन:  ',
                       style: TextStyle(
                           fontSize: 12.sp,
                           fontWeight: FontWeight.w700,
@@ -449,7 +451,7 @@ class _YourListingsState extends State<YourListings> {
                     Navigator.pop(context);
                   },
                   child: Text(
-                    'Sure',
+                    'Yes',
                     style: GoogleFonts.inter(
                       color: AppColors.textColor,
                       fontWeight: FontWeight.w600,
@@ -469,7 +471,7 @@ class _YourListingsState extends State<YourListings> {
                     Navigator.pop(context);
                   },
                   child: const Text(
-                    'Cancel',
+                    'No',
                     style: TextStyle(color: Colors.white),
                   )),
             ),

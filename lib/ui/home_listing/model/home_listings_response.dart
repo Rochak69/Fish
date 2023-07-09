@@ -7,11 +7,13 @@ class HomeListingsResponse {
   int? avgFishWeight;
   int? totalWeight;
   String? deadline;
+  //bool isDisabled = true;
   String? yieldDate;
 
   HomeListingsResponse(
       {this.id,
       this.buyerId,
+      // required this.isDisabled,
       this.fishType,
       this.avgFishWeight,
       this.totalWeight,
@@ -25,9 +27,9 @@ class HomeListingsResponse {
     totalWeight = json['totalWeight'];
     deadline = json['deadline'];
     yieldDate = json['yieldDate'];
-    fishType = json['FishType'] != null
-        ? FishType.fromJson(json['FishType'])
-        : null;
+    // isDisabled = json['disabled'];
+    fishType =
+        json['FishType'] != null ? FishType.fromJson(json['FishType']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -37,7 +39,9 @@ class HomeListingsResponse {
     data['avgFishWeight'] = avgFishWeight;
     data['totalWeight'] = totalWeight;
     data['deadline'] = deadline;
+    //data['disabled'] = isDisabled;
     data['yieldDate'] = yieldDate;
+
     if (fishType != null) {
       data['FishType'] = fishType!.toJson();
     }

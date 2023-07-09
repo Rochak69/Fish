@@ -98,14 +98,14 @@ class _OrderHistoryState extends State<OrderHistory> {
                         fontWeight: FontWeight.w700,
                         color: AppColors.textColor),
                   ),
-                  Text(
-                    ': ${state.orders.data?[index].buyerDemand?.fishType?.name}',
-                    style: TextStyle(
-                        fontSize: 16.sp,
-                        fontWeight: FontWeight.w700,
-                        color: Colors.black),
-                  ),
                 ],
+              ),
+              Text(
+                ': ${state.orders.data?[index].buyerDemand?.fishType?.name}',
+                style: TextStyle(
+                    fontSize: 15.sp,
+                    fontWeight: FontWeight.w700,
+                    color: Colors.black),
               ),
               UiHelper.verticalSpacing(4.h),
               Row(
@@ -131,7 +131,9 @@ class _OrderHistoryState extends State<OrderHistory> {
               Row(
                 children: [
                   Text(
-                    translation(context).buy_quantity,
+                    'माछाको परिमाण के.जी:',
+
+                    ///translation(context).buy_quantity,
                     //   'Qunatity : ',
                     style: TextStyle(
                         fontSize: 12.sp,
@@ -178,7 +180,8 @@ class _OrderHistoryState extends State<OrderHistory> {
               Row(
                 children: [
                   Text(
-                    translation(context).buy_date,
+                    'माछा मारको मिति: ',
+                    //  translation(context).buy_date,
                     //'Yeild Date : ',
                     style: TextStyle(
                         fontSize: 12.sp,
@@ -193,6 +196,40 @@ class _OrderHistoryState extends State<OrderHistory> {
                         color: AppColors.AppCardColor),
                   ),
                 ],
+              ),
+              Row(
+                children: [
+                  Text(
+                    'खरिद गर्ने व्यक्तिको नाम:  ',
+
+                    //  translation(context).buy_date,
+                    //'Yeild Date : ',
+                    style: TextStyle(
+                        fontSize: 12.sp,
+                        fontWeight: FontWeight.w700,
+                        color: Colors.black),
+                  ),
+                ],
+              ),
+              Text(
+                'खरिद गर्ने व्यक्तिको ठेगाना: ',
+
+                //  translation(context).buy_date,
+                //'Yeild Date : ',
+                style: TextStyle(
+                    fontSize: 12.sp,
+                    fontWeight: FontWeight.w700,
+                    color: Colors.black),
+              ),
+              Text(
+                'सम्पर्क नम्बर: ',
+
+                //  translation(context).buy_date,
+                //'Yeild Date : ',
+                style: TextStyle(
+                    fontSize: 12.sp,
+                    fontWeight: FontWeight.w700,
+                    color: Colors.black),
               ),
             ],
           ),
@@ -264,36 +301,42 @@ class _OrderHistoryState extends State<OrderHistory> {
             actionsAlignment: MainAxisAlignment.center,
             actionsPadding: EdgeInsets.symmetric(vertical: 12.h),
             title: Center(
-              child: Text(
-                translation(context).mark_as_completed,
-                //       'Mark as Completed',
-                style: const TextStyle(
-                    color: Colors.black,
-                    fontSize: 16,
-                    fontWeight: FontWeight.w900),
-              ),
+              child: isComplete
+                  ? Text(
+                      translation(context).mark_as_completed,
+                      //       'Mark as Completed',
+                      style: const TextStyle(
+                          color: Colors.black,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w900),
+                    )
+                  : Text(
+                      translation(context).marks_as_cancelled,
+                      //       'Mark as Completed',
+                      style: const TextStyle(
+                          color: Colors.black,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w900),
+                    ),
             ),
             content: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: [
-                Row(
-                  children: [
-                    Text(
-                      translation(context).fish_type,
-                      //    'Fish Type : ',
-                      style: TextStyle(
-                          fontSize: 18.sp,
-                          fontWeight: FontWeight.w700,
-                          color: AppColors.textColor),
-                    ),
-                    Text(
-                      ' : ${state.orders.data?[index].buyerDemand?.fishType?.name}',
-                      style: TextStyle(
-                          fontSize: 18.sp,
-                          fontWeight: FontWeight.w700,
-                          color: Colors.black),
-                    ),
-                  ],
+                Text(
+                  translation(context).fish_type,
+                  //    'Fish Type : ',
+                  style: TextStyle(
+                      fontSize: 18.sp,
+                      fontWeight: FontWeight.w700,
+                      color: AppColors.textColor),
+                ),
+                Text(
+                  ' : ${state.orders.data?[index].buyerDemand?.fishType?.name}',
+                  style: TextStyle(
+                      fontSize: 18.sp,
+                      fontWeight: FontWeight.w700,
+                      color: Colors.black),
                 ),
                 UiHelper.verticalSpacing(4.h),
                 Row(

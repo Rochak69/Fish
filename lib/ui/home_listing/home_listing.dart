@@ -89,7 +89,7 @@ class _HomeListingState extends State<HomeListing>
                 child: const Icon(Icons.add),
               ),
               floatingActionButtonLocation:
-                  FloatingActionButtonLocation.centerFloat,
+                  FloatingActionButtonLocation.centerDocked,
               bottomNavigationBar: Container(
                 padding: EdgeInsets.symmetric(vertical: 6.h),
                 height: 56.h,

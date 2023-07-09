@@ -223,14 +223,14 @@ class _BuyerRequestsScreenState extends State<BuyerRequestsScreen> {
               Row(
                 children: [
                   Text(
-                    'Average weight : ',
+                    'माछाको आकार : ',
                     style: TextStyle(
                         fontSize: 12.sp,
                         fontWeight: FontWeight.w700,
                         color: Colors.black),
                   ),
                   Text(
-                    '${widget.avgWeight} Kg',
+                    '${widget.avgWeight} के.जी',
                     style: TextStyle(
                         fontSize: 12.sp,
                         fontWeight: FontWeight.w700,
@@ -241,14 +241,14 @@ class _BuyerRequestsScreenState extends State<BuyerRequestsScreen> {
               Row(
                 children: [
                   Text(
-                    'Total weight : ',
+                    'खरिद गर्न चाहेको परिमाण : ',
                     style: TextStyle(
                         fontSize: 12.sp,
                         fontWeight: FontWeight.w700,
                         color: Colors.black),
                   ),
                   Text(
-                    '${widget.totalWeight} Kg',
+                    '${widget.totalWeight} के.जी',
                     style: TextStyle(
                         fontSize: 12.sp,
                         fontWeight: FontWeight.w700,
@@ -259,7 +259,7 @@ class _BuyerRequestsScreenState extends State<BuyerRequestsScreen> {
               Row(
                 children: [
                   Text(
-                    'Yeild Date : ',
+                    'खरिद गर्न चाहेको मिति: ',
                     style: TextStyle(
                         fontSize: 12.sp,
                         fontWeight: FontWeight.w700,
@@ -293,7 +293,7 @@ class _BuyerRequestsScreenState extends State<BuyerRequestsScreen> {
                   ),
                   child: Center(
                     child: Text(
-                      'Accept',
+                      'स्वीकार ',
                       style: TextStyle(
                           fontSize: 16.sp,
                           fontWeight: FontWeight.w500,
@@ -318,7 +318,7 @@ class _BuyerRequestsScreenState extends State<BuyerRequestsScreen> {
                   ),
                   child: Center(
                     child: Text(
-                      'Reject',
+                      ' अस्वीकार',
                       style: TextStyle(
                           fontSize: 16.sp,
                           fontWeight: FontWeight.w500,
@@ -356,8 +356,8 @@ class _BuyerRequestsScreenState extends State<BuyerRequestsScreen> {
               children: [
                 Text(
                   isAccept
-                      ? 'Are you sure, you want to  Accept?'
-                      : 'Are you sure, you want to  Reject?',
+                      ? "के तपाईं यो व्यक्तिको खरिद आदेश स्वीकार गर्न चाहनुहुन्छ ?"
+                      : 'के तपाईं यो व्यक्तिको खरिद आदेश अस्वीकार गर्न चाहनुहुन्छ ?',
                   style: TextStyle(fontSize: 12.sp),
                 ),
                 Text(
