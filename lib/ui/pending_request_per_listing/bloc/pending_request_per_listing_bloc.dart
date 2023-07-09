@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:fish_shop/common/api_response.dart';
+import 'package:fish_shop/res/colors.dart';
 import 'package:fish_shop/ui/pending_request_per_listing/bloc/pending_request_per_listing_event.dart';
 import 'package:fish_shop/ui/pending_request_per_listing/bloc/pending_request_per_listing_state.dart';
 import 'package:fish_shop/ui/pending_request_per_listing/repository/pending_request_listings_api_client.dart';
@@ -32,7 +33,7 @@ class PendingRequestPerListingBloc
         displayToastMessage(e.details?[0].msg ?? 'Error getting data');
         emit(PendingRequestInitial());
       } catch (e) {
-        displayToastMessage(e.toString());
+        displayToastMessage('Error', backgroundColor: AppColors.textRedColor);
         emit(PendingRequestInitial());
       }
     }
@@ -52,7 +53,7 @@ class PendingRequestPerListingBloc
         displayToastMessage(e.details?[0].msg ?? 'Error getting data');
         emit(PendingRequestInitial());
       } catch (e) {
-        displayToastMessage(e.toString());
+        displayToastMessage('Error', backgroundColor: AppColors.textRedColor);
         emit(PendingRequestInitial());
       }
     }

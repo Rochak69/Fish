@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:fish_shop/common/api_response.dart';
+import 'package:fish_shop/res/colors.dart';
 import 'package:fish_shop/ui/fisher_farm_details/bloc/fish_farmer_detail_event.dart';
 import 'package:fish_shop/ui/fisher_farm_details/bloc/fish_farmer_detail_state.dart';
 import 'package:fish_shop/ui/fisher_farm_details/model/district_response.dart';
@@ -50,7 +51,7 @@ class FishFarmerDetailBloc
         e as ApiErrorResponse;
         displayToastMessage(e.details?[0].msg ?? 'Error getting data');
       } catch (e) {
-        displayToastMessage(e.toString());
+        displayToastMessage('Error', backgroundColor: AppColors.textRedColor);
       }
     }
   }
@@ -67,7 +68,7 @@ class FishFarmerDetailBloc
         e as ApiErrorResponse;
         displayToastMessage(e.details?[0].msg ?? 'Error getting data');
       } catch (e) {
-        displayToastMessage(e.toString());
+        displayToastMessage('Error', backgroundColor: AppColors.textRedColor);
       }
     }
   }
@@ -85,7 +86,7 @@ class FishFarmerDetailBloc
         e as ApiErrorResponse;
         displayToastMessage(e.details?[0].msg ?? 'Error getting data');
       } catch (e) {
-        displayToastMessage(e.toString());
+        displayToastMessage('Error', backgroundColor: AppColors.textRedColor);
       }
     }
   }
@@ -104,7 +105,7 @@ class FishFarmerDetailBloc
         e as ApiErrorResponse;
         displayToastMessage(e.details?[0].msg ?? 'Error getting data');
       } catch (e) {
-        displayToastMessage(e.toString());
+        displayToastMessage('Error', backgroundColor: AppColors.textRedColor);
       }
     }
   }
@@ -123,7 +124,7 @@ class FishFarmerDetailBloc
         e as ApiErrorResponse;
         displayToastMessage(e.details?[0].msg ?? 'Error getting data');
       } catch (e) {
-        displayToastMessage(e.toString());
+        displayToastMessage('Error', backgroundColor: AppColors.textRedColor);
       }
     }
   }

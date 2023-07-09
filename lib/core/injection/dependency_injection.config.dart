@@ -83,7 +83,10 @@ extension GetItInjectableX on _i1.GetIt {
     gh.lazySingleton<_i12.HomeListingsBloc>(
         () => _i12.HomeListingsBloc(gh<_i11.HomeListingApiClient>()));
     gh.singleton<_i13.LoginApiClient>(_i13.LoginApiClient(gh<_i8.ApiClient>()));
-    gh.factory<_i14.LoginBloc>(() => _i14.LoginBloc(gh<_i13.LoginApiClient>()));
+    gh.factory<_i14.LoginBloc>(() => _i14.LoginBloc(
+          gh<_i13.LoginApiClient>(),
+          gh<_i11.HomeListingApiClient>(),
+        ));
     gh.singleton<_i15.OrderHistoryApiClient>(
         _i15.OrderHistoryApiClient(gh<_i8.ApiClient>()));
     gh.lazySingleton<_i16.OrderHistoryBloc>(

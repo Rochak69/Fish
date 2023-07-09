@@ -33,7 +33,7 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
   bool isButtonEnabled = false;
   String? _pinCode;
   void _updateButtonStatus(String pinCode) {
-    if (pinCode.length == 6) {
+    if (pinCode.length == 3) {
       isButtonEnabled = true;
       _pinCode = pinCode;
     } else {
@@ -81,9 +81,11 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
                     UiHelper.verticalSpacing(59.h),
                     UiHelper.verticalSpacing(45.h),
                     UiHelper.verticalSpacing(45.h),
-                    PinFields(
-                      pinLength: 6,
-                      onPinCodeChanged: _updateButtonStatus,
+                    Center(
+                      child: PinFields(
+                        pinLength: 3,
+                        onPinCodeChanged: _updateButtonStatus,
+                      ),
                     ),
                     UiHelper.verticalSpacing(45.h),
                     UiHelper.verticalSpacing(60.h),
@@ -95,8 +97,8 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
                           if (userId == null || _pinCode == null) {
                             displayToastMessage('USer Id or pin code is null');
                             return;
-                          } else if (_pinCode!.length != 6) {
-                            displayToastMessage('Pin code lenght must be 6');
+                          } else if (_pinCode!.length != 3) {
+                            displayToastMessage('Pin code lenght must be 3');
                             return;
                           } else {
                             showLoaderDialog(context);

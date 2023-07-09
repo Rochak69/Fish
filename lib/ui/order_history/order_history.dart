@@ -8,6 +8,7 @@ import 'package:fish_shop/ui/your_listing/your_listing.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class OrderHistory extends StatefulWidget {
   const OrderHistory({super.key});
@@ -145,6 +146,34 @@ class _OrderHistoryState extends State<OrderHistory> {
                         color: AppColors.AppCardColor),
                   ),
                 ],
+              ),
+              InkWell(
+                onTap: () async {
+                  final Uri launchUri = Uri(
+                    scheme: 'tel',
+                    path: state.orders.data?[index].phoneNumber ?? '',
+                  );
+                  await launchUrl(launchUri);
+                },
+                child: Row(
+                  children: [
+                    Text(
+                      'फोन नम्बर',
+                      //   'Qunatity : ',
+                      style: TextStyle(
+                          fontSize: 12.sp,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.black),
+                    ),
+                    Text(
+                      ' : ${state.orders.data?[index].phoneNumber}',
+                      style: TextStyle(
+                          fontSize: 12.sp,
+                          fontWeight: FontWeight.w800,
+                          color: AppColors.AppCardColor),
+                    ),
+                  ],
+                ),
               ),
               Row(
                 children: [
