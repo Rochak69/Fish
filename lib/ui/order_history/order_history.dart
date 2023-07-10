@@ -239,6 +239,8 @@ class _OrderHistoryState extends State<OrderHistory> {
                 onTap: () {
                   if (state.orders.data?[index].completed ?? false) {
                     return;
+                  } else if (state.orders.data?[index].cancelled ?? false) {
+                    return;
                   } else {
                     _showSureDialog(context, state, index, true);
                   }
@@ -268,6 +270,8 @@ class _OrderHistoryState extends State<OrderHistory> {
               InkWell(
                 onTap: () {
                   if (state.orders.data?[index].cancelled ?? false) {
+                    return;
+                  } else if (state.orders.data?[index].completed ?? false) {
                     return;
                   } else {
                     _showSureDialog(context, state, index, false);
