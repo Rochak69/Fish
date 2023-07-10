@@ -7,13 +7,13 @@ class HomeListingsResponse {
   int? avgFishWeight;
   int? totalWeight;
   String? deadline;
-  bool isDisabled = true;
+  bool? isDisabled;
   String? yieldDate;
 
   HomeListingsResponse(
       {this.id,
       this.buyerId,
-      // required this.isDisabled,
+      this.isDisabled,
       this.fishType,
       this.avgFishWeight,
       this.totalWeight,

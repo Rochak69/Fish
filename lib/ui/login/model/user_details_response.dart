@@ -8,19 +8,18 @@ class UserDetailsResponse {
   bool? active;
   bool? approved;
   Location? location;
-  Document? document;
 
-  UserDetailsResponse(
-      {this.id,
-      this.userId,
-      this.profilePicture,
-      this.farmName,
-      this.pondSize,
-      this.fiscalYear,
-      this.active,
-      this.approved,
-      this.location,
-      this.document});
+  UserDetailsResponse({
+    this.id,
+    this.userId,
+    this.profilePicture,
+    this.farmName,
+    this.pondSize,
+    this.fiscalYear,
+    this.active,
+    this.approved,
+    this.location,
+  });
 
   UserDetailsResponse.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -33,8 +32,6 @@ class UserDetailsResponse {
     approved = json['approved'];
     location =
         json['location'] != null ? Location.fromJson(json['location']) : null;
-    document =
-        json['Document'] != null ? Document.fromJson(json['Document']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -50,9 +47,7 @@ class UserDetailsResponse {
     if (location != null) {
       data['location'] = location!.toJson();
     }
-    if (document != null) {
-      data['Document'] = document!.toJson();
-    }
+
     return data;
   }
 }
@@ -94,25 +89,6 @@ class Location {
     data['gaupalika'] = gaupalika;
     data['nagarpalika'] = nagarpalika;
     data['Woda'] = woda;
-    return data;
-  }
-}
-
-class Document {
-  List<String>? idenfication;
-  List<String>? registration;
-
-  Document({this.idenfication, this.registration});
-
-  Document.fromJson(Map<String, dynamic> json) {
-    idenfication = json['idenfication'].cast<String>();
-    registration = json['registration'].cast<String>();
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['idenfication'] = idenfication;
-    data['registration'] = registration;
     return data;
   }
 }
