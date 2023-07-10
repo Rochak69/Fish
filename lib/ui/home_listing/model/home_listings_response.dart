@@ -7,7 +7,7 @@ class HomeListingsResponse {
   int? avgFishWeight;
   int? totalWeight;
   String? deadline;
-  //bool isDisabled = true;
+  bool isDisabled = true;
   String? yieldDate;
 
   HomeListingsResponse(
@@ -27,7 +27,7 @@ class HomeListingsResponse {
     totalWeight = json['totalWeight'];
     deadline = json['deadline'];
     yieldDate = json['yieldDate'];
-    // isDisabled = json['disabled'];
+    isDisabled = json['disabled'];
     fishType =
         json['FishType'] != null ? FishType.fromJson(json['FishType']) : null;
   }
@@ -39,7 +39,7 @@ class HomeListingsResponse {
     data['avgFishWeight'] = avgFishWeight;
     data['totalWeight'] = totalWeight;
     data['deadline'] = deadline;
-    //data['disabled'] = isDisabled;
+    data['disabled'] = isDisabled;
     data['yieldDate'] = yieldDate;
 
     if (fishType != null) {

@@ -74,7 +74,8 @@ class _ListingsState extends State<Listings> {
                         shrinkWrap: true,
                         itemBuilder: (context, index) {
                           return CardListing(
-                            isDisabled: false,
+                            isDisabled:
+                                state.result.data?[index].isDisabled ?? false,
                             avgWeight:
                                 state.result.data?[index].avgFishWeight ?? 0,
                             date: state.result.data?[index].yieldDate
