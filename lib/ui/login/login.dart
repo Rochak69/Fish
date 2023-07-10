@@ -51,7 +51,7 @@ class _LoginPageState extends State<LoginPage> {
       listener: (context, state) {
         if (state is LoginSuccess) {
           bool isApproved = state.result.data?.farmerStatus?.approved ?? false;
-          if (isApproved) {
+          if (!isApproved) {
             Navigator.pop(context);
             displayToastMessage('Your request has not been approved');
             return;
