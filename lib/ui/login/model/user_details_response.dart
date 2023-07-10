@@ -3,7 +3,7 @@ class UserDetailsResponse {
   String? userId;
   String? profilePicture;
   String? farmName;
-  double? pondSize;
+  num? pondSize;
   String? fiscalYear;
   bool? active;
   bool? approved;

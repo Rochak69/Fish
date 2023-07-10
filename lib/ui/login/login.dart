@@ -55,8 +55,7 @@ class _LoginPageState extends State<LoginPage> {
             Navigator.pop(context);
             displayToastMessage('Your request has not been approved');
             return;
-          }
-          if (state.result.data?.isFarmer ?? false) {
+          } else if (state.result.data?.isFarmer ?? false) {
             Navigator.pushReplacement(context, MaterialPageRoute(
               builder: (context) {
                 return const HomeListing();
@@ -74,135 +73,143 @@ class _LoginPageState extends State<LoginPage> {
           displayToastMessage(state.errorMessage);
         }
       },
-      child: Scaffold(
-        backgroundColor: Colors.white,
-        body: SafeArea(
-          child: SingleChildScrollView(
-            child: Padding(
-              padding: EdgeInsets.all(16.r),
-              child: Form(
-                key: formkey,
-                child: Column(
-                  children: [
-                    UiHelper.verticalSpacing(130.h),
-                    Image.asset('assets/logo.png'),
-                    UiHelper.verticalSpacing(19.h),
-                    _buildUpperText(),
-                    UiHelper.verticalSpacing(90.h),
-                    Container(
-                      padding: EdgeInsets.only(
-                        left: 5.w,
-                        right: 231.w,
-                      ),
-                      child: Text(
-                        translation(context).hello,
-                        style: TextStyle(
-                          fontSize: 22.sp,
-                          color: Colors.black,
-                          fontWeight: FontWeight.w900,
+      child: WillPopScope(
+        onWillPop: () async {
+          return false;
+        },
+        child: Scaffold(
+          backgroundColor: Colors.white,
+          body: SafeArea(
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: EdgeInsets.all(16.r),
+                child: Form(
+                  key: formkey,
+                  child: Column(
+                    children: [
+                      UiHelper.verticalSpacing(130.h),
+                      Image.asset('assets/logo.png'),
+                      UiHelper.verticalSpacing(19.h),
+                      _buildUpperText(),
+                      UiHelper.verticalSpacing(90.h),
+                      Container(
+                        padding: EdgeInsets.only(
+                          left: 5.w,
+                          right: 231.w,
                         ),
-                      ),
-                    ),
-                    UiHelper.verticalSpacing(20.h),
-                    FishTextField(
-                      validator: (value) => Validators.validateEmpty(value),
-                      textEditingController: _email,
-                      label: 'Phone Number',
-                      contentPadding: EdgeInsets.only(left: 15.w),
-                    ),
-                    UiHelper.verticalSpacing(20.h),
-                    FishTextField(
-                      validator: (value) => Validators.validateEmpty(value),
-                      textEditingController: _password,
-                      label: 'Password',
-                      contentPadding: EdgeInsets.only(left: 15.w),
-                      obscureText: _obscureText,
-                      onSuffixIconTap: () {
-                        setState(() {
-                          _obscureText = !_obscureText;
-                        });
-                      },
-                      sufixIcon: Icon(
-                        _obscureText ? Icons.visibility_off : Icons.visibility,
-                        color: _obscureText ? Colors.grey : Colors.grey,
-                      ),
-                    ),
-                    UiHelper.verticalSpacing(10.h),
-                    Container(
-                      padding: EdgeInsets.only(left: 2.w),
-                      alignment: Alignment.bottomLeft,
-                      child: TextButton(
-                        onPressed: () {
-                          Navigator.push(context, MaterialPageRoute(
-                            builder: (context) {
-                              return const Forgot();
-                            },
-                          ));
-                        },
                         child: Text(
-                          'Forgot Password?',
+                          translation(context).hello,
                           style: TextStyle(
-                              fontSize: 12.sp, fontWeight: FontWeight.w600),
+                            fontSize: 22.sp,
+                            color: Colors.black,
+                            fontWeight: FontWeight.w900,
+                          ),
                         ),
                       ),
-                    ),
-                    UiHelper.verticalSpacing(20.h),
-                    Column(
-                      children: [
-                        SizedBox(
-                          width: 330.w,
-                          height: 48.h,
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(12.r),
-                            child: ElevatedButton(
-                              onPressed: () {
-                                bool isValid = formkey.currentState!.validate();
-                                if (isValid) {
-                                  showLoaderDialog(context);
-
-                                  BlocProvider.of<LoginBloc>(context).add(
-                                      LoginWithPhone(
-                                          password: _password.text.trim(),
-                                          phoneNumber: _email.text.trim()));
-                                } else {}
+                      UiHelper.verticalSpacing(20.h),
+                      FishTextField(
+                        validator: (value) => Validators.validateEmpty(value),
+                        textEditingController: _email,
+                        label: 'Phone Number',
+                        contentPadding: EdgeInsets.only(left: 15.w),
+                      ),
+                      UiHelper.verticalSpacing(20.h),
+                      FishTextField(
+                        validator: (value) => Validators.validateEmpty(value),
+                        textEditingController: _password,
+                        label: 'Password',
+                        contentPadding: EdgeInsets.only(left: 15.w),
+                        obscureText: _obscureText,
+                        onSuffixIconTap: () {
+                          setState(() {
+                            _obscureText = !_obscureText;
+                          });
+                        },
+                        sufixIcon: Icon(
+                          _obscureText
+                              ? Icons.visibility_off
+                              : Icons.visibility,
+                          color: _obscureText ? Colors.grey : Colors.grey,
+                        ),
+                      ),
+                      UiHelper.verticalSpacing(10.h),
+                      Container(
+                        padding: EdgeInsets.only(left: 2.w),
+                        alignment: Alignment.bottomLeft,
+                        child: TextButton(
+                          onPressed: () {
+                            Navigator.push(context, MaterialPageRoute(
+                              builder: (context) {
+                                return const Forgot();
                               },
+                            ));
+                          },
+                          child: Text(
+                            'Forgot Password?',
+                            style: TextStyle(
+                                fontSize: 12.sp, fontWeight: FontWeight.w600),
+                          ),
+                        ),
+                      ),
+                      UiHelper.verticalSpacing(20.h),
+                      Column(
+                        children: [
+                          SizedBox(
+                            width: 330.w,
+                            height: 48.h,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(12.r),
+                              child: ElevatedButton(
+                                onPressed: () {
+                                  bool isValid =
+                                      formkey.currentState!.validate();
+                                  if (isValid) {
+                                    showLoaderDialog(context);
 
-                              //  signIn,
-                              child: Text(
-                                'Login',
-                                style: TextStyle(
-                                    fontSize: 12.sp,
-                                    fontWeight: FontWeight.w600,
-                                    color: Colors.white),
+                                    BlocProvider.of<LoginBloc>(context).add(
+                                        LoginWithPhone(
+                                            password: _password.text.trim(),
+                                            phoneNumber: _email.text.trim()));
+                                  } else {}
+                                },
+
+                                //  signIn,
+                                child: Text(
+                                  'Login',
+                                  style: TextStyle(
+                                      fontSize: 12.sp,
+                                      fontWeight: FontWeight.w600,
+                                      color: Colors.white),
+                                ),
                               ),
                             ),
-                          ),
-                        )
-                      ],
-                    ),
-                    UiHelper.verticalSpacing(20.h),
-                    RichText(
-                        text: TextSpan(
-                            style: const TextStyle(
-                              color: Colors.black,
-                            ),
-                            text: 'Not a Member?',
-                            children: [
-                          TextSpan(
-                              recognizer: TapGestureRecognizer()
-                                ..onTap = () =>
-                                    Navigator.push(context, MaterialPageRoute(
-                                      builder: (context) {
-                                        return const RegistrationPage();
-                                      },
-                                    )),
-                              text: ' Register Now',
+                          )
+                        ],
+                      ),
+                      UiHelper.verticalSpacing(20.h),
+                      RichText(
+                          text: TextSpan(
                               style: const TextStyle(
-                                  decoration: TextDecoration.underline,
-                                  color: Colors.blue,
-                                  fontWeight: FontWeight.w600))
-                        ])),
-                  ],
+                                color: Colors.black,
+                              ),
+                              text: 'Not a Member?',
+                              children: [
+                            TextSpan(
+                                recognizer: TapGestureRecognizer()
+                                  ..onTap = () =>
+                                      Navigator.push(context, MaterialPageRoute(
+                                        builder: (context) {
+                                          return const RegistrationPage();
+                                        },
+                                      )),
+                                text: ' Register Now',
+                                style: const TextStyle(
+                                    decoration: TextDecoration.underline,
+                                    color: Colors.blue,
+                                    fontWeight: FontWeight.w600))
+                          ])),
+                    ],
+                  ),
                 ),
               ),
             ),

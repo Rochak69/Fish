@@ -357,6 +357,10 @@ class ApiClient {
       DioError err = error;
       if (err.response?.statusCode == 404 ||
           err.response?.statusCode == 401 ||
+          err.response?.statusCode == 402 ||
+          err.response?.statusCode == 403 ||
+          err.response?.statusCode == 405 ||
+          err.response?.statusCode == 406 ||
           err.response?.statusCode == 400) {
         if (kDebugMode) {
           print('${err.response}');

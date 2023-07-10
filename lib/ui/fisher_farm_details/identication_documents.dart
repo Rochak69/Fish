@@ -69,11 +69,15 @@ class _IdentificationDocumentsState extends State<IdentificationDocuments> {
       listener: (context, state) {
         if (state.theStates == TheStates.success && state.isPosted) {
           displayToastMessage('Farmer created successfully');
-          Navigator.push(context, MaterialPageRoute(
-            builder: (context) {
-              return const LoginPage();
-            },
-          ));
+          Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(
+              builder: (context) {
+                return const LoginPage();
+              },
+            ),
+            (route) => false,
+          );
         } else if (state.theStates == TheStates.failed) {
           displayToastMessage(state.errorMessage,
               backgroundColor: AppColors.textRedContainerColor);
@@ -462,11 +466,6 @@ class _IdentificationDocumentsState extends State<IdentificationDocuments> {
                       height: 48.h,
                       child: ElevatedButton(
                         onPressed: () {
-                          if (profilePicturePath == null) {
-                            displayToastMessage('Please upload profile picture',
-                                backgroundColor: AppColors.textRedColor);
-                            return;
-                          }
                           if (_formKey.currentState!.validate()) {
                             showLoaderDialog(context);
                             BlocProvider.of<FishFarmerDetailBloc>(context).add(
