@@ -50,6 +50,12 @@ class _LoginPageState extends State<LoginPage> {
     return BlocListener<LoginBloc, LoginState>(
       listener: (context, state) {
         if (state is LoginSuccess) {
+          bool isApproved = state.result.data?.farmerStatus?.approved ?? false;
+          if (isApproved) {
+            Navigator.pop(context);
+            displayToastMessage('Your request has not been approved');
+            return;
+          }
           if (state.result.data?.isFarmer ?? false) {
             Navigator.pushReplacement(context, MaterialPageRoute(
               builder: (context) {
