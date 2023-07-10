@@ -29,21 +29,23 @@ class FishFarmerDetailBloc
       PostFarmerDetailsEvent event, Emitter<FishFarmerDetailState> emit) async {
     try {
       final result = await apiClient.postdetails(
-          userId: event.userId,
-          district: event.district,
-          farmName: event.farmName,
-          pradesh: event.pradesh,
-          pondSize: event.pondSize,
-          citizenshipIssueDistrictId: event.citizenDistricId,
-          citizenshipName: event.citizenName,
-          citizenshipNumber: event.citizenNumber,
-          mobileNumber: event.phoneNumber,
-          fullName: event.farmersName,
-          profilePic: event.profilePicture,
-          identification: event.identification,
-          registerPic: event.registerPic,
-          woda: event.woda,
-          municiplaity: event.nagarpalika);
+        userId: event.userId,
+        district: event.district,
+        farmName: event.farmName,
+        pradesh: event.pradesh,
+        pondSize: event.pondSize,
+        citizenshipIssueDistrictId: event.citizenDistricId,
+        citizenshipName: event.citizenName,
+        citizenshipNumber: event.citizenNumber,
+        mobileNumber: event.phoneNumber,
+        fullName: event.farmersName,
+        profilePic: event.profilePicture,
+        identification: event.identification,
+        registerPic: event.registerPic,
+        woda: event.woda,
+        citizenshipPhoto: event.citizenshipPhoto,
+        municiplaity: event.nagarpalika,
+      );
       result as ApiResponse;
       emit(state.copyWith(theStates: TheStates.success, isPosted: true));
     } catch (e) {

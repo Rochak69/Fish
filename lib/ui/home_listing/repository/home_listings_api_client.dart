@@ -3,7 +3,7 @@ import 'package:fish_shop/common/status.dart';
 import 'package:fish_shop/providers/api_client.dart';
 import 'package:fish_shop/ui/home_listing/model/fish_response.dart';
 import 'package:fish_shop/ui/home_listing/model/home_listings_response.dart';
-import 'package:fish_shop/ui/login/model/user_details_Response.dart';
+import 'package:fish_shop/ui/login/model/user_details_response.dart';
 import 'package:fish_shop/ui/utils/endpoints.dart';
 import 'package:fish_shop/ui/utils/preferences.dart';
 import 'package:injectable/injectable.dart';

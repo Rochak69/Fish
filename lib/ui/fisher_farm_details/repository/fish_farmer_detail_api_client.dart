@@ -31,6 +31,7 @@ class FishFarmerDetailApiClient {
     String? mobileNumber,
     String? citizenshipNumber,
     String? citizenshipIssueDistrictId,
+    required String? citizenshipPhoto,
     int? woda,
     required String? identification,
     required String? profilePic,
@@ -59,6 +60,9 @@ class FishFarmerDetailApiClient {
       "registrationImage": registerPic != null
           ? await MultipartFile.fromFile(registerPic)
           : null,
+      "citizenship": citizenshipPhoto != null
+          ? await MultipartFile.fromFile(citizenshipPhoto)
+          : null
     });
 
     ///or pass object directly to the http post

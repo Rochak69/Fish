@@ -34,11 +34,13 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
           Preference.accessToken, result.data?.sessionToken ?? '');
       await preferences.saveString(
           Preference.phoneNumber, result.data?.phoneNumber ?? '');
-      final details = await homeApiClient.getUserDetails();
+      final user = await homeApiClient.getUserDetails();
       await preferences.saveString(
-          Preference.phoneNumber, details.data?.userId ?? '');
+        Preference.phoneNumber,
+        user.data?.userId ?? '',
+      );
 
-      emit(LoginSuccess(result: result));
+      emit(LoginSuccess(result: result, userDetails: user.data));
     } catch (e) {
       try {
         ApiErrorResponse apiErrorResponse = e as ApiErrorResponse;

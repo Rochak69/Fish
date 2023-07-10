@@ -142,6 +142,11 @@ class _ChangePasswordState extends State<ChangePassword> {
                             backgroundColor: AppColors.textRedColor);
                         return;
                       }
+                      if (_confirmPassword.text != _createPassword.text) {
+                        displayToastMessage('Your password dosen\'t match',
+                            backgroundColor: AppColors.textRedColor);
+                        return;
+                      }
                       showLoaderDialog(context);
                       BlocProvider.of<ResetPasswordBloc>(context).add(
                           ResetPasswordEventWithPhone(

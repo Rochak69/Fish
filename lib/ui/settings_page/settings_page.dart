@@ -1,10 +1,15 @@
 import 'package:fish_shop/res/colors.dart';
 import 'package:fish_shop/ui/forgot_password/forgot_password.dart';
+import 'package:fish_shop/ui/home_listing/bloc/home_listings_bloc.dart';
+import 'package:fish_shop/ui/login/bloc/login_state.dart';
 import 'package:fish_shop/ui/login/login.dart';
+import 'package:fish_shop/ui/utils/endpoints.dart';
 import 'package:fish_shop/ui/utils/preferences.dart';
 import 'package:fish_shop/ui/utils/uihelper.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fish_shop/ui/login/bloc/login_bloc.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
@@ -21,7 +26,22 @@ class SettingsPage extends StatelessWidget {
                 UiHelper.verticalSpacing(63),
                 _buildUpperText(),
                 UiHelper.verticalSpacing(17),
-                Image.asset('assets/avatar.png'),
+                BlocBuilder<LoginBloc, LoginState>(
+                  builder: (context, state) {
+                    if (state is LoginSuccess &&
+                        state.userDetails?.document?.profilePicture != null) {
+                      String profilePic =
+                          state.userDetails?.document?.profilePicture ?? '';
+                      return CircleAvatar(
+                        radius: 50.r,
+                        backgroundImage:
+                            NetworkImage(Endpoints.baseFile + profilePic),
+                      );
+                    } else {
+                      return Image.asset('assets/avatar.png');
+                    }
+                  },
+                ),
                 UiHelper.verticalSpacing(16),
                 const Text(
                   'Lucas Scott',

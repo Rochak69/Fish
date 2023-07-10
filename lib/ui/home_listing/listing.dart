@@ -3,7 +3,10 @@ import 'package:fish_shop/ui/common_widget/CardListing.dart';
 import 'package:fish_shop/ui/home_listing/bloc/home_listings_bloc.dart';
 import 'package:fish_shop/ui/home_listing/bloc/home_listings_event.dart';
 import 'package:fish_shop/ui/home_listing/bloc/home_listings_state.dart';
+import 'package:fish_shop/ui/login/bloc/login_bloc.dart';
+import 'package:fish_shop/ui/login/bloc/login_state.dart';
 import 'package:fish_shop/ui/settings_page/settings_page.dart';
+import 'package:fish_shop/ui/utils/endpoints.dart';
 import 'package:fish_shop/ui/utils/uihelper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -57,7 +60,25 @@ class _ListingsState extends State<Listings> {
                         MaterialPageRoute(
                             builder: (context) => const SettingsPage()));
                   },
-                  child: Image.asset('assets/avatar_small.png', width: 38.w),
+                  child: BlocBuilder<LoginBloc, LoginState>(
+                    builder: (context, state) {
+                      if (state is LoginSuccess &&
+                          state.userDetails?.document?.profilePicture != null) {
+                        String profilePic =
+                            state.userDetails?.document?.profilePicture ?? '';
+                        return CircleAvatar(
+                          radius: 20.r,
+                          backgroundImage:
+                              NetworkImage(Endpoints.baseFile + profilePic),
+                        );
+                      } else {
+                        return Image.asset(
+                          'assets/avatar.png',
+                          width: 38.w,
+                        );
+                      }
+                    },
+                  ),
                 ),
                 UiHelper.horizontalSpacing(24.w)
               ],

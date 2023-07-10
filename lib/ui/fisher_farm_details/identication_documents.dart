@@ -9,6 +9,8 @@ import 'package:fish_shop/ui/fisher_farm_details/bloc/fish_farmer_detail_bloc.da
 import 'package:fish_shop/ui/fisher_farm_details/bloc/fish_farmer_detail_event.dart';
 import 'package:fish_shop/ui/fisher_farm_details/bloc/fish_farmer_detail_state.dart';
 import 'package:fish_shop/ui/login/login.dart';
+import 'package:fish_shop/ui/my_language/bloc/my_language_bloc.dart';
+import 'package:fish_shop/ui/my_language/bloc/my_language_state.dart';
 import 'package:fish_shop/ui/utils/uihelper.dart';
 import 'package:fish_shop/ui/utils/utils.dart';
 import 'package:flutter/material.dart';
@@ -26,11 +28,18 @@ class IdentificationDocuments extends StatefulWidget {
   final String woda;
   final String pradesh;
 
-  const IdentificationDocuments(
+  String? toleName;
+  String? email;
+  String? facebook;
+
+  IdentificationDocuments(
       {super.key,
       required this.userId,
       required this.farmName,
       required this.farmersName,
+      this.toleName,
+      this.email,
+      this.facebook,
       required this.district,
       required this.nagarpalika,
       required this.woda,
@@ -247,17 +256,24 @@ class _IdentificationDocumentsState extends State<IdentificationDocuments> {
                           children: []),
                     ),
                     UiHelper.verticalSpacing(8.h),
-                    AppDropDown<String>(
-                      value: selectedDistrict,
-                      isExpanded: true,
-                      items: state.districtResponse
-                              ?.map((e) => DropdownMenuItem(
-                                  value: e.id, child: Text(e.englishName!)))
-                              .toList() ??
-                          [],
-                      onChanged: (value) {
-                        selectedDistrict = value;
-                        setState(() {});
+                    BlocBuilder<MyLanguageBloc, MyLanguageState>(
+                      builder: (context, languagestate) {
+                        return AppDropDown<String>(
+                          value: selectedDistrict,
+                          isExpanded: true,
+                          items: state.districtResponse
+                                  ?.map((e) => DropdownMenuItem(
+                                      value: e.id,
+                                      child: Text(state is EnglishState
+                                          ? e.englishName ?? ''
+                                          : e.nepaliName ?? '')))
+                                  .toList() ??
+                              [],
+                          onChanged: (value) {
+                            selectedDistrict = value;
+                            setState(() {});
+                          },
+                        );
                       },
                     ),
                     UiHelper.verticalSpacing(12.h),
@@ -470,9 +486,10 @@ class _IdentificationDocumentsState extends State<IdentificationDocuments> {
                             showLoaderDialog(context);
                             BlocProvider.of<FishFarmerDetailBloc>(context).add(
                               PostFarmerDetailsEvent(
+                                  citizenshipPhoto: citizenshipPicturePath,
                                   profilePicture: profilePicturePath,
-                                  identification: citizenshipPicturePath,
-                                  registerPic: palikaPicturePath,
+                                  identification: palikaPicturePath,
+                                  registerPic: othersPath,
                                   userId: widget.userId,
                                   farmName: widget.farmName,
                                   farmersName: widget.farmersName,
@@ -486,7 +503,10 @@ class _IdentificationDocumentsState extends State<IdentificationDocuments> {
                                   woda: int.tryParse(widget.woda) ?? 0,
                                   citizenNumber: citizenNumber.text,
                                   citizenDistricId: selectedDistrict ?? '1',
-                                  citizenName: citizenName.text),
+                                  citizenName: citizenName.text,
+                                  tole: widget.toleName,
+                                  email: widget.toleName,
+                                  facebook: widget.facebook),
                             );
                           }
                         },

@@ -17,6 +17,7 @@ class PostFarmerDetailsEvent extends FishFarmerDetailEvent {
   String citizenName;
   String citizenDistricId;
   String citizenNumber;
+  String? citizenshipPhoto;
 
   int woda;
   String? tole;
@@ -30,6 +31,7 @@ class PostFarmerDetailsEvent extends FishFarmerDetailEvent {
     required this.identification,
     required this.farmName,
     required this.farmersName,
+    required this.citizenshipPhoto,
     required this.phoneNumber,
     this.pondSize,
     required this.pradesh,
