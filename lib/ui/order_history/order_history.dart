@@ -237,7 +237,11 @@ class _OrderHistoryState extends State<OrderHistory> {
             children: [
               InkWell(
                 onTap: () {
-                  _showSureDialog(context, state, index, true);
+                  if (state.orders.data?[index].completed ?? false) {
+                    return;
+                  } else {
+                    _showSureDialog(context, state, index, true);
+                  }
                 },
                 child: Container(
                   width: 91.w,
@@ -263,7 +267,11 @@ class _OrderHistoryState extends State<OrderHistory> {
               UiHelper.verticalSpacing(5.h),
               InkWell(
                 onTap: () {
-                  _showSureDialog(context, state, index, false);
+                  if (state.orders.data?[index].cancelled ?? false) {
+                    return;
+                  } else {
+                    _showSureDialog(context, state, index, false);
+                  }
                 },
                 child: Container(
                   width: 91.w,

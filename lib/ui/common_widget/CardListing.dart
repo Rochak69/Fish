@@ -19,13 +19,13 @@ class CardListing extends StatefulWidget {
   final int totalWeight;
   final String location;
   final String date;
-  //final bool isDisabled;
+  final bool isDisabled;
   final String userDemandId;
   const CardListing({
     Key? key,
     this.backgroundColor,
     this.textColor,
-    // required this.isDisabled,
+    required this.isDisabled,
     required this.fishName,
     required this.avgWeight,
     required this.totalWeight,
