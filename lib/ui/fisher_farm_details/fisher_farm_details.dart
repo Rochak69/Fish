@@ -268,7 +268,9 @@ class _FishFarmDetailsState extends State<FishFarmDetails> {
                                 items: state.wodaResponse
                                         ?.map((e) => DropdownMenuItem(
                                             value: e.id,
-                                            child: Text(e.englishNumber!)))
+                                            child: Text(state is EnglishState
+                                                ? e.englishNumber ?? ''
+                                                : e.nepaliNumber ?? '')))
                                         .toList() ??
                                     [],
                                 onChanged: (value) {

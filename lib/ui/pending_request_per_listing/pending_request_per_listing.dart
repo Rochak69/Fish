@@ -4,11 +4,14 @@ import 'package:fish_shop/ui/pending_request_per_listing/bloc/pending_request_pe
 import 'package:fish_shop/ui/pending_request_per_listing/bloc/pending_request_per_listing_state.dart';
 import 'package:fish_shop/ui/utils/uihelper.dart';
 import 'package:fish_shop/ui/utils/utils.dart';
+import 'package:fish_shop/ui/your_listing/bloc/your_listing_bloc.dart';
 import 'package:fish_shop/ui/your_listing/model/your_listing_model.dart';
 import 'package:fish_shop/ui/your_listing/your_listing.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../your_listing/bloc/your_listing_event.dart';
 
 class BuyerRequestsScreen extends StatefulWidget {
   final String avgWeight;
@@ -78,6 +81,7 @@ class _BuyerRequestsScreenState extends State<BuyerRequestsScreen> {
           if (changeableRequest.isNotEmpty) {
             changeableRequest.removeAt(state.index);
             setState(() {});
+            BlocProvider.of<YourListingBloc>(context).add(GetMyListings());
           }
         }
       },
@@ -383,10 +387,12 @@ class _BuyerRequestsScreenState extends State<BuyerRequestsScreen> {
                 onTap: () {
                   if (isAccept) {
                     BlocProvider.of<PendingRequestPerListingBloc>(context).add(
-                        AcceptBuyerRequest(id: request.id ?? '', index: index));
+                        AcceptBuyerRequest(context,
+                            id: request.id ?? '', index: index));
                   } else {
                     BlocProvider.of<PendingRequestPerListingBloc>(context).add(
-                        RejectBuyerRequest(id: request.id ?? '', index: index));
+                        RejectBuyerRequest(context,
+                            id: request.id ?? '', index: index));
                   }
 
                   Navigator.pop(context);

@@ -55,12 +55,17 @@ class _YieldFormState extends State<YieldForm> {
         appBar: AppBar(
           automaticallyImplyLeading: true,
           centerTitle: true,
-          leading: Padding(
-              padding: EdgeInsets.only(left: 20.w),
-              child: const Icon(
-                Icons.arrow_back_ios,
-                color: AppColors.textColor,
-              )),
+          leading: InkWell(
+            onTap: () {
+              Navigator.pop(context);
+            },
+            child: Padding(
+                padding: EdgeInsets.only(left: 20.w),
+                child: const Icon(
+                  Icons.arrow_back_ios,
+                  color: AppColors.textColor,
+                )),
+          ),
           elevation: 0,
           backgroundColor: Colors.white,
           title: Text(

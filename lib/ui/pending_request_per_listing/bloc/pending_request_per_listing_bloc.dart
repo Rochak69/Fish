@@ -7,6 +7,9 @@ import 'package:fish_shop/ui/pending_request_per_listing/bloc/pending_request_pe
 import 'package:fish_shop/ui/pending_request_per_listing/bloc/pending_request_per_listing_state.dart';
 import 'package:fish_shop/ui/pending_request_per_listing/repository/pending_request_listings_api_client.dart';
 import 'package:fish_shop/ui/utils/utils.dart';
+import 'package:fish_shop/ui/your_listing/bloc/your_listing_bloc.dart';
+import 'package:fish_shop/ui/your_listing/bloc/your_listing_event.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
 @lazySingleton
@@ -26,6 +29,7 @@ class PendingRequestPerListingBloc
       final result = await apiClient.acceptRequest(event.id);
       result as ApiResponse;
       displayToastMessage('Successfully accepted');
+      BlocProvider.of<YourListingBloc>(event.context).add(GetMyListings());
       emit(PendingRequestSuccess(event.index));
     } catch (e) {
       try {
@@ -46,6 +50,8 @@ class PendingRequestPerListingBloc
       final result = await apiClient.rejectRequest(event.id);
       result as ApiResponse;
       displayToastMessage('Successfully Rejected');
+      BlocProvider.of<YourListingBloc>(event.context).add(GetMyListings());
+
       emit(PendingRequestSuccess(event.index));
     } catch (e) {
       try {
