@@ -43,12 +43,25 @@ class SettingsPage extends StatelessWidget {
                   },
                 ),
                 UiHelper.verticalSpacing(16),
-                const Text(
-                  'Lucas Scott',
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.w900,
-                      fontSize: 16),
+                BlocBuilder<LoginBloc, LoginState>(
+                  builder: (context, state) {
+                    if (state is LoginSuccess) {
+                      return Text(
+                        state.userDetails?.farmName ?? 'Your Name',
+                        style: const TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.w900,
+                            fontSize: 16),
+                      );
+                    }
+                    return const Text(
+                      'Lucas Scott',
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.w900,
+                          fontSize: 16),
+                    );
+                  },
                 ),
                 UiHelper.verticalSpacing(47),
                 InkWell(
