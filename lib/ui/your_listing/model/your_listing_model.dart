@@ -4,8 +4,8 @@ class YourListingsResponse {
   String? id;
   String? farmerId;
   FishType? fishType;
-  int? avgFishWeight;
-  int? totalWeight;
+  num? avgFishWeight;
+  num? totalWeight;
   String? yieldDate;
   String? fishTypeId;
   List<BuyerRequest>? buyerRequest;

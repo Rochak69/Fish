@@ -58,6 +58,7 @@ class HomeListingsBloc extends Bloc<HomeListingsEvent, HomeListingsState> {
           supplyWeight: event.weight);
       final response = result as ApiResponse;
       displayToastMessage('Offer successfully sent');
+      add(GetHomeListings());
     } catch (e) {
       try {
         ApiErrorResponse apiErrorResponse = e as ApiErrorResponse;

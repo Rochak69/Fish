@@ -315,9 +315,9 @@ class _YourListingsState extends State<YourListings> {
   void _showAlertDialog(
       {required BuildContext context,
       required String yeildDate,
-      required int totalWeight,
+      required num totalWeight,
       required String fistType,
-      required int avgWeight,
+      required num avgWeight,
       required String id}) {
     showDialog(
       context: context,
