@@ -32,6 +32,16 @@ class _SupportState extends State<Support> {
       child: Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
+          leading: Padding(
+            padding: EdgeInsets.only(left: 20.w),
+            child: IconButton(
+              icon: const Icon(
+                Icons.arrow_back_ios,
+                color: AppColors.textColor,
+              ),
+              onPressed: () => Navigator.pop(context),
+            ),
+          ),
           centerTitle: true,
           elevation: 0,
           backgroundColor: Colors.white,
@@ -40,7 +50,7 @@ class _SupportState extends State<Support> {
             style: TextStyle(
                 color: Colors.black,
                 fontWeight: FontWeight.w900,
-                fontSize: 20.sp),
+                fontSize: 18.sp),
           ),
         ),
         body: Container(

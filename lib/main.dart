@@ -1,6 +1,7 @@
 import 'package:fish_shop/core/injection/dependency_injection.dart';
 import 'package:fish_shop/navigation_service.dart';
 import 'package:fish_shop/res/colors.dart';
+import 'package:fish_shop/ui/contact/bloc/contact_bloc.dart';
 import 'package:fish_shop/ui/fisher_farm_details/bloc/fish_farmer_detail_bloc.dart';
 import 'package:fish_shop/ui/home_listing/bloc/home_listings_bloc.dart';
 import 'package:fish_shop/ui/home_listing/home_listing.dart';
@@ -83,6 +84,9 @@ class MyApp extends StatelessWidget {
             ),
             BlocProvider<SupportBloc>(
               create: (context) => sl<SupportBloc>(),
+            ),
+            BlocProvider<ContactBloc>(
+              create: (context) => sl<ContactBloc>(),
             ),
           ],
           child: ScreenUtilInit(

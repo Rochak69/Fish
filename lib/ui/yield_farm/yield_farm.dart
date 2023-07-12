@@ -24,15 +24,36 @@ class YieldForm extends StatefulWidget {
 
 class _YieldFormState extends State<YieldForm> {
   DateTime? date;
-  String avgUnit = 'kg';
-  String totalWeightUnit = 'kg';
+  String? avgWeight;
+
+  List<Fish> fishes = [
+    Fish('0.1 के.जी.', '0.1'),
+    Fish('0.2 के.जी.', '0.2'),
+    Fish('0.4 के.जी.', '0.4'),
+    Fish('0.5 के.जी.', '0.5'),
+    Fish('0.7 के.जी.', '0.7'),
+    Fish('0.9 के.जी.', '0.9'),
+    Fish('1के.जी.', '1'),
+    Fish('1.3 के.जी.', '1.3'),
+    Fish('1.5 के.जी.', '1.5'),
+    Fish('1.7 के.जी.', '1.7'),
+    Fish('1.8 के.जी.', '1.8'),
+    Fish('2 के.जी.', '2'),
+    Fish('2.5 के.जी.', '2.5'),
+    Fish('3 के.जी.', '3'),
+    Fish('3.5 के.जी.', '3.5'),
+    Fish('4के.जी.', '4'),
+    Fish('4.5 के.जी.', '4.5'),
+    Fish('5 के.जी.', '5'),
+    Fish('5.5 के.जी.', '5.5'),
+    Fish('6 के.जी. भन्दा ठूलो माछा', '6'),
+  ];
+
   final _formKey = GlobalKey<FormState>();
 
   final TextEditingController _edControllerDate = TextEditingController();
 
   final TextEditingController _totalWeightController = TextEditingController();
-  final TextEditingController _weightPerFishController =
-      TextEditingController();
   String? selectedFish;
   @override
   void initState() {
@@ -146,30 +167,17 @@ class _YieldFormState extends State<YieldForm> {
                         ]),
                   ),
                   UiHelper.verticalSpacing(5),
-                  Row(
-                    children: [
-                      FishTextField(
-                        validator: (value) => Validators.validateEmpty(value),
-                        textInputType: const TextInputType.numberWithOptions(
-                            decimal: true),
-                        textEditingController: _weightPerFishController,
-                        label: '',
-                        width: 186.w,
-                      ),
-                      UiHelper.horizontalSpacing(10.w),
-                      AppDropDown(
-                        value: avgUnit,
-                        items: const [
-                          DropdownMenuItem(value: 'kg', child: Text('kg')),
-                          DropdownMenuItem(value: 'gram', child: Text('gram')),
-                        ],
-                        onChanged: (value) {
-                          avgUnit = value ?? 'kg';
-                          setState(() {});
-                        },
-                      )
-                    ],
-                  ),
+                  AppDropDown<String>(
+                      isExpanded: true,
+                      value: avgWeight,
+                      onChanged: (p0) {
+                        avgWeight = p0;
+                        setState(() {});
+                      },
+                      items: fishes
+                          .map((e) => DropdownMenuItem(
+                              value: e.value, child: Text(e.fishWeight)))
+                          .toList()),
                   UiHelper.verticalSpacing(15.h),
                   RichText(
                     text: TextSpan(
@@ -187,29 +195,13 @@ class _YieldFormState extends State<YieldForm> {
                         ]),
                   ),
                   UiHelper.verticalSpacing(5.h),
-                  Row(
-                    children: [
-                      FishTextField(
-                        validator: (value) => Validators.validateEmpty(value),
-                        textEditingController: _totalWeightController,
-                        label: '',
-                        width: 186.w,
-                        textInputType: const TextInputType.numberWithOptions(
-                            decimal: true),
-                      ),
-                      UiHelper.horizontalSpacing(10.w),
-                      AppDropDown(
-                        value: totalWeightUnit,
-                        items: const [
-                          DropdownMenuItem(value: 'kg', child: Text('kg')),
-                          DropdownMenuItem(value: 'gram', child: Text('gram')),
-                        ],
-                        onChanged: (value) {
-                          totalWeightUnit = value ?? 'kg';
-                          setState(() {});
-                        },
-                      )
-                    ],
+                  FishTextField(
+                    validator: (value) => Validators.validateEmpty(value),
+                    textEditingController: _totalWeightController,
+                    label: '',
+                    width: double.infinity,
+                    textInputType:
+                        const TextInputType.numberWithOptions(decimal: true),
                   ),
                   UiHelper.verticalSpacing(15.h),
                   RichText(
@@ -264,16 +256,13 @@ class _YieldFormState extends State<YieldForm> {
                               showLoaderDialog(context);
                               BlocProvider.of<YeildFormBloc>(context).add(
                                   PostYeildForm(
-                                      avgFishWeight: getWeightInKg(
-                                          double.parse(
-                                              _weightPerFishController.text),
-                                          avgUnit),
+                                      avgFishWeight:
+                                          double.tryParse(avgWeight ?? '0') ??
+                                              0,
                                       fishType: selectedFish ?? '0',
-                                      totalWeight: getWeightInKg(
-                                          double.parse(
-                                              _totalWeightController.text),
-                                          totalWeightUnit),
-                                      yieldDate: date.toString()));
+                                      totalWeight: double.parse(
+                                          _totalWeightController.text),
+                                      yieldDate: _edControllerDate.toString()));
                             }
                           },
                           child: Text(
@@ -337,4 +326,11 @@ getWeightInKg(double weight, String givenWeight) {
   } else {
     return weight;
   }
+}
+
+class Fish {
+  String fishWeight;
+  String value;
+
+  Fish(this.fishWeight, this.value);
 }

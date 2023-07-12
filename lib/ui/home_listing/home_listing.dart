@@ -1,4 +1,7 @@
 import 'package:fish_shop/res/colors.dart';
+import 'package:fish_shop/ui/Contact/bloc/contact_event.dart';
+import 'package:fish_shop/ui/contact/bloc/contact_bloc.dart';
+import 'package:fish_shop/ui/contact/contact_screen.dart';
 import 'package:fish_shop/ui/home_listing/bloc/home_listings_bloc.dart';
 import 'package:fish_shop/ui/home_listing/bloc/home_listings_event.dart';
 import 'package:fish_shop/ui/home_listing/bloc/home_listings_state.dart';
@@ -27,13 +30,14 @@ class _HomeListingState extends State<HomeListing>
     const Listings(),
     const YourListings(),
     const OrderHistory(),
-    const Support(),
+    const ContactScreen(),
     const YieldForm()
   ];
 
   @override
   void initState() {
     BlocProvider.of<HomeListingsBloc>(context).add(GetHomeListings());
+    BlocProvider.of<ContactBloc>(context).add(GetContact());
 
     _animationController = AnimationController(
       vsync: this,
@@ -117,9 +121,9 @@ class _HomeListingState extends State<HomeListing>
                       2,
                     ),
                     _buildBottomNavigationBarItem(
-                      'Support',
-                      'assets/bottom_navigation_bar/user.png',
-                      'assets/bottom_navigation_bar/user.png',
+                      'COntact',
+                      'assets/bottom_navigation_bar/contact.png',
+                      'assets/bottom_navigation_bar/contact.png',
                       3,
                     ),
                   ],

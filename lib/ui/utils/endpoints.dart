@@ -24,6 +24,7 @@ class Endpoints {
   }
 
   static const String myOrders = '/me/myoder?type=farmer';
+  static const String contact = '/appinfo';
   static const String fishType = '/fishtype';
   static String completeOrder(String id) =>
       '/me/myoder/confirm/$id?type=farmer';
