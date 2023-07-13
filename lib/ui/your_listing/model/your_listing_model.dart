@@ -7,6 +7,7 @@ class YourListingsResponse {
   num? avgFishWeight;
   num? totalWeight;
   String? yieldDate;
+  String? expireDate;
   String? fishTypeId;
   List<BuyerRequest>? buyerRequest;
 
@@ -15,6 +16,7 @@ class YourListingsResponse {
       this.farmerId,
       this.fishType,
       this.avgFishWeight,
+      this.expireDate,
       this.totalWeight,
       this.yieldDate,
       this.fishTypeId,
@@ -23,6 +25,7 @@ class YourListingsResponse {
   YourListingsResponse.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     farmerId = json['farmerId'];
+    expireDate = json['expireDate'];
 
     avgFishWeight = json['avgFishWeight'];
     totalWeight = json['totalWeight'];
@@ -43,6 +46,7 @@ class YourListingsResponse {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
     data['farmerId'] = farmerId;
+    data['expireDate'] = expireDate;
 
     data['avgFishWeight'] = avgFishWeight;
     data['totalWeight'] = totalWeight;

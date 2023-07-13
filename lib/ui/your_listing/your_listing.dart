@@ -219,7 +219,7 @@ class _YourListingsState extends State<YourListings> {
                         color: Colors.black),
                   ),
                   Text(
-                    formarDate(state.result.data?[index].yieldDate),
+                    formarDate(state.result.data?[index].expireDate),
                     style: TextStyle(
                         fontSize: 12.sp,
                         fontWeight: FontWeight.w700,
