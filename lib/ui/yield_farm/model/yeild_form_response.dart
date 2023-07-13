@@ -2,8 +2,8 @@ class YeildFormResponse {
   String? id;
   String? farmerId;
   String? fishType;
-  int? avgFishWeight;
-  int? totalWeight;
+  num? avgFishWeight;
+  num? totalWeight;
   String? yieldDate;
 
   YeildFormResponse(

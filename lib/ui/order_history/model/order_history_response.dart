@@ -58,8 +58,8 @@ class OrderHistoryResponse {
 class BuyerDemand {
   String? id;
   String? buyerId;
-  int? avgFishWeight;
-  int? totalWeight;
+  num? avgFishWeight;
+  num? totalWeight;
   String? deadline;
   String? yieldDate;
   String? fishTypeId;
