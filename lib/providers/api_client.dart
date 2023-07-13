@@ -5,11 +5,16 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:fish_shop/common/api_response.dart';
 import 'package:fish_shop/common/status.dart';
+import 'package:fish_shop/navigation_service.dart';
 import 'package:fish_shop/providers/api_error.dart';
+import 'package:fish_shop/ui/login/login.dart';
 import 'package:fish_shop/ui/utils/endpoints.dart';
 import 'package:fish_shop/ui/utils/preferences.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
+
+import '../ui/utils/utils.dart';
 
 @injectable
 class ApiClient {
@@ -366,6 +371,11 @@ class ApiClient {
           print('${err.response}');
           print('${err.response?.data}');
         }
+
+        if (err.response?.data['message'] == 'Invalid token!') {
+          logout();
+          return;
+        }
         throw ApiErrorResponse(
           status: Status.error,
           details: (err.response?.data['error'] as List<dynamic>?)
@@ -393,6 +403,24 @@ class ApiClient {
       throw error;
     } catch (e) {
       rethrow;
+    }
+  }
+
+  Future logout() async {
+    BuildContext? context =
+        NavigationService.navigatorKey.currentState?.context;
+    if (context == null) {
+      displayToastMessage('Context is null, cannot logout');
+    } else {
+      Preferences preferences = Preferences();
+      await preferences.removeAll();
+
+      Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const LoginPage(),
+          ),
+          (route) => false);
     }
   }
 }

@@ -39,6 +39,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         Preference.farmerId,
         user.data?.userId ?? '',
       );
+      await preferences.saveBool(Preference.isLogin, true);
 
       emit(LoginSuccess(result: result, userDetails: user.data));
     } catch (e) {
