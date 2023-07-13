@@ -36,8 +36,9 @@ class ContactScreen extends StatelessWidget {
                 state.contact?.photo == null
                     ? UiHelper.verticalSpacing(50.h)
                     : SizedBox(
-                        height: 50.h,
+                        width: 150.w,
                         child: Image.network(
+                            fit: BoxFit.fill,
                             Endpoints.baseFile + state.contact!.photo!)),
                 UiHelper.verticalSpacing(10.h),
                 Text(
