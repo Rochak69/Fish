@@ -4,8 +4,8 @@ class HomeListingsResponse {
   String? id;
   String? buyerId;
   FishType? fishType;
-  int? avgFishWeight;
-  int? totalWeight;
+  num? avgFishWeight;
+  num? totalWeight;
   String? deadline;
   bool? isDisabled;
   String? yieldDate;

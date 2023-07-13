@@ -3,7 +3,7 @@ class OrderHistoryResponse {
   String? buyerDemandId;
   String? farmerId;
   bool? isApproved;
-  int? supplyWeight;
+  num? supplyWeight;
   String? phoneNumber;
   String? createdAt;
   bool? completed;

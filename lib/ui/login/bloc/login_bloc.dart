@@ -36,7 +36,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
           Preference.phoneNumber, result.data?.phoneNumber ?? '');
       final user = await homeApiClient.getUserDetails();
       await preferences.saveString(
-        Preference.phoneNumber,
+        Preference.farmerId,
         user.data?.userId ?? '',
       );
 

@@ -15,8 +15,8 @@ class CardListing extends StatefulWidget {
   final Color? backgroundColor;
   final Color? textColor;
   final String fishName;
-  final int avgWeight;
-  final int totalWeight;
+  final num avgWeight;
+  final num totalWeight;
   final String location;
   final String date;
   final bool isDisabled;
