@@ -14,6 +14,8 @@ import 'package:fish_shop/ui/your_listing/bloc/your_listing_event.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:nepali_date_picker/nepali_date_picker.dart' as picker;
+import 'package:nepali_date_picker/nepali_date_picker.dart';
 
 class YieldForm extends StatefulWidget {
   const YieldForm({super.key});
@@ -297,17 +299,13 @@ class _YieldFormState extends State<YieldForm> {
   }
 
   Future<void> pickDate(BuildContext context) async {
-    DateTime? pickedDate = await showDatePicker(
+    NepaliDateTime? pickedDate = await picker.showMaterialDatePicker(
       context: context,
-      initialDate: DateTime.now(),
-      firstDate: DateTime.now(),
-      lastDate: DateTime(2100),
-      builder: (context, child) => Theme(
-        data: Theme.of(context).copyWith(
-          colorScheme: const ColorScheme.light(primary: Colors.green),
-        ),
-        child: child!,
-      ),
+      initialDate: NepaliDateTime.now(),
+      firstDate: NepaliDateTime(2000),
+      lastDate: NepaliDateTime(2090),
+      locale: Locale('ne'),
+      initialDatePickerMode: DatePickerMode.day,
     );
 
     if (pickedDate != null) {
