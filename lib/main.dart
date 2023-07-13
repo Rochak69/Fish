@@ -13,6 +13,7 @@ import 'package:fish_shop/ui/order_history/bloc/order_history_bloc.dart';
 import 'package:fish_shop/ui/pending_request_per_listing/bloc/pending_request_per_listing_bloc.dart';
 import 'package:fish_shop/ui/register/bloc/register_bloc.dart';
 import 'package:fish_shop/ui/reset_password/bloc/reset_password_bloc.dart';
+import 'package:fish_shop/ui/splash/splash_screen.dart';
 import 'package:fish_shop/ui/support/bloc/support_bloc.dart';
 import 'package:fish_shop/ui/verify_otp/bloc/verify_otp_bloc.dart';
 import 'package:fish_shop/ui/yield_farm/bloc/yeild_form_bloc.dart';
@@ -108,7 +109,7 @@ class MyApp extends StatelessWidget {
                         navigatorKey: NavigationService.navigatorKey,
                         debugShowCheckedModeBanner: false,
                         locale: const Locale('ne'),
-                        home: const LoginPage(),
+                        home: const SplashScreen(),
                         localizationsDelegates:
                             AppLocalizations.localizationsDelegates,
                         supportedLocales: AppLocalizations.supportedLocales);
