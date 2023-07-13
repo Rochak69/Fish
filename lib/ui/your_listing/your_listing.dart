@@ -103,7 +103,7 @@ class _YourListingsState extends State<YourListings> {
       YourListingSuccess state, int index, BuildContext context) {
     return Container(
       padding:
-          EdgeInsets.only(top: 16.w, bottom: 16.w, left: 18.h, right: 26.w),
+          EdgeInsets.only(top: 16.w, bottom: 16.w, left: 18.h, right: 20.w),
       decoration: BoxDecoration(
         color: AppColors.cardContainerColor,
         border: Border.all(color: AppColors.cardContainerColor),
@@ -240,6 +240,7 @@ class _YourListingsState extends State<YourListings> {
               clipBehavior: Clip.none,
               children: [
                 Container(
+                  // width: 97.w,
                   padding: EdgeInsets.symmetric(horizontal: 4.w),
                   decoration: BoxDecoration(
                     border:

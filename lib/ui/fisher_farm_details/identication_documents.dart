@@ -3,8 +3,10 @@ import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:fish_shop/common/validator.dart';
 import 'package:fish_shop/res/colors.dart';
+import 'package:fish_shop/ui/approval_pending/approval_pending.dart';
 import 'package:fish_shop/ui/common_widget/FishTextField.dart';
 import 'package:fish_shop/ui/common_widget/app_dropdown.dart';
+import 'package:fish_shop/ui/contact/contact_screen.dart';
 import 'package:fish_shop/ui/fisher_farm_details/bloc/fish_farmer_detail_bloc.dart';
 import 'package:fish_shop/ui/fisher_farm_details/bloc/fish_farmer_detail_event.dart';
 import 'package:fish_shop/ui/fisher_farm_details/bloc/fish_farmer_detail_state.dart';
@@ -82,7 +84,7 @@ class _IdentificationDocumentsState extends State<IdentificationDocuments> {
             context,
             MaterialPageRoute(
               builder: (context) {
-                return const LoginPage();
+                return ApprovalPending();
               },
             ),
             (route) => false,
