@@ -18,12 +18,6 @@ class Support extends StatefulWidget {
 }
 
 class _SupportState extends State<Support> {
-  bool isAppCrash = true;
-  bool isDataNotVisible = false;
-  bool isAppSlow = false;
-  bool isAppFlowIssue = false;
-  bool isOther = false;
-
   TextEditingController controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
@@ -92,10 +86,9 @@ class _SupportState extends State<Support> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           UiHelper.verticalSpacing(20.h),
-          Text(
-            translation(context).problem_facing,
-            //   'What type of issue are you facing?',
-            style: const TextStyle(
+          const Text(
+            'What type of issue are you facing?',
+            style: TextStyle(
               color: Colors.black,
               fontWeight: FontWeight.w700,
               fontSize: 12,
@@ -104,19 +97,19 @@ class _SupportState extends State<Support> {
           UiHelper.verticalSpacing(16),
           Row(
             children: [
-              _buildCards('App Crash', isAppCrash),
+              _buildCards('App Crash', 1),
               UiHelper.horizontalSpacing(15.w),
-              _buildCards('Data Not Visible', isDataNotVisible),
+              _buildCards('Data Not Visible', 2),
               UiHelper.horizontalSpacing(15.w),
-              _buildCards('App Slow', isAppSlow)
+              _buildCards('App Slow', 3)
             ],
           ),
           UiHelper.verticalSpacing(16.h),
           Row(
             children: [
-              _buildCards('App Flow Issue', isAppCrash),
+              _buildCards('App Flow Issue', 4),
               UiHelper.horizontalSpacing(15.w),
-              _buildCards('Others', isOther),
+              _buildCards('Others', 0),
             ],
           ),
           UiHelper.verticalSpacing(25),
@@ -140,12 +133,21 @@ class _SupportState extends State<Support> {
     );
   }
 
-  GestureDetector _buildCards(String label, bool) {
-    return GestureDetector(
-      onTap: () {},
+  List<bool> showBorder = List.generate(5, (index) => false);
+  InkWell _buildCards(String label, int index) {
+    return InkWell(
+      onTap: () {
+        showBorder[index] = !showBorder[index];
+        setState(() {});
+      },
       child: Container(
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(18.r),
+            border: Border.all(
+                width: 2.w,
+                color: showBorder[index]
+                    ? AppColors.textColor
+                    : Colors.transparent),
             color: Colors.lightBlue[50]),
         child: Padding(
           padding: const EdgeInsets.all(8.0),

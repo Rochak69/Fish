@@ -94,8 +94,6 @@ class HomeListingApiClient {
         message: 'Success fully logged in',
         data: UserDetailsResponse.fromJson(apiResponse));
 
-    await preferences.saveString(Preference.farmerId, apiResponse['id']);
-
     return registerResponse;
   }
 }
