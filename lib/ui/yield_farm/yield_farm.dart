@@ -262,7 +262,8 @@ class _YieldFormState extends State<YieldForm> {
                                       fishType: selectedFish ?? '0',
                                       totalWeight: double.parse(
                                           _totalWeightController.text),
-                                      yieldDate: _edControllerDate.toString()));
+                                      yieldDate:
+                                          _edControllerDate.text.toString()));
                             }
                           },
                           child: Text(
