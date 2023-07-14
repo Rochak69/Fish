@@ -351,33 +351,40 @@ class _BuyerRequestsScreenState extends State<BuyerRequestsScreen> {
             actionsPadding: EdgeInsets.symmetric(vertical: 12.h),
             title: Center(
               child: Text(
-                isAccept ? 'Accept Offer' : 'Reject Offer',
+                isAccept
+                    ? "के तपाईं यो व्यक्तिको खरिद आदेश स्वीकार गर्न चाहनुहुन्छ ?"
+                    : 'के तपाईं यो व्यक्तिको खरिद आदेश अस्वीकार गर्न चाहनुहुन्छ ?',
                 style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w700),
               ),
             ),
             content: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
+                Row(
+                  children: [
+                    Text(
+                      'माछाको प्रजाती :',
+                      style: TextStyle(
+                        fontSize: 14.sp,
+                        color: AppColors.textColor,
+                      ),
+                    ),
+                    Text(
+                      ' ${widget.fishType}',
+                      style: TextStyle(fontSize: 14.sp),
+                    ),
+                  ],
+                ),
                 Text(
-                  isAccept
-                      ? "के तपाईं यो व्यक्तिको खरिद आदेश स्वीकार गर्न चाहनुहुन्छ ?"
-                      : 'के तपाईं यो व्यक्तिको खरिद आदेश अस्वीकार गर्न चाहनुहुन्छ ?',
+                  'माछाको आकार : ${widget.avgWeight}',
                   style: TextStyle(fontSize: 12.sp),
                 ),
                 Text(
-                  'Fish Type : ${widget.fishType}',
+                  'खरिद गर्न चाहेको परिमाण : ${widget.totalWeight}',
                   style: TextStyle(fontSize: 12.sp),
                 ),
                 Text(
-                  'Fish Weight : ${widget.avgWeight}',
-                  style: TextStyle(fontSize: 12.sp),
-                ),
-                Text(
-                  'Total Weight : ${widget.totalWeight}',
-                  style: TextStyle(fontSize: 12.sp),
-                ),
-                Text(
-                  'Bought Date : ${formarDate(DateTime.now().toString())}',
+                  'खरिद गर्न चाहेको मिति : ${formarDate(DateTime.now().toString())}',
                   style: TextStyle(fontSize: 12.sp),
                 )
               ],
