@@ -21,6 +21,7 @@ class FishFarmerDetailApiClient {
   Future<ApiResponse?> postdetails({
     required String userId,
     String? farmName,
+    required bool isEdit,
     double? pondSize,
     String? pradesh,
     String? district,
@@ -67,8 +68,9 @@ class FishFarmerDetailApiClient {
 
     ///or pass object directly to the http post
 
-    var apiResponse =
-        await _apiClient?.httpPost(Endpoints.fishFarmerDetails, formData);
+    var apiResponse = isEdit
+        ? await _apiClient?.httpPut('/api/me/update', formData)
+        : await _apiClient?.httpPost(Endpoints.fishFarmerDetails, formData);
 
     ///converting to response
     var response = ApiResponse(

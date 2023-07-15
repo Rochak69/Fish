@@ -293,7 +293,7 @@ class ApiClient {
         _dio?.options.headers = {
           'Accept': 'application/json',
           'responseType': ResponseType.json,
-          'Authorization': 'Bearer $token',
+          'Authorization': token,
         };
       }
 

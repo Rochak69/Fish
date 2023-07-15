@@ -29,6 +29,7 @@ class FishFarmerDetailBloc
       PostFarmerDetailsEvent event, Emitter<FishFarmerDetailState> emit) async {
     try {
       final result = await apiClient.postdetails(
+        isEdit: event.isEdit,
         userId: event.userId,
         district: event.district,
         farmName: event.farmName,

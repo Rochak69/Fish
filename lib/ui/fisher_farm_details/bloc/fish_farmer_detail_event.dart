@@ -23,7 +23,7 @@ class PostFarmerDetailsEvent extends FishFarmerDetailEvent {
   String? tole;
   String? email;
   String? facebook;
-
+  bool isEdit;
   PostFarmerDetailsEvent({
     required this.userId,
     required this.profilePicture,
@@ -31,7 +31,6 @@ class PostFarmerDetailsEvent extends FishFarmerDetailEvent {
     required this.identification,
     required this.farmName,
     required this.farmersName,
-    required this.citizenshipPhoto,
     required this.phoneNumber,
     this.pondSize,
     required this.pradesh,
@@ -40,10 +39,12 @@ class PostFarmerDetailsEvent extends FishFarmerDetailEvent {
     required this.citizenName,
     required this.citizenDistricId,
     required this.citizenNumber,
+    required this.citizenshipPhoto,
     required this.woda,
     this.tole,
     this.email,
     this.facebook,
+    required this.isEdit,
   });
 }
 

@@ -395,6 +395,7 @@ class _FishFarmDetailsState extends State<FishFarmDetails> {
                                             MaterialPageRoute(
                                               builder: (context) =>
                                                   IdentificationDocuments(
+                                                isEdit: widget.isEdit,
                                                 userId: userId,
                                                 farmName:
                                                     farmerNameController.text,
