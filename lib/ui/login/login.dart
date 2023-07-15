@@ -51,20 +51,13 @@ class _LoginPageState extends State<LoginPage> {
       listener: (context, state) {
         if (state is LoginSuccess) {
           bool isApproved = state.result.data?.farmerStatus?.approved ?? false;
-          bool isonlyfarmer = state.result.data?.isFarmer ?? false;
 
-          if (!isApproved) {
-            // displayToastMessage('Your request has not been approved');
-            // Navigator.pop(context);
-            Navigator.pushReplacement(context, MaterialPageRoute(
-              builder: (context) {
-                return const FishFarmDetails(
-                  isEdit: false,
-                );
-              },
-            ));
-            // displayToastMessage('Your request has not been approved');
-          } else if (state.result.data?.isFarmer ?? false) {
+          if (state.result.data?.isFarmer ?? false) {
+            if (!isApproved) {
+              Navigator.pop(context);
+              displayToastMessage('Your request has not been approved');
+              return;
+            }
             Navigator.pushReplacement(context, MaterialPageRoute(
               builder: (context) {
                 return const HomeListing();
