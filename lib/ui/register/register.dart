@@ -51,6 +51,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
           ));
         } else if (state is RegisterFailed) {
           displayToastMessage(state.errorMessage);
+          Navigator.pop(context);
         }
       },
       child: Scaffold(

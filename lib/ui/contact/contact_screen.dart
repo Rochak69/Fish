@@ -35,6 +35,7 @@ class _ContactScreenState extends State<ContactScreen> {
       body: BlocBuilder<ContactBloc, ContactState>(
         builder: (context, state) {
           if (state is ContactSuccess) {
+            String photoUrl = state.contact?.photo ?? "";
             return Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
@@ -44,8 +45,9 @@ class _ContactScreenState extends State<ContactScreen> {
                     : SizedBox(
                         width: 150.w,
                         child: Image.network(
-                            fit: BoxFit.fill,
-                            Endpoints.baseFile + state.contact!.photo!)),
+                            fit: BoxFit.fill, Endpoints.baseFile + photoUrl
+                            //state.contact!.photo!
+                            )),
                 UiHelper.verticalSpacing(10.h),
                 Text(
                   state.contact?.name ?? '',

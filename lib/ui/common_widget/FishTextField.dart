@@ -61,7 +61,6 @@ class FishTextField extends StatelessWidget {
           keyboardType: textInputType,
           controller: textEditingController,
           autovalidateMode: AutovalidateMode.onUserInteraction,
-
           //textAlignVertical: TextAlignVertical.center,
           decoration: InputDecoration(
             prefixText: prefixText,

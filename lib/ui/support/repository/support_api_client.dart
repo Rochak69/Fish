@@ -18,6 +18,7 @@ class SupportApiClient {
   }) async {
     Preferences preferences = Preferences();
     String? farmerId = await preferences.getString(Preference.farmerId);
+    print(farmerId);
 
     ///or pass object directly to the http post
     Map<String, dynamic> data = {"farmerId": farmerId, "issue": issue};

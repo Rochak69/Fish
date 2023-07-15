@@ -4,7 +4,6 @@ import 'package:fish_shop/ui/common_widget/FishTextField.dart';
 import 'package:fish_shop/ui/common_widget/app_dropdown.dart';
 import 'package:fish_shop/ui/fisher_farm_details/bloc/fish_farmer_detail_bloc.dart';
 import 'package:fish_shop/ui/fisher_farm_details/bloc/fish_farmer_detail_event.dart';
-
 import 'package:fish_shop/ui/fisher_farm_details/bloc/fish_farmer_detail_state.dart';
 import 'package:fish_shop/ui/fisher_farm_details/identication_documents.dart';
 import 'package:fish_shop/ui/my_language/bloc/my_language_bloc.dart';

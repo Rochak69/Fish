@@ -1,4 +1,5 @@
 import 'package:fish_shop/res/colors.dart';
+import 'package:fish_shop/ui/edit_user_details/fisher_farm_edit_details.dart';
 import 'package:fish_shop/ui/forgot_password/forgot_password.dart';
 import 'package:fish_shop/ui/home_listing/bloc/home_listings_bloc.dart';
 import 'package:fish_shop/ui/login/bloc/login_state.dart';
@@ -113,10 +114,38 @@ class SettingsPage extends StatelessWidget {
                 ),
               ),
               UiHelper.verticalSpacing(20),
+              // InkWell(
+              //   onTap: () {
+              //     Navigator.push(
+              //         context,
+              //         MaterialPageRoute(
+              //           builder: (context) => EditFarmerDetails(),
+              //         ));
+              //   },
+              //   child: Card(
+              //     elevation: 2,
+              //     child: SizedBox(
+              //       height: 50.h,
+              //       child: Row(
+              //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //           children: [
+              //             const Text(
+              //               '     Edit User Details',
+              //               style: TextStyle(
+              //                 fontSize: 14,
+              //                 fontWeight: FontWeight.w400,
+              //               ),
+              //             ),
+              //             //   Image.asset('assets/right_button.png'),
+              //           ]),
+              //     ),
+              //   ),
+              // ),
+              // UiHelper.verticalSpacing(20.h),
               InkWell(
-                onTap: () async {
-                  Preferences preferences = Preferences();
-                  await preferences.removeAll();
+                onTap: () {
+                  // Preferences preferences = Preferences();
+                  // await preferences.removeAll();
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => const Support()),
