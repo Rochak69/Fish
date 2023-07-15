@@ -6,6 +6,8 @@ import 'package:fish_shop/ui/fisher_farm_details/bloc/fish_farmer_detail_bloc.da
 import 'package:fish_shop/ui/fisher_farm_details/bloc/fish_farmer_detail_event.dart';
 import 'package:fish_shop/ui/fisher_farm_details/bloc/fish_farmer_detail_state.dart';
 import 'package:fish_shop/ui/fisher_farm_details/identication_documents.dart';
+import 'package:fish_shop/ui/home_listing/bloc/home_listings_bloc.dart';
+import 'package:fish_shop/ui/home_listing/bloc/home_listings_state.dart';
 import 'package:fish_shop/ui/my_language/bloc/my_language_bloc.dart';
 import 'package:fish_shop/ui/my_language/bloc/my_language_state.dart';
 import 'package:fish_shop/ui/utils/preferences.dart';
@@ -16,7 +18,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class FishFarmDetails extends StatefulWidget {
-  const FishFarmDetails({super.key});
+  final bool isEdit;
+  const FishFarmDetails({super.key, required this.isEdit});
 
   @override
   State<FishFarmDetails> createState() => _FishFarmDetailsState();
@@ -40,6 +43,27 @@ class _FishFarmDetailsState extends State<FishFarmDetails> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       BlocProvider.of<FishFarmerDetailBloc>(context).add(GetProvince());
+      if (widget.isEdit) {
+        HomeListingsSuccess data =
+            context.read<HomeListingsBloc>().state as HomeListingsSuccess;
+        farmNameController.text = data.userDetails.data?.farmName ?? '';
+        farmerNameController.text = data.userDetails.data?.farmName ?? '';
+        phoneNumberController.text = data.userDetails.data?.mobileNumber ?? '';
+        selectedPradesh = data.userDetails.data?.provinceId;
+        BlocProvider.of<FishFarmerDetailBloc>(context)
+            .add(GetDistrict(provinceId: selectedPradesh));
+        selectedDistrict = data.userDetails.data?.districtId;
+        BlocProvider.of<FishFarmerDetailBloc>(context)
+            .add(GetMunicipality(districtId: selectedDistrict ?? ''));
+        selectedNagarpalika = data.userDetails.data?.municipalityId;
+        BlocProvider.of<FishFarmerDetailBloc>(context)
+            .add(GetWoda(municipalityId: selectedNagarpalika ?? ''));
+        selectedWoda = data.userDetails.data?.wardId;
+        toleNameController.text = data.userDetails.data?.streetName ?? '';
+        facebookPageController.text = data.userDetails.data?.facebookPage ?? '';
+
+        setState(() {});
+      }
     });
   }
 

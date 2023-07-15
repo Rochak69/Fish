@@ -45,7 +45,9 @@ class _RegistrationPageState extends State<RegistrationPage> {
         if (state is RegisterSuccess) {
           Navigator.push(context, MaterialPageRoute(
             builder: (context) {
-              return const FishFarmDetails();
+              return const FishFarmDetails(
+                isEdit: false,
+              );
             },
           ));
         } else if (state is RegisterFailed) {

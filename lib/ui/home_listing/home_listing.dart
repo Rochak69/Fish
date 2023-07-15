@@ -27,11 +27,10 @@ class _HomeListingState extends State<HomeListing>
   late Animation<double> _animation;
   int _selectedIndex = 0;
   List<Widget> screens = [
-    const Listings(),
+    const YieldForm(),
     const YourListings(),
     const OrderHistory(),
     const ContactScreen(),
-    const YieldForm()
   ];
 
   @override
@@ -84,11 +83,10 @@ class _HomeListingState extends State<HomeListing>
               ),
               floatingActionButton: FloatingActionButton(
                 onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(
-                    builder: (context) {
-                      return const YieldForm();
-                    },
-                  ));
+                  setState(() {
+                    _selectedIndex = 0;
+                  });
+                  _animationController.forward(from: 0.0);
                 },
                 child: const Icon(Icons.add),
               ),

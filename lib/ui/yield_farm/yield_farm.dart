@@ -4,6 +4,10 @@ import 'package:fish_shop/ui/common_widget/FishTextField.dart';
 import 'package:fish_shop/ui/common_widget/app_dropdown.dart';
 import 'package:fish_shop/ui/home_listing/bloc/home_listings_bloc.dart';
 import 'package:fish_shop/ui/home_listing/bloc/home_listings_state.dart';
+import 'package:fish_shop/ui/login/bloc/login_bloc.dart';
+import 'package:fish_shop/ui/login/bloc/login_state.dart';
+import 'package:fish_shop/ui/settings_page/settings_page.dart';
+import 'package:fish_shop/ui/utils/endpoints.dart';
 import 'package:fish_shop/ui/utils/uihelper.dart';
 import 'package:fish_shop/ui/utils/utils.dart';
 import 'package:fish_shop/ui/yield_farm/bloc/yeild_form_bloc.dart';
@@ -57,6 +61,7 @@ class _YieldFormState extends State<YieldForm> {
 
   final TextEditingController _totalWeightController = TextEditingController();
   String? selectedFish;
+  bool isLoading = false;
   @override
   void initState() {
     super.initState();
@@ -66,8 +71,15 @@ class _YieldFormState extends State<YieldForm> {
   Widget build(BuildContext context) {
     return BlocListener<YeildFormBloc, YeildFormState>(
       listener: (context, state) {
-        Navigator.pop(context);
+        isLoading = false;
+        setState(() {});
         if (state is YeildFormSuccess) {
+          setState(() {
+            selectedFish = null;
+            _edControllerDate.clear();
+            _totalWeightController.text = ' ';
+            avgWeight = null;
+          });
           displayToastMessage('Successfully created');
           BlocProvider.of<YourListingBloc>(context).add(GetMyListings());
         } else if (state is YeildFormFailed) {
@@ -76,19 +88,8 @@ class _YieldFormState extends State<YieldForm> {
       },
       child: Scaffold(
         appBar: AppBar(
-          automaticallyImplyLeading: true,
+          automaticallyImplyLeading: false,
           centerTitle: true,
-          leading: InkWell(
-            onTap: () {
-              Navigator.pop(context);
-            },
-            child: Padding(
-                padding: EdgeInsets.only(left: 20.w),
-                child: const Icon(
-                  Icons.arrow_back_ios,
-                  color: AppColors.textColor,
-                )),
-          ),
           elevation: 0,
           backgroundColor: Colors.white,
           title: Text(
@@ -98,6 +99,33 @@ class _YieldFormState extends State<YieldForm> {
                 fontWeight: FontWeight.w700,
                 fontSize: 22.sp),
           ),
+          actions: [
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const SettingsPage()));
+              },
+              child: BlocBuilder<LoginBloc, LoginState>(
+                builder: (context, state) {
+                  if (state is LoginSuccess &&
+                      state.userDetails?.document?.profilePicture != null) {
+                    String profilePic =
+                        state.userDetails?.document?.profilePicture ?? '';
+                    return CircleAvatar(
+                      radius: 20.r,
+                      backgroundImage:
+                          NetworkImage(Endpoints.baseFile + profilePic),
+                    );
+                  } else {
+                    return Image.asset('assets/avatar_small.png', width: 38.w);
+                  }
+                },
+              ),
+            ),
+            UiHelper.horizontalSpacing(24.w)
+          ],
         ),
         body: SingleChildScrollView(
           child: Padding(
@@ -244,6 +272,10 @@ class _YieldFormState extends State<YieldForm> {
                         borderRadius: BorderRadius.circular(12),
                         child: ElevatedButton(
                           onPressed: () {
+                            if (isLoading) {
+                              return;
+                            }
+
                             if (date == null) {
                               displayToastMessage('Please pick a date');
                               return;
@@ -255,7 +287,9 @@ class _YieldFormState extends State<YieldForm> {
                             }
 
                             if (_formKey.currentState!.validate()) {
-                              showLoaderDialog(context);
+                              setState(() {
+                                isLoading = true;
+                              });
                               BlocProvider.of<YeildFormBloc>(context).add(
                                   PostYeildForm(
                                       avgFishWeight:
@@ -268,11 +302,17 @@ class _YieldFormState extends State<YieldForm> {
                                           _edControllerDate.text.toString()));
                             }
                           },
-                          child: Text(
-                            '+  Add to Listing',
-                            style:
-                                TextStyle(fontSize: 12.sp, color: Colors.white),
-                          ),
+                          child: isLoading
+                              ? const Center(
+                                  child: CircularProgressIndicator(
+                                    color: Colors.white,
+                                  ),
+                                )
+                              : Text(
+                                  '+  Add to Listing',
+                                  style: TextStyle(
+                                      fontSize: 12.sp, color: Colors.white),
+                                ),
                         ),
                       ),
                     ),

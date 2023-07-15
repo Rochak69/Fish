@@ -36,7 +36,8 @@ class HomeListingsBloc extends Bloc<HomeListingsEvent, HomeListingsState> {
           await apiClient.getFish() as ApiResponseForList<FishResponse>;
       final response = result as ApiResponseForList<HomeListingsResponse>;
 
-      emit(HomeListingsSuccess(result: response, fishes: fish));
+      emit(HomeListingsSuccess(
+          result: response, fishes: fish, userDetails: userDetails));
     } catch (e) {
       try {
         ApiErrorResponse apiErrorResponse = e as ApiErrorResponse;

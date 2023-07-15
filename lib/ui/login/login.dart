@@ -58,14 +58,12 @@ class _LoginPageState extends State<LoginPage> {
             // Navigator.pop(context);
             Navigator.pushReplacement(context, MaterialPageRoute(
               builder: (context) {
-                return const FishFarmDetails();
+                return const FishFarmDetails(
+                  isEdit: false,
+                );
               },
             ));
             // displayToastMessage('Your request has not been approved');
-          } else if (isonlyfarmer) {
-            print('this is only farmer ');
-          } else if (!isonlyfarmer) {
-            print('this is not farmer ');
           } else if (state.result.data?.isFarmer ?? false) {
             Navigator.pushReplacement(context, MaterialPageRoute(
               builder: (context) {
@@ -75,7 +73,9 @@ class _LoginPageState extends State<LoginPage> {
           } else {
             Navigator.pushReplacement(context, MaterialPageRoute(
               builder: (context) {
-                return const FishFarmDetails();
+                return const FishFarmDetails(
+                  isEdit: false,
+                );
               },
             ));
           }

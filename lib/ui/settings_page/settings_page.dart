@@ -1,5 +1,6 @@
 import 'package:fish_shop/res/colors.dart';
 import 'package:fish_shop/ui/edit_user_details/fisher_farm_edit_details.dart';
+import 'package:fish_shop/ui/fisher_farm_details/fisher_farm_details.dart';
 import 'package:fish_shop/ui/forgot_password/forgot_password.dart';
 import 'package:fish_shop/ui/home_listing/bloc/home_listings_bloc.dart';
 import 'package:fish_shop/ui/login/bloc/login_state.dart';
@@ -77,7 +78,7 @@ class SettingsPage extends StatelessWidget {
                     );
                   }
                   return const Text(
-                    'Lucas Scott',
+                    '',
                     style: TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.w900,
@@ -86,6 +87,35 @@ class SettingsPage extends StatelessWidget {
                 },
               ),
               UiHelper.verticalSpacing(47),
+              InkWell(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            const FishFarmDetails(isEdit: true),
+                      ));
+                },
+                child: Card(
+                  elevation: 2,
+                  child: SizedBox(
+                    height: 50.h,
+                    child: const Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            '     Edit Profile',
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                          //   Image.asset('assets/right_button.png'),
+                        ]),
+                  ),
+                ),
+              ),
+              UiHelper.verticalSpacing(20),
               InkWell(
                 onTap: () {
                   Navigator.push(

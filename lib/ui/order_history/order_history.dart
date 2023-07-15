@@ -94,16 +94,16 @@ class _OrderHistoryState extends State<OrderHistory> {
                     translation(context).fish_type,
                     //'Fish Type : ',
                     style: TextStyle(
-                        fontSize: 16.sp,
+                        fontSize: 18.sp,
                         fontWeight: FontWeight.w700,
                         color: AppColors.textColor),
                   ),
                 ],
               ),
               Text(
-                ': ${state.orders.data?[index].buyerDemand?.fishType?.name}',
+                '${state.orders.data?[index].fishType}',
                 style: TextStyle(
-                    fontSize: 15.sp,
+                    fontSize: 17.sp,
                     fontWeight: FontWeight.w700,
                     color: Colors.black),
               ),
@@ -120,7 +120,7 @@ class _OrderHistoryState extends State<OrderHistory> {
                         color: Colors.black),
                   ),
                   Text(
-                    ': ${state.orders.data?[index].buyerDemand?.avgFishWeight} के.जी',
+                    ': ${state.orders.data?[index].avgFishWeight} के.जी',
                     style: TextStyle(
                         fontSize: 12.sp,
                         fontWeight: FontWeight.w700,
@@ -141,41 +141,13 @@ class _OrderHistoryState extends State<OrderHistory> {
                         color: Colors.black),
                   ),
                   Text(
-                    ': ${state.orders.data?[index].buyerDemand?.totalWeight} के.जी',
+                    ': ${state.orders.data?[index].requestedWeight} के.जी',
                     style: TextStyle(
                         fontSize: 12.sp,
                         fontWeight: FontWeight.w800,
                         color: AppColors.AppCardColor),
                   ),
                 ],
-              ),
-              InkWell(
-                onTap: () async {
-                  final Uri launchUri = Uri(
-                    scheme: 'tel',
-                    path: state.orders.data?[index].phoneNumber ?? '',
-                  );
-                  await launchUrl(launchUri);
-                },
-                child: Row(
-                  children: [
-                    Text(
-                      'फोन नम्बर',
-                      //   'Qunatity : ',
-                      style: TextStyle(
-                          fontSize: 12.sp,
-                          fontWeight: FontWeight.w700,
-                          color: Colors.black),
-                    ),
-                    Text(
-                      ' : ${state.orders.data?[index].phoneNumber}',
-                      style: TextStyle(
-                          fontSize: 12.sp,
-                          fontWeight: FontWeight.w800,
-                          color: AppColors.AppCardColor),
-                    ),
-                  ],
-                ),
               ),
               Row(
                 children: [
@@ -200,7 +172,7 @@ class _OrderHistoryState extends State<OrderHistory> {
               Row(
                 children: [
                   Text(
-                    'खरिद गर्ने व्यक्तिको नाम:  ',
+                    'खरिद गर्ने व्यक्तिको नाम: ',
 
                     //  translation(context).buy_date,
                     //'Yeild Date : ',
@@ -209,318 +181,356 @@ class _OrderHistoryState extends State<OrderHistory> {
                         fontWeight: FontWeight.w700,
                         color: Colors.black),
                   ),
+                  Text(
+                    '${state.orders.data?[index].farmerName}',
+                    style: TextStyle(
+                        fontSize: 12.sp,
+                        fontWeight: FontWeight.w700,
+                        color: AppColors.AppCardColor),
+                  ),
                 ],
               ),
-              Text(
-                'खरिद गर्ने व्यक्तिको ठेगाना: ',
+              Row(
+                children: [
+                  Text(
+                    'खरिद गर्ने व्यक्तिको ठेगाना:',
 
-                //  translation(context).buy_date,
-                //'Yeild Date : ',
-                style: TextStyle(
-                    fontSize: 12.sp,
-                    fontWeight: FontWeight.w700,
-                    color: Colors.black),
+                    //  translation(context).buy_date,
+                    //'Yeild Date : ',
+                    style: TextStyle(
+                        fontSize: 12.sp,
+                        fontWeight: FontWeight.w700,
+                        color: Colors.black),
+                  ),
+                  Text(
+                    '${state.orders.data?[index].municipality}',
+                    style: TextStyle(
+                        fontSize: 12.sp,
+                        fontWeight: FontWeight.w700,
+                        color: AppColors.AppCardColor),
+                  ),
+                ],
               ),
-              Text(
-                'सम्पर्क नम्बर: ',
+              InkWell(
+                onTap: () async {
+                  final Uri launchUri = Uri(
+                    scheme: 'tel',
+                    path: state.orders.data?[index].phoneNumber ?? '',
+                  );
+                  await launchUrl(launchUri);
+                },
+                child: Row(
+                  children: [
+                    Text(
+                      'सम्पर्क नम्बर: ',
 
-                //  translation(context).buy_date,
-                //'Yeild Date : ',
-                style: TextStyle(
-                    fontSize: 12.sp,
-                    fontWeight: FontWeight.w700,
-                    color: Colors.black),
+                      //  translation(context).buy_date,
+                      //'Yeild Date : ',
+                      style: TextStyle(
+                          fontSize: 12.sp,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.black),
+                    ),
+                    Text(
+                      '${state.orders.data?[index].phoneNumber}',
+                      style: TextStyle(
+                          fontSize: 12.sp,
+                          fontWeight: FontWeight.w700,
+                          color: AppColors.AppCardColor),
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
-          Column(
-            children: [
-              InkWell(
-                onTap: () {
-                  if (state.orders.data?[index].completed ?? false) {
-                    return;
-                  } else if (state.orders.data?[index].cancelled ?? false) {
-                    return;
-                  } else {
-                    _showSureDialog(context, state, index, true);
-                  }
-                },
-                child: Container(
-                  width: 91.w,
-                  height: 40.h,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(12.r),
-                    border: Border.all(
-                        width: 1.5.w,
-                        color: AppColors.textColor), // Specify the border color
-                  ),
-                  child: Center(
-                    child: Text(
-                      translation(context).completed,
-                      // 'Completed',
-                      style: TextStyle(
-                          color: AppColors.textColor,
-                          fontWeight: FontWeight.w700,
-                          fontSize: 12.sp),
-                    ),
-                  ),
-                ),
-              ),
-              UiHelper.verticalSpacing(5.h),
-              InkWell(
-                onTap: () {
-                  if (state.orders.data?[index].cancelled ?? false) {
-                    return;
-                  } else if (state.orders.data?[index].completed ?? false) {
-                    return;
-                  } else {
-                    _showSureDialog(context, state, index, false);
-                  }
-                },
-                child: Container(
-                  width: 91.w,
-                  height: 40.h,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(12.r),
-                    border: Border.all(
-                        color: Colors.red,
-                        width: 1.5.w), // Specify the border color
-                  ),
-                  child: Center(
-                    child: Text(translation(context).cancelled,
-                        //'Cancelled',
-                        style: TextStyle(
-                          color: AppColors.textRedContainerColor,
-                          fontSize: 12.sp,
-                          fontWeight: FontWeight.w600,
-                        )),
-                  ),
-                ),
-              ),
-            ],
-          )
+          // Column(
+          //   children: [
+          //     InkWell(
+          //       onTap: () {
+          //         if (state.orders.data?[index].completed ?? false) {
+          //           return;
+          //         } else if (state.orders.data?[index].cancelled ?? false) {
+          //           return;
+          //         } else {
+          //           _showSureDialog(context, state, index, true);
+          //         }
+          //       },
+          //       child: Container(
+          //         width: 91.w,
+          //         height: 40.h,
+          //         decoration: BoxDecoration(
+          //           borderRadius: BorderRadius.circular(12.r),
+          //           border: Border.all(
+          //               width: 1.5.w,
+          //               color: AppColors.textColor), // Specify the border color
+          //         ),
+          //         child: Center(
+          //           child: Text(
+          //             translation(context).completed,
+          //             // 'Completed',
+          //             style: TextStyle(
+          //                 color: AppColors.textColor,
+          //                 fontWeight: FontWeight.w700,
+          //                 fontSize: 12.sp),
+          //           ),
+          //         ),
+          //       ),
+          //     ),
+          //     UiHelper.verticalSpacing(5.h),
+          //     InkWell(
+          //       onTap: () {
+          //         if (state.orders.data?[index].cancelled ?? false) {
+          //           return;
+          //         } else if (state.orders.data?[index].completed ?? false) {
+          //           return;
+          //         } else {
+          //           _showSureDialog(context, state, index, false);
+          //         }
+          //       },
+          //       child: Container(
+          //         width: 91.w,
+          //         height: 40.h,
+          //         decoration: BoxDecoration(
+          //           borderRadius: BorderRadius.circular(12.r),
+          //           border: Border.all(
+          //               color: Colors.red,
+          //               width: 1.5.w), // Specify the border color
+          //         ),
+          //         child: Center(
+          //           child: Text(translation(context).cancelled,
+          //               //'Cancelled',
+          //               style: TextStyle(
+          //                 color: AppColors.textRedContainerColor,
+          //                 fontSize: 12.sp,
+          //                 fontWeight: FontWeight.w600,
+          //               )),
+          //         ),
+          //       ),
+          //     ),
+          //   ],
+          // )
         ],
       ),
     );
   }
 
-  Future<dynamic> _showSureDialog(
-      context, OrderHistorysSuccess state, int index, bool isComplete) {
-    return showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            actionsAlignment: MainAxisAlignment.center,
-            actionsPadding: EdgeInsets.symmetric(vertical: 12.h),
-            title: Center(
-              child: isComplete
-                  ? Text(
-                      translation(context).mark_as_completed,
-                      //       'Mark as Completed',
-                      style: const TextStyle(
-                          color: Colors.black,
-                          fontSize: 16,
-                          fontWeight: FontWeight.w900),
-                    )
-                  : Text(
-                      translation(context).marks_as_cancelled,
-                      //       'Mark as Completed',
-                      style: const TextStyle(
-                          color: Colors.black,
-                          fontSize: 16,
-                          fontWeight: FontWeight.w900),
-                    ),
-            ),
-            content: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(
-                  translation(context).fish_type,
-                  //    'Fish Type : ',
-                  style: TextStyle(
-                      fontSize: 18.sp,
-                      fontWeight: FontWeight.w700,
-                      color: AppColors.textColor),
-                ),
-                Text(
-                  ' : ${state.orders.data?[index].buyerDemand?.fishType?.name}',
-                  style: TextStyle(
-                      fontSize: 18.sp,
-                      fontWeight: FontWeight.w700,
-                      color: Colors.black),
-                ),
-                UiHelper.verticalSpacing(4.h),
-                Row(
-                  children: [
-                    Text(
-                      translation(context).fish_weight,
-                      //'Fish weight : ',
-                      style: TextStyle(
-                          fontSize: 12.sp,
-                          fontWeight: FontWeight.w700,
-                          color: Colors.black),
-                    ),
-                    Text(
-                      ' : ${state.orders.data?[index].buyerDemand?.avgFishWeight}',
-                      style: TextStyle(
-                          fontSize: 12.sp,
-                          fontWeight: FontWeight.w700,
-                          color: AppColors.AppCardColor),
-                    ),
-                  ],
-                ),
-                Row(
-                  children: [
-                    Text(
-                      translation(context).quantity,
-                      //   'Qunatity : ',
-                      style: TextStyle(
-                          fontSize: 12.sp,
-                          fontWeight: FontWeight.w700,
-                          color: Colors.black),
-                    ),
-                    Text(
-                      ' : ${state.orders.data?[index].buyerDemand?.totalWeight}',
-                      style: TextStyle(
-                          fontSize: 12.sp,
-                          fontWeight: FontWeight.w800,
-                          color: AppColors.AppCardColor),
-                    ),
-                  ],
-                ),
-                Row(
-                  children: [
-                    Text(
-                      'फोन नम्बर',
-                      //   'Qunatity : ',
-                      style: TextStyle(
-                          fontSize: 12.sp,
-                          fontWeight: FontWeight.w700,
-                          color: Colors.black),
-                    ),
-                    Text(
-                      ' : ${state.orders.data?[index].phoneNumber}',
-                      style: TextStyle(
-                          fontSize: 12.sp,
-                          fontWeight: FontWeight.w800,
-                          color: AppColors.AppCardColor),
-                    ),
-                  ],
-                ),
-                Row(
-                  children: [
-                    Text(
-                      translation(context).yield_date,
-                      //   'Yeild Date : ',
-                      style: TextStyle(
-                          fontSize: 12.sp,
-                          fontWeight: FontWeight.w700,
-                          color: Colors.black),
-                    ),
-                    Text(
-                      ' : ${formarDate(state.orders.data?[index].buyerDemand?.yieldDate)}',
-                      style: TextStyle(
-                          fontSize: 12.sp,
-                          fontWeight: FontWeight.w700,
-                          color: AppColors.AppCardColor),
-                    ),
-                  ],
-                ),
-                Row(
-                  children: [
-                    Text(
-                      translation(context).listing_expired,
-                      //   'Yeild Date : ',
-                      style: TextStyle(
-                          fontSize: 12.sp,
-                          fontWeight: FontWeight.w700,
-                          color: Colors.black),
-                    ),
-                    Text(
-                      '7 days left',
-                      style: TextStyle(
-                          fontSize: 12.sp,
-                          fontWeight: FontWeight.w700,
-                          color: AppColors.AppCardColor),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-            actions: [
-              InkWell(
-                onTap: () {
-                  if (isComplete) {
-                    if (state.orders.data?[index].completed ?? false) {
-                      Navigator.pop(context);
-                      return;
-                    }
-                    BlocProvider.of<OrderHistoryBloc>(context)
-                        .add(CompleteOfferEvent(state.orders.data?[index].id ??
-                            ''
-                                ''));
-                    Navigator.pop(context);
-                  } else {
-                    if (state.orders.data?[index].cancelled ?? false) {
-                      Navigator.pop(context);
-                      return;
-                    }
-                    BlocProvider.of<OrderHistoryBloc>(context).add(RejectOffer(
-                        state.orders.data?[index].buyerDemandId ?? ''));
-                    Navigator.pop(context);
-                  }
-                },
-                child: Container(
-                  width: 91.w,
-                  height: 40.h,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(12.r),
-                    border: Border.all(
-                        color: AppColors.textColor), // Specify the border color
-                  ),
-                  child: const Center(
-                    child: Text(
-                      'Yes',
-                      style: TextStyle(
-                        fontSize: 12,
-                        color: AppColors.textColor,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              UiHelper.horizontalSpacing(15.w),
-              InkWell(
-                onTap: () {
-                  Navigator.pop(context);
-                },
-                child: Container(
-                  width: 91.w,
-                  height: 40.h,
-                  decoration: BoxDecoration(
-                    color: AppColors.textRedColor,
-                    borderRadius: BorderRadius.circular(12.r),
-                    border: Border.all(
-                      color: AppColors.textRedColor,
-                    ), // Specify the border color
-                  ),
-                  child: const Center(
-                    child: Text(
-                      'No',
-                      style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.white),
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          );
-        });
-  }
+  // Future<dynamic> _showSureDialog(
+  //     context, OrderHistorysSuccess state, int index, bool isComplete) {
+  //   return showDialog(
+  //       context: context,
+  //       builder: (BuildContext context) {
+  //         return AlertDialog(
+  //           actionsAlignment: MainAxisAlignment.center,
+  //           actionsPadding: EdgeInsets.symmetric(vertical: 12.h),
+  //           title: Center(
+  //             child: isComplete
+  //                 ? Text(
+  //                     translation(context).mark_as_completed,
+  //                     //       'Mark as Completed',
+  //                     style: const TextStyle(
+  //                         color: Colors.black,
+  //                         fontSize: 16,
+  //                         fontWeight: FontWeight.w900),
+  //                   )
+  //                 : Text(
+  //                     translation(context).marks_as_cancelled,
+  //                     //       'Mark as Completed',
+  //                     style: const TextStyle(
+  //                         color: Colors.black,
+  //                         fontSize: 16,
+  //                         fontWeight: FontWeight.w900),
+  //                   ),
+  //           ),
+  //           content: Column(
+  //             crossAxisAlignment: CrossAxisAlignment.start,
+  //             mainAxisSize: MainAxisSize.min,
+  //             children: [
+  //               Text(
+  //                 translation(context).fish_type,
+  //                 //    'Fish Type : ',
+  //                 style: TextStyle(
+  //                     fontSize: 18.sp,
+  //                     fontWeight: FontWeight.w700,
+  //                     color: AppColors.textColor),
+  //               ),
+  //               Text(
+  //                 ' : ${state.orders.data?[index].buyerDemand?.fishType?.name}',
+  //                 style: TextStyle(
+  //                     fontSize: 18.sp,
+  //                     fontWeight: FontWeight.w700,
+  //                     color: Colors.black),
+  //               ),
+  //               UiHelper.verticalSpacing(4.h),
+  //               Row(
+  //                 children: [
+  //                   Text(
+  //                     translation(context).fish_weight,
+  //                     //'Fish weight : ',
+  //                     style: TextStyle(
+  //                         fontSize: 12.sp,
+  //                         fontWeight: FontWeight.w700,
+  //                         color: Colors.black),
+  //                   ),
+  //                   Text(
+  //                     ' : ${state.orders.data?[index].buyerDemand?.avgFishWeight}',
+  //                     style: TextStyle(
+  //                         fontSize: 12.sp,
+  //                         fontWeight: FontWeight.w700,
+  //                         color: AppColors.AppCardColor),
+  //                   ),
+  //                 ],
+  //               ),
+  //               Row(
+  //                 children: [
+  //                   Text(
+  //                     translation(context).quantity,
+  //                     //   'Qunatity : ',
+  //                     style: TextStyle(
+  //                         fontSize: 12.sp,
+  //                         fontWeight: FontWeight.w700,
+  //                         color: Colors.black),
+  //                   ),
+  //                   Text(
+  //                     ' : ${state.orders.data?[index].buyerDemand?.totalWeight}',
+  //                     style: TextStyle(
+  //                         fontSize: 12.sp,
+  //                         fontWeight: FontWeight.w800,
+  //                         color: AppColors.AppCardColor),
+  //                   ),
+  //                 ],
+  //               ),
+  //               Row(
+  //                 children: [
+  //                   Text(
+  //                     'फोन नम्बर',
+  //                     //   'Qunatity : ',
+  //                     style: TextStyle(
+  //                         fontSize: 12.sp,
+  //                         fontWeight: FontWeight.w700,
+  //                         color: Colors.black),
+  //                   ),
+  //                   Text(
+  //                     ' : ${state.orders.data?[index].phoneNumber}',
+  //                     style: TextStyle(
+  //                         fontSize: 12.sp,
+  //                         fontWeight: FontWeight.w800,
+  //                         color: AppColors.AppCardColor),
+  //                   ),
+  //                 ],
+  //               ),
+  //               Row(
+  //                 children: [
+  //                   Text(
+  //                     translation(context).yield_date,
+  //                     //   'Yeild Date : ',
+  //                     style: TextStyle(
+  //                         fontSize: 12.sp,
+  //                         fontWeight: FontWeight.w700,
+  //                         color: Colors.black),
+  //                   ),
+  //                   Text(
+  //                     ' : ${formarDate(state.orders.data?[index].buyerDemand?.yieldDate)}',
+  //                     style: TextStyle(
+  //                         fontSize: 12.sp,
+  //                         fontWeight: FontWeight.w700,
+  //                         color: AppColors.AppCardColor),
+  //                   ),
+  //                 ],
+  //               ),
+  //               Row(
+  //                 children: [
+  //                   Text(
+  //                     translation(context).listing_expired,
+  //                     //   'Yeild Date : ',
+  //                     style: TextStyle(
+  //                         fontSize: 12.sp,
+  //                         fontWeight: FontWeight.w700,
+  //                         color: Colors.black),
+  //                   ),
+  //                   Text(
+  //                     '7 days left',
+  //                     style: TextStyle(
+  //                         fontSize: 12.sp,
+  //                         fontWeight: FontWeight.w700,
+  //                         color: AppColors.AppCardColor),
+  //                   ),
+  //                 ],
+  //               ),
+  //             ],
+  //           ),
+  //           actions: [
+  //             InkWell(
+  //               onTap: () {
+  //                 if (isComplete) {
+  //                   if (state.orders.data?[index].completed ?? false) {
+  //                     Navigator.pop(context);
+  //                     return;
+  //                   }
+  //                   BlocProvider.of<OrderHistoryBloc>(context)
+  //                       .add(CompleteOfferEvent(state.orders.data?[index].id ??
+  //                           ''
+  //                               ''));
+  //                   Navigator.pop(context);
+  //                 } else {
+  //                   if (state.orders.data?[index].cancelled ?? false) {
+  //                     Navigator.pop(context);
+  //                     return;
+  //                   }
+  //                   BlocProvider.of<OrderHistoryBloc>(context).add(RejectOffer(
+  //                       state.orders.data?[index].buyerDemandId ?? ''));
+  //                   Navigator.pop(context);
+  //                 }
+  //               },
+  //               child: Container(
+  //                 width: 91.w,
+  //                 height: 40.h,
+  //                 decoration: BoxDecoration(
+  //                   borderRadius: BorderRadius.circular(12.r),
+  //                   border: Border.all(
+  //                       color: AppColors.textColor), // Specify the border color
+  //                 ),
+  //                 child: const Center(
+  //                   child: Text(
+  //                     'Yes',
+  //                     style: TextStyle(
+  //                       fontSize: 12,
+  //                       color: AppColors.textColor,
+  //                       fontWeight: FontWeight.w600,
+  //                     ),
+  //                   ),
+  //                 ),
+  //               ),
+  //             ),
+  //             UiHelper.horizontalSpacing(15.w),
+  //             InkWell(
+  //               onTap: () {
+  //                 Navigator.pop(context);
+  //               },
+  //               child: Container(
+  //                 width: 91.w,
+  //                 height: 40.h,
+  //                 decoration: BoxDecoration(
+  //                   color: AppColors.textRedColor,
+  //                   borderRadius: BorderRadius.circular(12.r),
+  //                   border: Border.all(
+  //                     color: AppColors.textRedColor,
+  //                   ), // Specify the border color
+  //                 ),
+  //                 child: const Center(
+  //                   child: Text(
+  //                     'No',
+  //                     style: TextStyle(
+  //                         fontSize: 12,
+  //                         fontWeight: FontWeight.w600,
+  //                         color: Colors.white),
+  //                   ),
+  //                 ),
+  //               ),
+  //             ),
+  //           ],
+  //         );
+  //       });
+  // }
 
   Future<void> _refresh() async {
     BlocProvider.of<OrderHistoryBloc>(context).add(GetOrderHistory());

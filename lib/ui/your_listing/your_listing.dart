@@ -133,6 +133,7 @@ class _YourListingsState extends State<YourListings> {
               InkWell(
                   onTap: () {
                     _showAlertDialog(
+                      expireDate: state.result.data?[index].expireDate ?? '',
                       context: context,
                       id: state.result.data?[index].id ?? '',
                       avgWeight: state.result.data?[index].avgFishWeight ?? 0,
@@ -219,7 +220,7 @@ class _YourListingsState extends State<YourListings> {
                         color: Colors.black),
                   ),
                   Text(
-                    formarDate(state.result.data?[index].expireDate),
+                    state.result.data?[index].expireDate ?? '',
                     style: TextStyle(
                         fontSize: 12.sp,
                         fontWeight: FontWeight.w700,
@@ -228,85 +229,85 @@ class _YourListingsState extends State<YourListings> {
                 ],
               ),
               UiHelper.verticalSpacing(3.h),
-              state.result.data?[index].buyerRequest?.isEmpty ?? true
-                  ? Text(
-                      translation(context).no_offer,
-                      style: TextStyle(
-                          fontSize: 8.sp, color: AppColors.AppCardColor),
-                    )
-                  : const SizedBox.shrink(),
+              // state.result.data?[index].buyerRequest?.isEmpty ?? true
+              //     ? Text(
+              //         translation(context).no_offer,
+              //         style: TextStyle(
+              //             fontSize: 8.sp, color: AppColors.AppCardColor),
+              //       )
+              //     : const SizedBox.shrink(),
             ]),
-            Stack(
-              clipBehavior: Clip.none,
-              children: [
-                Container(
-                  // width: 97.w,
-                  padding: EdgeInsets.symmetric(horizontal: 4.w),
-                  decoration: BoxDecoration(
-                    border:
-                        Border.all(color: AppColors.textColor, width: 1.5.r),
-                    borderRadius: BorderRadius.all(Radius.circular(12.r)),
-                  ),
-                  child: TextButton(
-                    onPressed: () {
-                      List<BuyerRequest> list =
-                          state.result.data?[index].buyerRequest ?? [];
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => BuyerRequestsScreen(
-                                avgWeight: state
-                                        .result.data?[index].avgFishWeight
-                                        .toString() ??
-                                    '',
-                                totalWeight: state
-                                        .result.data?[index].totalWeight
-                                        .toString() ??
-                                    '',
-                                yeildDate:
-                                    state.result.data?[index].yieldDate ?? '',
-                                fishType:
-                                    state.result.data?[index].fishType?.name ??
-                                        '',
-                                buyerRequests:
-                                    state.result.data?[index].buyerRequest ??
-                                        []),
-                          ));
-                    },
-                    child: const Text(
-                      'View Offers',
-                      style: TextStyle(
-                          color: AppColors.textColor,
-                          fontWeight: FontWeight.w600),
-                    ),
-                  ),
-                ),
-                Positioned(
-                  top: -12.h,
-                  right: -12.w,
-                  child: Container(
-                    height: 24.h,
-                    width: 31.w,
-                    decoration: BoxDecoration(
-                      color: AppColors.textColor,
-                      borderRadius: BorderRadius.circular(30.r),
-                    ),
-                    child: Center(
-                      child: Text(
-                        state.result.data?[index].buyerRequest?.length
-                                .toString() ??
-                            '0',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 12.sp,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
+            // Stack(
+            //   clipBehavior: Clip.none,
+            //   children: [
+            //     Container(
+            //       // width: 97.w,
+            //       padding: EdgeInsets.symmetric(horizontal: 4.w),
+            //       decoration: BoxDecoration(
+            //         border:
+            //             Border.all(color: AppColors.textColor, width: 1.5.r),
+            //         borderRadius: BorderRadius.all(Radius.circular(12.r)),
+            //       ),
+            //       child: TextButton(
+            //         onPressed: () {
+            //           List<BuyerRequest> list =
+            //               state.result.data?[index].buyerRequest ?? [];
+            //           Navigator.push(
+            //               context,
+            //               MaterialPageRoute(
+            //                 builder: (context) => BuyerRequestsScreen(
+            //                     avgWeight: state
+            //                             .result.data?[index].avgFishWeight
+            //                             .toString() ??
+            //                         '',
+            //                     totalWeight: state
+            //                             .result.data?[index].totalWeight
+            //                             .toString() ??
+            //                         '',
+            //                     yeildDate:
+            //                         state.result.data?[index].yieldDate ?? '',
+            //                     fishType:
+            //                         state.result.data?[index].fishType?.name ??
+            //                             '',
+            //                     buyerRequests:
+            //                         state.result.data?[index].buyerRequest ??
+            //                             []),
+            //               ));
+            //         },
+            //         child: const Text(
+            //           'View Offers',
+            //           style: TextStyle(
+            //               color: AppColors.textColor,
+            //               fontWeight: FontWeight.w600),
+            //         ),
+            //       ),
+            //     ),
+            //     Positioned(
+            //       top: -12.h,
+            //       right: -12.w,
+            //       child: Container(
+            //         height: 24.h,
+            //         width: 31.w,
+            //         decoration: BoxDecoration(
+            //           color: AppColors.textColor,
+            //           borderRadius: BorderRadius.circular(30.r),
+            //         ),
+            //         child: Center(
+            //           child: Text(
+            //             state.result.data?[index].buyerRequest?.length
+            //                     .toString() ??
+            //                 '0',
+            //             style: TextStyle(
+            //               color: Colors.white,
+            //               fontSize: 12.sp,
+            //               fontWeight: FontWeight.bold,
+            //             ),
+            //           ),
+            //         ),
+            //       ),
+            //     ),
+            //   ],
+            // ),
           ]),
         ],
       ),
@@ -316,6 +317,7 @@ class _YourListingsState extends State<YourListings> {
   void _showAlertDialog(
       {required BuildContext context,
       required String yeildDate,
+      required String expireDate,
       required num totalWeight,
       required String fistType,
       required num avgWeight,
@@ -426,7 +428,7 @@ class _YourListingsState extends State<YourListings> {
                           color: Colors.black),
                     ),
                     Text(
-                      formarDate(yeildDate),
+                      expireDate,
                       style: TextStyle(
                           fontSize: 12.sp,
                           fontWeight: FontWeight.w700,

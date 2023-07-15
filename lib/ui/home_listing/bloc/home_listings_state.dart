@@ -2,6 +2,7 @@
 import 'package:fish_shop/common/api_response.dart';
 import 'package:fish_shop/ui/home_listing/model/fish_response.dart';
 import 'package:fish_shop/ui/home_listing/model/home_listings_response.dart';
+import 'package:fish_shop/ui/login/model/user_details_response.dart';
 
 abstract class HomeListingsState {}
 
@@ -10,7 +11,9 @@ class HomeListingsInitial extends HomeListingsState {}
 class HomeListingsSuccess extends HomeListingsState {
   final ApiResponseForList<HomeListingsResponse> result;
   final ApiResponseForList<FishResponse> fishes;
-  HomeListingsSuccess({required this.result, required this.fishes});
+  final ApiResponse<UserDetailsResponse> userDetails;
+  HomeListingsSuccess(
+      {required this.result, required this.userDetails, required this.fishes});
 }
 
 class HomeListingsFailed extends HomeListingsState {
