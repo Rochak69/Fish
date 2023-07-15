@@ -69,7 +69,7 @@ class FishFarmerDetailApiClient {
     ///or pass object directly to the http post
 
     var apiResponse = isEdit
-        ? await _apiClient?.httpPut('/api/me/update', formData)
+        ? await _apiClient?.httpPut('/me/update?type=farmer', formData)
         : await _apiClient?.httpPost(Endpoints.fishFarmerDetails, formData);
 
     ///converting to response
