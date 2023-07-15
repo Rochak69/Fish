@@ -3,6 +3,7 @@ import 'package:fish_shop/ui/edit_user_details/fisher_farm_edit_details.dart';
 import 'package:fish_shop/ui/fisher_farm_details/fisher_farm_details.dart';
 import 'package:fish_shop/ui/forgot_password/forgot_password.dart';
 import 'package:fish_shop/ui/home_listing/bloc/home_listings_bloc.dart';
+import 'package:fish_shop/ui/home_listing/bloc/home_listings_state.dart';
 import 'package:fish_shop/ui/login/bloc/login_state.dart';
 import 'package:fish_shop/ui/login/login.dart';
 import 'package:fish_shop/ui/support/support.dart';
@@ -49,12 +50,13 @@ class SettingsPage extends StatelessWidget {
           child: Column(
             children: [
               UiHelper.verticalSpacing(63.h),
-              BlocBuilder<LoginBloc, LoginState>(
+              BlocBuilder<HomeListingsBloc, HomeListingsState>(
                 builder: (context, state) {
-                  if (state is LoginSuccess &&
-                      state.userDetails?.document?.profilePicture != null) {
+                  if (state is HomeListingsSuccess &&
+                      state.userDetails.data?.document?.profilePicture !=
+                          null) {
                     String profilePic =
-                        state.userDetails?.document?.profilePicture ?? '';
+                        state.userDetails.data?.document?.profilePicture ?? '';
                     return CircleAvatar(
                       radius: 50.r,
                       backgroundImage:
@@ -66,11 +68,11 @@ class SettingsPage extends StatelessWidget {
                 },
               ),
               UiHelper.verticalSpacing(16),
-              BlocBuilder<LoginBloc, LoginState>(
+              BlocBuilder<HomeListingsBloc, HomeListingsState>(
                 builder: (context, state) {
-                  if (state is LoginSuccess) {
+                  if (state is HomeListingsSuccess) {
                     return Text(
-                      state.result.data?.userName ?? 'Your Name',
+                      state.userDetails.data?.fullName ?? 'Your Name',
                       style: const TextStyle(
                           color: Colors.black,
                           fontWeight: FontWeight.w900,
