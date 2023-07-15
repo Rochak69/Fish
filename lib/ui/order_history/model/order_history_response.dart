@@ -1,13 +1,13 @@
 class OrderHistoryResponse {
-  double? avgFishWeight;
+  num? avgFishWeight;
   String? createdAt;
-  int? requestedWeight;
+  num? requestedWeight;
   String? yieldDate;
   String? fishType;
-  String? farmerName;
+  String? buyerName;
   String? phoneNumber;
-  String? municipality;
-  String? ward;
+  Municipality? municipality;
+  Ward? ward;
 
   OrderHistoryResponse(
       {this.avgFishWeight,
@@ -15,7 +15,7 @@ class OrderHistoryResponse {
       this.requestedWeight,
       this.yieldDate,
       this.fishType,
-      this.farmerName,
+      this.buyerName,
       this.phoneNumber,
       this.municipality,
       this.ward});
@@ -26,10 +26,12 @@ class OrderHistoryResponse {
     requestedWeight = json['requestedWeight'];
     yieldDate = json['yieldDate'];
     fishType = json['FishType'];
-    farmerName = json['farmerName'];
+    buyerName = json['buyerName'];
     phoneNumber = json['phoneNumber'];
-    municipality = json['municipality'];
-    ward = json['Ward'];
+    municipality = json['municipality'] != null
+        ? new Municipality.fromJson(json['municipality'])
+        : null;
+    ward = json['Ward'] != null ? new Ward.fromJson(json['Ward']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -39,10 +41,52 @@ class OrderHistoryResponse {
     data['requestedWeight'] = this.requestedWeight;
     data['yieldDate'] = this.yieldDate;
     data['FishType'] = this.fishType;
-    data['farmerName'] = this.farmerName;
+    data['buyerName'] = this.buyerName;
     data['phoneNumber'] = this.phoneNumber;
-    data['municipality'] = this.municipality;
-    data['Ward'] = this.ward;
+    if (this.municipality != null) {
+      data['municipality'] = this.municipality!.toJson();
+    }
+    if (this.ward != null) {
+      data['Ward'] = this.ward!.toJson();
+    }
+    return data;
+  }
+}
+
+class Municipality {
+  String? englishName;
+  String? nepaliName;
+
+  Municipality({this.englishName, this.nepaliName});
+
+  Municipality.fromJson(Map<String, dynamic> json) {
+    englishName = json['englishName'];
+    nepaliName = json['nepaliName'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['englishName'] = this.englishName;
+    data['nepaliName'] = this.nepaliName;
+    return data;
+  }
+}
+
+class Ward {
+  String? englishNumber;
+  String? nepaliNumber;
+
+  Ward({this.englishNumber, this.nepaliNumber});
+
+  Ward.fromJson(Map<String, dynamic> json) {
+    englishNumber = json['englishNumber'];
+    nepaliNumber = json['nepaliNumber'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['englishNumber'] = this.englishNumber;
+    data['nepaliNumber'] = this.nepaliNumber;
     return data;
   }
 }

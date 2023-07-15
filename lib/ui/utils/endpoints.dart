@@ -23,7 +23,7 @@ class Endpoints {
     return '/farmerSupply/$supplyId';
   }
 
-  static const String myOrders = '/me/myoder?type=buyer';
+  static const String myOrders = '/me/myoder?type=farmer';
   static const String contact = '/appinfo';
   static const String fishType = '/fishtype';
   static String completeOrder(String id) =>

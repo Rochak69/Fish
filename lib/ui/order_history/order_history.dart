@@ -182,7 +182,7 @@ class _OrderHistoryState extends State<OrderHistory> {
                         color: Colors.black),
                   ),
                   Text(
-                    '${state.orders.data?[index].farmerName}',
+                    '${state.orders.data?[index].buyerName}',
                     style: TextStyle(
                         fontSize: 12.sp,
                         fontWeight: FontWeight.w700,
@@ -203,9 +203,9 @@ class _OrderHistoryState extends State<OrderHistory> {
                         color: Colors.black),
                   ),
                   Text(
-                    '${state.orders.data?[index].municipality}',
+                    '${state.orders.data?[index].municipality?.nepaliName}',
                     style: TextStyle(
-                        fontSize: 12.sp,
+                        fontSize: 11.sp,
                         fontWeight: FontWeight.w700,
                         color: AppColors.AppCardColor),
                   ),
