@@ -2,7 +2,6 @@ import 'package:fish_shop/common/validator.dart';
 import 'package:fish_shop/res/colors.dart';
 import 'package:fish_shop/ui/common_widget/FishTextField.dart';
 import 'package:fish_shop/ui/fisher_farm_details/fisher_farm_details.dart';
-
 import 'package:fish_shop/ui/register/bloc/register_bloc.dart';
 import 'package:fish_shop/ui/register/bloc/register_event.dart';
 import 'package:fish_shop/ui/register/bloc/register_state.dart';
@@ -91,21 +90,21 @@ class _RegistrationPageState extends State<RegistrationPage> {
                     UiHelper.verticalSpacing(15.h),
                     _buildUpperText(),
                     UiHelper.verticalSpacing(10.h),
-                    Text(
-                      'Full Name',
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.w700,
-                          fontSize: 12.sp),
-                    ),
-                    UiHelper.verticalSpacing(10.h),
-                    FishTextField(
-                      validator: (value) => Validators.validateEmpty(value),
-                      textEditingController: _name,
-                      label: 'Name',
-                      contentPadding: EdgeInsets.only(left: 15.w),
-                    ),
-                    UiHelper.verticalSpacing(10.h),
+                    // Text(
+                    //   'Full Name',
+                    //   style: TextStyle(
+                    //       color: Colors.black,
+                    //       fontWeight: FontWeight.w700,
+                    //       fontSize: 12.sp),
+                    // ),
+                    // UiHelper.verticalSpacing(10.h),
+                    // FishTextField(
+                    //   validator: (value) => Validators.validateEmpty(value),
+                    //   textEditingController: _name,
+                    //   label: 'Name',
+                    //   contentPadding: EdgeInsets.only(left: 15.w),
+                    // ),
+                    // UiHelper.verticalSpacing(10.h),
                     Text(
                       'Phone Number',
                       style: TextStyle(
@@ -188,10 +187,11 @@ class _RegistrationPageState extends State<RegistrationPage> {
                             }
                             if (_formKey.currentState!.validate()) {
                               showLoaderDialog(context);
-                              BlocProvider.of<RegisterBloc>(context).add(
-                                  RegisterEventWithPhone(
+                              BlocProvider.of<RegisterBloc>(context)
+                                  .add(RegisterEventWithPhone(
                                       password: _password.text,
-                                      userName: _name.text,
+                                      userName: _password.text,
+                                      // userName: _name.text,
                                       phoneNumber: _number.text));
                             }
                           },
