@@ -91,6 +91,7 @@ class _IdentificationDocumentsState extends State<IdentificationDocuments> {
         hideProfile = data.userDetails.data?.document?.profilePicture != null;
         hidePalika = data.userDetails.data?.document?.registration != null;
         hideOthers = data.userDetails.data?.document?.idenfication != null;
+        pondSize.text = data.userDetails.data?.pondSize.toString() ?? '';
 
         setState(() {});
       }
