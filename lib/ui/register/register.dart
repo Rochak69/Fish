@@ -43,13 +43,17 @@ class _RegistrationPageState extends State<RegistrationPage> {
     return BlocListener<RegisterBloc, RegisterState>(
       listener: (context, state) {
         if (state is RegisterSuccess) {
-          Navigator.push(context, MaterialPageRoute(
-            builder: (context) {
-              return const FishFarmDetails(
-                isEdit: false,
-              );
-            },
-          ));
+          Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(
+              builder: (context) {
+                return const FishFarmDetails(
+                  isEdit: false,
+                );
+              },
+            ),
+            (route) => false,
+          );
         } else if (state is RegisterFailed) {
           displayToastMessage(state.errorMessage);
           Navigator.pop(context);
