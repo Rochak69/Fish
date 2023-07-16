@@ -9,11 +9,9 @@ class LoginInitial extends LoginState {}
 
 class LoginSuccess extends LoginState {
   final ApiResponse<LoginResponse> result;
-  final UserDetailsResponse? userDetails;
 
   LoginSuccess({
     required this.result,
-    required this.userDetails,
   });
 }
 

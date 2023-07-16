@@ -25,7 +25,6 @@ class _OrderHistoryState extends State<OrderHistory> {
   // const ShowHelpView(),
   @override
   void initState() {
-    BlocProvider.of<OrderHistoryBloc>(context).add(GetOrderHistory());
     super.initState();
   }
 

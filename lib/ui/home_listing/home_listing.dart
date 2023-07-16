@@ -6,6 +6,8 @@ import 'package:fish_shop/ui/home_listing/bloc/home_listings_bloc.dart';
 import 'package:fish_shop/ui/home_listing/bloc/home_listings_event.dart';
 import 'package:fish_shop/ui/home_listing/bloc/home_listings_state.dart';
 import 'package:fish_shop/ui/home_listing/listing.dart';
+import 'package:fish_shop/ui/order_history/bloc/order_history_bloc.dart';
+import 'package:fish_shop/ui/order_history/bloc/order_history_event.dart';
 import 'package:fish_shop/ui/order_history/order_history.dart';
 import 'package:fish_shop/ui/support/support.dart';
 import 'package:fish_shop/ui/yield_farm/yield_farm.dart';
@@ -66,7 +68,11 @@ class _HomeListingState extends State<HomeListing>
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<HomeListingsBloc, HomeListingsState>(
-      listener: (context, state) {},
+      listener: (context, state) {
+        if (state is HomeListingsSuccess) {
+          BlocProvider.of<OrderHistoryBloc>(context).add(GetOrderHistory());
+        }
+      },
       builder: (context, state) {
         return WillPopScope(
           onWillPop: () async {

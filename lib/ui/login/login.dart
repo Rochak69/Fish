@@ -3,6 +3,7 @@ import 'package:fish_shop/res/colors.dart';
 import 'package:fish_shop/ui/common_widget/FishTextField.dart';
 import 'package:fish_shop/ui/fisher_farm_details/fisher_farm_details.dart';
 import 'package:fish_shop/ui/forgot_password/forgot_password.dart';
+import 'package:fish_shop/ui/home_listing/bloc/home_listings_bloc.dart';
 import 'package:fish_shop/ui/home_listing/home_listing.dart';
 import 'package:fish_shop/ui/login/bloc/login_bloc.dart';
 import 'package:fish_shop/ui/login/bloc/login_event.dart';
@@ -58,6 +59,7 @@ class _LoginPageState extends State<LoginPage> {
               displayToastMessage('Your request has not been approved');
               return;
             }
+
             Navigator.pushReplacement(context, MaterialPageRoute(
               builder: (context) {
                 return const HomeListing();

@@ -5,6 +5,8 @@ import 'package:fish_shop/ui/home_listing/bloc/home_listings_event.dart';
 import 'package:fish_shop/ui/home_listing/bloc/home_listings_state.dart';
 import 'package:fish_shop/ui/login/bloc/login_bloc.dart';
 import 'package:fish_shop/ui/login/bloc/login_state.dart';
+import 'package:fish_shop/ui/order_history/bloc/order_history_bloc.dart';
+import 'package:fish_shop/ui/order_history/bloc/order_history_event.dart';
 import 'package:fish_shop/ui/settings_page/settings_page.dart';
 import 'package:fish_shop/ui/utils/endpoints.dart';
 import 'package:fish_shop/ui/utils/uihelper.dart';
@@ -35,7 +37,7 @@ class _ListingsState extends State<Listings> {
   _buildUpperText() {
     return BlocConsumer<HomeListingsBloc, HomeListingsState>(
       listener: (context, state) {
-        // TODO: implement listener
+        if (state is HomeListingsSuccess) {}
       },
       builder: (context, state) {
         if (state is HomeListingsSuccess) {
