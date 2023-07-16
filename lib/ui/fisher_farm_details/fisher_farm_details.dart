@@ -96,10 +96,18 @@ class _FishFarmDetailsState extends State<FishFarmDetails> {
                                         color: Colors.black,
                                         fontWeight: FontWeight.w700,
                                         fontSize: 12.sp),
-                                    children: []),
+                                    children: [
+                                      TextSpan(
+                                          text: ' *',
+                                          style: TextStyle(
+                                              color: Colors.red,
+                                              fontSize: 16.sp))
+                                    ]),
                               ),
                               UiHelper.verticalSpacing(10.h),
                               FishTextField(
+                                validator: (value) =>
+                                    Validators.validateEmpty(value),
                                 textEditingController: farmerNameController,
                                 label: translation(context).farmer_name,
                                 // 'Farm\'s Name',
