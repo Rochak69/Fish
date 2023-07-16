@@ -32,9 +32,10 @@ class IdentificationDocuments extends StatefulWidget {
   final String farmersName;
   final String district;
   final String nagarpalika;
+  final String selectedUnit;
   final String woda;
   final String pradesh;
-
+  final String pondSize;
   String? toleName;
   String? email;
   String? facebook;
@@ -52,7 +53,9 @@ class IdentificationDocuments extends StatefulWidget {
       required this.nagarpalika,
       required this.woda,
       required this.pradesh,
-      required this.phoneNumber});
+      required this.phoneNumber,
+      required this.selectedUnit,
+      required this.pondSize});
 
   @override
   State<IdentificationDocuments> createState() =>
@@ -159,81 +162,81 @@ class _IdentificationDocumentsState extends State<IdentificationDocuments> {
                             fontSize: 18.sp),
                       ),
                       UiHelper.verticalSpacing(10.h),
-                      Row(
-                        children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              RichText(
-                                text: TextSpan(
-                                    text: translation(context).pond_area,
-                                    //'    Farms size',
-                                    style: TextStyle(
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.w700,
-                                        fontSize: 12.sp),
-                                    children: [
-                                      TextSpan(
-                                          text: '*',
-                                          style: TextStyle(
-                                              color: Colors.red,
-                                              fontSize: 16.sp))
-                                    ]),
-                              ),
-                              UiHelper.verticalSpacing(12.h),
-                              SizedBox(
-                                width: 200.w,
-                                child: FishTextField(
-                                  validator: (value) =>
-                                      Validators.validateEmpty(value),
-                                  label: '',
-                                  textEditingController: pondSize,
-                                ),
-                              )
-                            ],
-                          ),
-                          UiHelper.horizontalSpacing(16.w),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              RichText(
-                                text: TextSpan(
-                                    text: translation(context).area_unit,
-                                    // '   Unit',
-                                    style: TextStyle(
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.w700,
-                                        fontSize: 12.sp),
-                                    children: [
-                                      TextSpan(
-                                          text: ' *',
-                                          style: TextStyle(
-                                              color: Colors.red,
-                                              fontSize: 16.sp))
-                                    ]),
-                              ),
-                              UiHelper.verticalSpacing(8.h),
-                              AppDropDown(
-                                  onChanged: (p0) {
-                                    selectedUnit = p0 ?? 'हेक्टर';
-                                    setState(() {});
-                                  },
-                                  value: selectedUnit,
-                                  items: const [
-                                    DropdownMenuItem(
-                                        value: 'हेक्टर', child: Text('हेक्टर')),
-                                    DropdownMenuItem(
-                                        value: 'कठ्ठा', child: Text('कठ्ठा')),
-                                    DropdownMenuItem(
-                                        value: 'विघाह', child: Text('विघाह')),
-                                    DropdownMenuItem(
-                                        value: 'वर्ग मिटर',
-                                        child: Text('वर्ग मिटर')),
-                                  ])
-                            ],
-                          ),
-                        ],
-                      ),
+                      // Row(
+                      //   children: [
+                      //     Column(
+                      //       crossAxisAlignment: CrossAxisAlignment.start,
+                      //       children: [
+                      //         RichText(
+                      //           text: TextSpan(
+                      //               text: translation(context).pond_area,
+                      //               //'    Farms size',
+                      //               style: TextStyle(
+                      //                   color: Colors.black,
+                      //                   fontWeight: FontWeight.w700,
+                      //                   fontSize: 12.sp),
+                      //               children: [
+                      //                 TextSpan(
+                      //                     text: '*',
+                      //                     style: TextStyle(
+                      //                         color: Colors.red,
+                      //                         fontSize: 16.sp))
+                      //               ]),
+                      //         ),
+                      //         UiHelper.verticalSpacing(12.h),
+                      //         SizedBox(
+                      //           width: 200.w,
+                      //           child: FishTextField(
+                      //             validator: (value) =>
+                      //                 Validators.validateEmpty(value),
+                      //             label: '',
+                      //             textEditingController: pondSize,
+                      //           ),
+                      //         )
+                      //       ],
+                      //     ),
+                      //     UiHelper.horizontalSpacing(16.w),
+                      //     Column(
+                      //       crossAxisAlignment: CrossAxisAlignment.start,
+                      //       children: [
+                      //         RichText(
+                      //           text: TextSpan(
+                      //               text: translation(context).area_unit,
+                      //               // '   Unit',
+                      //               style: TextStyle(
+                      //                   color: Colors.black,
+                      //                   fontWeight: FontWeight.w700,
+                      //                   fontSize: 12.sp),
+                      //               children: [
+                      //                 TextSpan(
+                      //                     text: ' *',
+                      //                     style: TextStyle(
+                      //                         color: Colors.red,
+                      //                         fontSize: 16.sp))
+                      //               ]),
+                      //         ),
+                      //         UiHelper.verticalSpacing(8.h),
+                      //         AppDropDown(
+                      //             onChanged: (p0) {
+                      //               selectedUnit = p0 ?? 'हेक्टर';
+                      //               setState(() {});
+                      //             },
+                      //             value: selectedUnit,
+                      //             items: const [
+                      //               DropdownMenuItem(
+                      //                   value: 'हेक्टर', child: Text('हेक्टर')),
+                      //               DropdownMenuItem(
+                      //                   value: 'कठ्ठा', child: Text('कठ्ठा')),
+                      //               DropdownMenuItem(
+                      //                   value: 'विघाह', child: Text('विघाह')),
+                      //               DropdownMenuItem(
+                      //                   value: 'वर्ग मिटर',
+                      //                   child: Text('वर्ग मिटर')),
+                      //             ])
+                      //       ],
+                      //     ),
+                      //   ],
+                      // ),
                       UiHelper.verticalSpacing(12.h),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
