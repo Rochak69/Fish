@@ -11,6 +11,8 @@ import 'package:fish_shop/ui/order_history/bloc/order_history_event.dart';
 import 'package:fish_shop/ui/order_history/order_history.dart';
 import 'package:fish_shop/ui/support/support.dart';
 import 'package:fish_shop/ui/yield_farm/yield_farm.dart';
+import 'package:fish_shop/ui/your_listing/bloc/your_listing_bloc.dart';
+import 'package:fish_shop/ui/your_listing/bloc/your_listing_event.dart';
 import 'package:fish_shop/ui/your_listing/your_listing.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -71,6 +73,7 @@ class _HomeListingState extends State<HomeListing>
       listener: (context, state) {
         if (state is HomeListingsSuccess) {
           BlocProvider.of<OrderHistoryBloc>(context).add(GetOrderHistory());
+          BlocProvider.of<YourListingBloc>(context).add(GetMyListings());
         }
       },
       builder: (context, state) {

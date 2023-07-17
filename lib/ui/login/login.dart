@@ -11,6 +11,7 @@ import 'package:fish_shop/ui/login/bloc/login_state.dart';
 import 'package:fish_shop/ui/my_language/bloc/my_language_bloc.dart';
 import 'package:fish_shop/ui/my_language/bloc/my_language_event.dart';
 import 'package:fish_shop/ui/register/register.dart';
+import 'package:fish_shop/ui/utils/preferences.dart';
 import 'package:fish_shop/ui/utils/uihelper.dart';
 import 'package:fish_shop/ui/utils/utils.dart';
 import 'package:flutter/gestures.dart';
@@ -44,6 +45,7 @@ class _LoginPageState extends State<LoginPage> {
     super.dispose();
   }
 
+  bool shouldRemember = false;
   bool _obscureText = true;
 
   @override
@@ -139,6 +141,25 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ),
                       UiHelper.verticalSpacing(10.h),
+                      Row(
+                        children: [
+                          Checkbox(
+                            value: shouldRemember,
+                            onChanged: (value) async {
+                              Preferences preferences = Preferences();
+                              shouldRemember = value ?? false;
+                              setState(() {});
+                              await preferences.saveBool(
+                                  Preference.remember, value ?? false);
+                            },
+                          ),
+                          Text(
+                            'Remember me',
+                            style: TextStyle(
+                                fontSize: 10.sp, color: AppColors.textColor),
+                          )
+                        ],
+                      ),
                       Container(
                         padding: EdgeInsets.only(left: 2.w),
                         alignment: Alignment.bottomLeft,

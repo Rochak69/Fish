@@ -21,7 +21,6 @@ class YourListings extends StatefulWidget {
 class _YourListingsState extends State<YourListings> {
   @override
   void initState() {
-    BlocProvider.of<YourListingBloc>(context).add(GetMyListings());
     super.initState();
   }
 

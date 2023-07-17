@@ -39,13 +39,23 @@ class SplashScreenState extends State<SplashScreen> {
       return;
     }
     bool isLogin = await preferences.getBool(Preference.isLogin);
-    if (isLogin) {
-      Navigator.pushAndRemoveUntil(
-          context,
-          MaterialPageRoute(
-            builder: (context) => const HomeListing(),
-          ),
-          (route) => false);
+    bool isRemember = await preferences.getBool(Preference.remember);
+    if (isRemember) {
+      if (isLogin) {
+        Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const HomeListing(),
+            ),
+            (route) => false);
+      } else {
+        Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const LoginPage(),
+            ),
+            (route) => false);
+      }
     } else {
       Navigator.pushAndRemoveUntil(
           context,

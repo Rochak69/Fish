@@ -197,6 +197,9 @@ class _FishFarmDetailsState extends State<FishFarmDetails> {
                                     [],
                                 onChanged: (value) {
                                   selectedPradesh = value;
+                                  selectedDistrict = null;
+                                  selectedNagarpalika = null;
+                                  selectedWoda = null;
                                   setState(() {});
 
                                   BlocProvider.of<FishFarmerDetailBloc>(context)
@@ -235,6 +238,8 @@ class _FishFarmDetailsState extends State<FishFarmDetails> {
                                     [],
                                 onChanged: (value) {
                                   selectedDistrict = value;
+                                  selectedNagarpalika = null;
+                                  selectedWoda = null;
                                   setState(() {});
                                   BlocProvider.of<FishFarmerDetailBloc>(context)
                                       .add(GetMunicipality(
@@ -272,6 +277,8 @@ class _FishFarmDetailsState extends State<FishFarmDetails> {
                                     [],
                                 onChanged: (value) {
                                   selectedNagarpalika = value;
+
+                                  selectedWoda = null;
                                   setState(() {});
                                   BlocProvider.of<FishFarmerDetailBloc>(context)
                                       .add(GetWoda(

@@ -13,6 +13,7 @@ class Preference {
   static const String isLangAR = 'LOGIN_MECHANISM';
   static const String isLogin = 'ONBOARDING_COMPLETE';
   static const String phoneNumber = 'PHONE_NUMBER';
+  static const String remember = 'REMEMBER';
 
   // One-time question: user asked if they want to use a PIN for authentication
   static const String loginMechanismPinAsk = 'LOGIN_MECHANISM_PIN_ASK';
