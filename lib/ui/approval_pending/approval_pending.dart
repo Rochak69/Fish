@@ -134,7 +134,7 @@ class ApprovalPending extends StatelessWidget {
                 // )
               },
               child: Text(
-                'Next',
+                'Log Out',
                 style: TextStyle(
                     fontSize: 12.sp,
                     fontWeight: FontWeight.w600,
@@ -152,7 +152,7 @@ class ApprovalPending extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        UiHelper.verticalSpacing(122),
+        UiHelper.verticalSpacing(60),
         const Text(
           'तपाईंको फारम पेश गरिएको छ',
           style: TextStyle(

@@ -1,5 +1,6 @@
 import 'package:fish_shop/common/validator.dart';
 import 'package:fish_shop/res/colors.dart';
+import 'package:fish_shop/ui/approval_pending/approval_pending.dart';
 import 'package:fish_shop/ui/common_widget/FishTextField.dart';
 import 'package:fish_shop/ui/fisher_farm_details/fisher_farm_details.dart';
 import 'package:fish_shop/ui/forgot_password/forgot_password.dart';
@@ -57,8 +58,13 @@ class _LoginPageState extends State<LoginPage> {
 
           if (state.result.data?.isFarmer ?? false) {
             if (!isApproved) {
-              Navigator.pop(context);
+              // Navigator.pop(context);
               displayToastMessage('Your request has not been approved');
+              Navigator.pushReplacement(context, MaterialPageRoute(
+                builder: (context) {
+                  return const ApprovalPending();
+                },
+              ));
               return;
             }
 

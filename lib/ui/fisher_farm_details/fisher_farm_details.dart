@@ -26,6 +26,8 @@ class FishFarmDetails extends StatefulWidget {
 }
 
 class _FishFarmDetailsState extends State<FishFarmDetails> {
+  String selectedUnit = 'हेक्टर';
+  TextEditingController pondSize = TextEditingController();
   final farmerNameController = TextEditingController();
   final toleNameController = TextEditingController();
   final emailController = TextEditingController();
@@ -107,7 +109,7 @@ class _FishFarmDetailsState extends State<FishFarmDetails> {
                                 validator: (value) =>
                                     Validators.validateEmpty(value),
                                 textEditingController: farmerNameController,
-                                label: translation(context).farm_name,
+                                label: translation(context).farmer_name,
                                 // 'Farm\'s Name',
                                 contentPadding: EdgeInsets.only(left: 15.w),
                               ),
@@ -143,13 +145,7 @@ class _FishFarmDetailsState extends State<FishFarmDetails> {
                                         color: Colors.black,
                                         fontWeight: FontWeight.w700,
                                         fontSize: 12.sp),
-                                    children: [
-                                      TextSpan(
-                                          text: ' *',
-                                          style: TextStyle(
-                                              color: Colors.red,
-                                              fontSize: 16.sp))
-                                    ]),
+                                    children: []),
                               ),
                               UiHelper.verticalSpacing(10.h),
                               FishTextField(
@@ -371,7 +367,99 @@ class _FishFarmDetailsState extends State<FishFarmDetails> {
                                 contentPadding: EdgeInsets.only(left: 5.w),
                                 width: double.infinity,
                               ),
-                              UiHelper.verticalSpacing(22.h),
+                              UiHelper.verticalSpacing(10.h),
+                              Text(
+                                translation(context).fish_farm_detials,
+                                //  'Fish Farm Details',
+                                style: TextStyle(
+                                    color: AppColors.textColor,
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 18.sp),
+                              ),
+                              UiHelper.verticalSpacing(10.h),
+                              Row(
+                                children: [
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      RichText(
+                                        text: TextSpan(
+                                            text:
+                                                translation(context).pond_area,
+                                            //'    Farms size',
+                                            style: TextStyle(
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.w700,
+                                                fontSize: 12.sp),
+                                            children: [
+                                              TextSpan(
+                                                  text: '*',
+                                                  style: TextStyle(
+                                                      color: Colors.red,
+                                                      fontSize: 16.sp))
+                                            ]),
+                                      ),
+                                      UiHelper.verticalSpacing(12.h),
+                                      SizedBox(
+                                        width: 200.w,
+                                        child: FishTextField(
+                                          validator: (value) =>
+                                              Validators.validateEmpty(value),
+                                          label: '',
+                                          textEditingController: pondSize,
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                  UiHelper.horizontalSpacing(16.w),
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      RichText(
+                                        text: TextSpan(
+                                            text:
+                                                translation(context).area_unit,
+                                            // '   Unit',
+                                            style: TextStyle(
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.w700,
+                                                fontSize: 12.sp),
+                                            children: [
+                                              TextSpan(
+                                                  text: ' *',
+                                                  style: TextStyle(
+                                                      color: Colors.red,
+                                                      fontSize: 16.sp))
+                                            ]),
+                                      ),
+                                      UiHelper.verticalSpacing(8.h),
+                                      AppDropDown(
+                                          onChanged: (p0) {
+                                            selectedUnit = p0 ?? 'हेक्टर';
+                                            setState(() {});
+                                          },
+                                          value: selectedUnit,
+                                          items: const [
+                                            DropdownMenuItem(
+                                                value: 'हेक्टर',
+                                                child: Text('हेक्टर')),
+                                            DropdownMenuItem(
+                                                value: 'कठ्ठा',
+                                                child: Text('कठ्ठा')),
+                                            DropdownMenuItem(
+                                                value: 'विघाह',
+                                                child: Text('विघाह')),
+                                            DropdownMenuItem(
+                                                value: 'वर्ग मिटर',
+                                                child: Text('वर्ग मिटर')),
+                                          ])
+                                    ],
+                                  ),
+                                ],
+                              ),
+                              UiHelper.verticalSpacing(10.h),
                               SizedBox(
                                 width: 340.w,
                                 height: 48.h,
@@ -402,6 +490,8 @@ class _FishFarmDetailsState extends State<FishFarmDetails> {
                                             MaterialPageRoute(
                                               builder: (context) =>
                                                   IdentificationDocuments(
+                                                pondSize: pondSize.text,
+                                                selectedUnit: selectedUnit!,
                                                 isEdit: widget.isEdit,
                                                 userId: userId,
                                                 farmName:
