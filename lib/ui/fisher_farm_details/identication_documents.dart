@@ -153,14 +153,14 @@ class _IdentificationDocumentsState extends State<IdentificationDocuments> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        translation(context).fish_farm_detials,
-                        //  'Fish Farm Details',
-                        style: TextStyle(
-                            color: AppColors.textColor,
-                            fontWeight: FontWeight.w700,
-                            fontSize: 18.sp),
-                      ),
+                      // Text(
+                      //   translation(context).fish_farm_detials,
+                      //   //  'Fish Farm Details',
+                      //   style: TextStyle(
+                      //       color: AppColors.textColor,
+                      //       fontWeight: FontWeight.w700,
+                      //       fontSize: 18.sp),
+                      // ),
                       UiHelper.verticalSpacing(10.h),
                       // Row(
                       //   children: [
