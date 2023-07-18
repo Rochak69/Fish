@@ -34,6 +34,7 @@ class _FishFarmDetailsState extends State<FishFarmDetails> {
   final facebookPageController = TextEditingController();
   final phoneNumberController = TextEditingController();
   final farmNameController = TextEditingController();
+
   String? selectedPradesh;
   String? selectedDistrict;
   String? selectedNagarpalika;
@@ -63,6 +64,9 @@ class _FishFarmDetailsState extends State<FishFarmDetails> {
         selectedWoda = data.userDetails.data?.wardId;
         toleNameController.text = data.userDetails.data?.streetName ?? '';
         facebookPageController.text = data.userDetails.data?.facebookPage ?? '';
+
+        pondSize.text = data.userDetails.data?.pondSize.toString() ?? '';
+        emailController.text = data.userDetails.data?.email ?? '';
 
         setState(() {});
       }

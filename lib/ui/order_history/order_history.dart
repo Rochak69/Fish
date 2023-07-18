@@ -189,6 +189,28 @@ class _OrderHistoryState extends State<OrderHistory> {
                   ),
                 ],
               ),
+              UiHelper.verticalSpacing(2.h),
+              Row(
+                children: [
+                  Text(
+                    'खरिद गर्ने व्यक्तिको ठेगाना:',
+
+                    //  translation(context).buy_date,
+                    //'Yeild Date : ',
+                    style: TextStyle(
+                        fontSize: 12.sp,
+                        fontWeight: FontWeight.w700,
+                        color: Colors.black),
+                  ),
+                  Text(
+                    '${state.orders.data?[index].municipality?.nepaliName}',
+                    style: TextStyle(
+                        fontSize: 11.sp,
+                        fontWeight: FontWeight.w700,
+                        color: AppColors.AppCardColor),
+                  ),
+                ],
+              ),
               Row(
                 children: [
                   Text(
@@ -210,11 +232,10 @@ class _OrderHistoryState extends State<OrderHistory> {
                   ),
                 ],
               ),
-              UiHelper.verticalSpacing(2.h),
               Row(
                 children: [
                   Text(
-                    'खरिद गर्ने व्यक्तिको ठेगाना:',
+                    'Street name: ',
 
                     //  translation(context).buy_date,
                     //'Yeild Date : ',
@@ -224,9 +245,9 @@ class _OrderHistoryState extends State<OrderHistory> {
                         color: Colors.black),
                   ),
                   Text(
-                    '${state.orders.data?[index].municipality?.nepaliName}',
+                    '${state.orders.data?[index].streetName}',
                     style: TextStyle(
-                        fontSize: 11.sp,
+                        fontSize: 12.sp,
                         fontWeight: FontWeight.w700,
                         color: AppColors.AppCardColor),
                   ),

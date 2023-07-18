@@ -15,6 +15,8 @@ class PostFarmerDetailsEvent extends FishFarmerDetailEvent {
   String district;
   String nagarpalika;
   String citizenName;
+  String? website;
+  String? streetName;
   String citizenDistricId;
   String citizenNumber;
   String? citizenshipPhoto;
@@ -33,6 +35,8 @@ class PostFarmerDetailsEvent extends FishFarmerDetailEvent {
     required this.farmersName,
     required this.phoneNumber,
     this.pondSize,
+    this.streetName,
+    this.website,
     required this.pradesh,
     required this.district,
     required this.nagarpalika,

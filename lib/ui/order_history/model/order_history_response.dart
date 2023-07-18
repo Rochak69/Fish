@@ -8,12 +8,14 @@ class OrderHistoryResponse {
   String? phoneNumber;
   Municipality? municipality;
   Ward? ward;
+  String? streetName;
 
   OrderHistoryResponse(
       {this.avgFishWeight,
       this.createdAt,
       this.requestedWeight,
       this.yieldDate,
+      this.streetName,
       this.fishType,
       this.buyerName,
       this.phoneNumber,
@@ -28,6 +30,7 @@ class OrderHistoryResponse {
     fishType = json['FishType'];
     buyerName = json['buyerName'];
     phoneNumber = json['phoneNumber'];
+    streetName = json['streetName'];
     municipality = json['municipality'] != null
         ? new Municipality.fromJson(json['municipality'])
         : null;
@@ -42,6 +45,7 @@ class OrderHistoryResponse {
     data['yieldDate'] = this.yieldDate;
     data['FishType'] = this.fishType;
     data['buyerName'] = this.buyerName;
+    data['streetName'] = this.streetName;
     data['phoneNumber'] = this.phoneNumber;
     if (this.municipality != null) {
       data['municipality'] = this.municipality!.toJson();

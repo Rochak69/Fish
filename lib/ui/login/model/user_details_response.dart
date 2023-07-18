@@ -8,6 +8,7 @@ class UserDetailsResponse {
   String? citizenshipNumber;
   String? citizenshipIssueDistrictId;
   String? streetName;
+  String? website;
   String? email;
   String? facebookPage;
   num? pondSize;
@@ -37,6 +38,7 @@ class UserDetailsResponse {
       this.email,
       this.facebookPage,
       this.pondSize,
+      this.website,
       this.active,
       this.approved,
       this.districtId,
@@ -56,6 +58,7 @@ class UserDetailsResponse {
     fullName = json['fullName'];
     farmName = json['farmName'];
     mobileNumber = json['mobileNumber'];
+    website = json['website'];
     citizenshipName = json['citizenshipName'];
     citizenshipNumber = json['citizenshipNumber'];
     citizenshipIssueDistrictId = json['citizenshipIssueDistrictId'];

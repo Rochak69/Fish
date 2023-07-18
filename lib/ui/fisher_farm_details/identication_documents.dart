@@ -615,7 +615,7 @@ class _IdentificationDocumentsState extends State<IdentificationDocuments> {
                                     citizenDistricId: selectedDistrict ?? '1',
                                     citizenName: citizenName.text,
                                     tole: widget.toleName,
-                                    email: widget.toleName,
+                                    email: widget.email,
                                     facebook: widget.facebook),
                               );
                             }
