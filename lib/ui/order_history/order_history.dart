@@ -160,7 +160,7 @@ class _OrderHistoryState extends State<OrderHistory> {
                         color: Colors.black),
                   ),
                   Text(
-                    formarDate(state.orders.data?[index].createdAt),
+                    formarDate(state.orders.data?[index].yieldDate),
                     style: TextStyle(
                         fontSize: 12.sp,
                         fontWeight: FontWeight.w700,
@@ -189,6 +189,28 @@ class _OrderHistoryState extends State<OrderHistory> {
                   ),
                 ],
               ),
+              Row(
+                children: [
+                  Text(
+                    'Ward: ',
+
+                    //  translation(context).buy_date,
+                    //'Yeild Date : ',
+                    style: TextStyle(
+                        fontSize: 12.sp,
+                        fontWeight: FontWeight.w700,
+                        color: Colors.black),
+                  ),
+                  Text(
+                    '${state.orders.data?[index].ward?.nepaliNumber}',
+                    style: TextStyle(
+                        fontSize: 12.sp,
+                        fontWeight: FontWeight.w700,
+                        color: AppColors.AppCardColor),
+                  ),
+                ],
+              ),
+              UiHelper.verticalSpacing(2.h),
               Row(
                 children: [
                   Text(
