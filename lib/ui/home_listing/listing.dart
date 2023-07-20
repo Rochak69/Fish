@@ -48,44 +48,44 @@ class _ListingsState extends State<Listings> {
               elevation: 0,
               backgroundColor: Colors.white,
               title: Text(
-                'Home',
+                'Buyer Listings',
                 style: TextStyle(
                     color: AppColors.textColor,
                     fontWeight: FontWeight.w700,
                     fontSize: 22.sp),
               ),
-              actions: [
-                GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const SettingsPage()));
-                  },
-                  child: BlocBuilder<HomeListingsBloc, HomeListingsState>(
-                    builder: (context, state) {
-                      if (state is HomeListingsSuccess &&
-                          state.userDetails.data?.document?.profilePicture !=
-                              null) {
-                        String profilePic =
-                            state.userDetails.data?.document?.profilePicture ??
-                                '';
-                        return CircleAvatar(
-                          radius: 20.r,
-                          backgroundImage:
-                              NetworkImage(Endpoints.baseFile + profilePic),
-                        );
-                      } else {
-                        return Image.asset(
-                          'assets/avatar.png',
-                          width: 38.w,
-                        );
-                      }
-                    },
-                  ),
-                ),
-                UiHelper.horizontalSpacing(24.w)
-              ],
+              // actions: [
+              //   GestureDetector(
+              //     onTap: () {
+              //       Navigator.push(
+              //           context,
+              //           MaterialPageRoute(
+              //               builder: (context) => const SettingsPage()));
+              //     },
+              //     child: BlocBuilder<HomeListingsBloc, HomeListingsState>(
+              //       builder: (context, state) {
+              //         if (state is HomeListingsSuccess &&
+              //             state.userDetails.data?.document?.profilePicture !=
+              //                 null) {
+              //           String profilePic =
+              //               state.userDetails.data?.document?.profilePicture ??
+              //                   '';
+              //           return CircleAvatar(
+              //             radius: 20.r,
+              //             backgroundImage:
+              //                 NetworkImage(Endpoints.baseFile + profilePic),
+              //           );
+              //         } else {
+              //           return Image.asset(
+              //             'assets/avatar.png',
+              //             width: 38.w,
+              //           );
+              //         }
+              //       },
+              //     ),
+              //   ),
+              //   UiHelper.horizontalSpacing(24.w)
+              // ],
             ),
             body: RefreshIndicator(
               onRefresh: () => refresh(),

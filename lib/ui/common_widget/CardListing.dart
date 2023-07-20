@@ -1,4 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:fish_shop/common/validator.dart';
+import 'package:fish_shop/ui/common_widget/FishTextField.dart';
 import 'package:fish_shop/ui/home_listing/bloc/home_listings_bloc.dart';
 import 'package:fish_shop/ui/home_listing/bloc/home_listings_event.dart';
 import 'package:fish_shop/ui/utils/preferences.dart';
@@ -53,6 +55,7 @@ class _CardListingState extends State<CardListing> {
     super.dispose();
   }
 
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -312,6 +315,16 @@ class _CardListingState extends State<CardListing> {
                     ),
                   ],
                 ),
+                UiHelper.verticalSpacing(4.h),
+                Form(
+                  key: _formKey,
+                  child: FishTextField(
+                    label: 'Offer weight',
+                    textEditingController: offerWeight,
+                    textInputType: TextInputType.number,
+                    validator: (p0) => Validators.validateGreaterThanZero(p0),
+                  ),
+                )
               ]),
           actionsAlignment: MainAxisAlignment.center,
           // Action widget which will provide the user to acknowledge the choice
@@ -333,11 +346,13 @@ class _CardListingState extends State<CardListing> {
                           backgroundColor: AppColors.textRedColor);
                       return;
                     }
-                    BlocProvider.of<HomeListingsBloc>(context).add(SendOffer(
-                        userDemandId: widget.userDemandId,
-                        phoneNumber: phoneNumber,
-                        weight: int.parse(offerWeight.text)));
-                    Navigator.pop(context);
+                    if (_formKey.currentState!.validate()) {
+                      BlocProvider.of<HomeListingsBloc>(context).add(SendOffer(
+                          userDemandId: widget.userDemandId,
+                          phoneNumber: phoneNumber,
+                          weight: int.parse(offerWeight.text)));
+                      Navigator.pop(context);
+                    }
                   },
                   child: Text(
                     'Yes',
