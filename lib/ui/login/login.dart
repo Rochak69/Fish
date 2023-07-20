@@ -101,11 +101,21 @@ class _LoginPageState extends State<LoginPage> {
                   key: formkey,
                   child: Column(
                     children: [
-                      UiHelper.verticalSpacing(130.h),
+                      UiHelper.verticalSpacing(110.h),
                       Image.asset('assets/logo.png'),
                       UiHelper.verticalSpacing(19.h),
                       _buildUpperText(),
-                      UiHelper.verticalSpacing(90.h),
+                      UiHelper.verticalSpacing(30.h),
+                      Container(
+                          padding: EdgeInsets.only(right: 70.w),
+                          child: Text(
+                            'मत्स्य पालक Mobile App ',
+                            style: TextStyle(
+                              fontSize: 24.sp,
+                              color: Colors.black,
+                              fontWeight: FontWeight.w900,
+                            ),
+                          )),
                       Container(
                         padding: EdgeInsets.only(
                           left: 5.w,

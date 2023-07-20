@@ -66,6 +66,25 @@ class _CardListingState extends State<CardListing> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          Row(
+            children: [
+              Text(
+                "ID :",
+                style: TextStyle(
+                    fontSize: 12.sp,
+                    fontWeight: FontWeight.w700,
+                    color: Colors.black),
+              ),
+              Text(
+                '',
+                //   widget.totalWeight.toString() + " के.जी",
+                style: TextStyle(
+                    fontSize: 12.sp,
+                    fontWeight: FontWeight.w800,
+                    color: AppColors.AppCardColor),
+              ),
+            ],
+          ),
           Wrap(
             children: [
               Text(

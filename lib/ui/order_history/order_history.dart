@@ -90,6 +90,28 @@ class _OrderHistoryState extends State<OrderHistory> {
               Row(
                 children: [
                   Text(
+                    'ID: ',
+
+                    ///translation(context).buy_quantity,
+                    //   'Qunatity : ',
+                    style: TextStyle(
+                        fontSize: 12.sp,
+                        fontWeight: FontWeight.w700,
+                        color: Colors.black),
+                  ),
+                  Text(
+                    '',
+                    // ': ${state.orders.data?[index].requestedWeight} के.जी',
+                    style: TextStyle(
+                        fontSize: 12.sp,
+                        fontWeight: FontWeight.w800,
+                        color: AppColors.AppCardColor),
+                  ),
+                ],
+              ),
+              Row(
+                children: [
+                  Text(
                     translation(context).fish_type,
                     //'Fish Type : ',
                     style: TextStyle(
@@ -214,7 +236,7 @@ class _OrderHistoryState extends State<OrderHistory> {
               Row(
                 children: [
                   Text(
-                    'Ward: ',
+                    'वार्ड: ',
 
                     //  translation(context).buy_date,
                     //'Yeild Date : ',
@@ -235,7 +257,7 @@ class _OrderHistoryState extends State<OrderHistory> {
               Row(
                 children: [
                   Text(
-                    'Street name: ',
+                    'टोल नाम: ',
 
                     //  translation(context).buy_date,
                     //'Yeild Date : ',
@@ -273,15 +295,60 @@ class _OrderHistoryState extends State<OrderHistory> {
                           fontWeight: FontWeight.w700,
                           color: Colors.black),
                     ),
+                    Container(child: Icon(Icons.phone)),
                     Text(
                       '${state.orders.data?[index].phoneNumber}',
                       style: TextStyle(
                           fontSize: 12.sp,
                           fontWeight: FontWeight.w700,
-                          color: AppColors.AppCardColor),
+                          color: Colors.green),
                     ),
                   ],
                 ),
+              ),
+              Row(
+                children: [
+                  Text(
+                    'फेसबुक आईडी: ',
+
+                    //  translation(context).buy_date,
+                    //'Yeild Date : ',
+                    style: TextStyle(
+                        fontSize: 12.sp,
+                        fontWeight: FontWeight.w700,
+                        color: Colors.black),
+                  ),
+                  Text(
+                    ' ',
+                    //     '${state.orders.data?[index].ward?.nepaliNumber}',
+                    style: TextStyle(
+                        fontSize: 12.sp,
+                        fontWeight: FontWeight.w700,
+                        color: AppColors.AppCardColor),
+                  ),
+                ],
+              ),
+              Row(
+                children: [
+                  Text(
+                    'वेबसाइट: ',
+
+                    //  translation(context).buy_date,
+                    //'Yeild Date : ',
+                    style: TextStyle(
+                        fontSize: 12.sp,
+                        fontWeight: FontWeight.w700,
+                        color: Colors.black),
+                  ),
+                  Text(
+                    ' ',
+                    //     '${state.orders.data?[index].ward?.nepaliNumber}',
+                    style: TextStyle(
+                        fontSize: 12.sp,
+                        fontWeight: FontWeight.w700,
+                        color: AppColors.AppCardColor),
+                  ),
+                ],
               ),
             ],
           ),

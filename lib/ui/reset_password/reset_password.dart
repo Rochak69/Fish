@@ -1,6 +1,7 @@
 import 'package:fish_shop/common/validator.dart';
 import 'package:fish_shop/res/colors.dart';
 import 'package:fish_shop/ui/common_widget/FishTextField.dart';
+import 'package:fish_shop/ui/login/login.dart';
 import 'package:fish_shop/ui/reset_password/bloc/reset_password_bloc.dart';
 import 'package:fish_shop/ui/reset_password/bloc/reset_password_event.dart';
 import 'package:fish_shop/ui/reset_password/bloc/reset_password_state.dart';
@@ -41,6 +42,12 @@ class _ChangePasswordState extends State<ChangePassword> {
         Navigator.pop(context);
         if (state is ResetPasswordSuccess) {
           displayToastMessage('Reset Password successful');
+          Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(
+                builder: (context) => LoginPage(),
+              ),
+              (route) => false);
         } else if (state is ResetPasswordFailed) {
           displayToastMessage(state.errorMessage,
               backgroundColor: AppColors.textRedColor);

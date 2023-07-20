@@ -46,6 +46,9 @@ class ContactScreen extends StatelessWidget {
   _buildBottomText(BuildContext context) {
     return Column(
       children: [
+        UiHelper.verticalSpacing(20.h),
+        Image.asset('assets/logo.png'),
+        UiHelper.verticalSpacing(20.h),
         const Text(
           // translation(context).agriculture,
           'लुम्बिनी प्रदेश सरकार',
@@ -185,36 +188,6 @@ class ContactScreen extends StatelessWidget {
           ),
         ),
         UiHelper.verticalSpacing(30.h),
-        SizedBox(
-          width: 340.w,
-          height: 48.h,
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(12.r),
-            child: ElevatedButton(
-              onPressed: () async {
-                Preferences preferences = Preferences();
-                await preferences.removeAll();
-                Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return const LoginPage();
-                    },
-                  ),
-                  (route) => false,
-                );
-                // )
-              },
-              child: Text(
-                'Log Out',
-                style: TextStyle(
-                    fontSize: 12.sp,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.white),
-              ),
-            ),
-          ),
-        ),
         // ०७१४२०४३६
       ],
     );

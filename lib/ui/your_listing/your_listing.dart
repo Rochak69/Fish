@@ -111,6 +111,28 @@ class _YourListingsState extends State<YourListings> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          Row(
+            children: [
+              Text(
+                'ID: ',
+
+                ///translation(context).buy_quantity,
+                //   'Qunatity : ',
+                style: TextStyle(
+                    fontSize: 12.sp,
+                    fontWeight: FontWeight.w700,
+                    color: Colors.black),
+              ),
+              Text(
+                '',
+                //    ': ${state.orders.data?[index].requestedWeight} के.जी',
+                style: TextStyle(
+                    fontSize: 12.sp,
+                    fontWeight: FontWeight.w800,
+                    color: AppColors.AppCardColor),
+              ),
+            ],
+          ),
           Wrap(
             alignment: WrapAlignment.start,
             children: [

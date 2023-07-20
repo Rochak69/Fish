@@ -4,6 +4,7 @@ import 'package:fish_shop/ui/fisher_farm_details/fisher_farm_details.dart';
 import 'package:fish_shop/ui/forgot_password/forgot_password.dart';
 import 'package:fish_shop/ui/home_listing/bloc/home_listings_bloc.dart';
 import 'package:fish_shop/ui/home_listing/bloc/home_listings_state.dart';
+import 'package:fish_shop/ui/home_listing/listing.dart';
 import 'package:fish_shop/ui/login/bloc/login_state.dart';
 import 'package:fish_shop/ui/login/login.dart';
 import 'package:fish_shop/ui/support/support.dart';
@@ -118,6 +119,34 @@ class SettingsPage extends StatelessWidget {
                 ),
               ),
               UiHelper.verticalSpacing(20),
+              InkWell(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const Listings(),
+                      ));
+                },
+                child: Card(
+                  elevation: 2,
+                  child: SizedBox(
+                    height: 50.h,
+                    child: const Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            '     Buyer\'s listings',
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                          //   Image.asset('assets/right_button.png'),
+                        ]),
+                  ),
+                ),
+              ),
+              UiHelper.verticalSpacing(20.h),
               InkWell(
                 onTap: () {
                   Navigator.push(

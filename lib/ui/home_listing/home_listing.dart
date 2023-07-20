@@ -90,17 +90,17 @@ class _HomeListingState extends State<HomeListing>
                   children: screens,
                 ),
               ),
-              floatingActionButton: FloatingActionButton(
-                onPressed: () {
-                  setState(() {
-                    _selectedIndex = 0;
-                  });
-                  _animationController.forward(from: 0.0);
-                },
-                child: const Icon(Icons.add),
-              ),
-              floatingActionButtonLocation:
-                  FloatingActionButtonLocation.centerDocked,
+              // floatingActionButton: FloatingActionButton(
+              //   onPressed: () {
+              //     setState(() {
+              //       _selectedIndex = 0;
+              //     });
+              //     _animationController.forward(from: 0.0);
+              //   },
+              //   child: const Icon(Icons.add),
+              // ),
+              // floatingActionButtonLocation:
+              //     FloatingActionButtonLocation.centerDocked,
               bottomNavigationBar: Container(
                 padding: EdgeInsets.symmetric(vertical: 6.h),
                 height: 56.h,
@@ -128,7 +128,7 @@ class _HomeListingState extends State<HomeListing>
                       2,
                     ),
                     _buildBottomNavigationBarItem(
-                      'COntact',
+                      'Contact',
                       'assets/bottom_navigation_bar/contact.png',
                       'assets/bottom_navigation_bar/contact.png',
                       3,

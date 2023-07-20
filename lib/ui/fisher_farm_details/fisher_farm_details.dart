@@ -126,11 +126,11 @@ class _FishFarmDetailsState extends State<FishFarmDetails> {
                                         fontWeight: FontWeight.w700,
                                         fontSize: 12.sp),
                                     children: [
-                                      TextSpan(
-                                          text: ' *',
-                                          style: TextStyle(
-                                              color: Colors.red,
-                                              fontSize: 16.sp))
+                                      // TextSpan(
+                                      //     text: ' *',
+                                      //     style: TextStyle(
+                                      //         color: Colors.red,
+                                      //         fontSize: 16.sp))
                                     ]),
                               ),
                               UiHelper.verticalSpacing(10.h),
@@ -143,7 +143,8 @@ class _FishFarmDetailsState extends State<FishFarmDetails> {
                               UiHelper.verticalSpacing(10.h),
                               RichText(
                                 text: TextSpan(
-                                    text: translation(context).mobile_number,
+                                    text: 'अन्य सम्पर्क नम्बर',
+                                    //translation(context).mobile_number,
                                     //'Phone Number',
                                     style: TextStyle(
                                         color: Colors.black,
@@ -154,7 +155,8 @@ class _FishFarmDetailsState extends State<FishFarmDetails> {
                               UiHelper.verticalSpacing(10.h),
                               FishTextField(
                                 textEditingController: phoneNumberController,
-                                label: translation(context).mobile_number,
+                                label: 'अन्य सम्पर्क नम्बर',
+                                //translation(context).mobile_number,
                                 //'Phone Number',
                                 contentPadding: EdgeInsets.only(left: 15.w),
                               ),
