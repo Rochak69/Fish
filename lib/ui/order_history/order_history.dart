@@ -319,7 +319,7 @@ class _OrderHistoryState extends State<OrderHistory> {
                         color: Colors.black),
                   ),
                   Text(
-                    ' ',
+                    state.orders.data?[index].facebookPage ?? '',
                     //     '${state.orders.data?[index].ward?.nepaliNumber}',
                     style: TextStyle(
                         fontSize: 12.sp,
@@ -341,7 +341,7 @@ class _OrderHistoryState extends State<OrderHistory> {
                         color: Colors.black),
                   ),
                   Text(
-                    ' ',
+                    state.orders.data?[index].website ?? '',
                     //     '${state.orders.data?[index].ward?.nepaliNumber}',
                     style: TextStyle(
                         fontSize: 12.sp,

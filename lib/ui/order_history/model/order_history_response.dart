@@ -9,6 +9,8 @@ class OrderHistoryResponse {
   Municipality? municipality;
   Ward? ward;
   String? streetName;
+  String? facebookPage;
+  String? website;
 
   OrderHistoryResponse(
       {this.avgFishWeight,
@@ -20,6 +22,8 @@ class OrderHistoryResponse {
       this.buyerName,
       this.phoneNumber,
       this.municipality,
+      this.facebookPage,
+      this.website,
       this.ward});
 
   OrderHistoryResponse.fromJson(Map<String, dynamic> json) {
@@ -30,6 +34,8 @@ class OrderHistoryResponse {
     fishType = json['FishType'];
     buyerName = json['buyerName'];
     phoneNumber = json['phoneNumber'];
+    website = json['website'];
+    facebookPage = json['facebookId'];
     streetName = json['streetName'];
     municipality = json['municipality'] != null
         ? new Municipality.fromJson(json['municipality'])
