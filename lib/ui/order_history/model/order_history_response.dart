@@ -11,6 +11,7 @@ class OrderHistoryResponse {
   String? streetName;
   String? facebookPage;
   String? website;
+  String? id;
 
   OrderHistoryResponse(
       {this.avgFishWeight,
@@ -24,6 +25,7 @@ class OrderHistoryResponse {
       this.municipality,
       this.facebookPage,
       this.website,
+      this.id,
       this.ward});
 
   OrderHistoryResponse.fromJson(Map<String, dynamic> json) {
@@ -34,6 +36,7 @@ class OrderHistoryResponse {
     fishType = json['FishType'];
     buyerName = json['buyerName'];
     phoneNumber = json['phoneNumber'];
+    id = json['id'];
     website = json['website'];
     facebookPage = json['facebookId'];
     streetName = json['streetName'];
