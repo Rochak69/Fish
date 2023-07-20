@@ -73,7 +73,6 @@ class _IdentificationDocumentsState extends State<IdentificationDocuments> {
   bool hidePalika = false;
   bool hideOthers = false;
   String? selectedDistrict;
-  TextEditingController pondSize = TextEditingController();
   TextEditingController citizenNumber = TextEditingController();
   TextEditingController citizenName = TextEditingController();
 
@@ -94,7 +93,6 @@ class _IdentificationDocumentsState extends State<IdentificationDocuments> {
         hideProfile = data.userDetails.data?.document?.profilePicture != null;
         hidePalika = data.userDetails.data?.document?.registration != null;
         hideOthers = data.userDetails.data?.document?.idenfication != null;
-        pondSize.text = data.userDetails.data?.pondSize.toString() ?? '';
 
         setState(() {});
       }
@@ -607,7 +605,7 @@ class _IdentificationDocumentsState extends State<IdentificationDocuments> {
                                     pradesh: widget.pradesh,
                                     district: widget.district,
                                     pondSize: getInMeter(
-                                        double.tryParse(pondSize.text) ?? 0,
+                                        double.tryParse(widget.pondSize) ?? 0,
                                         selectedUnit),
                                     nagarpalika: widget.nagarpalika,
                                     woda: int.tryParse(widget.woda) ?? 0,

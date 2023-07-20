@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -8,6 +10,25 @@ void displayMessage(BuildContext context, var message) {
     duration: const Duration(seconds: 2),
     content: Text(message),
   ));
+}
+
+String generateRandomCombination() {
+  const letters = 'abcdefghijklmnopqrstuvwxyz';
+  const digits = '0123456789';
+  final random = Random();
+  String combination = '';
+
+  for (int i = 0; i < 4; i++) {
+    // Randomly choose a letter or digit
+    bool useLetter = random.nextBool();
+    if (useLetter) {
+      combination += letters[random.nextInt(letters.length)];
+    } else {
+      combination += digits[random.nextInt(digits.length)];
+    }
+  }
+
+  return combination;
 }
 
 void displayMessageWithActionButton(BuildContext context, String title,

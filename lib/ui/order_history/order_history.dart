@@ -90,7 +90,7 @@ class _OrderHistoryState extends State<OrderHistory> {
               Row(
                 children: [
                   Text(
-                    'ID: ',
+                    'ID: ${generateRandomCombination().toUpperCase()}',
 
                     ///translation(context).buy_quantity,
                     //   'Qunatity : ',

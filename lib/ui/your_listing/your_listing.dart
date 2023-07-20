@@ -114,7 +114,7 @@ class _YourListingsState extends State<YourListings> {
           Row(
             children: [
               Text(
-                'ID: ',
+                'ID: ${state.result.data![index].id!.substring(32).toUpperCase()}',
 
                 ///translation(context).buy_quantity,
                 //   'Qunatity : ',
@@ -412,7 +412,7 @@ class _YourListingsState extends State<YourListings> {
                           color: Colors.black),
                     ),
                     Text(
-                      totalWeight.toString() + ' के.जी',
+                      '$totalWeight के.जी',
                       style: TextStyle(
                           fontSize: 12.sp,
                           fontWeight: FontWeight.w800,
