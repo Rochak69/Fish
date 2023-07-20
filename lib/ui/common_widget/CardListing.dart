@@ -23,6 +23,7 @@ class CardListing extends StatefulWidget {
   final String date;
   final bool isDisabled;
   final String userDemandId;
+  final String id;
   const CardListing({
     Key? key,
     this.backgroundColor,
@@ -34,6 +35,7 @@ class CardListing extends StatefulWidget {
     required this.location,
     required this.date,
     required this.userDemandId,
+    required this.id,
   }) : super(key: key);
 
   @override
@@ -79,7 +81,7 @@ class _CardListingState extends State<CardListing> {
                     color: Colors.black),
               ),
               Text(
-                '',
+                widget.id,
                 //   widget.totalWeight.toString() + " के.जी",
                 style: TextStyle(
                     fontSize: 12.sp,

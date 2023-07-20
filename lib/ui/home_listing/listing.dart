@@ -99,6 +99,10 @@ class _ListingsState extends State<Listings> {
                         shrinkWrap: true,
                         itemBuilder: (context, index) {
                           return CardListing(
+                            id: state.result.data![index].id
+                                    ?.substring(32)
+                                    .toUpperCase() ??
+                                " ",
                             isDisabled:
                                 state.result.data?[index].isDisabled ?? false,
                             avgWeight:
