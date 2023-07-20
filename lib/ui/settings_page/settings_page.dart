@@ -121,11 +121,11 @@ class SettingsPage extends StatelessWidget {
               UiHelper.verticalSpacing(20),
               InkWell(
                 onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const Listings(),
-                      ));
+                  // Navigator.push(
+                  //     context,
+                  //     MaterialPageRoute(
+                  //       builder: (context) => const Listings(),
+                  //     ));
                 },
                 child: Card(
                   elevation: 2,
