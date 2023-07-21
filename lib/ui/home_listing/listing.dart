@@ -48,7 +48,7 @@ class _ListingsState extends State<Listings> {
               elevation: 0,
               backgroundColor: Colors.white,
               title: Text(
-                'Buyer Listings',
+                'क्रेताको सूची',
                 style: TextStyle(
                     color: AppColors.textColor,
                     fontWeight: FontWeight.w700,
