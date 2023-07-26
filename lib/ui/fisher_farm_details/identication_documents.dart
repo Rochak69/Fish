@@ -63,7 +63,6 @@ class IdentificationDocuments extends StatefulWidget {
 }
 
 class _IdentificationDocumentsState extends State<IdentificationDocuments> {
-  String selectedUnit = 'हेक्टर';
   String? profilePicturePath;
   String? citizenshipPicturePath;
   String? palikaPicturePath;
@@ -606,7 +605,7 @@ class _IdentificationDocumentsState extends State<IdentificationDocuments> {
                                     district: widget.district,
                                     pondSize: getInMeter(
                                         double.tryParse(widget.pondSize) ?? 0,
-                                        selectedUnit),
+                                        widget.selectedUnit),
                                     nagarpalika: widget.nagarpalika,
                                     woda: int.tryParse(widget.woda) ?? 0,
                                     citizenNumber: citizenNumber.text,
