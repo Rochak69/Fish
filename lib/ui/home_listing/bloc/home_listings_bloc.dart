@@ -44,8 +44,7 @@ class HomeListingsBloc extends Bloc<HomeListingsEvent, HomeListingsState> {
         displayToastMessage(e.details?[0].msg ?? 'Error getting data',
             backgroundColor: AppColors.textRedColor);
       } catch (e) {
-        displayToastMessage(e.toString(),
-            backgroundColor: AppColors.textRedColor);
+        displayToastMessage('Error', backgroundColor: AppColors.textRedColor);
       }
     }
   }
@@ -66,8 +65,7 @@ class HomeListingsBloc extends Bloc<HomeListingsEvent, HomeListingsState> {
         displayToastMessage(e.details?[0].msg ?? 'Error getting data',
             backgroundColor: AppColors.textRedColor);
       } catch (e) {
-        displayToastMessage(e.toString(),
-            backgroundColor: AppColors.textRedColor);
+        displayToastMessage('Error', backgroundColor: AppColors.textRedColor);
       }
     }
   }
