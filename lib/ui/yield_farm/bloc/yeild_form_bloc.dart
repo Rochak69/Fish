@@ -32,7 +32,7 @@ class YeildFormBloc extends Bloc<YeildFormEvent, YeildFormState> {
         emit(YeildFormFailed(
             errorMessage: e.details?[0].msg ?? 'Error getting data'));
       } catch (e) {
-        emit(YeildFormFailed(errorMessage: e.toString()));
+        emit(YeildFormFailed(errorMessage: 'Error'));
       }
     }
   }

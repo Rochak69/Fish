@@ -28,7 +28,7 @@ class SendOtpBloc extends Bloc<SendOtpEvent, SendOtpState> {
         emit(SendOtpFailed(
             errorMessage: e.details?[0].msg ?? 'Error getting data'));
       } catch (e) {
-        emit(SendOtpFailed(errorMessage: e.toString()));
+        emit(SendOtpFailed(errorMessage: 'Error'));
       }
     }
   }

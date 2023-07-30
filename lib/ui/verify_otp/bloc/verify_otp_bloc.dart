@@ -27,7 +27,7 @@ class VerifyOtpBloc extends Bloc<VerifyOtpEvent, VerifyOtpState> {
         emit(VerifyOtpFailed(
             errorMessage: e.details?[0].msg ?? 'Error getting data'));
       } catch (e) {
-        emit(VerifyOtpFailed(errorMessage: e.toString()));
+        emit(VerifyOtpFailed(errorMessage: 'Error'));
       }
     }
   }

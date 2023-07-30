@@ -32,7 +32,7 @@ class YourListingBloc extends Bloc<YourListingEvent, YourListingState> {
         emit(YourListingFailed(
             errorMessage: e.details?[0].msg ?? 'Error getting data'));
       } catch (e) {
-        emit(YourListingFailed(errorMessage: e.toString()));
+        emit(YourListingFailed(errorMessage: 'Error'));
       }
     }
   }

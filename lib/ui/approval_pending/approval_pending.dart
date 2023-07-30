@@ -134,7 +134,7 @@ class ApprovalPending extends StatelessWidget {
                 // )
               },
               child: Text(
-                'Log Out',
+                'Continue',
                 style: TextStyle(
                     fontSize: 12.sp,
                     fontWeight: FontWeight.w600,
