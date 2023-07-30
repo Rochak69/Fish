@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -123,4 +124,15 @@ Color convertColorToHex(String color) {
 
 AppLocalizations translation(BuildContext context) {
   return AppLocalizations.of(context);
+}
+
+Future<bool> isConnected() async {
+  var connectivityResult = await (Connectivity().checkConnectivity());
+  if (connectivityResult == ConnectivityResult.mobile) {
+    return true;
+  } else if (connectivityResult == ConnectivityResult.wifi) {
+    return true;
+  } else {
+    return false;
+  }
 }

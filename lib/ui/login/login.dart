@@ -203,17 +203,23 @@ class _LoginPageState extends State<LoginPage> {
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(12.r),
                               child: ElevatedButton(
-                                onPressed: () {
+                                onPressed: () async {
                                   bool isValid =
                                       formkey.currentState!.validate();
                                   if (isValid) {
-                                    showLoaderDialog(context);
-
-                                    BlocProvider.of<LoginBloc>(context).add(
-                                        LoginWithPhone(
-                                            password: _password.text.trim(),
-                                            phoneNumber: _email.text.trim()));
-                                  } else {}
+                                    if (await isConnected()) {
+                                      showLoaderDialog(context);
+                                      BlocProvider.of<LoginBloc>(context).add(
+                                          LoginWithPhone(
+                                              password: _password.text.trim(),
+                                              phoneNumber: _email.text.trim()));
+                                    } else {
+                                      displayToastMessage(
+                                          'No internet connection',
+                                          backgroundColor:
+                                              AppColors.textRedColor);
+                                    }
+                                  }
                                 },
 
                                 //  signIn,
