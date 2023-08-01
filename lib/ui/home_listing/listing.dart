@@ -107,9 +107,9 @@ class _ListingsState extends State<Listings> {
                                 state.result.data?[index].isDisabled ?? false,
                             avgWeight:
                                 state.result.data?[index].avgFishWeight ?? 0,
-                            date: state.result.data?[index].yieldDate
-                                    .toString() ??
-                                '',
+                            date:
+                                state.result.data?[index].deadline.toString() ??
+                                    '',
                             fishName:
                                 state.result.data?[index].fishType?.name ?? '',
                             totalWeight:
